@@ -1,0 +1,10 @@
+.chart-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+
+    canvas {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}

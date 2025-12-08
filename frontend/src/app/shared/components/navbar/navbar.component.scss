@@ -1,0 +1,10 @@
+// Glassmorphism Navbar
+nav {
+    @apply bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm transition-all duration-300;
+    transform: translateZ(0); // Hardware acceleration
+}
+
+// Scrolled state (optional enhancement)
+:host-context(.scrolled) nav {
+    @apply bg-white/95 shadow-md;
+}

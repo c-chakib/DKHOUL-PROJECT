@@ -1,0 +1,217 @@
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <!-- Header Banner -->
+    <div class="bg-gradient-to-r from-primary to-primary-dark text-white">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-playfair font-bold">Bonjour, {{ (currentUser()?.name || '').split(' ')[0] }} 👋</h1>
+                    <div class="flex items-center gap-4 mt-2">
+                        <p class="text-white/80">Bienvenue dans votre espace personnel</p>
+                        <a routerLink="/profile" class="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-lg text-sm text-white transition-colors flex items-center gap-2">
+                            <span>✏️</span> Modifier mon profil
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="text-right">
+                        <p class="text-sm text-white/60">Statut</p>
+                        <p class="font-medium capitalize">{{ currentUser()?.role }}</p>
+                    </div>
+                    <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center text-2xl">
+                        {{ (currentUser()?.name || 'U')[0] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 -mt-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Réservations</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">{{ bookings().length }}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">🎫</span>
+                    </div>
+                </div>
+            </div>
+            
+            @if (isHost()) {
+                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-medium">Mes Annonces</p>
+                            <p class="text-3xl font-bold text-gray-900 mt-1">{{ myServices().length }}</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                            <span class="text-2xl">🏠</span>
+                        </div>
+                    </div>
+                </div>
+            }
+            
+            <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Statut</p>
+                        <p class="text-xl font-bold text-green-600 mt-1 capitalize">{{ currentUser()?.role }}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <span class="text-2xl">✨</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-xl shadow-sm mb-6 p-2 flex gap-2">
+            <button (click)="setTab('bookings')"
+                    [class.bg-primary]="activeTab() === 'bookings'"
+                    [class.text-white]="activeTab() === 'bookings'"
+                    [class.text-gray-600]="activeTab() !== 'bookings'"
+                    class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2">
+                <span>🎫</span> Mes Réservations
+            </button>
+            @if (isHost()) {
+                <button (click)="setTab('services')"
+                        [class.bg-primary]="activeTab() === 'services'"
+                        [class.text-white]="activeTab() === 'services'"
+                        [class.text-gray-600]="activeTab() !== 'services'"
+                        class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2">
+                    <span>🏠</span> Mes Annonces
+                </button>
+            }
+        </div>
+
+        <!-- BOOKINGS TAB -->
+        @if (activeTab() === 'bookings') {
+            @if (loading()) {
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @for (item of [1,2,3]; track $index) {
+                        <div class="bg-white rounded-xl shadow-sm h-72 animate-pulse"></div>
+                    }
+                </div>
+            } @else {
+                @if (bookings().length === 0) {
+                    <div class="bg-white rounded-xl shadow-lg p-12 text-center border border-gray-100">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-5xl">🎫</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aucune réservation</h3>
+                        <p class="text-gray-500 mb-6 max-w-md mx-auto">Vous n'avez pas encore réservé d'expérience. Explorez nos offres et vivez des moments uniques au Maroc.</p>
+                        <a routerLink="/marketplace" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors">
+                            Découvrir les expériences →
+                        </a>
+                    </div>
+                } @else {
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @for (booking of bookings(); track booking._id) {
+                            <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group">
+                                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                                    <img [src]="getImageUrl(booking.service?.images?.[0])" 
+                                         [alt]="booking.service?.title"
+                                         (error)="$any($event.target).src='assets/images/placeholder-service.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <div class="absolute top-3 right-3">
+                                        <span [class]="booking.status === 'paid' ? 'bg-green-500' : 'bg-orange-500'"
+                                              class="px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">
+                                            {{ booking.status === 'paid' ? '✓ Confirmé' : '⏳ En attente' }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="p-5">
+                                    <h3 class="text-lg font-bold text-gray-900 line-clamp-1 mb-2">{{ booking.service?.title }}</h3>
+                                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                        {{ booking.createdAt | date:'d MMMM yyyy' }}
+                                    </div>
+                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
+                                                {{ (booking.service?.host?.name || 'H')[0] }}
+                                            </div>
+                                            <span class="text-sm text-gray-600">{{ booking.service?.host?.name }}</span>
+                                        </div>
+                                        <span class="text-lg font-bold text-primary">{{ booking.price }} MAD</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        }
+
+        <!-- MY SERVICES TAB (Host Only) -->
+        @if (activeTab() === 'services' && isHost()) {
+            @if (loadingServices()) {
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    @for (item of [1,2,3]; track $index) {
+                        <div class="bg-white rounded-xl shadow-sm h-72 animate-pulse"></div>
+                    }
+                </div>
+            } @else {
+                @if (myServices().length === 0) {
+                    <div class="bg-white rounded-xl shadow-lg p-12 text-center border border-gray-100">
+                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-5xl">🏠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aucune annonce</h3>
+                        <p class="text-gray-500 mb-6 max-w-md mx-auto">Vous n'avez pas encore créé d'expérience. Partagez votre passion avec des voyageurs du monde entier.</p>
+                        <a routerLink="/create-service" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors">
+                            Créer une expérience →
+                        </a>
+                    </div>
+                } @else {
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @for (service of myServices(); track service._id) {
+                            <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group">
+                                <div class="relative h-48 bg-gray-200 overflow-hidden">
+                                    <img [src]="getImageUrl(service.images[0])" 
+                                         [alt]="service.title"
+                                         (error)="$any($event.target).src='assets/images/placeholder-service.jpg'"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <span class="absolute top-3 left-3 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold uppercase">
+                                        {{ service.category }}
+                                    </span>
+                                </div>
+                                <div class="p-5">
+                                    <h3 class="text-lg font-bold text-gray-900 line-clamp-1 mb-1">{{ service.title }}</h3>
+                                    <p class="text-sm text-gray-500 mb-3 flex items-center">
+                                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                        </svg>
+                                        {{ service.city }}
+                                    </p>
+                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                                        <span class="text-xl font-bold text-primary">{{ service.price }} MAD</span>
+                                        <div class="flex gap-2">
+                                            <a [routerLink]="['/edit-service', service._id]" 
+                                               class="px-3 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors">
+                                                ✏️
+                                            </a>
+                                            <a [routerLink]="['/service', service._id]" 
+                                               class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
+                                                Voir
+                                            </a>
+                                            <button (click)="deleteService(service._id)" 
+                                                    class="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors">
+                                                Supprimer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        }
+    </div>
+</div>

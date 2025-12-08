@@ -1,0 +1,19 @@
+/* Animations are handled by Tailwind classes in HTML (animate-in, slide-in-from-bottom, etc.) */
+/* We can add custom scrollbar styling here if needed */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}

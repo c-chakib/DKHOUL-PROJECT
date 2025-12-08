@@ -1,0 +1,15 @@
+// Custom scrollbar for horizontal highlights if needed
+.overflow-x-auto {
+    &::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 2px;
+    }
+}

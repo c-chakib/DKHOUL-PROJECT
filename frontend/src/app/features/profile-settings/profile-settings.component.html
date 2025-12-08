@@ -1,0 +1,185 @@
+<div class="max-w-7xl mx-auto px-4 py-8">
+  
+  <h1 class="text-3xl font-bold text-gray-900 mb-8">Paramètres du compte</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    
+    <!-- SIDEBAR -->
+    <div class="md:col-span-1">
+      <nav class="space-y-1">
+        @for (item of menuItems; track item.id) {
+          <button (click)="setActiveTab(item.id)" 
+             [class.bg-orange-50]="activeTab() === item.id"
+             [class.text-[#BC5627]]="activeTab() === item.id"
+             [class.border-[#BC5627]]="activeTab() === item.id"
+             class="w-full flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg group border-l-4 border-transparent transition-colors text-left">
+            <i [class]="item.icon + ' w-6 mr-3 text-lg ' + (activeTab() === item.id ? 'text-[#BC5627]' : 'text-gray-400')"></i>
+            <span class="font-medium">{{ item.label }}</span>
+          </button>
+        }
+      </nav>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="md:col-span-3">
+      <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+        
+        <!-- PROFILE TAB -->
+        @if (activeTab() === 'profile') {
+          <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            
+            <!-- AVATAR SECTION -->
+            <div class="flex items-center mb-8">
+               <div class="relative group cursor-pointer" (click)="triggerFileInput()">
+                 <img [src]="imagePreview() || 'assets/images/placeholder-avatar.jpg'" 
+                      class="w-24 h-24 rounded-full object-cover border-2 border-gray-100 group-hover:opacity-75 transition">
+                 <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                   <i class="fas fa-camera text-white text-xl drop-shadow-md"></i>
+                 </div>
+               </div>
+               <div class="ml-6">
+                  <h3 class="text-lg font-bold text-gray-900">Photo de profil</h3>
+                  <p class="text-sm text-gray-500 mb-3">JPG ou PNG. Max 5MB.</p>
+                  <button type="button" (click)="triggerFileInput()" class="text-[#BC5627] font-semibold hover:text-[#a04620] text-sm">
+                    Changer la photo
+                  </button>
+                  <input type="file" id="fileInput" class="hidden" (change)="onFileSelected($event)" accept="image/*">
+               </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+               <!-- NAME -->
+               <div>
+                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                 <input type="text" id="name" formControlName="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition">
+               </div>
+
+               <!-- EMAIL -->
+               <div>
+                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email (Non modifiable)</label>
+                 <input type="email" id="email" formControlName="email" class="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-500 cursor-not-allowed">
+               </div>
+            </div>
+
+            <!-- BIO -->
+            <div class="mb-8">
+              <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+              <textarea formControlName="bio" id="bio" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition" placeholder="Parlez-nous de vous..."></textarea>
+              <p class="text-xs text-gray-500 mt-1">Sera affiché sur votre profil public.</p>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="flex justify-end pt-6 border-t border-gray-200">
+               <button type="button" routerLink="/dashboard" class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 mr-4 transition">
+                 Annuler
+               </button>
+               <button type="submit" [disabled]="isLoading()" class="px-6 py-2 bg-[#BC5627] text-white rounded-lg font-bold hover:bg-[#a04620] transition shadow-md flex items-center">
+                 @if (isLoading()) {
+                   <i class="fas fa-spinner fa-spin mr-2"></i>
+                 }
+                 {{ isLoading() ? 'Enregistrement...' : 'Enregistrer' }}
+               </button>
+            </div>
+
+          </form>
+        }
+
+        <!-- SECURITY TAB -->
+        @if (activeTab() === 'security') {
+          <div class="text-center py-12">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-alt text-2xl text-[#BC5627]"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Sécurité du compte</h3>
+            <p class="text-gray-500 max-w-md mx-auto mb-6">
+              Gérez votre mot de passe et les paramètres de sécurité de votre compte.
+            </p>
+            <div class="bg-gray-50 rounded-lg p-6 max-w-md mx-auto text-left">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h4 class="font-semibold text-gray-900">Mot de passe</h4>
+                  <p class="text-sm text-gray-500">Dernière modification: il y a 30 jours</p>
+                </div>
+                <button class="px-4 py-2 bg-[#BC5627] text-white text-sm rounded-lg hover:bg-[#a04620] transition">
+                  Modifier
+                </button>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h4 class="font-semibold text-gray-900">Authentification 2FA</h4>
+                  <p class="text-sm text-gray-500">Non activée</p>
+                </div>
+                <button class="px-4 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition">
+                  Activer
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- PAYMENTS TAB -->
+        @if (activeTab() === 'payments') {
+          <div class="text-center py-12">
+            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-credit-card text-2xl text-[#BC5627]"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Moyens de paiement</h3>
+            <p class="text-gray-500 max-w-md mx-auto mb-6">
+              Gérez vos cartes et méthodes de paiement enregistrées.
+            </p>
+            <div class="bg-gray-50 rounded-lg p-6 max-w-md mx-auto">
+              <div class="flex items-center justify-center text-gray-400 mb-4">
+                <i class="far fa-credit-card text-4xl"></i>
+              </div>
+              <p class="text-gray-500 text-sm">Aucun moyen de paiement enregistré</p>
+              <button class="mt-4 px-6 py-2 bg-[#BC5627] text-white rounded-lg hover:bg-[#a04620] transition">
+                <i class="fas fa-plus mr-2"></i>Ajouter une carte
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- NOTIFICATIONS TAB -->
+        @if (activeTab() === 'notifications') {
+          <div class="py-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Préférences de notifications</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 class="font-semibold text-gray-900">Emails de réservation</h4>
+                  <p class="text-sm text-gray-500">Recevoir un email lors de chaque réservation</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer">
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#BC5627]"></div>
+                </label>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 class="font-semibold text-gray-900">Messages</h4>
+                  <p class="text-sm text-gray-500">Recevoir des notifications pour les nouveaux messages</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" checked class="sr-only peer">
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#BC5627]"></div>
+                </label>
+              </div>
+              <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div>
+                  <h4 class="font-semibold text-gray-900">Newsletter</h4>
+                  <p class="text-sm text-gray-500">Recevoir les actualités et offres spéciales</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" class="sr-only peer">
+                  <div class="w-11 h-6 bg-gray-200 peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#BC5627]"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+
+  </div>
+</div>

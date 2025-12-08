@@ -1,0 +1,171 @@
+<div class="max-w-4xl mx-auto p-6">
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-3xl font-serif font-bold text-dk-dark">Modifier l'expérience</h1>
+        <button (click)="cancel()" class="text-gray-500 hover:text-gray-700">
+            ← Retour
+        </button>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading()" class="text-center py-20">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-dk-primary border-t-transparent mx-auto"></div>
+        <p class="mt-4 text-gray-500">Chargement...</p>
+    </div>
+
+    <div *ngIf="!isLoading()" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <form [formGroup]="serviceForm" class="p-8 space-y-8">
+            
+            <!-- SECTION 1: BASE INFO -->
+            <section>
+                <h2 class="text-xl font-bold text-dk-primary mb-4 flex items-center gap-2">
+                    <span class="bg-dk-primary/10 p-2 rounded-lg">1</span> Informations de base
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Title -->
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Titre de l'expérience</label>
+                        <input type="text" formControlName="title" 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent transition-all"
+                               placeholder="Ex: Cérémonie traditionnelle du thé...">
+                    </div>
+
+                    <!-- Category -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
+                        <select formControlName="category" 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent bg-white">
+                            <option value="" disabled>Choisir une catégorie</option>
+                            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+                        </select>
+                    </div>
+
+                    <!-- City -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ville</label>
+                        <select formControlName="city" 
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent bg-white">
+                            <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Price -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Prix (MAD)</label>
+                        <div class="relative">
+                            <input type="number" formControlName="price" 
+                                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent">
+                            <span class="absolute right-4 top-3 text-gray-400 font-bold">MAD</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-gray-100">
+
+            <!-- SECTION 2: LOGISTIQUE -->
+            <section>
+                <h2 class="text-xl font-bold text-dk-primary mb-4 flex items-center gap-2">
+                    <span class="bg-dk-primary/10 p-2 rounded-lg">2</span> Logistique
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Duration -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Durée (minutes)</label>
+                        <input type="number" formControlName="duration" 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent">
+                    </div>
+
+                    <!-- Max Participants -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Participants max</label>
+                        <input type="number" formControlName="maxParticipants" 
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent">
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Langues parlées</label>
+                        <div class="flex flex-wrap gap-4">
+                            <label *ngFor="let lang of availableLanguages" 
+                                   class="flex items-center space-x-2 cursor-pointer px-4 py-2 rounded-full border transition-colors"
+                                   [class.bg-dk-primary]="isLanguageSelected(lang)"
+                                   [class.text-white]="isLanguageSelected(lang)"
+                                   [class.bg-gray-50]="!isLanguageSelected(lang)"
+                                   [class.hover:border-dk-primary]="!isLanguageSelected(lang)">
+                                <input type="checkbox" 
+                                       [checked]="isLanguageSelected(lang)"
+                                       (change)="toggleLanguage(lang, $event)" 
+                                       class="rounded text-dk-primary focus:ring-dk-primary w-4 h-4">
+                                <span>{{ lang }}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="border-gray-100">
+
+            <!-- SECTION 3: DETAILS (AI) -->
+            <section>
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold text-dk-primary flex items-center gap-2">
+                        <span class="bg-dk-primary/10 p-2 rounded-lg">3</span> Description
+                    </h2>
+                    <button type="button" (click)="generateWithAI()" 
+                            [disabled]="isGenerating()"
+                            class="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:shadow-lg transition-all disabled:opacity-50 text-sm font-medium">
+                        <span *ngIf="!isGenerating()">✨ Générer avec IA</span>
+                        <span *ngIf="isGenerating()">Génération...</span>
+                    </button>
+                </div>
+                
+                <textarea formControlName="description" rows="5"
+                          class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-dk-primary focus:border-transparent"
+                          placeholder="Décrivez votre expérience en détail..."></textarea>
+            </section>
+
+            <hr class="border-gray-100">
+
+            <!-- SECTION 4: GALERIE (UPLOAD) -->
+            <section>
+                <h2 class="text-xl font-bold text-dk-primary mb-4 flex items-center gap-2">
+                    <span class="bg-dk-primary/10 p-2 rounded-lg">4</span> Galerie Photos
+                </h2>
+                
+                <div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-dk-primary transition-colors cursor-pointer bg-gray-50"
+                     (click)="fileInput.click()">
+                    <input #fileInput type="file" (change)="onFileSelected($event)" class="hidden" accept="image/*">
+                    <div class="text-4xl mb-2">📸</div>
+                    <p class="text-gray-600 font-medium">Cliquez pour ajouter des photos</p>
+                    <p class="text-xs text-gray-400 mt-1">JPG, PNG, WEBP (Max 5MB)</p>
+                </div>
+
+                <!-- Preview Grid -->
+                <div class="grid grid-cols-4 gap-4 mt-6" *ngIf="uploadedImages().length > 0">
+                    <div *ngFor="let img of uploadedImages(); let i = index" class="relative group aspect-square rounded-lg overflow-hidden border border-gray-200 shadow-sm">
+                        <img [src]="img" class="w-full h-full object-cover">
+                        <button type="button" (click)="removeImage(i)" 
+                                class="absolute top-1 right-1 bg-white/90 text-red-500 rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+                            ×
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUBMIT ACTION -->
+            <div class="pt-6 border-t border-gray-100 flex justify-between">
+                <button type="button" (click)="cancel()" 
+                        class="px-6 py-3 rounded-xl font-medium text-gray-600 border border-gray-300 hover:bg-gray-50 transition-colors">
+                    Annuler
+                </button>
+                <button type="button" (click)="submitService()" 
+                        [disabled]="serviceForm.invalid || uploadedImages().length === 0 || isSaving()"
+                        class="bg-dk-primary text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-dk-primary-dark transition-colors shadow-lg shadow-dk-primary/30 flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span *ngIf="!isSaving()">💾 Enregistrer les modifications</span>
+                    <span *ngIf="isSaving()">Enregistrement...</span>
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<nav [class.shadow-md]="isScrolled()" [class.bg-white]="isScrolled()" [class.bg-transparent]="!isScrolled()" 
+     class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent"
+     [class.border-gray-100]="isScrolled()">
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      
+      <!-- LOGO -->
+      <a routerLink="/" class="flex items-center gap-2 group">
+        <span class="font-playfair font-bold text-2xl text-[#BC5627]">DKHOUL</span>
+      </a>
+
+      <!-- DESKTOP MENU -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a routerLink="/" routerLinkActive="text-[#BC5627] font-semibold" 
+           class="text-gray-700 hover:text-[#BC5627] font-medium transition-colors">
+           Accueil
+        </a>
+        <a routerLink="/marketplace" routerLinkActive="text-[#BC5627] font-semibold" 
+           class="text-gray-700 hover:text-[#BC5627] font-medium transition-colors">
+           Explorer
+        </a>
+        
+        <!-- Auth State -->
+        @if (currentUser()) {
+          @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin') {
+            <a routerLink="/create-service" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-full font-semibold transition-colors text-sm">
+                Créer une expérience
+            </a>
+            <a routerLink="/dashboard" class="text-gray-700 hover:text-[#BC5627] font-medium transition-colors">
+                Mode Hôte
+            </a>
+          } @else {
+            <a routerLink="/dashboard" class="text-gray-700 hover:text-[#BC5627] font-medium transition-colors">
+                Devenir Hôte
+            </a>
+          }
+          
+          <div class="relative ml-4">
+            <button (click)="toggleProfileMenu()" class="flex items-center gap-2 border border-gray-200 rounded-full pl-2 pr-1 py-1 hover:shadow-md transition-shadow bg-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+              </svg>
+              <img [src]="currentUser()?.photo || 'assets/default-avatar.png'" class="h-8 w-8 rounded-full object-cover">
+            </button>
+
+            <!-- Dropdown -->
+            @if (isProfileMenuOpen()) {
+              <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 py-2 animate-in fade-in slide-in-from-top-2">
+                <div class="px-4 py-2 border-b border-gray-100">
+                  <p class="font-bold text-gray-900 truncate">{{ currentUser()?.name }}</p>
+                </div>
+                <a routerLink="/profile" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Mon Profil</a>
+                <a routerLink="/dashboard" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">Tableau de bord</a>
+                <button (click)="onLogout()" class="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 font-medium">
+                  Déconnexion
+                </button>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="flex items-center gap-4">
+            <a routerLink="/login" class="text-gray-700 font-medium hover:text-[#BC5627]">Se connecter</a>
+            <a routerLink="/register" class="bg-[#BC5627] text-white px-5 py-2.5 rounded-full font-bold hover:bg-[#a44920] transition-colors shadow-sm">
+              S'inscrire
+            </a>
+          </div>
+        }
+      </div>
+
+      <!-- MOBILE HAMBURGER -->
+      <button (click)="toggleMobileMenu()" class="md:hidden p-2 text-gray-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- MOBILE SIDE DRAWER -->
+  @if (isMobileMenuOpen()) {
+    <div class="fixed inset-0 z-[60] flex md:hidden">
+      <div class="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity" (click)="closeMobileMenu()"></div>
+      
+      <div class="relative bg-white w-[80%] max-w-sm h-full shadow-2xl p-6 overflow-y-auto animate-in slide-in-from-right">
+        <div class="flex justify-end mb-8">
+          <button (click)="closeMobileMenu()" class="p-2 bg-gray-100 rounded-full text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        @if (currentUser()) {
+          <div class="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+            <img [src]="currentUser()?.photo || 'assets/default-avatar.png'" class="h-14 w-14 rounded-full object-cover shadow-sm">
+            <div>
+              <div class="font-bold text-lg">{{ currentUser()?.name }}</div>
+              <div class="text-sm text-gray-500">{{ currentUser()?.email }}</div>
+            </div>
+          </div>
+        }
+
+        <nav class="space-y-6">
+          <a routerLink="/" (click)="closeMobileMenu()" class="block text-xl font-medium text-gray-800">Accueil</a>
+          <a routerLink="/marketplace" (click)="closeMobileMenu()" class="block text-xl font-medium text-gray-800">Explorer</a>
+          
+          @if (currentUser()) {
+            @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin') {
+                <a routerLink="/create-service" (click)="closeMobileMenu()" class="block text-xl font-bold text-[#BC5627]">Créer une expérience</a>
+                <a routerLink="/dashboard" (click)="closeMobileMenu()" class="block text-xl font-medium text-gray-800">Mode Hôte</a>
+            } @else {
+                <a routerLink="/dashboard" (click)="closeMobileMenu()" class="block text-xl font-medium text-gray-800">Devenir Hôte</a>
+            }
+            <a routerLink="/profile" (click)="closeMobileMenu()" class="block text-xl font-medium text-gray-800">Mon Profil</a>
+            <button (click)="onLogout()" class="block w-full text-left text-xl font-bold text-red-600 pt-4">Déconnexion</button>
+          } @else {
+            <div class="pt-4 space-y-4">
+              <a routerLink="/login" (click)="closeMobileMenu()" class="block w-full text-center py-3 border border-gray-300 rounded-xl font-bold text-gray-700">Se connecter</a>
+              <a routerLink="/register" (click)="closeMobileMenu()" class="block w-full text-center py-3 bg-[#BC5627] text-white rounded-xl font-bold shadow-md">S'inscrire</a>
+            </div>
+          }
+        </nav>
+      </div>
+    </div>
+  }
+</nav>
