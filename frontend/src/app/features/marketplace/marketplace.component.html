@@ -12,15 +12,16 @@
          
          <!-- Categories -->
          <div class="flex flex-wrap gap-2 justify-center">
-            <button *ngFor="let cat of categories"
-                    (click)="onCategoryChange(cat.value)"
-                    [class.bg-primary]="selectedCategory() === cat.value"
-                    [class.text-white]="selectedCategory() === cat.value"
-                    [class.bg-white]="selectedCategory() !== cat.value"
-                    [class.text-gray-600]="selectedCategory() !== cat.value"
-                    class="px-5 py-2 rounded-full border border-gray-200 font-medium transition-all hover:border-primary hover:text-primary active:scale-95">
-                {{ cat.label }}
-            </button>
+            @for (cat of categories; track cat.value) {
+                <button (click)="onCategoryChange(cat.value)"
+                        [class.bg-primary]="selectedCategory() === cat.value"
+                        [class.text-white]="selectedCategory() === cat.value"
+                        [class.bg-white]="selectedCategory() !== cat.value"
+                        [class.text-gray-600]="selectedCategory() !== cat.value"
+                        class="px-5 py-2 rounded-full border border-gray-200 font-medium transition-all hover:border-primary hover:text-primary active:scale-95">
+                    {{ cat.label }}
+                </button>
+            }
          </div>
 
          <!-- Search, Sort & View Toggle -->
