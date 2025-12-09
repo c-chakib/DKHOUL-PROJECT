@@ -61,13 +61,23 @@ exports.getAllServices = async (req, res, next) => {
 
         // 1A) Filtering
         const queryObj = { ...req.query };
-        const excludedFields = ['page', 'sort', 'limit', 'fields'];
+        const excludedFields = ['page', 'sort', 'limit', 'fields', 'search']; // Exclude 'search'
         excludedFields.forEach((el) => delete queryObj[el]);
 
         // 1B) Advanced Filtering
         let queryStr = JSON.stringify(queryObj);
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
         const filter = JSON.parse(queryStr);
+
+        // 1C) Search (Title/Description)
+        if (req.query.search) {
+            const searchRegex = new RegExp(req.query.search, 'i');
+            filter.$or = [
+                { title: { $regex: searchRegex } },
+                { description: { $regex: searchRegex } },
+                { city: { $regex: searchRegex } }
+            ];
+        }
 
         // 2) PAGINATION
         const page = req.query.page * 1 || 1;

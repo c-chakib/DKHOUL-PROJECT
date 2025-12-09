@@ -60,9 +60,12 @@ io.on('connection', (socket) => {
     });
 });
 
+const { initBackupScheduler } = require('./utils/backupScheduler');
+
 (async () => {
     await connectDB();
     await initRedis();
+    initBackupScheduler();
     server.listen(PORT, () => {
         console.log(
             `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold

@@ -33,11 +33,8 @@ export const appConfig: ApplicationConfig = {
     provideNgxStripe('pk_test_L5FB3QoapHgjMt61e739qsYc'),
     provideCharts(withDefaultRegisterables()),
     provideServiceWorker('ngsw-worker.js', {
-      enabled: !isDevMode(),
+      enabled: true,
       registrationStrategy: 'registerWhenStable:30000'
-    }), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          })
+    })
   ]
 };

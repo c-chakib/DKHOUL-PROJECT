@@ -7,47 +7,80 @@
         </p>
     </div>
     
-    <!-- Filter/Search Bar -->
-    <div class="mb-10 flex flex-col md:flex-row justify-between items-center gap-4">
-         
-         <!-- Categories -->
-         <div class="flex flex-wrap gap-2 justify-center">
-            @for (cat of categories; track cat.value) {
-                <button (click)="onCategoryChange(cat.value)"
+    <!-- Advanced Filter Bar -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-10">
+        <!-- Top Row: Search & City -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
+            <div class="md:col-span-8 relative">
+                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
+                <input type="text" 
+                       [ngModel]="searchQuery()" 
+                       (input)="onSearchInput($event)"
+                       placeholder="Rechercher une activité, une ambiance..." 
+                       class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+            </div>
+            
+            <div class="md:col-span-4">
+                <select [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event); triggerSearch()" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary bg-white cursor-pointer appearance-none">
+                    <option value="" disabled selected>Choisir une ville</option>
+                    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Bottom Row: Categories, Price, Sort -->
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <!-- Categories -->
+            <div class="flex flex-wrap gap-2">
+                <button *ngFor="let cat of categories" 
+                        (click)="onCategoryChange(cat.value)"
                         [class.bg-primary]="selectedCategory() === cat.value"
                         [class.text-white]="selectedCategory() === cat.value"
-                        [class.bg-white]="selectedCategory() !== cat.value"
+                        [class.bg-gray-50]="selectedCategory() !== cat.value"
                         [class.text-gray-600]="selectedCategory() !== cat.value"
-                        class="px-5 py-2 rounded-full border border-gray-200 font-medium transition-all hover:border-primary hover:text-primary active:scale-95">
+                        class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-primary hover:text-white">
                     {{ cat.label }}
                 </button>
-            }
-         </div>
+            </div>
 
-         <!-- Search, Sort & View Toggle -->
-         <div class="flex gap-4 w-full md:w-auto items-center">
-             <input type="text" placeholder="Rechercher..." class="flex-1 md:w-64 px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
-             
-             <select (change)="onSortChange($event)" class="px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary shadow-sm bg-white cursor-pointer">
-                 <option *ngFor="let opt of sortOptions" [value]="opt.value">{{ opt.label }}</option>
-             </select>
+            <!-- Price & Sort & View -->
+            <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+                <!-- Price Range -->
+                <div class="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
+                    <span class="text-sm text-gray-500">Prix:</span>
+                    <input type="number" [ngModel]="minPrice()" (ngModelChange)="minPrice.set($event)" placeholder="Min" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
+                    <span class="text-gray-400">-</span>
+                    <input type="number" [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)" placeholder="Max" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
+                    <button (click)="triggerSearch()" class="text-primary hover:text-primary-dark font-bold">OK</button>
+                </div>
 
-             <!-- VIEW TOGGLE (Desktop) -->
-             <div class="hidden md:flex bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
-                <button (click)="setViewMode('list')"
-                        [class.bg-primary]="viewMode() === 'list'"
-                        [class.text-white]="viewMode() === 'list'"
-                        class="px-4 py-2 transition-colors flex items-center gap-1">
-                    📋 <span class="text-sm font-medium">Liste</span>
-                </button>
-                <button (click)="setViewMode('map')"
-                        [class.bg-primary]="viewMode() === 'map'"
-                        [class.text-white]="viewMode() === 'map'"
-                        class="px-4 py-2 transition-colors flex items-center gap-1">
-                    🗺️ <span class="text-sm font-medium">Carte</span>
-                </button>
-             </div>
-         </div>
+                <!-- Sort -->
+                <select [ngModel]="sortOption()" (ngModelChange)="sortOption.set($event); triggerSearch()" class="px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary text-sm bg-white cursor-pointer">
+                     <option *ngFor="let opt of sortOptions" [value]="opt.value">{{ opt.label }}</option>
+                </select>
+
+                <!-- View Toggle (Desktop) -->
+                <div class="hidden md:flex bg-gray-100 rounded-lg p-1">
+                    <button (click)="setViewMode('list')"
+                            [class.bg-white]="viewMode() === 'list'"
+                            [class.shadow-sm]="viewMode() === 'list'"
+                            [class.text-primary]="viewMode() === 'list'"
+                            [class.text-gray-500]="viewMode() !== 'list'"
+                            class="px-3 py-1.5 rounded transition-all text-sm font-medium flex items-center gap-1">
+                        📋
+                    </button>
+                    <button (click)="setViewMode('map')"
+                            [class.bg-white]="viewMode() === 'map'"
+                            [class.shadow-sm]="viewMode() === 'map'"
+                            [class.text-primary]="viewMode() === 'map'"
+                            [class.text-gray-500]="viewMode() !== 'map'"
+                            class="px-3 py-1.5 rounded transition-all text-sm font-medium flex items-center gap-1">
+                        🗺️
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- LOADING STATE (P3) -->

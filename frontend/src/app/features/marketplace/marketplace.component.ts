@@ -1,20 +1,27 @@
-import { Component, OnInit, signal, inject, computed } from '@angular/core';
+import { Component, OnInit, signal, inject, computed, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { MapComponent } from '../../shared/components/map/map.component';
 import { environment } from '../../../environments/environment';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'app-marketplace',
     standalone: true,
-    imports: [CommonModule, MapComponent],
+    imports: [CommonModule, MapComponent, FormsModule],
     templateUrl: './marketplace.component.html',
     styleUrls: ['./marketplace.component.scss']
 })
-export class MarketplaceComponent implements OnInit {
+export class MarketplaceComponent implements OnInit, OnDestroy {
     private serviceService = inject(ServiceService);
     private router = inject(Router);
+
+    // Search Debounce Subject
+    private searchSubject = new Subject<string>();
+    private destroy$ = new Subject<void>();
 
     services = signal<Service[]>([]);
     mapServices = signal<Service[]>([]); // Full dataset for map
@@ -45,6 +52,14 @@ export class MarketplaceComponent implements OnInit {
         return range;
     });
 
+    searchQuery = signal<string>('');
+    selectedCity = signal<string>('');
+    minPrice = signal<number | null>(null);
+    maxPrice = signal<number | null>(null);
+
+    // Filter Options
+    cities = ['Tout le Maroc', 'Casablanca', 'Marrakech', 'Agadir', 'Tanger', 'Fès', 'Rabat', 'Essaouira', 'Merzouga', 'Chefchaouen', 'Ouarzazate'];
+
     categories = [
         { value: '', label: 'Tout' },
         { value: 'SPACE', label: 'Espaces' },
@@ -62,13 +77,31 @@ export class MarketplaceComponent implements OnInit {
     private route = inject(ActivatedRoute);
 
     ngOnInit() {
+        // Initialize Search Subscription
+        this.searchSubject.pipe(
+            debounceTime(400), // Wait 400ms after last keystroke
+            distinctUntilChanged(), // Only if value changed
+            takeUntil(this.destroy$)
+        ).subscribe(query => {
+            this.searchQuery.set(query);
+            this.triggerSearch();
+        });
+
         this.route.queryParams.subscribe(params => {
             if (params['category']) {
                 this.selectedCategory.set(params['category']);
             }
+            if (params['search']) {
+                this.searchQuery.set(params['search']);
+            }
             this.fetchServices();
             this.fetchMapServices();
         });
+    }
+
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 
     // Map Fetch (All results matching filters)
@@ -76,10 +109,7 @@ export class MarketplaceComponent implements OnInit {
         const params: any = {
             limit: 1000 // High limit to get all for map
         };
-
-        if (this.selectedCategory()) params.category = this.selectedCategory();
-        if (this.sortOption()) params.sort = this.sortOption();
-
+        this.applyFilters(params);
         this.serviceService.getAllServices(params).subscribe({
             next: (res) => {
                 if (res.data && res.data.services) {
@@ -96,9 +126,7 @@ export class MarketplaceComponent implements OnInit {
             page: this.currentPage(),
             limit: this.limit
         };
-
-        if (this.selectedCategory()) params.category = this.selectedCategory();
-        if (this.sortOption()) params.sort = this.sortOption();
+        this.applyFilters(params);
 
         this.serviceService.getAllServices(params).subscribe({
             next: (res) => {
@@ -113,6 +141,36 @@ export class MarketplaceComponent implements OnInit {
                 this.isLoading.set(false);
             }
         });
+    }
+
+    private applyFilters(params: any) {
+        if (this.selectedCategory()) params.category = this.selectedCategory();
+        if (this.sortOption()) params.sort = this.sortOption();
+        if (this.searchQuery()) params.search = this.searchQuery();
+        if (this.selectedCity() && this.selectedCity() !== 'Tout le Maroc') params.city = this.selectedCity();
+        if (this.minPrice()) params['price[gte]'] = this.minPrice();
+        if (this.maxPrice()) params['price[lte]'] = this.maxPrice();
+    }
+
+    onSearchInput(event: Event) {
+        const val = (event.target as HTMLInputElement).value;
+        this.searchSubject.next(val);
+    }
+
+    triggerSearch() {
+        this.currentPage.set(1);
+        this.fetchServices();
+        this.fetchMapServices();
+    }
+
+    onCityChange(event: Event) {
+        const val = (event.target as HTMLSelectElement).value;
+        this.selectedCity.set(val);
+        this.triggerSearch();
+    }
+
+    onPriceChange() {
+        this.triggerSearch();
     }
 
     onPageChange(newPage: number) {

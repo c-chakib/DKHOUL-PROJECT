@@ -25,7 +25,7 @@ describe('ServiceService', () => {
     });
 
     it('should get all services', () => {
-        const dummyServices = { results: 0, data: { services: [] } };
+        const dummyServices = { results: 0, total: 0, page: 1, data: { services: [] } };
 
         service.getAllServices().subscribe(res => {
             expect(res).toEqual(dummyServices);

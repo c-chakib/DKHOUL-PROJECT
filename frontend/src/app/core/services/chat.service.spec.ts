@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { ChatService } from './chat.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from './auth.service';
+import { signal } from '@angular/core';
 
 describe('ChatService', () => {
     let service: ChatService;
@@ -9,7 +10,7 @@ describe('ChatService', () => {
 
     beforeEach(() => {
         mockAuthService = {
-            currentUser: jasmine.createSpy('currentUser').and.returnValue(null)
+            currentUser: signal(null)
         };
 
         TestBed.configureTestingModule({

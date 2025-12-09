@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('PaymentComponent', () => {
     let component: PaymentComponent;
@@ -31,7 +32,7 @@ describe('PaymentComponent', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [PaymentComponent],
+            imports: [PaymentComponent, ToastrModule.forRoot()],
             providers: [
                 provideRouter([]),
                 { provide: StripeService, useValue: mockStripeService },
