@@ -28,7 +28,9 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = async (req, res, next) => {
     try {
-        console.log('Signup Request Body:', req.body);
+        console.log('Signup Entry - typeof next:', typeof next); // DEBUG
+        console.log('Signup Body:', req.body);
+
         const newUser = await User.create({
             name: req.body.name,
             email: req.body.email,
@@ -38,13 +40,21 @@ exports.signup = async (req, res, next) => {
             isVerified: req.body.isVerified,
         });
 
-        console.log('Signup Successful, ID:', newUser._id);
+        console.log('User created:', newUser._id);
+
+        // Use non-blocking email send
         sendWelcomeEmail(newUser).catch(err => console.error('Welcome email failed:', err));
 
         createSendToken(newUser, 201, res);
     } catch (err) {
-        console.error('Signup Error:', err);
-        next(err);
+        console.error('Signup Error Detailed:', err);
+        if (typeof next === 'function') {
+            next(err);
+        } else {
+            console.error('CRITICAL: next is not a function inside signup catch!', err);
+            // Fallback response if next is busted
+            res.status(400).json({ status: 'error', message: err.message });
+        }
     }
 };
 

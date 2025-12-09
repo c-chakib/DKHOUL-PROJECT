@@ -74,11 +74,11 @@ userSchema.pre('save', async function () {
 });
 
 // Update passwordChangedAt when password is modified
-userSchema.pre('save', function (next) {
-    if (!this.isModified('password') || this.isNew) return next();
+// Update passwordChangedAt when password is modified
+userSchema.pre('save', async function () {
+    if (!this.isModified('password') || this.isNew) return;
 
     this.passwordChangedAt = Date.now() - 1000;
-    next();
 });
 
 userSchema.methods.correctPassword = async function (
