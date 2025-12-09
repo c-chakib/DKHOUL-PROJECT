@@ -34,8 +34,8 @@ const router = express.Router();
  *         description: List of services within radius
  */
 router
-    .route('/services-within/:distance/center/:latlng/unit/:unit')
-    .get(serviceController.getServicesWithin);
+  .route('/services-within/:distance/center/:latlng/unit/:unit')
+  .get(serviceController.getServicesWithin);
 
 /**
  * @swagger
@@ -60,26 +60,26 @@ router
  *         schema:
  *           type: string
  *         description: "Sort field (e.g., price, -price for descending)"
-      - in: query
-        name: price[gte]
-        schema:
-          type: number
-        description: Minimum price
-      - in: query
-        name: price[lte]
-        schema:
-          type: number
-        description: Maximum price
-      - in: query
-        name: duration[gte]
-        schema:
-          type: number
-        description: Minimum duration
-      - in: query
-        name: duration[lte]
-        schema:
-          type: number
-        description: Maximum duration
+ *       - in: query
+ *         name: price[gte]
+ *         schema:
+ *           type: number
+ *         description: Minimum price
+ *       - in: query
+ *         name: price[lte]
+ *         schema:
+ *           type: number
+ *         description: Maximum price
+ *       - in: query
+ *         name: duration[gte]
+ *         schema:
+ *           type: number
+ *         description: Minimum duration
+ *       - in: query
+ *         name: duration[lte]
+ *         schema:
+ *           type: number
+ *         description: Maximum duration
  *       - in: query
  *         name: limit
  *         schema:
@@ -164,13 +164,13 @@ router
  *         description: Not authorized (host/admin only)
  */
 router
-    .route('/')
-    .get(serviceController.getAllServices)
-    .post(
-        authController.protect,
-        authController.restrictTo('host', 'admin'),
-        serviceController.createService
-    );
+  .route('/')
+  .get(serviceController.getAllServices)
+  .post(
+    authController.protect,
+    authController.restrictTo('host', 'admin'),
+    serviceController.createService
+  );
 
 /**
  * @swagger
@@ -257,9 +257,9 @@ router.get('/my-services', authController.protect, serviceController.getMyServic
  *         description: Not authenticated
  */
 router
-    .route('/:id')
-    .get(serviceController.getOneService)
-    .patch(authController.protect, serviceController.updateService)
-    .delete(authController.protect, serviceController.deleteService);
+  .route('/:id')
+  .get(serviceController.getOneService)
+  .patch(authController.protect, serviceController.updateService)
+  .delete(authController.protect, serviceController.deleteService);
 
 module.exports = router;
