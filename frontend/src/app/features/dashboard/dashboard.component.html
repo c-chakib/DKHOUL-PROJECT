@@ -68,84 +68,41 @@
         </div>
 
         <!-- Tab Navigation -->
-        <div class="bg-white rounded-xl shadow-sm mb-6 p-2 flex gap-2">
+        <div class="bg-white rounded-xl shadow-sm mb-6 p-2 flex gap-2 overflow-x-auto">
             <button (click)="setTab('bookings')"
                     [class.bg-primary]="activeTab() === 'bookings'"
                     [class.text-white]="activeTab() === 'bookings'"
                     [class.text-gray-600]="activeTab() !== 'bookings'"
-                    class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2">
+                    class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap">
                 <span>🎫</span> Mes Réservations
             </button>
+            
             @if (isHost()) {
                 <button (click)="setTab('services')"
                         [class.bg-primary]="activeTab() === 'services'"
                         [class.text-white]="activeTab() === 'services'"
                         [class.text-gray-600]="activeTab() !== 'services'"
-                        class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2">
+                        class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap">
                     <span>🏠</span> Mes Annonces
+                </button>
+                <button (click)="setTab('host-bookings')"
+                        [class.bg-primary]="activeTab() === 'host-bookings'"
+                        [class.text-white]="activeTab() === 'host-bookings'"
+                        [class.text-gray-600]="activeTab() !== 'host-bookings'"
+                        class="flex-1 md:flex-none px-6 py-3 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap">
+                    <span>📥</span> Réservations reçues
                 </button>
             }
         </div>
 
-        <!-- BOOKINGS TAB -->
+        <!-- BOOKINGS TAB (Guest) -->
         @if (activeTab() === 'bookings') {
-            @if (loading()) {
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @for (item of [1,2,3]; track $index) {
-                        <div class="bg-white rounded-xl shadow-sm h-72 animate-pulse"></div>
-                    }
-                </div>
-            } @else {
-                @if (bookings().length === 0) {
-                    <div class="bg-white rounded-xl shadow-lg p-12 text-center border border-gray-100">
-                        <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-5xl">🎫</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Aucune réservation</h3>
-                        <p class="text-gray-500 mb-6 max-w-md mx-auto">Vous n'avez pas encore réservé d'expérience. Explorez nos offres et vivez des moments uniques au Maroc.</p>
-                        <a routerLink="/marketplace" class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors">
-                            Découvrir les expériences →
-                        </a>
-                    </div>
-                } @else {
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        @for (booking of bookings(); track booking._id) {
-                            <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group">
-                                <div class="relative h-48 bg-gray-200 overflow-hidden">
-                                    <img [src]="getImageUrl(booking.service?.images?.[0])" 
-                                         [alt]="booking.service?.title"
-                                         appImageFallback="/assets/images/placeholder-service.png"
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    <div class="absolute top-3 right-3">
-                                        <span [class]="booking.status === 'paid' ? 'bg-green-500' : 'bg-orange-500'"
-                                              class="px-3 py-1 rounded-full text-xs font-bold text-white shadow-sm">
-                                            {{ booking.status === 'paid' ? '✓ Confirmé' : '⏳ En attente' }}
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="p-5">
-                                    <h3 class="text-lg font-bold text-gray-900 line-clamp-1 mb-2">{{ booking.service?.title }}</h3>
-                                    <div class="flex items-center text-sm text-gray-500 mb-3">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                        </svg>
-                                        {{ booking.createdAt | date:'d MMMM yyyy' }}
-                                    </div>
-                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-bold text-primary">
-                                                {{ (booking.service?.host?.name || 'H')[0] }}
-                                            </div>
-                                            <span class="text-sm text-gray-600">{{ booking.service?.host?.name }}</span>
-                                        </div>
-                                        <span class="text-lg font-bold text-primary">{{ booking.price }} MAD</span>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
-            }
+            <app-my-bookings [bookings]="bookings()" [loading]="loading()"></app-my-bookings>
+        }
+
+        <!-- HOST BOOKINGS TAB -->
+        @if (activeTab() === 'host-bookings') {
+            <app-host-bookings></app-host-bookings>
         }
 
         <!-- MY SERVICES TAB (Host Only) -->

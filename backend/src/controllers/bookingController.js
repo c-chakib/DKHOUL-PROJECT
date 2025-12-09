@@ -153,7 +153,16 @@ exports.confirmBooking = async (req, res, next) => {
         }
 
         // Update booking status
-        booking.status = 'paid';
+        // DO NOT Change this to 'confirmed', this endpoint is called AFTER stripe payment success 
+        // Logic: Paid -> Pending (Waiting for Host Approval)
+        // OR: Paid -> Confirmed (Auto-confirm)
+        // As per new requirements: Host Must Manually Accept.
+        // So after payment, status is 'pending' (default) but paymentStatus is 'paid'.
+
+        booking.paymentStatus = 'paid';
+        // booking.status remains 'pending' by default or we enforce it
+        booking.status = 'pending';
+
         await booking.save();
 
         // Decrement availability slot if date was specified
@@ -175,14 +184,15 @@ exports.confirmBooking = async (req, res, next) => {
             }
         }
 
-        // Send confirmation email
+        // Send confirmation email (Can be 'Payment Received, waiting for host' or similar)
         if (booking.tourist && booking.service) {
+            // For now keep sending confirmation, or change email text later.
             await sendBookingConfirmation(booking.tourist, booking, booking.service);
         }
 
         res.status(200).json({
             status: 'success',
-            message: 'Booking confirmed',
+            message: 'Booking paid and pending approval',
             data: { booking }
         });
 
@@ -194,9 +204,6 @@ exports.confirmBooking = async (req, res, next) => {
 exports.getMyBookings = async (req, res, next) => {
     try {
         // Find bookings where current user is tourist.
-        // The Booking model has a pre('find') hook that populates 'tourist' and 'service'.
-        // We rely on that for basic info.
-
         const bookings = await Booking.find({ tourist: req.user.id });
 
         res.status(200).json({
@@ -206,6 +213,83 @@ exports.getMyBookings = async (req, res, next) => {
                 bookings
             }
         });
+    } catch (err) {
+        next(err);
+    }
+};
+
+/**
+ * NEW: Get bookings for services hosted by the current user
+ */
+exports.getHostBookings = async (req, res, next) => {
+    try {
+        // 1. Find all services owned by host
+        const services = await Service.find({ host: req.user.id });
+        const serviceIds = services.map(s => s._id);
+
+        // 2. Find bookings for these services
+        const bookings = await Booking.find({ service: { $in: serviceIds } })
+            .populate('tourist', 'name email photo')
+            .populate('service', 'title price images')
+            .sort('-createdAt');
+
+        res.status(200).json({
+            status: 'success',
+            results: bookings.length,
+            data: {
+                bookings
+            }
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+/**
+ * NEW: Update Booking Status (Accept/Reject)
+ */
+exports.updateBookingStatus = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { status } = req.body; // 'confirmed' or 'cancelled'
+
+        if (!['confirmed', 'cancelled'].includes(status)) {
+            return next(new AppError('Invalid status. Use confirmed or cancelled', 400));
+        }
+
+        const booking = await Booking.findById(id).populate('service');
+        if (!booking) {
+            return next(new AppError('Booking not found', 404));
+        }
+
+        // Verify that the current user is the host of the service
+        // booking.service is populated, so check booking.service.host
+        // Note: service.host might be an ID or populated object depending on Service model schema, 
+        // usually in Mongoose refs are IDs unless populated. 
+        // Let's check Service model ID comparison.
+
+        // We need to ensure we compare strings
+        if (booking.service.host.toString() !== req.user.id) {
+            return next(new AppError('You are not authorized to manage this booking', 403));
+        }
+
+        booking.status = status;
+
+        // If cancelled, logic for refund could go here (Stripe Refund API)
+        if (status === 'cancelled') {
+            booking.paymentStatus = 'refunded'; // Mark as refunded in DB for now
+            // TODO: Trigger Stripe Refund
+        }
+
+        await booking.save();
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                booking
+            }
+        });
+
     } catch (err) {
         next(err);
     }

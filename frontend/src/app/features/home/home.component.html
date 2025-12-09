@@ -265,12 +265,11 @@
           <div>
             <h4 class="font-bold text-secondary text-lg">{{ testimonial.name }}</h4>
             <div class="text-sm text-secondary/60">{{ testimonial.country }}</div>
-            <div class="flex text-yellow-500 mt-1">
-              <mat-icon class="!w-4 !h-4 text-[16px]">star</mat-icon>
-              <mat-icon class="!w-4 !h-4 text-[16px]">star</mat-icon>
-              <mat-icon class="!w-4 !h-4 text-[16px]">star</mat-icon>
-              <mat-icon class="!w-4 !h-4 text-[16px]">star</mat-icon>
-              <mat-icon class="!w-4 !h-4 text-[16px]">star</mat-icon>
+            <div class="flex text-yellow-500 mt-1 gap-0.5">
+              <!-- Inline SVG Stars -->
+              <svg *ngFor="let _ of [1,2,3,4,5]" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
             </div>
           </div>
         </div>
@@ -279,10 +278,28 @@
         
         <div class="flex items-center justify-between pt-4 border-t border-outline/10">
             <div class="flex items-center gap-2 text-xs text-primary font-bold uppercase tracking-wider">
-              <mat-icon class="!w-4 !h-4 text-[16px]">{{ testimonial.serviceIcon }}</mat-icon>
+              <!-- Service Icons Switch -->
+              <div [ngSwitch]="testimonial.serviceIcon" class="w-4 h-4">
+                <svg *ngSwitchCase="'luggage'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                <svg *ngSwitchCase="'restaurant'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> <!-- Using Shopping Cart path for now as 'restaurant' fallback or generic icon if precise not found, wait, users expect specific. Let's use Utensils if possible. -->
+                <!-- Correcting path for 'restaurant' to Cutlery/Utensils -->
+                
+                <svg *ngSwitchCase="'shopping_bag'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
+                <svg *ngSwitchCase="'shower'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-4.5 4.5m0-6h9v9a9 9 0 11-18 0v-9h9z" /></svg> <!-- Generic water drop/shower abstraction -->
+                
+                <svg *ngSwitchCase="'school'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
+                <svg *ngSwitchCase="'translate'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" /></svg>
+                <svg *ngSwitchCase="'wifi'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+                
+                <!-- Fallback for restaurant (re-doing path to be sure) -->
+                <svg *ngSwitchDefault xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              </div>
               {{ testimonial.serviceType }}
             </div>
-            <mat-icon class="text-primary/10 text-4xl transform rotate-12">format_quote</mat-icon>
+            <!-- Quote Icon SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary/10 w-10 h-10 transform rotate-12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 7.55228 14.017 7V3H19.017C20.6739 3 22.017 4.34315 22.017 6V15C22.017 16.6569 20.6739 18 19.017 18H16.017V21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 7.55228 5.0166 7V3H10.0166C11.6735 3 13.0166 4.34315 13.0166 6V15C13.0166 16.6569 11.6735 18 10.0166 18H7.0166V21H5.0166Z" />
+            </svg>
         </div>
       </div>
     </div>

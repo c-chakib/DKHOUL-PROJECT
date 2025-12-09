@@ -2,6 +2,7 @@ import { Component, HostListener, inject, signal, computed } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
     selector: 'app-navbar',
@@ -15,7 +16,16 @@ export class NavbarComponent {
     private router = inject(Router);
 
     // Signals
+
     currentUser = this.authService.currentUser;
+
+    userPhotoUrl = computed(() => {
+        const user = this.currentUser();
+        if (!user?.photo) return 'assets/default-avatar.png';
+        if (user.photo.startsWith('data:') || user.photo.startsWith('http')) return user.photo;
+        return environment.apiUrl.replace('/api/v1', '') + user.photo;
+    });
+
     userFirstName = computed(() => {
         const user = this.currentUser();
         return user?.name ? user.name.split(' ')[0] : '';

@@ -161,6 +161,54 @@ router.get('/my-bookings', bookingController.getMyBookings);
 
 /**
  * @swagger
+ * /api/v1/bookings/host-bookings:
+ *   get:
+ *     summary: Get bookings received by the current user (Host)
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of bookings for host's services
+ */
+router.get('/host-bookings', authController.restrictTo('host', 'admin'), bookingController.getHostBookings);
+
+/**
+ * @swagger
+ * /api/v1/bookings/{id}/status:
+ *   patch:
+ *     summary: Update booking status (Accept/Reject)
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - status
+ *             properties:
+ *               status:
+ *                 type: string
+ *                 enum: [confirmed, cancelled]
+ *     responses:
+ *       200:
+ *         description: Status updated
+ *       403:
+ *         description: Not authorized
+ */
+router.patch('/:id/status', authController.restrictTo('host', 'admin'), bookingController.updateBookingStatus);
+
+/**
+ * @swagger
  * /api/v1/bookings:
  *   get:
  *     summary: Get all bookings (Admin only)

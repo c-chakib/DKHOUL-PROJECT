@@ -1,6 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, Router } from '@angular/router';
+import { MyBookingsComponent } from './bookings/my-bookings.component';
+import { HostBookingsComponent } from './host/host-bookings/host-bookings.component';
 import { BookingService } from '../../core/services/booking.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ServiceService, Service } from '../../core/services/service.service';
@@ -10,24 +12,25 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, ImageFallbackDirective],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective, MyBookingsComponent, HostBookingsComponent],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    bookingService = inject(BookingService);
     authService = inject(AuthService);
+    bookingService = inject(BookingService);
     serviceService = inject(ServiceService);
     router = inject(Router);
 
     bookings = signal<any[]>([]);
     loading = signal<boolean>(true);
+
     currentUser = this.authService.currentUser;
 
     // Host Services
     myServices = signal<Service[]>([]);
     loadingServices = signal<boolean>(false);
-    activeTab = signal<'bookings' | 'services'>('bookings');
+    activeTab = signal<'bookings' | 'host-bookings' | 'services'>('bookings');
 
     ngOnInit() {
         this.loadBookings();
@@ -80,7 +83,7 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    setTab(tab: 'bookings' | 'services') {
+    setTab(tab: 'bookings' | 'host-bookings' | 'services') {
         this.activeTab.set(tab);
     }
 

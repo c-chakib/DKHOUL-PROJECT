@@ -39,7 +39,7 @@
           <div class="relative ml-6">
             <button (click)="toggleProfileMenu()" class="flex items-center gap-3 border border-gray-200 rounded-full pl-1 pr-4 py-1 hover:shadow-md transition-all duration-300 bg-white hover:border-[#BC5627]/20 group">
               <div class="h-9 w-9 rounded-full p-0.5 border border-gray-100 group-hover:border-[#BC5627]/30 transition-colors">
-                  <img [src]="currentUser()?.photo || 'assets/default-avatar.png'" class="h-full w-full rounded-full object-cover">
+                  <img [src]="userPhotoUrl()" class="h-full w-full rounded-full object-cover">
               </div>
               <div class="flex flex-col items-start">
                   <span class="text-xs font-bold text-gray-800 leading-none mb-0.5">{{ userFirstName() }}</span>
@@ -119,7 +119,7 @@
 
         @if (currentUser()) {
           <div class="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
-            <img [src]="currentUser()?.photo || 'assets/default-avatar.png'" class="h-14 w-14 rounded-full object-cover shadow-sm">
+            <img [src]="userPhotoUrl()" class="h-14 w-14 rounded-full object-cover shadow-sm">
             <div>
               <div class="font-bold text-lg">{{ currentUser()?.name }}</div>
               <div class="text-sm text-gray-500">{{ currentUser()?.email }}</div>
