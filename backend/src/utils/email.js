@@ -7,12 +7,23 @@ const nodemailer = require('nodemailer');
 
 // Create transporter (using environment variables for security)
 const createTransporter = () => {
-    // For production: Use a real SMTP service (Gmail, SendGrid, etc.)
-    // For development: Use Mailtrap or console logging
+    // 1. SendGrid (Priority if configured)
+    if (process.env.SENDGRID_API_KEY) {
+        return nodemailer.createTransport({
+            service: 'SendGrid',
+            auth: {
+                user: 'apikey',
+                pass: process.env.SENDGRID_API_KEY
+            }
+        });
+    }
 
+    // 2. Production Gmail/Other SMTP
     if (process.env.NODE_ENV === 'production') {
         return nodemailer.createTransport({
-            service: 'gmail',
+            host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+            port: process.env.EMAIL_PORT || 587,
+            secure: false, // true for 465, false for other ports
             auth: {
                 user: process.env.EMAIL_USERNAME,
                 pass: process.env.EMAIL_PASSWORD
@@ -20,7 +31,7 @@ const createTransporter = () => {
         });
     }
 
-    // Development: Use Mailtrap or ethereal
+    // 3. Development: Use Mailtrap or standard SMTP fallback
     return nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.mailtrap.io',
         port: process.env.EMAIL_PORT || 2525,
@@ -40,7 +51,7 @@ const sendEmail = async (options) => {
         const transporter = createTransporter();
 
         const mailOptions = {
-            from: `DKHOUL Marketplace <${process.env.EMAIL_FROM || 'noreply@dkhoul.ma'}>`,
+            from: `${process.env.EMAIL_FROM_NAME || 'DKHOUL Marketplace'} <${process.env.EMAIL_FROM || 'noreply@dkhoul.me'}>`,
             to: options.to,
             subject: options.subject,
             text: options.text,
@@ -48,7 +59,7 @@ const sendEmail = async (options) => {
         };
 
         // In development without proper email config, just log
-        if (!process.env.EMAIL_USERNAME) {
+        if (!process.env.EMAIL_USERNAME && !process.env.SENDGRID_API_KEY) {
             console.log('📧 [EMAIL MOCK] Would send email:');
             console.log(`   To: ${options.to}`);
             console.log(`   Subject: ${options.subject}`);
@@ -69,6 +80,7 @@ const sendEmail = async (options) => {
  * Send Welcome Email after registration
  */
 const sendWelcomeEmail = async (user) => {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
     const html = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #D4A574, #8B4513); padding: 40px; text-align: center;">
@@ -82,13 +94,13 @@ const sendWelcomeEmail = async (user) => {
                     et créez des souvenirs inoubliables.
                 </p>
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="${process.env.FRONTEND_URL || 'http://localhost:4200'}/marketplace" 
+                    <a href="${baseUrl}/marketplace" 
                        style="background: #D4A574; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">
                         Explorer les expériences
                     </a>
                 </div>
                 <p style="color: #999; font-size: 12px; text-align: center;">
-                    © 2024 DKHOUL Marketplace. Tous droits réservés.
+                    © 2025 DKHOUL Marketplace. Tous droits réservés.
                 </p>
             </div>
         </div>
@@ -106,6 +118,7 @@ const sendWelcomeEmail = async (user) => {
  * Send Booking Confirmation Email
  */
 const sendBookingConfirmation = async (user, booking, service) => {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
     const html = `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: linear-gradient(135deg, #228B22, #2E8B57); padding: 40px; text-align: center;">
@@ -125,7 +138,7 @@ const sendBookingConfirmation = async (user, booking, service) => {
                 </div>
 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="${process.env.FRONTEND_URL || 'http://localhost:4200'}/dashboard" 
+                    <a href="${baseUrl}/dashboard" 
                        style="background: #228B22; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">
                         Voir mes réservations
                     </a>
@@ -196,9 +209,130 @@ const sendPasswordResetEmail = async (user, resetURL) => {
     });
 };
 
+
+/**
+ * Send New Request Notification to Host
+ */
+const sendNewRequestToHost = async (host, guest, booking, service) => {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, #BC5627, #A0451F); padding: 40px; text-align: center;">
+                <h1 style="color: white; margin: 0;">🔔 Nouvelle Demande de Réservation</h1>
+            </div>
+            <div style="padding: 30px; background: #f9f9f9;">
+                <h2 style="color: #333;">Bonjour ${host.name},</h2>
+                <p style="color: #666; line-height: 1.6;">
+                    Excellente nouvelle ! <strong>${guest.name}</strong> souhaite réserver votre expérience "${service.title}".
+                </p>
+                
+                <div style="background: white; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #BC5627;">
+                    <p style="margin: 5px 0;">📅 <strong>Date:</strong> ${new Date(booking.bookingDate).toLocaleDateString()}</p>
+                    <p style="margin: 5px 0;">💰 <strong>Revenu net:</strong> ${booking.price} MAD</p>
+                    <p style="margin: 5px 0;">👥 <strong>Invités:</strong> ${booking.guests}</p>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <a href="${baseUrl}/dashboard" 
+                       style="background: #BC5627; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                        Gérer la réservation
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    return sendEmail({
+        to: host.email,
+        subject: `🔔 Nouvelle demande de réservation pour ${service.title}`,
+        text: `Nouvelle demande de ${guest.name} pour ${service.title}. Connectez-vous pour répondre.`,
+        html
+    });
+};
+
+/**
+ * Send Request Acknowledgement to Guest
+ */
+const sendRequestAckToGuest = async (guest, service) => {
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, #333, #555); padding: 40px; text-align: center;">
+                <h1 style="color: white; margin: 0;">⏳ Demande Envoyée</h1>
+            </div>
+            <div style="padding: 30px; background: #f9f9f9;">
+                <h2 style="color: #333;">Bonjour ${guest.name},</h2>
+                <p style="color: #666; line-height: 1.6;">
+                    Votre demande de réservation pour <strong>"${service.title}"</strong> a bien été transmise à l'hôte.
+                </p>
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; color: #0d47a1;">
+                    ⏱️ L'hôte dispose de 24h pour valider votre demande. Vous recevrez un email dès sa réponse.
+                </div>
+            </div>
+        </div>
+    `;
+
+    return sendEmail({
+        to: guest.email,
+        subject: `⏳ Demande envoyée - ${service.title}`,
+        text: `Votre demande pour ${service.title} est envoyée. L'hôte doit la valider sous 24h.`,
+        html
+    });
+};
+
+/**
+ * Send Booking Status Update to Guest
+ */
+const sendBookingStatusToGuest = async (guest, booking, service) => {
+    const baseUrl = process.env.FRONTEND_URL || 'http://localhost:4200';
+    const isConfirmed = booking.status === 'confirmed';
+
+    // Config based on status
+    const color = isConfirmed ? '#228B22' : '#D32F2F';
+    const title = isConfirmed ? '✅ Réservation Confirmée !' : '❌ Demande Refusée';
+    const subject = isConfirmed ? `✅ Réservation Confirmée ! Préparez vos valises.` : `❌ Demande refusée par l'hôte.`;
+
+    const messageBody = isConfirmed
+        ? `Félicitations, votre réservation pour <strong>"${service.title}"</strong> est validée ! Retrouvez tous les détails sur votre compte.`
+        : `L'hôte n'est malheureusement pas disponible pour cette date. Aucun montant ne sera débité ou vous serez remboursé intégralement.`;
+
+    const cta = isConfirmed ? `
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="${baseUrl}/dashboard" 
+               style="background: ${color}; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                Voir ma réservation
+            </a>
+        </div>
+    ` : '';
+
+    const html = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, ${color}, ${isConfirmed ? '#2E8B57' : '#B71C1C'}); padding: 40px; text-align: center;">
+                <h1 style="color: white; margin: 0;">${title}</h1>
+            </div>
+            <div style="padding: 30px; background: #f9f9f9;">
+                <h2 style="color: #333;">Bonjour ${guest.name},</h2>
+                <p style="color: #666; line-height: 1.6;">
+                    ${messageBody}
+                </p>
+                ${cta}
+            </div>
+        </div>
+    `;
+
+    return sendEmail({
+        to: guest.email,
+        subject: subject,
+        text: messageBody.replace(/<[^>]*>?/gm, ''), // Strip HTML for text version
+        html
+    });
+};
+
 module.exports = {
     sendEmail,
     sendWelcomeEmail,
     sendBookingConfirmation,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    sendNewRequestToHost,
+    sendRequestAckToGuest,
+    sendBookingStatusToGuest
 };

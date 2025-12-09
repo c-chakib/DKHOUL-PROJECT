@@ -23,6 +23,7 @@ import { TypedTextComponent } from '../../shared/components/typed-text/typed-tex
 import { MapSectionComponent } from '../../shared/components/map-section/map-section.component';
 import { HeroCarouselComponent } from '../../shared/components/hero-carousel/hero-carousel.component';
 import { LoggerService } from '../../core/services/logger.service';
+import { AuthService } from '../../core/services/auth.service';
 
 export interface FeaturedService {
     name: string;
@@ -207,6 +208,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
     currentYear = new Date().getFullYear();
 
+    private authService = inject(AuthService);
+    currentUser = this.authService.currentUser;
+
     ngOnInit() {
         this.initScrollProgress();
         this.loadRecentServices();
@@ -262,14 +266,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     navigateToRegister(): void {
-        this.router.navigate(['/auth/register']);
+        this.router.navigate(['/register']);
     }
 
     navigateToLogin(): void {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
     }
 
     navigateToBecomeProvider(): void {
-        this.router.navigate(['/auth/register'], { queryParams: { type: 'provider' } });
+        const user = this.authService.currentUser();
+        if (user) {
+            if (user.role === 'host') {
+                this.router.navigate(['/create-service']);
+            } else {
+                this.router.navigate(['/dashboard']);
+            }
+        } else {
+            this.router.navigate(['/register'], { queryParams: { type: 'provider' } });
+        }
     }
 }

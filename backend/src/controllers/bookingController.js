@@ -125,6 +125,29 @@ exports.createPaymentIntent = async (req, res, next) => {
         });
 
         // 3. Send Client Secret to Frontend
+        // 3. Send Client Secret to Frontend
+
+        // --- EMAIL NOTIFICATION LOGIC ---
+        // Fetch full service details to get Host info
+        // We need to populate 'host' from the service. The service variable above is just the doc found by ID.
+        // It might not have 'host' populated if it's just findById(serviceId) without populate.
+        // Check Service model: usually host is an ObjectId ref 'User'.
+
+        const fullService = await Service.findById(serviceId).populate('host');
+
+        if (fullService && fullService.host) {
+            // Send Notification to Host
+            const emailModule = require('../utils/email'); // Lazy load to ensure circular deps safe if any
+
+            // We need guest info too. req.user is the guest.
+            try {
+                await emailModule.sendNewRequestToHost(fullService.host, req.user, newBooking, fullService);
+                await emailModule.sendRequestAckToGuest(req.user, fullService);
+            } catch (emailErr) {
+                console.error('Failed to send booking notifications:', emailErr);
+            }
+        }
+
         res.status(200).json({
             status: 'success',
             clientSecret: paymentIntent.client_secret,
@@ -186,8 +209,10 @@ exports.confirmBooking = async (req, res, next) => {
 
         // Send confirmation email (Can be 'Payment Received, waiting for host' or similar)
         if (booking.tourist && booking.service) {
-            // For now keep sending confirmation, or change email text later.
-            await sendBookingConfirmation(booking.tourist, booking, booking.service);
+            // MOVED TO updateBookingStatus (When host explicitly accepts)
+            // Prevent sending "Confirmed" email while status is still 'pending'
+            // await sendBookingConfirmation(booking.tourist, booking, booking.service);
+            console.log('Skipping immediate confirmation email - waiting for Host Approval.');
         }
 
         res.status(200).json({
@@ -282,6 +307,19 @@ exports.updateBookingStatus = async (req, res, next) => {
         }
 
         await booking.save();
+
+        // --- EMAIL STATUS NOTIFICATION ---
+        const emailModule = require('../utils/email');
+        // booking has tourist (ID) and service (ID/Object). Need to ensure tourist is populated to get email.
+        const fullBooking = await Booking.findById(id).populate('tourist').populate('service');
+
+        if (fullBooking && fullBooking.tourist) {
+            try {
+                await emailModule.sendBookingStatusToGuest(fullBooking.tourist, fullBooking, fullBooking.service);
+            } catch (emailErr) {
+                console.error('Failed to send status update email:', emailErr);
+            }
+        }
 
         res.status(200).json({
             status: 'success',

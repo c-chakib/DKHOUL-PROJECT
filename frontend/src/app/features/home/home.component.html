@@ -38,12 +38,14 @@
           </svg>
           Explorer les Services
         </button>
+        @if (!currentUser()) {
         <button (click)="navigateToBecomeProvider()" class="bg-white text-[#BC5627] border-2 border-[#BC5627] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#BC5627]/5 transition-all duration-300 flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
           Devenir Hôte
         </button>
+        }
       </div>
 
       <div class="grid grid-cols-3 gap-8 pt-8 border-t border-outline/20">
@@ -77,8 +79,8 @@
       <p class="text-xl text-secondary/70">Monétise ton espace, vends ton savoir-faire, loue ton temps</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div *ngFor="let category of mainCategories" class="group bg-surface rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-outline/10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div *ngFor="let category of mainCategories" class="group bg-surface rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-outline/10 h-full">
         <div class="h-48 -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-3xl relative">
           <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
           <div class="absolute top-4 right-4 bg-surface/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
@@ -127,7 +129,7 @@
     </div>
 
     <!-- Services Grid -->
-    <div *ngIf="!isLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
       <div *ngFor="let service of recentServices" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer" (click)="navigateToServices()">
         <!-- Image -->
         <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl relative">
