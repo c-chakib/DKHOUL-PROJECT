@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { MapComponent } from '../../shared/components/map/map.component';
 import { environment } from '../../../environments/environment';
@@ -59,9 +59,16 @@ export class MarketplaceComponent implements OnInit {
         { value: '-rating', label: 'Mieux notés' }
     ];
 
+    private route = inject(ActivatedRoute);
+
     ngOnInit() {
-        this.fetchServices();
-        this.fetchMapServices();
+        this.route.queryParams.subscribe(params => {
+            if (params['category']) {
+                this.selectedCategory.set(params['category']);
+            }
+            this.fetchServices();
+            this.fetchMapServices();
+        });
     }
 
     // Map Fetch (All results matching filters)

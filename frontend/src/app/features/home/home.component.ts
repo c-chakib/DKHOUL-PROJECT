@@ -74,7 +74,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             description: 'Micro-services pratiques : stockage bagages, douche express, wifi, stationnement, coworking à domicile',
             subcategories: ['Stockage bagages (20 DH)', 'Douche express (30 DH)', 'Wifi/Coworking (50 DH)', 'Stationnement (50 DH)'],
             examples: ['Stockage sécurisé de bagages', 'Accès wifi + café', 'Garage privé', 'Salon coworking'],
-            image: 'assets/images/space.png'
+            image: 'assets/images/space.png',
+            categoryParam: 'SPACE'
         },
         {
             icon: 'school',
@@ -85,7 +86,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             description: 'Apprentissages authentiques : cuisine marocaine, artisanat, langues, musique traditionnelle',
             subcategories: ['Cours cuisine (200 DH)', 'Darija (150 DH)', 'Artisanat (200 DH)', 'Musique (250 DH)'],
             examples: ['Tajine/Couscous chez l\'habitant', 'Initiation darija conversationnelle', 'Poterie berbère', 'Rythmes gnaoua'],
-            image: 'assets/images/skills.png'
+            image: 'assets/images/skills.png',
+            categoryParam: 'SKILL'
         },
         {
             icon: 'groups',
@@ -96,7 +98,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             description: 'Expériences humaines : accompagnement souk, conseils locaux, transport personnalisé, baby-sitting',
             subcategories: ['Shopping souk (100 DH/h)', 'Conseils locaux (50 DH)', 'Transport aéroport', 'Baby-sitting (80 DH/h)'],
             examples: ['Guide shopping médina', 'Bons plans restos', 'Trajet privé aéroport', 'Garde enfants bilingue'],
-            image: 'assets/images/connect.png'
+            image: 'assets/images/connect.png',
+            categoryParam: 'CONNECT'
         }
     ];
 
@@ -250,8 +253,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         });
     }
 
-    navigateToServices(): void {
-        this.router.navigate(['/marketplace']);
+    navigateToServices(category?: string): void {
+        if (category) {
+            this.router.navigate(['/marketplace'], { queryParams: { category } });
+        } else {
+            this.router.navigate(['/marketplace']);
+        }
     }
 
     navigateToRegister(): void {
