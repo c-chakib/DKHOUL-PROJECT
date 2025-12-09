@@ -28,6 +28,9 @@ export class PaymentComponent implements OnInit {
     price = signal(0);
     serviceId = signal('');
     bookingDate = signal('');
+    bookingTime = signal('');
+    bookingGuests = signal(1);
+    bookingDuration = signal(1);
     bookingId = signal(''); // Store bookingId to confirm after payment
 
     elementsOptions = signal<StripeElementsOptions>({
@@ -60,6 +63,9 @@ export class PaymentComponent implements OnInit {
             this.price.set(Number(params['price']) || 0);
             this.serviceTitle.set(params['title'] || '');
             this.bookingDate.set(params['date'] || '');
+            this.bookingTime.set(params['time'] || '');
+            this.bookingGuests.set(Number(params['guests']) || 1);
+            this.bookingDuration.set(Number(params['duration']) || 1);
 
             // Validate required params
             if (!this.serviceId() || !this.price()) {
@@ -73,7 +79,14 @@ export class PaymentComponent implements OnInit {
     }
 
     initializePayment() {
-        this.bookingService.createPaymentIntent(this.serviceId(), this.price(), this.bookingDate())
+        this.bookingService.createPaymentIntent(
+            this.serviceId(),
+            this.price(),
+            this.bookingDate(),
+            this.bookingTime(),
+            this.bookingGuests(),
+            this.bookingDuration()
+        )
             .subscribe({
                 next: (res) => {
                     // Store bookingId for later confirmation

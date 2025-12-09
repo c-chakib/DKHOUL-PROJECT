@@ -17,6 +17,7 @@ export class MarketplaceComponent implements OnInit {
     private router = inject(Router);
 
     services = signal<Service[]>([]);
+    mapServices = signal<Service[]>([]); // Full dataset for map
     total = signal<number>(0);
     currentPage = signal<number>(1);
     limit = 9;
@@ -60,6 +61,26 @@ export class MarketplaceComponent implements OnInit {
 
     ngOnInit() {
         this.fetchServices();
+        this.fetchMapServices();
+    }
+
+    // Map Fetch (All results matching filters)
+    fetchMapServices() {
+        const params: any = {
+            limit: 1000 // High limit to get all for map
+        };
+
+        if (this.selectedCategory()) params.category = this.selectedCategory();
+        if (this.sortOption()) params.sort = this.sortOption();
+
+        this.serviceService.getAllServices(params).subscribe({
+            next: (res) => {
+                if (res.data && res.data.services) {
+                    this.mapServices.set(res.data.services);
+                }
+            },
+            error: (err) => console.error('Error fetching map services:', err)
+        });
     }
 
     fetchServices() {
@@ -99,6 +120,7 @@ export class MarketplaceComponent implements OnInit {
         this.selectedCategory.set(category);
         this.currentPage.set(1); // Reset to page 1 on filter change
         this.fetchServices();
+        this.fetchMapServices();
     }
 
     onSortChange(event: Event) {
@@ -106,6 +128,7 @@ export class MarketplaceComponent implements OnInit {
         this.sortOption.set(value);
         this.currentPage.set(1); // Reset to page 1 on sort change
         this.fetchServices();
+        this.fetchMapServices();
     }
 
     setViewMode(mode: 'list' | 'map') {

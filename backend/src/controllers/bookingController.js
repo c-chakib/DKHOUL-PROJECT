@@ -64,7 +64,7 @@ exports.checkAvailability = async (req, res, next) => {
  */
 exports.createPaymentIntent = async (req, res, next) => {
     try {
-        const { serviceId, price, date } = req.body;
+        const { serviceId, price, date, time, guests, duration } = req.body;
 
         if (!serviceId || !price) {
             return next(new AppError('Please provide serviceId and price', 400));
@@ -106,7 +106,9 @@ exports.createPaymentIntent = async (req, res, next) => {
             metadata: {
                 serviceId: serviceId,
                 userId: req.user.id,
-                date: date || ''
+                date: date || '',
+                time: time || '',
+                guests: guests || 1
             }
         });
 
@@ -117,7 +119,10 @@ exports.createPaymentIntent = async (req, res, next) => {
             price: price,
             status: 'pending',
             paymentIntentId: paymentIntent.id,
-            bookingDate: date || null
+            bookingDate: date || null,
+            time: time || null,
+            guests: guests || 1,
+            duration: duration || 1
         });
 
         // 3. Send Client Secret to Frontend

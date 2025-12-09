@@ -4,10 +4,31 @@
         <p class="text-gray-500 text-sm mb-6">Complete your booking securely.</p>
 
         <!-- Order Summary -->
+        <!-- Order Summary -->
         <div class="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-100">
-            <h3 class="font-bold text-dark text-lg">{{ serviceTitle() }}</h3>
-            <div class="flex justify-between items-center mt-2 text-sm text-gray-600">
-                <span>Total to pay</span>
+            <h3 class="font-bold text-dark text-lg mb-2">{{ serviceTitle() }}</h3>
+            
+            <div class="space-y-1 text-sm text-gray-500 mb-3 border-b border-gray-200 pb-3">
+                <div class="flex justify-between">
+                    <span>Date:</span>
+                    <span class="font-medium text-gray-800">{{ bookingDate() }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Heure:</span>
+                    <span class="font-medium text-gray-800">{{ bookingTime() }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Durée:</span>
+                    <span class="font-medium text-gray-800">{{ bookingDuration() }}h</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Voyageurs:</span>
+                    <span class="font-medium text-gray-800">{{ bookingGuests() }} pers.</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center text-sm text-gray-600">
+                <span>Total à payer</span>
                 <span class="font-bold text-primary text-xl">{{ price() }} MAD</span>
             </div>
         </div>

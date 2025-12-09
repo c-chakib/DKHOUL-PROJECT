@@ -17,6 +17,7 @@ export interface Service {
         _id: string;
         name: string;
         photo?: string;
+        bio?: string;
     };
     images: string[];
     city: 'Casablanca' | 'Marrakech' | 'Agadir' | 'Tanger' | 'Fès' | 'Rabat' | 'Essaouira' | 'Merzouga';
@@ -25,6 +26,9 @@ export interface Service {
     languages: string[];
     included: string[];
     requirements: string[];
+    timeSlots?: string[];
+    rating?: number;
+    reviews?: number;
 }
 
 import { environment } from '../../../environments/environment';

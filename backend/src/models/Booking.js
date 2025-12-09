@@ -22,7 +22,11 @@ const bookingSchema = new mongoose.Schema({
     },
     paymentIntentId: {
         type: String
-    }
+    },
+    bookingDate: Date,
+    time: String,
+    guests: { type: Number, default: 1 },
+    duration: { type: Number, default: 1 }
 }, {
     timestamps: true
 });

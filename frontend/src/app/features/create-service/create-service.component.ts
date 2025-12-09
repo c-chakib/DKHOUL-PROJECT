@@ -30,6 +30,12 @@ export class CreateServiceComponent {
     categories = ['SPACE', 'SKILL', 'CONNECT'];
     cities = ['Casablanca', 'Marrakech', 'Agadir', 'Tanger', 'Fès', 'Rabat', 'Essaouira', 'Merzouga'];
     availableLanguages = ['Darija', 'Français', 'Anglais', 'Espagnol'];
+    
+    // 👇 NOUVEAU : Liste des créneaux horaires affichés
+    availableTimes = [
+        '08:00', '09:00', '10:00', '11:00', '12:00', 
+        '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
+    ];
 
     constructor() {
         this.serviceForm = this.fb.group({
@@ -40,7 +46,9 @@ export class CreateServiceComponent {
             duration: [60, [Validators.required, Validators.min(15)]],
             maxParticipants: [10, [Validators.required, Validators.min(1)]],
             description: ['', [Validators.required, Validators.minLength(20)]],
-            languages: [[]] // Custom handling for array
+            languages: [[]],
+            // 👇 NOUVEAU : Champ obligatoire pour les créneaux
+            timeSlots: [[], Validators.required] 
         });
     }
 
@@ -54,7 +62,19 @@ export class CreateServiceComponent {
         }
     }
 
-    // Image Upload Logic
+    // 👇 NOUVEAU : Logique pour cocher/décocher les horaires
+    toggleTimeSlot(time: string, event: any) {
+        const currentSlots = this.serviceForm.get('timeSlots')?.value as string[];
+        if (event.target.checked) {
+            // On ajoute et on trie pour que ce soit propre (09:00 avant 14:00)
+            const newSlots = [...currentSlots, time].sort();
+            this.serviceForm.patchValue({ timeSlots: newSlots });
+        } else {
+            this.serviceForm.patchValue({ timeSlots: currentSlots.filter(t => t !== time) });
+        }
+    }
+
+    // Image Upload Logic (Inchangé)
     onFileSelected(event: any) {
         const file: File = event.target.files[0];
         if (file) {
@@ -106,10 +126,10 @@ export class CreateServiceComponent {
     }
 
     submitService() {
+        // Vérification incluant timeSlots grâce au Validators.required
         if (this.serviceForm.invalid || this.uploadedImages().length === 0) {
-            // Mark all as touched to show errors
             this.serviceForm.markAllAsTouched();
-            alert('Veuillez remplir le formulaire et ajouter au moins une image.');
+            alert('Veuillez remplir tous les champs (y compris les horaires) et ajouter une image.');
             return;
         }
 
@@ -118,9 +138,11 @@ export class CreateServiceComponent {
         const newService = {
             ...formValue,
             images: this.uploadedImages(),
+            // Ajout d'une localisation par défaut basée sur la ville (Feature Simplifiée)
             location: {
+                type: 'Point',
                 address: `${formValue.city}, Maroc`,
-                coordinates: [-7.9811, 31.6295]
+                coordinates: [-7.9811, 31.6295] // Coordonnées par défaut (Marrakech), idéalement à dynamiser plus tard
             }
         };
 

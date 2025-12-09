@@ -10,11 +10,14 @@ export class BookingService {
     private http = inject(HttpClient);
     private apiUrl = `${environment.apiUrl}/bookings`;
 
-    createPaymentIntent(serviceId: string, price: number, date?: string): Observable<{ clientSecret: string; bookingId: string }> {
+    createPaymentIntent(serviceId: string, price: number, date?: string, time?: string, guests?: number, duration?: number): Observable<{ clientSecret: string; bookingId: string }> {
         return this.http.post<{ clientSecret: string; bookingId: string }>(`${this.apiUrl}/create-intent`, {
             serviceId,
             price,
-            date: date || undefined
+            date: date || undefined,
+            time: time || undefined,
+            guests: guests || 1,
+            duration: duration || 1
         });
     }
 
