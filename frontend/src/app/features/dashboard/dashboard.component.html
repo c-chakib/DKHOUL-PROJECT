@@ -157,7 +157,7 @@
                                                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
                                                 Voir
                                             </a>
-                                            <button (click)="deleteService(service._id)" 
+                                            <button (click)="confirmDeleteService(service._id)" 
                                                     class="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors">
                                                 Supprimer
                                             </button>
@@ -171,4 +171,16 @@
             }
         }
     </div>
+
+    <!-- Confirm Modal -->
+    <app-confirm-modal 
+        [isOpen]="showModal()"
+        [title]="modalConfig().title"
+        [message]="modalConfig().message"
+        [confirmText]="modalConfig().confirmText"
+        [cancelText]="modalConfig().cancelText"
+        [type]="modalConfig().type"
+        (confirm)="modalConfig().action()"
+        (cancel)="showModal.set(false)">
+    </app-confirm-modal>
 </div>

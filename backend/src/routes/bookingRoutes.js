@@ -171,7 +171,7 @@ router.get('/my-bookings', bookingController.getMyBookings);
  *       200:
  *         description: List of bookings for host's services
  */
-router.get('/host-bookings', authController.restrictTo('host', 'admin'), bookingController.getHostBookings);
+router.get('/host-bookings', authController.restrictTo('host', 'admin', 'superadmin'), bookingController.getHostBookings);
 
 /**
  * @swagger
@@ -205,7 +205,7 @@ router.get('/host-bookings', authController.restrictTo('host', 'admin'), booking
  *       403:
  *         description: Not authorized
  */
-router.patch('/:id/status', authController.restrictTo('host', 'admin'), bookingController.updateBookingStatus);
+router.patch('/:id/status', authController.restrictTo('host', 'admin', 'superadmin'), bookingController.updateBookingStatus);
 
 /**
  * @swagger

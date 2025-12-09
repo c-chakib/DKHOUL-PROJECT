@@ -8,11 +8,12 @@ import { AuthService } from '../../core/services/auth.service';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { environment } from '../../../environments/environment';
 import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, ImageFallbackDirective, MyBookingsComponent, HostBookingsComponent],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective, MyBookingsComponent, HostBookingsComponent, ConfirmModalComponent],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
@@ -31,6 +32,17 @@ export class DashboardComponent implements OnInit {
     myServices = signal<Service[]>([]);
     loadingServices = signal<boolean>(false);
     activeTab = signal<'bookings' | 'host-bookings' | 'services'>('bookings');
+
+    // Modal State
+    showModal = signal(false);
+    modalConfig = signal({
+        title: '',
+        message: '',
+        confirmText: 'Confirmer',
+        cancelText: 'Annuler',
+        type: 'danger' as 'danger' | 'success',
+        action: () => { }
+    });
 
     ngOnInit() {
         this.loadBookings();
@@ -68,19 +80,30 @@ export class DashboardComponent implements OnInit {
         });
     }
 
+    confirmDeleteService(id: string) {
+        this.modalConfig.set({
+            title: 'Supprimer l\'annonce',
+            message: 'Êtes-vous sûr de vouloir supprimer cette annonce ? Cette action est irréversible.',
+            confirmText: 'Supprimer',
+            cancelText: 'Annuler',
+            type: 'danger',
+            action: () => this.deleteService(id)
+        });
+        this.showModal.set(true);
+    }
+
     deleteService(id: string) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer cette annonce ?')) {
-            this.serviceService.deleteService(id).subscribe({
-                next: () => {
-                    this.myServices.update(services => services.filter(s => s._id !== id));
-                    alert('Annonce supprimée avec succès.');
-                },
-                error: (err) => {
-                    console.error('Error deleting service', err);
-                    alert('Erreur lors de la suppression.');
-                }
-            });
-        }
+        this.showModal.set(false);
+        this.serviceService.deleteService(id).subscribe({
+            next: () => {
+                this.myServices.update(services => services.filter(s => s._id !== id));
+                alert('Annonce supprimée avec succès.');
+            },
+            error: (err) => {
+                console.error('Error deleting service', err);
+                alert('Erreur lors de la suppression.');
+            }
+        });
     }
 
     setTab(tab: 'bookings' | 'host-bookings' | 'services') {

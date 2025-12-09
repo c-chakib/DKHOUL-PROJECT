@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
-const DB_LOCAL = 'mongodb://localhost:27017/dkhoul';
+const DB_LOCAL = process.env.MONGODB_URI || 'mongodb://localhost:27017/dkhoul';
 // Priority: MONGODB_URI (Server standard) > DATABASE (Old standard) > Local
 const DB = process.env.MONGODB_URI || (process.env.DATABASE ? process.env.DATABASE.replace(
     '<PASSWORD>',

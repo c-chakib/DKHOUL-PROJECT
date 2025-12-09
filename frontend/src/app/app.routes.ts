@@ -21,6 +21,12 @@ export const routes: Routes = [
         canActivate: [authGuard]
     },
     {
+        path: 'dashboard/super-admin',
+        loadComponent: () => import('./features/dashboard/super-admin/super-admin.component').then(m => m.SuperAdminComponent),
+        canActivate: [authGuard, roleGuard],
+        data: { roles: ['superadmin'] }
+    },
+    {
         path: 'profile',
         loadComponent: () => import('./features/profile-settings/profile-settings.component').then(m => m.ProfileSettingsComponent),
         canActivate: [authGuard]

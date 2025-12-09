@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { BookingService } from '../../../../core/services/booking.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { environment } from '../../../../../environments/environment';
+import { ConfirmModalComponent } from '../../../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
     selector: 'app-host-bookings',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, ConfirmModalComponent],
     template: `
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative"> <!-- Added relative for modal context if needed -->
       <div class="p-6 border-b border-gray-100">
         <h2 class="text-xl font-bold text-gray-900">Réservations Reçues</h2>
         <p class="text-gray-500 text-sm">Gérez les demandes de réservation pour vos expériences.</p>
@@ -73,14 +74,14 @@ import { environment } from '../../../../../environments/environment';
                             <td class="px-6 py-4 text-right">
                                 @if (booking.status === 'pending') {
                                     <div class="flex items-center justify-end gap-2">
-                                        <button (click)="updateStatus(booking, 'confirmed')" 
+                                        <button (click)="confirmAction(booking, 'confirmed')" 
                                                 class="p-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                                                 title="Accepter">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
-                                        <button (click)="updateStatus(booking, 'cancelled')" 
+                                        <button (click)="confirmAction(booking, 'cancelled')" 
                                                 class="p-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
                                                 title="Refuser">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -98,6 +99,18 @@ import { environment } from '../../../../../environments/environment';
             </table>
         </div>
       }
+      
+      <!-- Confirm Modal -->
+      <app-confirm-modal 
+        [isOpen]="showModal()"
+        [title]="modalConfig().title"
+        [message]="modalConfig().message"
+        [confirmText]="modalConfig().confirmText"
+        [cancelText]="modalConfig().cancelText"
+        [type]="modalConfig().type"
+        (confirm)="modalConfig().action()"
+        (cancel)="showModal.set(false)">
+      </app-confirm-modal>
     </div>
   `
 })
@@ -107,6 +120,17 @@ export class HostBookingsComponent implements OnInit {
 
     bookings = signal<any[]>([]);
     loading = signal<boolean>(true);
+
+    // Modal State
+    showModal = signal(false);
+    modalConfig = signal({
+        title: '',
+        message: '',
+        confirmText: 'Confirmer',
+        cancelText: 'Annuler',
+        type: 'success' as 'danger' | 'success',
+        action: () => { }
+    });
 
     ngOnInit() {
         this.loadBookings();
@@ -125,8 +149,23 @@ export class HostBookingsComponent implements OnInit {
         });
     }
 
+    confirmAction(booking: any, status: 'confirmed' | 'cancelled') {
+        const isConfirm = status === 'confirmed';
+        this.modalConfig.set({
+            title: isConfirm ? 'Accepter la réservation' : 'Refuser la réservation',
+            message: isConfirm
+                ? `Voulez-vous accepter la réservation de ${booking.tourist?.name || 'ce voyageur'} pour ${booking.price} MAD ?`
+                : `Êtes-vous sûr de vouloir refuser cette réservation ? Cette action est irréversible.`,
+            confirmText: isConfirm ? 'Accepter' : 'Refuser',
+            cancelText: 'Annuler',
+            type: isConfirm ? 'success' : 'danger',
+            action: () => this.updateStatus(booking, status)
+        });
+        this.showModal.set(true);
+    }
+
     updateStatus(booking: any, status: 'confirmed' | 'cancelled') {
-        if (!confirm(status === 'confirmed' ? 'Accepter cette réservation ?' : 'Refuser cette réservation ?')) return;
+        this.showModal.set(false);
 
         // Optimistic update
         const oldStatus = booking.status;

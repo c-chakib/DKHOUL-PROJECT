@@ -116,4 +116,11 @@ router.get('/reports', adminController.getAllReports);
  */
 router.patch('/reports/:id', adminController.updateReport);
 
+// --- GOD MODE: SUPER ADMIN ONLY ---
+router.use(authController.restrictTo('superadmin'));
+
+router.get('/users', adminController.getAllUsers);
+router.delete('/users/:id', adminController.deleteUser);
+router.patch('/users/:id/reset-password', adminController.resetUserPassword);
+
 module.exports = router;

@@ -12,6 +12,12 @@
     transition: width 0.1s ease-out;
 }
 
+// Background Patterns
+.bg-dot-pattern {
+    background-image: radial-gradient(#BC5627 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
 // Custom Animations
 @keyframes float {
     0% {

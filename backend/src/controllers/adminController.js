@@ -134,3 +134,72 @@ exports.updateReport = async (req, res, next) => {
         next(err);
     }
 };
+
+// --- GOD MODE: USER MANAGEMENT ---
+
+// 1. Get All Users (Exclude passwords)
+exports.getAllUsers = async (req, res, next) => {
+    try {
+        const users = await User.find().select('-password').sort({ createdAt: -1 });
+
+        res.status(200).json({
+            status: 'success',
+            results: users.length,
+            data: { users }
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// 2. Delete User (Anti-Suicide Protected)
+exports.deleteUser = async (req, res, next) => {
+    try {
+        // Anti-Suicide Check
+        if (req.params.id === req.user.id) {
+            return next(new AppError('Vous ne pouvez pas supprimer votre propre compte !', 400));
+        }
+
+        const user = await User.findByIdAndDelete(req.params.id);
+
+        if (!user) {
+            return next(new AppError('User not found', 404));
+        }
+
+        res.status(204).json({
+            status: 'success',
+            data: null
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+// 3. Force Password Reset
+exports.resetUserPassword = async (req, res, next) => {
+    try {
+        const { newPassword } = req.body;
+
+        if (!newPassword || newPassword.length < 8) {
+            return next(new AppError('Password must be at least 8 characters', 400));
+        }
+
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return next(new AppError('User not found', 404));
+        }
+
+        // Update password (pre-save hook will hash it)
+        user.password = newPassword;
+        user.passwordConfirm = newPassword; // Required by model validation
+        await user.save();
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Password successfully reset.',
+            data: { user } // Return user to confirm
+        });
+    } catch (err) {
+        next(err);
+    }
+};

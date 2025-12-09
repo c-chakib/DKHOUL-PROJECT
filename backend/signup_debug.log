@@ -1,0 +1,16 @@
+{
+  "name": "test user",
+  "email": "testdb@dkhoul.ma",
+  "password": "test123",
+  "passwordConfirm": "test123",
+  "role": "host"
+}
+---
+{
+  "name": "test user",
+  "email": "testdb@dkhoul.ma",
+  "password": "test123456",
+  "passwordConfirm": "test123456",
+  "role": "host"
+}
+---

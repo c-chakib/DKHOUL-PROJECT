@@ -7,7 +7,7 @@
       
       <!-- LOGO -->
       <a routerLink="/" class="flex items-center gap-2 group">
-        <img src="assets/icons/logo.png" alt="DKHOUL" class="h-10 w-auto md:h-14 lg:h-16 object-contain transition-all duration-300 cursor-pointer">
+        <img src="assets/icons/logo.png" alt="DKHOUL" class="h-10 w-auto md:h-14 lg:h-16 object-contain transition-all duration-300 cursor-pointer mix-blend-multiply">
       </a>
 
       <!-- DESKTOP MENU -->
@@ -23,7 +23,7 @@
         
         <!-- Auth State -->
         @if (currentUser()) {
-          @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin') {
+          @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin' || currentUser()?.role === 'superadmin') {
             <a routerLink="/create-service" class="bg-gray-100/50 hover:bg-gray-100 text-gray-800 px-5 py-2.5 rounded-full font-semibold transition-all duration-300 text-sm border border-gray-200 hover:border-[#BC5627]/30 hover:shadow-sm flex items-center gap-2 group">
                 <span class="group-hover:text-[#BC5627] transition-colors">Créer une expérience</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-[#BC5627] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,6 +55,14 @@
                 </div>
                 
                 <div class="px-2 space-y-1">
+                    @if (currentUser()?.role === 'superadmin') {
+                        <a routerLink="/dashboard/super-admin" class="flex items-center gap-3 px-3 py-2.5 text-purple-700 bg-purple-50 hover:bg-purple-100 hover:text-purple-900 rounded-xl transition-colors group mb-1 border border-purple-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            <span class="font-bold">⚡ Super Admin</span>
+                        </a>
+                    }
                     <a routerLink="/profile" class="flex items-center gap-3 px-3 py-2.5 text-gray-700 hover:bg-[#BC5627]/10 hover:text-[#BC5627] rounded-xl transition-colors group">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400 group-hover:text-[#BC5627]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -135,9 +143,13 @@
          <a routerLink="/marketplace" (click)="closeMobileMenu()" class="text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-[#BC5627] transition-colors">Explorer</a>
          
          @if (currentUser()) {
-           @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin') {
+           @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin' || currentUser()?.role === 'superadmin') {
                <a routerLink="/create-service" (click)="closeMobileMenu()" class="text-lg font-bold text-[#BC5627] py-3">Créer une expérience</a>
            }
+           @if (currentUser()?.role === 'superadmin') {
+               <a routerLink="/dashboard/super-admin" (click)="closeMobileMenu()" class="text-lg font-bold text-purple-700 py-3 bg-purple-50 px-3 rounded-lg border border-purple-100">⚡ Super Admin</a>
+           }
+           <a routerLink="/dashboard" (click)="closeMobileMenu()" class="text-lg font-medium text-gray-600 py-3 hover:text-[#BC5627]">Tableau de bord</a>
            <a routerLink="/profile" (click)="closeMobileMenu()" class="text-lg font-medium text-gray-600 py-3 hover:text-[#BC5627]">Mon Profil</a>
            <button (click)="onLogout()" class="text-left text-lg font-bold text-red-500 py-4 mt-2 hover:text-red-600">Déconnexion</button>
          } @else {

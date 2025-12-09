@@ -165,12 +165,13 @@ export class ServiceDetailComponent implements OnInit {
             this.router.navigate(['/login']);
             return;
         }
-        const hostId = this.service()?.host?._id;
-        if (hostId) {
-            this.chatService.initiateChat(hostId);
+        const host = this.service()?.host;
+        if (host && host._id) {
+            // Pass Host Object + Context (Service Title)
+            this.chatService.initiateChat(host._id, host, `Intéressé par : ${this.service()?.title}`);
             this.toast.success(`Discussion ouverte avec l'hôte`);
         } else {
-            this.toast.error('Host ID missing');
+            this.toast.error('Host info missing');
         }
     }
 

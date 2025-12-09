@@ -168,7 +168,7 @@ router
   .get(serviceController.getAllServices)
   .post(
     authController.protect,
-    authController.restrictTo('host', 'admin'),
+    authController.restrictTo('host', 'admin', 'superadmin'),
     serviceController.createService
   );
 

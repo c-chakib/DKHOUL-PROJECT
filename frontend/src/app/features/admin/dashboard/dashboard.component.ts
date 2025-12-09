@@ -31,13 +31,13 @@ export class DashboardComponent implements OnInit {
     }
 
     fetchStats() {
-        this.adminService.getStats().subscribe({
-            next: (res) => {
+        this.adminService.getDashboardStats().subscribe({
+            next: (res: any) => {
                 this.stats.set(res.data);
                 this.processChartData(res.data.categoryStats);
                 this.loading.set(false);
             },
-            error: (err) => {
+            error: (err: any) => {
                 console.error('Error fetching admin stats:', err);
                 this.error.set('Impossible de charger les statistiques.');
                 this.loading.set(false);

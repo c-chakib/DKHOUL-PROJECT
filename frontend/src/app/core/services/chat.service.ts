@@ -37,6 +37,7 @@ export class ChatService {
     currentChatUser = signal<ChatUser | null>(null);
     connected = signal<boolean>(false);
     isOpen = signal<boolean>(false); // Control window visibility globally
+    currentContext = signal<string | null>(null); // Context of the conversation (e.g. "Service: Camel Ride")
 
     // Computed: Filter messages for current chat
     currentConversation = computed(() => {
@@ -126,27 +127,39 @@ export class ChatService {
         }
     }
 
-    async initiateChat(hostId: string) {
+    async initiateChat(hostId: string, fullHost?: any, context?: string) {
         // Find user in contacts or fetch if needed
         let user = this.contacts().find(u => u._id === hostId);
-        if (!user) {
-            // If not in contacts, we might need to fetch the user profile first
-            // For now, we'll try to join chat which fetches contacts
-            if (!this.connected()) {
-                this.joinChat();
-                // Wait briefly or just open using partial data if we had it
-            }
-            // NOTE: Ideally we fetch user by ID here. 
-            // But for the diagnostic fix, we assume the calling component (ServiceDetail) might have passed a full user object, 
-            // OR we just create a temporary user object since we have the ID.
+
+        if (!user && fullHost) {
+            // Use the full host object passed from the component
             user = {
                 _id: hostId,
-                name: 'Host', // Placeholder until fetched
+                name: fullHost.name || 'Hôte',
+                photo: fullHost.photo,
+                email: fullHost.email || '',
+                role: 'host'
+            };
+            // Add to contacts temporarily so it persists in the session list
+            this.contacts.update(c => [...c, user!]);
+        } else if (!user) {
+            // Fallback if no fullHost provided (should verify with backend in ideal world)
+            user = {
+                _id: hostId,
+                name: 'Hôte',
                 email: '',
                 role: 'host'
             };
         }
-        this.openChatWith(user);
+
+        if (context) {
+            // We can store this in a signal to show "Chatting about: {context}" in the window
+            this.currentContext.set(context);
+        } else {
+            this.currentContext.set(null);
+        }
+
+        this.openChatWith(user!);
     }
 
     async fetchContacts() {
