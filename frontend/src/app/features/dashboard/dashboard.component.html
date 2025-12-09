@@ -114,7 +114,7 @@
                                 <div class="relative h-48 bg-gray-200 overflow-hidden">
                                     <img [src]="getImageUrl(booking.service?.images?.[0])" 
                                          [alt]="booking.service?.title"
-                                         (error)="$any($event.target).src='assets/images/placeholder-service.jpg'"
+                                         appImageFallback="/assets/images/placeholder-service.png"
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     <div class="absolute top-3 right-3">
                                         <span [class]="booking.status === 'paid' ? 'bg-green-500' : 'bg-orange-500'"
@@ -175,7 +175,7 @@
                                 <div class="relative h-48 bg-gray-200 overflow-hidden">
                                     <img [src]="getImageUrl(service.images[0])" 
                                          [alt]="service.title"
-                                         (error)="$any($event.target).src='assets/images/placeholder-service.jpg'"
+                                         appImageFallback="/assets/images/placeholder-service.png"
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     <span class="absolute top-3 left-3 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold uppercase">
                                         {{ service.category }}

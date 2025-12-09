@@ -1,5 +1,4 @@
 const Message = require('../models/Message');
-const User = require('../models/User');
 const AppError = require('../utils/appError');
 const Booking = require('../models/Booking');
 
@@ -23,7 +22,7 @@ exports.getHistory = async (req, res, next) => {
                 messages
             }
         });
-    } catch (err) {
+    } catch (_err) {
         next(new AppError('Failed to fetch chat history', 500));
     }
 };

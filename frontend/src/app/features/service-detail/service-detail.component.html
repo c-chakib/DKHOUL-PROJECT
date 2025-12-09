@@ -10,7 +10,7 @@
     <div class="flex items-center text-sm text-gray-600">
       <i class="fas fa-star text-[#BC5627] mr-1"></i>
       <span class="font-bold mr-1">4.9</span>
-      <span class="underline mr-4">(12 avis)</span>
+      <span class="underline mr-4">({{ s.reviews?.length || 0 }} avis)</span>
       <span class="mr-4">·</span>
       <span class="underline font-bold">{{ s.city }}, Maroc</span>
     </div>
@@ -90,6 +90,23 @@
           </div>
           <div *ngIf="s.included.length === 0" class="text-gray-500">Aucun équipement spécifique listé.</div>
         </div>
+      </div>
+
+      <!-- REVIEWS -->
+      <div class="py-8 border-b border-gray-200">
+        <h2 class="text-xl font-bold mb-4">Commentaires</h2>
+        <div *ngIf="s.reviews && s.reviews.length > 0; else noReviews" class="space-y-6">
+            <div *ngFor="let review of s.reviews" class="bg-gray-50 p-4 rounded-lg">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="font-bold">{{ review.user?.name || 'Utilisateur' }}</span>
+                    <span class="text-xs text-gray-500">{{ review.createdAt | date }}</span>
+                </div>
+                <p class="text-gray-700">{{ review.comment }}</p>
+            </div>
+        </div>
+        <ng-template #noReviews>
+            <p class="text-gray-500 italic">Aucun avis pour le moment.</p>
+        </ng-template>
       </div>
 
        <!-- MAP PLACEHOLDER -->

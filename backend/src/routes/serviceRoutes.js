@@ -60,6 +60,26 @@ router
  *         schema:
  *           type: string
  *         description: "Sort field (e.g., price, -price for descending)"
+      - in: query
+        name: price[gte]
+        schema:
+          type: number
+        description: Minimum price
+      - in: query
+        name: price[lte]
+        schema:
+          type: number
+        description: Maximum price
+      - in: query
+        name: duration[gte]
+        schema:
+          type: number
+        description: Minimum duration
+      - in: query
+        name: duration[lte]
+        schema:
+          type: number
+        description: Maximum duration
  *       - in: query
  *         name: limit
  *         schema:

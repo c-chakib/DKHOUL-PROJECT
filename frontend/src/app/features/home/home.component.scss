@@ -1,8 +1,18 @@
-.text-shadow {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+@use '@angular/material' as mat;
+
+// Scroll Indicator
+.scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--md-sys-color-primary), var(--md-sys-color-tertiary));
+    z-index: 1001;
+    width: 0%;
+    transition: width 0.1s ease-out;
 }
 
-// Custom animation adjustments if needed
+// Custom Animations
 @keyframes float {
     0% {
         transform: translateY(0px);
@@ -15,4 +25,100 @@
     100% {
         transform: translateY(0px);
     }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+// Material Overrides
+.mat-mdc-card {
+    background-color: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
+}
+
+// Ensure icons are centered in their wrappers
+.material-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Temporary Color mappings for missing CSS variables
+.bg-primary {
+    background-color: #BC5627;
+}
+
+.text-primary {
+    color: #BC5627;
+}
+
+.border-primary {
+    border-color: #BC5627;
+}
+
+.bg-primary\/10 {
+    background-color: rgba(188, 86, 39, 0.1);
+}
+
+.bg-primary\/20 {
+    background-color: rgba(188, 86, 39, 0.2);
+}
+
+.bg-secondary {
+    background-color: #2D3748;
+}
+
+// Charcoal
+.text-secondary {
+    color: #2D3748;
+}
+
+.bg-secondary\/10 {
+    background-color: rgba(45, 55, 72, 0.1);
+}
+
+.text-secondary\/70 {
+    color: rgba(45, 55, 72, 0.7);
+}
+
+.bg-tertiary {
+    background-color: #38A169;
+}
+
+// Green
+.text-tertiary {
+    color: #38A169;
+}
+
+.bg-tertiary\/10 {
+    background-color: rgba(56, 161, 105, 0.1);
+}
+
+.bg-background {
+    background-color: #FFFFFF;
+}
+
+.bg-surface {
+    background-color: #F7FAFC;
+}
+
+.bg-surface-variant {
+    background-color: #EDF2F7;
+}
+
+.text-white\/80 {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.text-white\/50 {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.border-outline\/20 {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.border-outline\/10 {
+    border-color: rgba(0, 0, 0, 0.1);
 }

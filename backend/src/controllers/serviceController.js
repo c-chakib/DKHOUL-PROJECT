@@ -37,9 +37,27 @@ exports.createService = async (req, res, next) => {
     }
 };
 
+const { getCache, setCache } = require('../services/cache.service');
+
 exports.getAllServices = async (req, res, next) => {
     try {
         console.log('Fetching all services with pagination...');
+
+        // 1. Check Cache
+        const cacheKey = `services:all:${JSON.stringify(req.query)}`;
+        const cachedData = await getCache(cacheKey);
+
+        if (cachedData) {
+            console.log('Serving from cache');
+            return res.status(200).json({
+                status: 'success',
+                results: cachedData.length,
+                source: 'cache',
+                data: {
+                    services: cachedData
+                }
+            });
+        }
 
         // 1A) Filtering
         const queryObj = { ...req.query };
@@ -74,12 +92,16 @@ exports.getAllServices = async (req, res, next) => {
         const services = await query;
         console.log(`Found ${services.length} services (Page ${page})`);
 
+        // 4. Set Cache
+        await setCache(cacheKey, services, 3600);
+
         // SEND RESPONSE
         res.status(200).json({
             status: 'success',
             total,
             results: services.length,
             page,
+            source: 'db',
             data: {
                 services,
             },
@@ -161,9 +183,7 @@ exports.getMyServices = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-};
-
-// Delete a service (only owner or admin can delete)
+};        // Delete a service (only owner or admin can delete)
 exports.deleteService = async (req, res, next) => {
     try {
         const service = await Service.findById(req.params.id);

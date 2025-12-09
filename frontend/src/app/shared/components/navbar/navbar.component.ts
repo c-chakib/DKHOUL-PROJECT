@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, HostListener, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -16,6 +16,10 @@ export class NavbarComponent {
 
     // Signals
     currentUser = this.authService.currentUser;
+    userFirstName = computed(() => {
+        const user = this.currentUser();
+        return user?.name ? user.name.split(' ')[0] : '';
+    });
     isScrolled = signal(false);
     isMobileMenuOpen = signal(false);
     isProfileMenuOpen = signal(false);

@@ -5,11 +5,12 @@ import { BookingService } from '../../core/services/booking.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { environment } from '../../../environments/environment';
+import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })

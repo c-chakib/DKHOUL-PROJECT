@@ -5,8 +5,6 @@ const helmet = require('helmet');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./middlewares/errorMiddleware');
 
-const mongoSanitize = require('express-mongo-sanitize');
-// const xss = require('xss-clean'); // Deprecated - using helmet CSP instead
 const rateLimit = require('express-rate-limit');
 
 // Swagger

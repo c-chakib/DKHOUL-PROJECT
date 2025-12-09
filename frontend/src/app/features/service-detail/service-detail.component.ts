@@ -43,7 +43,8 @@ export class ServiceDetailComponent implements OnInit {
     minDate = new Date().toISOString().split('T')[0];
 
     // Host info from API or fallback
-    host = signal({ _id: '', name: 'Youssef', photo: 'assets/images/placeholder-avatar.jpg', bio: 'Passionné par le Maroc et ses trésors cachés.' });
+    // Host info from API or fallback
+    host = signal<any>({ name: '', photo: '', bio: '' });
 
     activeImage = signal<string>('');
 

@@ -105,6 +105,8 @@ router.post('/signup', authController.signup);
  *                       $ref: '#/components/schemas/User'
  *       401:
  *         description: Invalid credentials
+      400:
+        description: Missing email or password
  */
 router.post('/login', authController.login);
 

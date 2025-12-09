@@ -75,7 +75,7 @@ exports.login = async (req, res, next) => {
 
 exports.googleLogin = async (req, res, next) => {
     try {
-        const { googleToken, email, name, photoUrl } = req.body;
+        const { googleToken, email, name } = req.body;
         console.log('Google Login Attempt for:', email);
 
         if (!googleToken) {

@@ -5,11 +5,15 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
     standalone: true
 })
 export class ImageFallbackDirective {
-    @Input() appImageFallback = 'assets/images/placeholder.jpg';
+    @Input() appImageFallback = '/assets/images/placeholder-service.png';
+    private isFallbackApplied = false;
 
     constructor(private el: ElementRef) { }
 
     @HostListener('error') onError() {
-        this.el.nativeElement.src = this.appImageFallback;
+        if (!this.isFallbackApplied) {
+            this.isFallbackApplied = true;
+            this.el.nativeElement.src = this.appImageFallback;
+        }
     }
 }

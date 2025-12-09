@@ -1,7 +1,6 @@
 const Stripe = require('stripe');
 const Booking = require('../models/Booking');
 const Service = require('../models/Service');
-const User = require('../models/User');
 const AppError = require('../utils/appError');
 const { sendBookingConfirmation } = require('../utils/email');
 
@@ -222,7 +221,7 @@ exports.getAllBookings = async (req, res, next) => {
                 bookings
             }
         });
-    } catch (err) {
+    } catch (_err) {
         next(new AppError('No bookings found', 404));
     }
 };

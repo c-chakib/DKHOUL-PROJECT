@@ -28,7 +28,7 @@ export interface Service {
     requirements: string[];
     timeSlots?: string[];
     rating?: number;
-    reviews?: number;
+    reviews?: any[];
 }
 
 import { environment } from '../../../environments/environment';

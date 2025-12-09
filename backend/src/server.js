@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const colors = require('colors');
+require('colors');
 const http = require('http');
 const { Server } = require('socket.io');
 
@@ -14,8 +14,8 @@ dotenv.config();
 
 const app = require('./app');
 const connectDB = require('./config/db');
+const { initRedis } = require('./services/cache.service');
 
-const Conversation = require('./models/Conversation');
 const Message = require('./models/Message');
 
 // Connect to Database
@@ -61,6 +61,7 @@ io.on('connection', (socket) => {
 
 (async () => {
     await connectDB();
+    await initRedis();
     server.listen(PORT, () => {
         console.log(
             `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
