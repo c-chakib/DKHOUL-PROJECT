@@ -8,8 +8,8 @@ describe('User Endpoints', () => {
     const testUser = {
         name: 'John Doe',
         email: 'john@example.com',
-        password: 'password123',
-        passwordConfirm: 'password123',
+        password: 'Password123!',
+        passwordConfirm: 'Password123!',
         role: 'user'
     };
 

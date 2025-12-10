@@ -110,16 +110,16 @@ const popRandomImage = () => {
     if (availableImages.length === 0) {
         availableImages = [...MOROCCAN_IMAGES];
     }
-    
+
     // Si la liste originale est vide ou erreur
     if (availableImages.length === 0) return SAFE_FALLBACK_IMAGE;
 
     const index = Math.floor(Math.random() * availableImages.length);
     const imageUrl = availableImages[index];
-    
+
     // On retire l'image pour éviter la répétition immédiate
     availableImages.splice(index, 1);
-    
+
     return imageUrl;
 };
 
@@ -142,8 +142,15 @@ const generateDescription = (title, city, vibe) => {
 // --- MAIN GENERATOR ---
 const seedDB = async () => {
     try {
+        // SAFETY CHECK
+        if (process.env.NODE_ENV === 'production') {
+            console.error('🛑 CRITICAL SAFETY: Cannot run seed script in PRODUCTION without manual override.');
+            console.error('To bypass, set NODE_ENV to something else or modify this script.');
+            process.exit(1);
+        }
+
         console.log('🌱 Connexion à MongoDB...');
-        await mongoose.connect(MONGO_URI);
+        await mongoose.connect(MONGO_URI, { dbName: 'dkhoul' });
         console.log('✅ Connecté.');
 
         let hostUser = await User.findOne({ email: TARGET_HOST_EMAIL });
@@ -172,7 +179,7 @@ const seedDB = async () => {
 
             // Boucle sur les activités
             for (const activityTitle of cityActivities) {
-                
+
                 let category = 'SKILL';
                 const titleLower = activityTitle.toLowerCase();
                 if (titleLower.includes('tour') || titleLower.includes('balade') || titleLower.includes('visite') || titleLower.includes('randonnée') || titleLower.includes('sandboarding') || titleLower.includes('quad')) {
@@ -191,7 +198,7 @@ const seedDB = async () => {
                 const mainImage = popRandomImage();
                 // Pour la galerie, on prend 2 autres images mais on les remet pas forcément dans la pool "unique"
                 // On utilise getRandomElement sur la liste GLOBALE pour la galerie afin de ne pas vider la pool principale trop vite
-                const gallery1 = getRandomElement(MOROCCAN_IMAGES); 
+                const gallery1 = getRandomElement(MOROCCAN_IMAGES);
                 const gallery2 = getRandomElement(MOROCCAN_IMAGES);
 
                 const service = {
@@ -214,7 +221,7 @@ const seedDB = async () => {
                     included: ['Thé à la menthe', 'Matériel', 'Guide'],
                     requirements: ['Curiosité', 'Respect local']
                 };
-                
+
                 services.push(service);
             }
         }

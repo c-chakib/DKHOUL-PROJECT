@@ -46,7 +46,7 @@ const users = [
 const seedUsers = async () => {
     try {
         console.log('🌱 Connecting to MongoDB...');
-        await mongoose.connect(MONGO_URI);
+        await mongoose.connect(MONGO_URI, { dbName: 'dkhoul' });
         console.log('✅ Connected.');
 
         // 1. Clean Users

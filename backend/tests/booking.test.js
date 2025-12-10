@@ -17,8 +17,8 @@ describe('Booking Endpoints', () => {
         const host = await User.create({
             name: 'Host User',
             email: 'host@booking.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'guide'
         });
         hostId = host._id;
@@ -28,8 +28,8 @@ describe('Booking Endpoints', () => {
         const guest = await User.create({
             name: 'Guest User',
             email: 'guest@booking.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'user'
         });
         guestId = guest._id;

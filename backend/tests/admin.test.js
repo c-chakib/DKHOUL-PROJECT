@@ -12,8 +12,8 @@ describe('Admin Endpoints', () => {
         const admin = await User.create({
             name: 'Admin User',
             email: 'admin@admin.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'admin'
         });
         adminToken = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -21,8 +21,8 @@ describe('Admin Endpoints', () => {
         const superAdmin = await User.create({
             name: 'Super Admin',
             email: 'super@admin.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'superadmin'
         });
         superAdminToken = jwt.sign({ id: superAdmin._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
@@ -30,8 +30,8 @@ describe('Admin Endpoints', () => {
         const normalUser = await User.create({
             name: 'Normal User',
             email: 'normal@user.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'user'
         });
         userToken = jwt.sign({ id: normalUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });

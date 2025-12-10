@@ -191,20 +191,24 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
     ];
 
-    heroStats = [
-        { label: 'Hosts actifs', end: 500 },
-        { label: 'DH projeté en 2030', end: 100, suffix: 'M+' }
+    stats = [
+        { label: 'Hôtes Marocains', target: 500, current: 0, suffix: '+' },
+        { label: 'Voyageurs Aidés', target: 10000, current: 0, suffix: '+', isK: true },
+        { label: 'Services Fournis', target: 5000, current: 0, suffix: '+', isK: true }
     ];
+
     typedTexts = [
         'Monétise ton espace',
         'Vends ton savoir-faire',
         'Loue ton temps'
     ];
+
     heroImages = [
-        { src: 'assets/images/hero_space.png', alt: 'DKHOUL Space - Monétise ton espace' },
-        { src: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop', alt: 'DKHOUL Connect - Loue ton temps' },
-        { src: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop', alt: 'DKHOUL Skills - Vends ton savoir-faire' },
-        { src: 'https://images.unsplash.com/photo-1447078806655-40579c2520d6?q=80&w=2070&auto=format&fit=crop', alt: 'Services pratiques DKHOUL' }
+        { src: 'assets/images/hero-riad.png', alt: 'Vivez le Maroc Authentique - Riad Traditionnel' },
+        { src: 'assets/images/Gemini_Generated_Image_4si8lw4si8lw4si8.png', alt: 'Découvrez des lieux uniques' },
+        { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.png', alt: 'Rencontrez des hôtes exceptionnels' },
+        { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.png', alt: 'Vivez des expériences locales' },
+        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'DKHOUL - Voyagez autrement' }
     ];
     currentYear = new Date().getFullYear();
 
@@ -214,6 +218,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.initScrollProgress();
         this.loadRecentServices();
+        this.animateStats();
+    }
+
+    private animateStats() {
+        const duration = 2000; // 2 seconds
+        const steps = 50;
+        const intervalTime = duration / steps;
+
+        this.stats.forEach(stat => {
+            const increment = stat.target / steps;
+            let currentStep = 0;
+
+            const timer = setInterval(() => {
+                currentStep++;
+                if (currentStep >= steps) {
+                    stat.current = stat.target;
+                    clearInterval(timer);
+                } else {
+                    stat.current = Math.floor(increment * currentStep);
+                }
+            }, intervalTime);
+        });
     }
 
     ngOnDestroy() {

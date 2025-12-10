@@ -3,7 +3,14 @@ require('colors');
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI);
+        let uri = process.env.MONGODB_URI;
+        if (process.env.NODE_ENV === 'test') {
+            uri = uri.replace('dkhoul', 'dkhoul_test');
+            if (!uri.includes('dkhoul_test')) uri += '_test'; // Fallback
+        }
+        const conn = await mongoose.connect(uri, {
+            dbName: process.env.NODE_ENV === 'test' ? 'dkhoul_test' : 'dkhoul'
+        });
 
         console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
     } catch (error) {

@@ -8,10 +8,12 @@ import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @Component({
     selector: 'app-marketplace',
     standalone: true,
-    imports: [CommonModule, MapComponent, FormsModule],
+    imports: [CommonModule, MapComponent, FormsModule, MatIconModule],
     templateUrl: './marketplace.component.html',
     styleUrls: ['./marketplace.component.scss']
 })
@@ -170,6 +172,17 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
     }
 
     onPriceChange() {
+        this.triggerSearch();
+    }
+
+    resetFilters() {
+        this.searchQuery.set('');
+        this.selectedCity.set('');
+        this.selectedCategory.set('');
+        this.minPrice.set(null);
+        this.maxPrice.set(null);
+        this.sortOption.set('');
+        this.searchSubject.next(''); // Clear debounce subject
         this.triggerSearch();
     }
 

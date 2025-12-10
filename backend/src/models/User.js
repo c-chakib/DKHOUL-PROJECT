@@ -32,8 +32,14 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            required: [true, 'Please provide a password'],
-            minlength: 8,
+            required: [true, 'Veuillez fournir un mot de passe'],
+            minlength: [12, 'Le mot de passe doit contenir au moins 12 caractères'],
+            validate: {
+                validator: function (el) {
+                    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/.test(el);
+                },
+                message: 'Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un symbole.'
+            },
             select: false,
         },
         passwordConfirm: {

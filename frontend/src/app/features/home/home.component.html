@@ -11,8 +11,8 @@
     <!-- Hero Content -->
     <div class="space-y-8 text-center lg:text-left">
       <h1 class="text-5xl lg:text-7xl font-display font-bold text-secondary leading-tight">
-        Micro-Services Touristiques
-        <span class="text-primary block mt-2">Authentiques</span>
+        Vivez le Maroc
+        <span class="text-primary block mt-2">Authentique</span>
       </h1>
       
       <div class="text-2xl text-black font-light h-12">
@@ -49,17 +49,11 @@
       </div>
 
       <div class="grid grid-cols-3 gap-8 pt-8 border-t border-outline/20">
-        <div class="text-center lg:text-left">
-          <div class="text-3xl font-bold text-primary">500+</div>
-          <div class="text-sm text-secondary/70">Hôtes Marocains</div>
-        </div>
-        <div class="text-center lg:text-left">
-          <div class="text-3xl font-bold text-primary">10k+</div>
-          <div class="text-sm text-secondary/70">Voyageurs Aidés</div>
-        </div>
-        <div class="text-center lg:text-left">
-          <div class="text-3xl font-bold text-primary">5k+</div>
-          <div class="text-sm text-secondary/70">Services Fournis</div>
+        <div *ngFor="let stat of stats" class="text-center lg:text-left">
+          <div class="text-3xl font-bold text-primary">
+            {{ stat.isK ? (stat.current / 1000 | number:'1.0-1') + 'k' : stat.current }}{{ stat.suffix }}
+          </div>
+          <div class="text-sm text-secondary/70">{{ stat.label }}</div>
         </div>
       </div>
     </div>

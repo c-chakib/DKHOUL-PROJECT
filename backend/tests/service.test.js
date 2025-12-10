@@ -12,8 +12,8 @@ describe('Service Endpoints', () => {
         const user = await User.create({
             name: 'Service Host',
             email: 'host@services.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'guide' // Must be guide/admin to create service usually
         });
         userId = user._id;

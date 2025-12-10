@@ -61,6 +61,19 @@ exports.getAllServices = async (req, res, next) => {
 
         // 1A) Filtering
         const queryObj = { ...req.query };
+
+        // Handle flat keys from Angular (e.g. price[gte]) if parser didn't nest them
+        if (queryObj['price[gte]']) {
+            if (!queryObj.price) queryObj.price = {};
+            queryObj.price.gte = queryObj['price[gte]'];
+            delete queryObj['price[gte]'];
+        }
+        if (queryObj['price[lte]']) {
+             if (!queryObj.price) queryObj.price = {};
+             queryObj.price.lte = queryObj['price[lte]'];
+             delete queryObj['price[lte]'];
+        }
+
         const excludedFields = ['page', 'sort', 'limit', 'fields', 'search']; // Exclude 'search'
         excludedFields.forEach((el) => delete queryObj[el]);
 

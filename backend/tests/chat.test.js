@@ -15,8 +15,8 @@ describe('Chat Endpoints', () => {
         const sender = await User.create({
             name: 'Sender User',
             email: 'sender@chat.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'user'
         });
         senderId = sender._id;
@@ -25,8 +25,8 @@ describe('Chat Endpoints', () => {
         const receiver = await User.create({
             name: 'Receiver User',
             email: 'receiver@chat.com',
-            password: 'password123',
-            passwordConfirm: 'password123',
+            password: 'Password123!',
+            passwordConfirm: 'Password123!',
             role: 'guide'
         });
         receiverId = receiver._id;
