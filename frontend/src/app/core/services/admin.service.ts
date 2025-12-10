@@ -46,4 +46,15 @@ export class AdminService {
     updateReportStatus(reportId: string, status: string, adminNotes?: string): Observable<any> {
         return this.http.patch<any>(`${this.apiUrl}/reports/${reportId}`, { status, adminNotes });
     }
+
+    // New: Update User (Role/Status)
+    updateUser(userId: string, data: any): Observable<any> {
+        // apiUrl is /admin, but updateUser is on /users (which is base /api/v1/users) 
+        // effectively /api/v1/users/:id
+        // AdminService apiUrl is configured as `${environment.apiUrl}/admin`
+        // We need to call `${environment.apiUrl}/users/${userId}`
+        // So we strip '/admin' or just construct new url
+        const baseUrl = this.apiUrl.replace('/admin', '/users');
+        return this.http.patch<any>(`${baseUrl}/${userId}`, data);
+    }
 }

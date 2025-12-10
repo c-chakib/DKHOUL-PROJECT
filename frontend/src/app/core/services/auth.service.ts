@@ -108,15 +108,37 @@ export class AuthService {
 
     private loadUserFromStorage() {
         if (typeof localStorage !== 'undefined') {
+            const token = localStorage.getItem('token');
             const storedUser = localStorage.getItem('user');
-            if (storedUser) {
+
+            if (token && storedUser) {
+                // Optimistic load
                 try {
                     this.currentUserSignal.set(JSON.parse(storedUser));
+                    // Verify with backend
+                    this.verifyToken();
                 } catch (e) {
                     console.error('Failed to parse user from storage');
+                    this.logout();
                 }
             }
         }
+    }
+
+    // Verify token validity with backend
+    verifyToken() {
+        this.http.get<any>(`${this.apiUrl}/me`).subscribe({
+            next: (res) => {
+                // Token valid, update user data if changed
+                if (res.data && res.data.user) {
+                    this.setUser(res.data.user);
+                }
+            },
+            error: (err) => {
+                console.error('Token invalid or user deleted:', err);
+                this.logout();
+            }
+        });
     }
 
     // Get raw signal (if needed)

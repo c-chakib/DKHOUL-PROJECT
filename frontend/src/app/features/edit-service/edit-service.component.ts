@@ -175,6 +175,7 @@ export class EditServiceComponent implements OnInit {
             ...formValue,
             images: this.uploadedImages(),
             location: {
+                type: 'Point',
                 address: `${formValue.city}, Maroc`,
                 coordinates: [-7.9811, 31.6295]
             }

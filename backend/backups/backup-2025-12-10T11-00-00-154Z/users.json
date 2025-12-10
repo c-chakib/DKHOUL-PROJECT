@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "693941008a490fb197096e22",
+    "name": "Super Admin",
+    "email": "superadmin@dkhoul.ma",
+    "photo": "https://ui-avatars.com/api/?name=Super+Admin&background=000&color=fff",
+    "role": "superadmin",
+    "isVerified": true,
+    "password": "$2b$12$P4JCwSW4cyr86hE/IQG51.u2PSw02vMK0OPRPpqP0GrMBktya2nDW",
+    "createdAt": "2025-12-10T09:44:32.534Z",
+    "__v": 0
+  },
+  {
+    "_id": "693941008a490fb197096e24",
+    "name": "Admin User",
+    "email": "admin@dkhoul.ma",
+    "photo": "https://ui-avatars.com/api/?name=Admin+User&background=333&color=fff",
+    "role": "admin",
+    "isVerified": true,
+    "password": "$2b$12$WAP.Ve3G6e3QxZ4lfn.wOuGJW8kO6buJ7XXWGsIoVSI1n6ylNklWq",
+    "createdAt": "2025-12-10T09:44:32.934Z",
+    "__v": 0
+  },
+  {
+    "_id": "693941018a490fb197096e26",
+    "name": "Host User",
+    "email": "host@dkhoul.ma",
+    "photo": "https://ui-avatars.com/api/?name=Host+User&background=BC5627&color=fff",
+    "role": "host",
+    "isVerified": true,
+    "password": "$2b$12$3t89l8JE8uvqwexSVhfZQOJRB1M5WuKkEsfJU1hFu6mFV730L26tK",
+    "createdAt": "2025-12-10T09:44:33.264Z",
+    "__v": 0
+  },
+  {
+    "_id": "693941018a490fb197096e28",
+    "name": "Tourist User",
+    "email": "tourist@dkhoul.ma",
+    "photo": "https://ui-avatars.com/api/?name=Tourist+User&background=2ecc71&color=fff",
+    "role": "tourist",
+    "isVerified": true,
+    "password": "$2b$12$0G6Rf3g29ud1bFKBTXYApeHdoDAhYN5p92CWuWwkIL0g/58qx5wVS",
+    "createdAt": "2025-12-10T09:44:33.609Z",
+    "__v": 0
+  },
+  {
+    "_id": "69394796f02be55c8beea9ff",
+    "name": "chakib cheikhi",
+    "email": "ccheikhi@gmail.com",
+    "role": "tourist",
+    "isVerified": true,
+    "password": "$2b$12$jqWNuAdddhldrNWTWuAwPeI.lZlLJToom6sGPxC9m4qz66stN04R6",
+    "createdAt": "2025-12-10T10:12:38.657Z",
+    "__v": 0
+  }
+]

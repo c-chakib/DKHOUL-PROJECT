@@ -24,12 +24,8 @@ const server = http.createServer(app);
 
 // Initialize Socket.io
 const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : "http://localhost:4200";
-const io = new Server(server, {
-    cors: {
-        origin: corsOrigin,
-        methods: ["GET", "POST"]
-    }
-});
+const socketModule = require('./socket');
+const io = socketModule.init(server, corsOrigin);
 
 // Socket.io Logic
 io.on('connection', (socket) => {

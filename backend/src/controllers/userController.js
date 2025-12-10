@@ -142,3 +142,35 @@ exports.deleteMe = async (req, res, next) => {
         next(err);
     }
 };
+
+/**
+ * Update user (Admin Only) - To change role or status
+ */
+exports.updateUser = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+
+        if (!user) {
+            return next(new AppError('No user found with that ID', 404));
+        }
+
+        // Emit Socket Event for Admin Dashboard
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            io.emit('user-updated', user);
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: { user }
+        });
+    } catch (err) {
+        next(err);
+    }
+};

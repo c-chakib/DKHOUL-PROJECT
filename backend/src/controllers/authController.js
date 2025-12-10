@@ -45,6 +45,15 @@ exports.signup = async (req, res, next) => {
         // Use non-blocking email send
         sendWelcomeEmail(newUser).catch(err => console.error('Welcome email failed:', err));
 
+        // Emit Socket Event for Admin Dashboard
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            io.emit('user-created', newUser);
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
+        }
+
         createSendToken(newUser, 201, res);
     } catch (err) {
         console.error('Signup Error Detailed:', err);

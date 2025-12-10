@@ -16,5 +16,6 @@ router.delete('/deleteMe', userController.deleteMe);
 
 // Admin only routes
 router.get('/', authController.restrictTo('admin', 'superadmin'), userController.getAllUsers);
+router.patch('/:id', authController.restrictTo('admin', 'superadmin'), userController.updateUser); // New Route
 
 module.exports = router;

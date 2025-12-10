@@ -1,9 +1,11 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Component, inject, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../core/services/admin.service';
+import { SocketService } from '../../../core/services/socket.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
+import { Subscription } from 'rxjs';
 
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 
@@ -14,8 +16,9 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
     templateUrl: './super-admin.component.html',
     styleUrls: ['./super-admin.component.scss']
 })
-export class SuperAdminComponent implements OnInit {
+export class SuperAdminComponent implements OnInit, OnDestroy {
     adminService = inject(AdminService);
+    socketService = inject(SocketService);
     toastr = inject(ToastrService);
 
     // Signals
@@ -24,23 +27,54 @@ export class SuperAdminComponent implements OnInit {
     searchTerm = signal('');
     loading = signal(false);
 
+    // Subscriptions
+    private socketSub = new Subscription();
+
     // Computed: Filtered Users
     filteredUsers = computed(() => {
         const term = this.searchTerm().toLowerCase();
         return this.users().filter(user =>
-            user.name.toLowerCase().includes(term) ||
-            user.email.toLowerCase().includes(term) ||
-            user.role.toLowerCase().includes(term)
+            (user.name?.toLowerCase() || '').includes(term) ||
+            (user.email?.toLowerCase() || '').includes(term) ||
+            (user.role?.toLowerCase() || '').includes(term)
         );
     });
 
     ngOnInit() {
         this.loadDashboard();
+        this.setupRealTimeUpdates();
+    }
+
+    ngOnDestroy() {
+        this.socketSub.unsubscribe();
+    }
+
+    setupRealTimeUpdates() {
+        // Listen for new users
+        this.socketSub.add(
+            this.socketService.listen<any>('user-created').subscribe((newUser) => {
+                this.toastr.info(`Nouvel utilisateur : ${newUser.name}`, 'Real-time Update');
+                this.users.update(current => [newUser, ...current]);
+
+                // Update stats locally (optimistic)
+                if (this.stats()) {
+                    this.stats.update(s => ({ ...s, usersCount: s.usersCount + 1 }));
+                }
+            })
+        );
+
+        // Listen for user updates (e.g. role change by another admin)
+        this.socketSub.add(
+            this.socketService.listen<any>('user-updated').subscribe((updatedUser) => {
+                this.users.update(current =>
+                    current.map(u => u._id === updatedUser._id ? updatedUser : u)
+                );
+            })
+        );
     }
 
     loadDashboard() {
         this.loading.set(true);
-        // ForkJoin or sequential, doing sequential for simplicity
         this.adminService.getDashboardStats().subscribe({
             next: (res) => this.stats.set(res.data),
             error: (err) => console.error('Stats Error', err)
@@ -58,10 +92,94 @@ export class SuperAdminComponent implements OnInit {
         });
     }
 
-    // Actions
+    // --- ACTIONS ---
+
+    // Toggle Verification Status
+    toggleUserVerification(user: any) {
+        const newStatus = !user.isVerified;
+        this.adminService.updateUser(user._id, { isVerified: newStatus }).subscribe({
+            next: (res) => {
+                const action = newStatus ? 'vérifié' : 'mis en attente';
+                this.toastr.success(`Utilisateur ${action} avec succès`);
+                // Update local list (although socket might do it too, this is faster feedback)
+                this.users.update(current =>
+                    current.map(u => u._id === user._id ? { ...u, isVerified: newStatus } : u)
+                );
+            },
+            error: (err) => this.toastr.error('Erreur lors de la mise à jour')
+        });
+    }
+
+
+
+    onConfirmRoleChange() {
+        const user = this.userToChangeRole();
+        const newRole = this.pendingRole();
+
+        if (!user || !newRole) return;
+
+        this.adminService.updateUser(user._id, { role: newRole }).subscribe({
+            next: (res) => {
+                this.toastr.success(`Rôle modifié en ${newRole} avec succès`);
+                this.users.update(current =>
+                    current.map(u => u._id === user._id ? { ...u, role: newRole } : u)
+                );
+                this.closeRoleModal();
+            },
+            error: (err) => {
+                this.toastr.error('Erreur lors du changement de rôle');
+                this.closeRoleModal();
+            }
+        });
+    }
+
+    closeRoleModal() {
+        this.showRoleModal.set(false);
+        this.userToChangeRole.set(null);
+        this.pendingRole.set(null);
+    }
+
+    onCancelRoleChange() {
+        this.closeRoleModal();
+    }
+
+
     // Modal State
     showDeleteModal = signal(false);
     userToDeleteId = signal<string | null>(null);
+
+    // Role Change Modal
+    showRoleModal = signal(false);
+    userToChangeRole = signal<any>(null);
+    pendingRole = signal<string | null>(null);
+    // userToChangeRoleSelectElement = signal<any>(null); // REMOVED: No longer using native select
+
+    // Custom Dropdown State
+    openDropdownId = signal<string | null>(null);
+
+    toggleDropdown(userId: string, event: Event) {
+        event.stopPropagation();
+        if (this.openDropdownId() === userId) {
+            this.openDropdownId.set(null);
+        } else {
+            this.openDropdownId.set(userId);
+        }
+    }
+
+    // Close dropdown when clicking elsewhere (handled by backdrop in template or global listener ideally)
+    // For now, simple toggle is enough, or we add a click invalidator
+
+    // Select Role (Replaces changeUserRole)
+    selectRole(user: any, newRole: string) {
+        this.openDropdownId.set(null); // Close dropdown
+
+        if (newRole === user.role) return;
+
+        // Open custom modal
+        this.userToChangeRole.set(user);
+        this.pendingRole.set(newRole);
+        this.showRoleModal.set(true);
+    }
 
     showPasswordModal = signal(false);
     userToResetId = signal<string | null>(null);
@@ -81,7 +199,11 @@ export class SuperAdminComponent implements OnInit {
         this.adminService.deleteUser(userId).subscribe({
             next: () => {
                 this.toastr.success('Utilisateur supprimé avec succès');
-                this.loadDashboard();
+                // Remove from list
+                this.users.update(current => current.filter(u => u._id !== userId));
+                if (this.stats()) {
+                    this.stats.update(s => ({ ...s, usersCount: s.usersCount - 1 }));
+                }
                 this.closeDeleteModal();
             },
             error: (err) => {
@@ -139,8 +261,22 @@ export class SuperAdminComponent implements OnInit {
     }
 
     getUserPhotoUrl(photo: string | undefined): string {
-        if (!photo) return 'assets/default-user.png';
+        if (!photo) return '/assets/default-avatar.png'; // Absolute path
         if (photo.startsWith('data:') || photo.startsWith('http')) return photo;
-        return environment.apiUrl.replace('/api/v1', '') + photo;
+
+        // Ensure backend URL doesn't have double slash issues
+        const baseUrl = environment.apiUrl.replace('/api/v1', '');
+
+        // If photo path doesn't start with /uploads/ and isn't a full url, assume it needs the prefix
+        // Checking if it already has 'uploads' to avoid doubling
+        const cleanPhotoPath = photo.startsWith('/') ? photo : `/${photo}`;
+
+        if (cleanPhotoPath.startsWith('/uploads')) {
+            return `${baseUrl}${cleanPhotoPath}`;
+        }
+
+        // It's likely just a filename stored in DB, so prepend /uploads
+        // But double check against app.js static serve
+        return `${baseUrl}/uploads${cleanPhotoPath}`;
     }
 }

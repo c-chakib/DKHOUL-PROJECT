@@ -7,43 +7,50 @@ const User = require('./src/models/User');
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/dkhoul';
 const TARGET_HOST_EMAIL = 'superadmin@dkhoul.ma';
 
-// --- 1. BIBLIOTHÈQUE D'IMAGES VÉRIFIÉE (Liens signés avec ixlib) ---
-// Ces liens incluent les tokens nécessaires pour éviter le 404
+// --- 1. BIBLIOTHÈQUE D'IMAGES VÉRIFIÉE (Images Unsplash Génériques) ---
 const MOROCCAN_IMAGES = [
-    // --- VILLES & ARCHITECTURE (Bleu, Riad, Mosquée) ---
-    "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Chefchaouen Rue
-    "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Marrakech Souk
-    "https://images.unsplash.com/photo-1560132333-e7178de34749?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Arche Zellige
-    "https://images.unsplash.com/photo-1590605927533-874288863e46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Riad Piscine
-    "https://images.unsplash.com/photo-1559586616-361e18714958?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Riad Courtyard
-    "https://images.unsplash.com/photo-1535064654928-85474136e093?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Architecture
-    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Intérieur Marocain
-    "https://images.unsplash.com/photo-1577103282276-80db61b40283?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Porte Décorée
-    "https://images.unsplash.com/photo-1549141068-a832a82cb79a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Ruelle
+    // --- VILLES & ARCHITECTURE ---
+    "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
 
     // --- DÉSERT & NATURE ---
-    "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Homme Désert
-    "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Camp Sahara
-    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Nature/Plat
-    "https://images.unsplash.com/photo-1564507004663-b6dfb4983311?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Femme Désert
-    "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Atlas Montagne
-    "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Épices
+    "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
 
-    // --- ARTISANAT & CULTURE ---
-    "https://images.unsplash.com/photo-1553531384-cc64ac80f931?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Souk Épices
-    "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Tajine Cuisine
-    "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Thé à la menthe
-    "https://images.unsplash.com/photo-1580674285054-bed31e145f59?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Tapis/Intérieur
-    "https://images.unsplash.com/photo-1596549265147-3b107074714b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Poterie
-    "https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Bois/Travail
-    "https://images.unsplash.com/photo-1553531580-652231dae097?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Cuir/Babouches
-    "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Rassemblement
-    "https://images.unsplash.com/photo-1507048331197-7d4febeef819?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", // Cuisine
-    "https://images.unsplash.com/photo-1516239126464-9640989f6496?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"  // Zellige Détail
+    // --- ARTISANAT ---
+    "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
 ];
 
-// Fallback sûr si la liste est vide
-const SAFE_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1539655529457-36e3c09191d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+// Fallback sûr
+const SAFE_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1539655529457-36e3c09191d4?auto=format&fit=crop&w=800&q=80";
+
+// Helpers Image
+const getRandomImage = () => {
+    if (MOROCCAN_IMAGES.length === 0) return SAFE_FALLBACK_IMAGE;
+    return MOROCCAN_IMAGES[Math.floor(Math.random() * MOROCCAN_IMAGES.length)];
+};
+
+const generateDescription = (title, city, vibe) => {
+    const intros = [
+        `Découvrez la magie de ${city} à travers cette expérience unique.`,
+        `Plongez au cœur du vrai Maroc avec cet atelier authentique à ${city}.`,
+        `Une opportunité rare de vivre le quartier de ${vibe} comme un local.`,
+        `Loin des sentiers battus, rejoignez-nous pour un moment de partage à ${city}.`
+    ];
+    const details = [
+        `Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales.`,
+        `Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul).`,
+        `Votre hôte expert vous guidera étape par étape pour une immersion totale.`,
+        `Un moment de détente et d'apprentissage qui soutient l'économie locale.`
+    ];
+    return `${getRandomElement(intros)} ${title} est une activité pensée pour ceux qui cherchent l'authenticité. ${getRandomElement(details)} Repartez avec des souvenirs inoubliables.`;
+};
 
 // --- 2. CONFIGURATION GÉOGRAPHIQUE ---
 const CITY_CONFIG = {
@@ -96,48 +103,10 @@ const CITY_CONFIG = {
 
 const LANGUAGES = ['Darija', 'Français', 'Anglais', 'Espagnol'];
 
-// --- HELPERS ---
 const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomSubset = (arr, count) => [...arr].sort(() => 0.5 - Math.random()).slice(0, count);
 const getRandomFloat = (min, max) => Math.random() * (max - min) + min;
 const getRandomPrice = () => Math.floor(Math.random() * (600 - 100 + 1)) + 100;
-
-// Système de copie pour gérer l'épuisement des images
-let availableImages = [...MOROCCAN_IMAGES];
-
-const popRandomImage = () => {
-    // Si la liste est vide, on la remplit à nouveau (pour permettre >25 services)
-    if (availableImages.length === 0) {
-        availableImages = [...MOROCCAN_IMAGES];
-    }
-
-    // Si la liste originale est vide ou erreur
-    if (availableImages.length === 0) return SAFE_FALLBACK_IMAGE;
-
-    const index = Math.floor(Math.random() * availableImages.length);
-    const imageUrl = availableImages[index];
-
-    // On retire l'image pour éviter la répétition immédiate
-    availableImages.splice(index, 1);
-
-    return imageUrl;
-};
-
-const generateDescription = (title, city, vibe) => {
-    const intros = [
-        `Découvrez la magie de ${city} à travers cette expérience unique.`,
-        `Plongez au cœur du vrai Maroc avec cet atelier authentique à ${city}.`,
-        `Une opportunité rare de vivre le quartier de ${vibe} comme un local.`,
-        `Loin des sentiers battus, rejoignez-nous pour un moment de partage à ${city}.`
-    ];
-    const details = [
-        `Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales.`,
-        `Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul).`,
-        `Votre hôte expert vous guidera étape par étape pour une immersion totale.`,
-        `Un moment de détente et d'apprentissage qui soutient l'économie locale.`
-    ];
-    return `${getRandomElement(intros)} ${title} est une activité pensée pour ceux qui cherchent l'authenticité. ${getRandomElement(details)} Repartez avec des souvenirs inoubliables.`;
-};
 
 // --- MAIN GENERATOR ---
 const seedDB = async () => {
@@ -195,11 +164,10 @@ const seedDB = async () => {
                 ];
 
                 // Génération Images
-                const mainImage = popRandomImage();
-                // Pour la galerie, on prend 2 autres images mais on les remet pas forcément dans la pool "unique"
-                // On utilise getRandomElement sur la liste GLOBALE pour la galerie afin de ne pas vider la pool principale trop vite
-                const gallery1 = getRandomElement(MOROCCAN_IMAGES);
-                const gallery2 = getRandomElement(MOROCCAN_IMAGES);
+                const mainImage = getRandomImage();
+                // Pour la galerie, on prend 2 autres images
+                const gallery1 = getRandomImage();
+                const gallery2 = getRandomImage();
 
                 const service = {
                     title: `${activityTitle} - ${vibe}`,
