@@ -7,17 +7,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ServiceService } from '../../core/services/service.service';
-import { Service } from '../../core/models/service'; // Corrected path
-// If model path is different I will fix later. Assuming core/models based on previous structure or simply creating a local interface if needed.
-// Actually user code had '../../models/service'. I will use that or fix import.
-// Let's standardise on `../../core/models/service` if that's where it is, or `../../models` if it is root.
-// Wait, previous file `home.component.ts` didn't import Service model explicitly.
-// `list_dir` of `frontend/src/app` didn't show `models`. `frontend/src/app/core` might have it.
-// I will check for `service.ts` location first to be safe? No, let's look at `service.service.ts` import if possible.
-// Actually, to be safe, I will stick to user's import path but if it fails I'll fix.
-// User code: `import { Service } from '../../models/service';`
-// I suspect it might be `../../core/models/service` or just `../../models`.
-// Let's assume `../../core/models/service` because `service.service` is in `core/services`.
 
 import { TypedTextComponent } from '../../shared/components/typed-text/typed-text.component';
 import { MapSectionComponent } from '../../shared/components/map-section/map-section.component';
@@ -198,17 +187,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
 
     typedTexts = [
-        'Monétise ton espace',
-        'Vends ton savoir-faire',
-        'Loue ton temps'
+        'Vivez l\'hospitalité marocaine',
+        'Accédez à des lieux exclusifs',
+        'Apprenez des métiers d\'art',
+        'Partagez un thé, une histoire'
     ];
 
     heroImages = [
         { src: 'assets/images/hero-riad.png', alt: 'Vivez le Maroc Authentique - Riad Traditionnel' },
-        { src: 'assets/images/Gemini_Generated_Image_4si8lw4si8lw4si8.png', alt: 'Découvrez des lieux uniques' },
         { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.png', alt: 'Rencontrez des hôtes exceptionnels' },
         { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.png', alt: 'Vivez des expériences locales' },
-        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'DKHOUL - Voyagez autrement' }
+        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'DKHOUL - Voyagez autrement' },
+        { src: 'assets/images/Gemini_Generated_Image_i1bvcoi1bvcoi1bv.png', alt: 'Artisanat et Créativité Marocaine' },
+        { src: 'assets/images/Gemini_Generated_Image_lhlkz1lhlkz1lhlk.png', alt: 'Saveurs et Gastronomie Locale' },
+        { src: 'assets/images/Gemini_Generated_Image_lhrdlmlhrdlmlhrd.png', alt: 'Découverte des Paysages du Sud' },
+        { src: 'assets/images/Gemini_Generated_Image_npjqhjnpjqhjnpjq.png', alt: 'Espaces de Travail Inspirants' },
+        { src: 'assets/images/Gemini_Generated_Image_ssvgmpssvgmpssvg.png', alt: 'Architecture et Patrimoine' },
+        { src: 'assets/images/Gemini_Generated_Image_sszal4sszal4ssza.png', alt: 'Hospitalité et Convivialité' }
     ];
     currentYear = new Date().getFullYear();
 

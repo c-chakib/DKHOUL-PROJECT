@@ -10,10 +10,12 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 import { MatIconModule } from '@angular/material/icon';
 
+import { WebpUrlPipe } from '../../shared/pipes/webp-url.pipe';
+
 @Component({
     selector: 'app-marketplace',
     standalone: true,
-    imports: [CommonModule, MapComponent, FormsModule, MatIconModule],
+    imports: [CommonModule, MapComponent, FormsModule, MatIconModule, WebpUrlPipe],
     templateUrl: './marketplace.component.html',
     styleUrls: ['./marketplace.component.scss']
 })

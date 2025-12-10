@@ -12,11 +12,11 @@ router.post('/', upload.single('image'), resizeAndOptimize, (req, res) => {
         return res.status(400).json({ status: 'fail', message: 'No file uploaded' });
     }
 
-    // If Sharp optimized the file, return URL to the saved file
-    if (req.file.optimized && req.file.filename) {
+    // If Sharp optimized the file and uploaded to S3, return the S3 URL
+    if (req.file.optimized && req.file.location) {
         return res.status(200).json({
             status: 'success',
-            url: `/uploads/images/${req.file.filename}`,
+            url: req.file.location,
             optimized: true
         });
     }

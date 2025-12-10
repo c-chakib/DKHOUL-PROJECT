@@ -48,8 +48,9 @@ exports.updateMe = async (req, res, next) => {
 
         // 3) If avatar uploaded, add photo URL
         if (req.file) {
-            // Check if it's base64 or file path
-            if (req.file.filename) {
+            if (req.file.location) {
+                filteredBody.photo = req.file.location;
+            } else if (req.file.filename) {
                 filteredBody.photo = `/uploads/images/${req.file.filename}`;
             } else if (req.file.buffer) {
                 const b64 = Buffer.from(req.file.buffer).toString('base64');

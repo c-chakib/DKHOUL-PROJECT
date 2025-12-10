@@ -27,38 +27,80 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // 5MB limit (larger since we'll compress)
 });
 
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+
+const s3 = new S3Client({
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
+});
+
 /**
  * Middleware to resize and optimize images using Sharp
- * Converts to WebP format for better compression
+ * Converts to WebP format and uploads to AWS S3
  */
 const resizeAndOptimize = async (req, res, next) => {
-    if (!req.file) return next();
+    if (!req.file && !req.files) return next();
 
     try {
-        const filename = `service-${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
-        const filepath = path.join(uploadDir, filename);
+        // Helper function to process a single file object
+        const processFile = async (file) => {
+            const filename = `service-${Date.now()}-${Math.round(Math.random() * 1e9)}.webp`;
 
-        // Process image with Sharp
-        await sharp(req.file.buffer)
-            .resize(800, 600, {
-                fit: 'inside',
-                withoutEnlargement: true
-            })
-            .toFormat('webp')
-            .webp({ quality: 80 })
-            .toFile(filepath);
+            const buffer = await sharp(file.buffer)
+                .resize(800, 600, {
+                    fit: 'inside',
+                    withoutEnlargement: true
+                })
+                .toFormat('webp')
+                .webp({ quality: 80 })
+                .toBuffer();
 
-        // Update req.file with new path info
-        req.file.filename = filename;
-        req.file.path = filepath;
-        req.file.optimized = true;
+            const uploadParams = {
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: `uploads/images/${filename}`, // Organize in a folder
+                Body: buffer,
+                ContentType: 'image/webp',
+                // ACL: 'public-read' // Optional: if bucket is not public by default
+            };
 
-        console.log(`📸 Image optimized: ${filename}`);
+            await s3.send(new PutObjectCommand(uploadParams));
+
+            // Construct the public URL
+            // Ensure your bucket policy allows public read for this to work directly
+            const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/uploads/images/${filename}`;
+
+            file.filename = filename;
+            file.location = publicUrl; // Use 'location' to match Multer S3 standard
+            file.path = publicUrl;     // Keep 'path' for backward compatibility
+            file.mimetype = 'image/webp';
+            file.optimized = true;
+            console.log(`☁️ Image uploaded to S3: ${publicUrl}`);
+        };
+
+        // Handle single file
+        if (req.file) {
+            await processFile(req.file);
+        }
+
+        // Handle multiple files
+        if (req.files) {
+            if (Array.isArray(req.files)) {
+                await Promise.all(req.files.map(file => processFile(file)));
+            } else {
+                const fileArrays = Object.values(req.files);
+                for (const fileArray of fileArrays) {
+                    await Promise.all(fileArray.map(file => processFile(file)));
+                }
+            }
+        }
+
         next();
     } catch (error) {
-        console.error('Sharp optimization error:', error);
-        // Fall back to original behavior if Sharp fails
-        next();
+        console.error('Sharp/S3 optimization error:', error);
+        next(new AppError('Image processing failed', 500));
     }
 };
 

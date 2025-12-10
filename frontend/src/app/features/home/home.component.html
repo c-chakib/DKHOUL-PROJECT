@@ -11,24 +11,33 @@
     <!-- Hero Content -->
     <div class="space-y-8 text-center lg:text-left">
       <h1 class="text-5xl lg:text-7xl font-display font-bold text-secondary leading-tight">
-        Vivez le Maroc
-        <span class="text-primary block mt-2">Authentique</span>
+        Ne visitez pas le Maroc.
+        <span class="text-primary block mt-2">Vivez-le de l'intérieur.</span>
       </h1>
       
-      <div class="text-2xl text-black font-light h-12">
-        <app-typed-text [texts]="typedTexts" [typeSpeed]="60" [backSpeed]="40" [loop]="true"></app-typed-text>
+      <p class="text-lg text-secondary/80 max-w-lg leading-relaxed">
+        La première plateforme qui vous ouvre les portes des maisons marocaines.
+        <span class="block mt-2 font-medium text-secondary">Espaces privés • Savoir-faire • Rencontres</span>
+      </p>
+      
+      <div class="text-2xl text-primary font-medium h-8 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <app-typed-text [texts]="typedTexts" [typeSpeed]="50" [backSpeed]="30" [loop]="true"></app-typed-text>
       </div>
 
-      <div class="flex flex-wrap justify-center lg:justify-start gap-4">
-        <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20">
-          🎯 Prix 50-70% moins chers
-        </span>
-        <span class="px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium border border-secondary/20">
-          ✨ 100% authentique
-        </span>
-        <span class="px-4 py-2 bg-tertiary/10 text-tertiary rounded-full text-sm font-medium border border-tertiary/20">
-          💰 80% revenus aux hôtes
-        </span>
+      <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
+          <mat-icon class="text-tertiary !w-5 !h-5 text-[20px]">verified</mat-icon>
+          100% Authentique
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
+          <mat-icon class="text-primary !w-5 !h-5 text-[20px]">savings</mat-icon>
+          Prix Locaux & Équitables
+        </div>
+        <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
+          <mat-icon class="text-secondary !w-5 !h-5 text-[20px]">security</mat-icon>
+          Paiement Sécurisé
+        </div>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

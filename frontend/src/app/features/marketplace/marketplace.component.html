@@ -134,7 +134,7 @@
                     
                     <!-- Image with Text Fallback -->
                     <div class="relative h-64 bg-gray-200 overflow-hidden">
-                        <ng-container *ngIf="getImageUrl(service.images[0]) as url; else noImage">
+                        <ng-container *ngIf="getImageUrl(service.images[0]) | webp as url; else noImage">
                              <img [src]="url" [alt]="service.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </ng-container>
                         <ng-template #noImage>
@@ -206,7 +206,21 @@
     <!-- MAP VIEW -->
     @if (!isLoading() && viewMode() === 'map') {
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100" style="height: 70vh;">
-            <app-map [services]="mapServices()"></app-map>
+            @defer (on viewport) {
+                <app-map [services]="mapServices()"></app-map>
+            } @placeholder {
+                 <div class="flex items-center justify-center h-full bg-gray-50">
+                    <p class="text-gray-500 font-medium">Carte interactive</p>
+                </div>
+            } @loading {
+                <div class="flex items-center justify-center h-full bg-gray-50">
+                    <p class="text-gray-500 font-medium animate-pulse">Chargement de la carte...</p>
+                </div>
+            } @error {
+                <div class="flex items-center justify-center h-full bg-red-50 text-red-500">
+                    <p>Impossible de charger la carte.</p>
+                </div>
+            }
         </div>
     }
 

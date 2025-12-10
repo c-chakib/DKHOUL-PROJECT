@@ -5,7 +5,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ChatWindowComponent } from './features/chat/chat-window/chat-window.component';
 import { AiGuideComponent } from './features/ai/ai-guide/ai-guide.component';
 import { AuthService } from './core/services/auth.service';
-import { WelcomeDoorComponent } from './core/components/welcome-door/welcome-door.component'; // Import WelcomeDoor
+import { WelcomeDoorComponent } from './features/welcome-door/welcome-door.component'; // Import WelcomeDoor
 
 import { CommonModule } from '@angular/common';
 

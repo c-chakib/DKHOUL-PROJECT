@@ -59,5 +59,9 @@ const serviceSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 serviceSchema.index({ location: '2dsphere' });
+serviceSchema.index({ price: 1 });
+serviceSchema.index({ category: 1 });
+serviceSchema.index({ city: 1 });
+serviceSchema.index({ host: 1 });
 
 module.exports = mongoose.model('Service', serviceSchema);

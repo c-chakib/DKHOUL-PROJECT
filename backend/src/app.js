@@ -80,13 +80,19 @@ app.use('/api/v1/admin', require('./routes/adminRoutes'));
 app.use('/api/v1/upload', require('./routes/uploadRoutes'));
 app.use('/api/v1/contact', require('./routes/contactRoutes'));
 
-// Serve Static Files (Uploads) with CORS headers
+const compression = require('compression');
+app.use(compression());
+
+// Serve Static Files (Uploads) with CORS headers and Cache Control
 app.use('/uploads', (req, res, next) => {
     // Set Cross-Origin-Resource-Policy to allow cross-origin requests
     res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Cache-Control', 'public, max-age=2592000'); // 30 days
     next();
-}, express.static(path.join(__dirname, '../uploads')));
+}, express.static(path.join(__dirname, '../uploads'), {
+    maxAge: '30d' // Express static cache
+}));
 
 // Routes Placeholder
 app.get('/', (req, res) => {

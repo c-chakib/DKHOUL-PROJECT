@@ -51,6 +51,10 @@ export class NavbarComponent {
         this.isProfileMenuOpen.update(v => !v);
     }
 
+    closeProfileMenu() {
+        this.isProfileMenuOpen.set(false);
+    }
+
     onLogout() {
         this.authService.logout();
         this.isProfileMenuOpen.set(false);
