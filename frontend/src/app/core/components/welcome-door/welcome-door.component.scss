@@ -1,0 +1,135 @@
+:host {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    pointer-events: none; // Allow clicks on background to pass? No, likely blocking interaction until entered.
+    // Actually user wants app visible, maybe interactable? No, "Dkhoul" implies entering.
+    // We will keep pointer-events: auto on container to block usage until entered.
+}
+
+.door-overlay {
+    background-color: rgba(0, 0, 0, 0.4); // Darken slightly, NO BLUR
+    pointer-events: auto;
+}
+
+.door-frame {
+    perspective: 1500px;
+    width: 90vw;
+    max-width: 400px;
+    height: 80vh;
+    max-height: 700px;
+    position: relative;
+    /* Islamic Arch Shape */
+    border-radius: 200px 200px 0 0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    background: transparent;
+}
+
+.door-panel {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    background: #3e2723;
+    /* Dark Wood Base */
+    /* Sophisticated Wood Gradient */
+    background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, transparent 5%, transparent 95%, rgba(0, 0, 0, 0.2) 100%),
+        repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.1) 3px);
+
+    border: 4px solid #5d4037;
+    overflow: hidden;
+}
+
+.door-left {
+    left: 0;
+    transform-origin: left center;
+    border-radius: 200px 0 0 0;
+    /* Left Arch */
+    border-right: 2px solid #1a120b;
+}
+
+.door-right {
+    right: 0;
+    transform-origin: right center;
+    border-radius: 0 200px 0 0;
+    /* Right Arch */
+    border-left: 2px solid #1a120b;
+}
+
+/* Gold Zellige Accents */
+.zellige-accent {
+    position: absolute;
+    top: 50%;
+    width: 80%;
+    height: 40%;
+    transform: translateY(-50%);
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    background-image:
+        radial-gradient(circle, rgba(212, 175, 55, 0.1) 10%, transparent 10.5%);
+    background-size: 20px 20px;
+}
+
+.door-left .zellige-accent {
+    right: 10px;
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+}
+
+.door-right .zellige-accent {
+    left: 10px;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+}
+
+/* Handle */
+.door-knocker {
+    position: absolute;
+    top: 55%;
+    width: 40px;
+    height: 60px;
+    border: 3px solid #d4af37;
+    /* Gold */
+    border-radius: 0 0 20px 20px;
+    background: radial-gradient(circle at 50% 30%, #ffd700, #b8860b);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.door-left .door-knocker {
+    right: 15px;
+}
+
+.door-right .door-knocker {
+    left: 15px;
+}
+
+/* Open States */
+.open-left {
+    transform: rotateY(-110deg);
+}
+
+.open-right {
+    transform: rotateY(110deg);
+}
+
+/* Content Behind Door */
+.door-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-col: column;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+    /* Behind doors initially */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 200px 200px 0 0;
+}

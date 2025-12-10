@@ -103,6 +103,9 @@ export class AuthService {
             localStorage.removeItem('user');
             localStorage.removeItem('token');
         }
+        if (typeof sessionStorage !== 'undefined') {
+            sessionStorage.removeItem('dkhoul_intro_seen');
+        }
         this.router.navigate(['/']);
     }
 

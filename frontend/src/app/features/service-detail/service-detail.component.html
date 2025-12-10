@@ -5,6 +5,16 @@
 <div *ngIf="!isLoading() && service() as s" class="max-w-7xl mx-auto px-6 py-8">
   
   <!-- HEADER -->
+  <div class="mb-8 pt-6">
+    <button (click)="goBack()" 
+            class="group inline-flex items-center gap-3 text-gray-500 hover:text-[#BC5627] transition-all duration-300">
+        <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#BC5627] group-hover:bg-[#BC5627] group-hover:text-white transition-all duration-300 shadow-sm">
+             <i class="fas fa-arrow-left text-sm transition-transform group-hover:-translate-x-0.5"></i>
+        </div>
+        <span class="font-bold text-xs uppercase tracking-[0.15em] relative top-[1px]">Retour</span>
+    </button>
+  </div>
+
   <div class="mb-6">
     <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ s.title }}</h1>
     <div class="flex items-center text-sm text-gray-600">
@@ -17,47 +27,65 @@
   </div>
 
   <!-- GALLERY -->
-  <div class="grid grid-cols-4 grid-rows-2 gap-2 h-[400px] rounded-xl overflow-hidden mb-12">
-    <!-- Main Image -->
-    <div class="col-span-2 row-span-2 relative cursor-pointer hover:opacity-95 transition bg-gray-200">
-      <ng-container *ngIf="getImageUrl(s.images[0]) as url; else noMainImage">
-         <img [src]="url" class="w-full h-full object-cover">
-      </ng-container>
-      <ng-template #noMainImage>
-        <div class="w-full h-full flex items-center justify-center text-gray-500">No picture available</div>
-      </ng-template>
-    </div>
+  <div class="relative rounded-2xl overflow-hidden shadow-lg mb-12 h-[300px] md:h-[450px] group">
     
-    <!-- Secondary Images -->
-    <div class="col-span-1 row-span-1 relative cursor-pointer hover:opacity-95 transition bg-gray-200">
-       <ng-container *ngIf="getImageUrl(s.images[1]) as url; else noImg1">
-         <img [src]="url" class="w-full h-full object-cover">
-       </ng-container>
-       <ng-template #noImg1><div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div></ng-template>
+    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-full">
+        <!-- Main Image (Left Half) -->
+        <div class="md:col-span-2 md:row-span-2 relative overflow-hidden bg-gray-100 h-full group/main cursor-pointer" (click)="openLightbox(0)">
+            <ng-container *ngIf="getImageUrl(s.images[0]) as url; else placeholderMain">
+                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/main:scale-105">
+                <div class="absolute inset-0 bg-black/0 group-hover/main:bg-black/10 transition-colors duration-300"></div>
+            </ng-container>
+            <ng-template #placeholderMain>
+                <div class="w-full h-full flex items-center justify-center text-gray-300">
+                    <i class="fas fa-image text-4xl"></i>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- Secondary Images (Right Half - 3 Slots) -->
+        
+        <!-- Top Right (Full Width) -->
+        <div class="hidden md:block md:col-span-2 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(1)">
+            <ng-container *ngIf="getImageUrl(s.images[1]) as url; else placeholderSec">
+                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
+            </ng-container>
+        </div>
+
+        <!-- Bottom Left -->
+        <div class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(2)">
+             <ng-container *ngIf="getImageUrl(s.images[2]) as url; else placeholderSec">
+                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
+             </ng-container>
+        </div>
+
+        <!-- Bottom Right (+Overlay) -->
+        <div class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(3)">
+             <ng-container *ngIf="getImageUrl(s.images[3]) as url; else placeholderSec">
+                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
+                
+                <!-- Plus Overlay (Shows if more than 4 images) -->
+                <div *ngIf="s.images.length > 4" class="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-bold text-xl backdrop-blur-[2px] transition-colors hover:bg-black/40">
+                    +{{ s.images.length - 4 }}
+                </div>
+             </ng-container>
+        </div>
+
+        <ng-template #placeholderSec>
+            <div class="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50">
+                <i class="fas fa-image text-xl"></i>
+            </div>
+        </ng-template>
     </div>
-    <div class="col-span-1 row-span-1 relative cursor-pointer hover:opacity-95 transition bg-gray-200">
-       <ng-container *ngIf="getImageUrl(s.images[2]) as url; else noImg2">
-         <img [src]="url" class="w-full h-full object-cover">
-       </ng-container>
-       <ng-template #noImg2><div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div></ng-template>
-    </div>
-    <div class="col-span-1 row-span-1 relative cursor-pointer hover:opacity-95 transition bg-gray-200">
-       <ng-container *ngIf="getImageUrl(s.images[3]) as url; else noImg3">
-         <img [src]="url" class="w-full h-full object-cover">
-       </ng-container>
-       <ng-template #noImg3><div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div></ng-template>
-    </div>
-    <div class="col-span-1 row-span-1 relative cursor-pointer hover:opacity-95 transition bg-gray-200">
-       <!-- If no 4th image, show generic -->
-       <ng-container *ngIf="getImageUrl(s.images[0]) as url; else noImgLast">
-         <img [src]="url" class="w-full h-full object-cover grayscale opacity-50">
-       </ng-container>
-       <ng-template #noImgLast><div class="w-full h-full flex items-center justify-center text-gray-400 text-xs">No image</div></ng-template>
-       
-       <div class="absolute inset-0 flex items-center justify-center bg-black/20 text-white font-bold">
-         See all photos
-       </div>
-    </div>
+
+    <!-- Floating "Show All" Button -->
+    <button (click)="openLightbox(0)" class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white px-4 py-2 rounded-lg shadow-md border border-gray-200 text-sm font-bold text-gray-800 transition-all hover:scale-105 flex items-center gap-2">
+        <i class="fas fa-th"></i>
+        <span>Voir toutes les photos</span>
+    </button>
   </div>
 
   <!-- MAIN CONTENT GRID -->
@@ -213,11 +241,63 @@
 
   </div>
 
+
   <!-- Report Modal -->
   <app-report-modal 
       #reportModal
       [targetId]="service()?._id || ''"
       [targetType]="'service'">
   </app-report-modal>
+
+  <!-- LIGHTBOX OVERLAY -->
+  <div *ngIf="lightboxOpen()" class="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in text-white">
+    
+    <!-- Close Button (Minimal Glass) -->
+    <button (click)="closeLightbox()" 
+            class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-red-500/80 hover:border-red-500 hover:scale-105 z-[10001] group"
+            title="Fermer (Echap)">
+         <i class="fas fa-times text-lg"></i>
+    </button>
+    
+    <!-- Main Image Area -->
+    <div class="relative flex-1 w-full flex items-center justify-center p-4 overflow-hidden">
+        <img [src]="getImageUrl(s.images[currentLightboxIndex()])" 
+             class="max-h-[75vh] max-w-[90vw] object-contain rounded-lg shadow-2xl animate-scale-in select-none"
+             (click)="$event.stopPropagation()">
+             
+        <!-- Prev Button (Glass) -->
+        <button (click)="prevLightboxImage(); $event.stopPropagation()" 
+                class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-white hover:text-black hover:scale-105 z-[10000] group">
+            <i class="fas fa-chevron-left text-xl group-hover:-translate-x-0.5 transition-transform"></i>
+        </button>
+
+        <!-- Next Button (Glass) -->
+        <button (click)="nextLightboxImage(); $event.stopPropagation()" 
+                class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-white hover:text-black hover:scale-105 z-[10000] group">
+            <i class="fas fa-chevron-right text-xl group-hover:translate-x-0.5 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- Thumbnails Strip -->
+    <div class="h-24 w-full flex items-center justify-center gap-4 pb-6 z-[10000]">
+        <div *ngFor="let img of s.images; let i = index" 
+             (click)="currentLightboxIndex.set(i); $event.stopPropagation()"
+             class="relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 border-2"
+             [class.border-white]="currentLightboxIndex() === i"
+             [class.border-transparent]="currentLightboxIndex() !== i"
+             [class.opacity-50]="currentLightboxIndex() !== i"
+             [class.opacity-100]="currentLightboxIndex() === i"
+             [class.scale-110]="currentLightboxIndex() === i">
+            <img [src]="getImageUrl(img)" class="w-full h-full object-cover">
+        </div>
+    </div>
+    
+    <!-- Counter moved to top left -->
+    <div class="absolute top-8 left-8 text-white/80 font-medium bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm tracking-widest border border-white/10">
+        {{ currentLightboxIndex() + 1 }} / {{ s.images.length }}
+    </div>
+
+  </div>
+
 </div>
 

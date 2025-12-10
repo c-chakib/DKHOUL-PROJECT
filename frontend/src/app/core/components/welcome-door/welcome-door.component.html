@@ -1,0 +1,58 @@
+<div *ngIf="isVisible()" class="door-overlay fixed inset-0 flex items-center justify-center animate-fade-in" @fadeOut>
+    
+    <!-- The Door Frame (Floating Logic) -->
+    <div class="door-frame relative flex items-center justify-center">
+        
+        <!-- BACK CONTENT (Behind Doors - Revealed when Open) -->
+        <div class="door-content opacity-0 transition-opacity duration-1000 delay-500"
+             [class.opacity-100]="doorState() === 'open'">
+             <!-- Simple glow behind -->
+             <div class="w-full h-full bg-[#BC5627]/20 flex items-center justify-center">
+                <i class="fas fa-certificate text-6xl text-[#d4af37] animate-spin-slow opacity-50"></i>
+             </div>
+        </div>
+
+        <!-- Left Door Panel -->
+        <div class="door-panel door-left z-20 flex items-center"
+             [class.open-left]="doorState() === 'open'">
+             <div class="zellige-accent"></div>
+             <div class="door-knocker"></div>
+        </div>
+
+        <!-- Right Door Panel -->
+        <div class="door-panel door-right z-20 flex items-center"
+             [class.open-right]="doorState() === 'open'">
+             <div class="zellige-accent"></div>
+             <div class="door-knocker"></div>
+        </div>
+
+        <!-- FRONT CONTENT (Visible when Closed) -->
+         <div class="absolute inset-0 z-50 flex flex-col items-center justify-between py-24 pointer-events-none transition-all duration-700 ease-in-out"
+              [class.opacity-0]="doorState() === 'open'"
+              [class.scale-110]="doorState() === 'open'"> 
+            
+            <!-- TOP: Logo (Pinned to Top) -->
+            <div class="flex-none pt-4 animate-float">
+                <img src="/assets/images/logo.png" alt="DKHOUL" class="w-24 md:w-32 drop-shadow-2xl">
+            </div>
+            
+            <!-- MIDDLE: Branding Text (Centered in remaining space) -->
+            <div class="flex-grow flex items-center justify-center px-4">
+                 <p class="text-[#cda434] text-lg md:text-2xl font-light tracking-widest uppercase text-shadow-md bg-black/40 px-8 py-4 rounded-full backdrop-blur-md border border-[#d4af37]/40 text-center shadow-lg">
+                    Dkhoul... et découvre le vrai Maroc
+                </p>
+            </div>
+
+            <!-- BOTTOM: Button (Pinned to Bottom) -->
+            <div class="flex-none pointer-events-auto pb-4">
+                 <button (click)="openDoors()" class="group relative bg-[#BC5627] text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest shadow-[0_0_30px_rgba(188,86,39,0.6)] hover:bg-[#a44920] transition-all hover:scale-105 border-2 border-[#d4af37] flex items-center gap-4 overflow-hidden">
+                    <span class="relative z-10 group-hover:tracking-[0.25em] transition-all duration-300 text-base md:text-lg">Accéder à la plateforme</span>
+                    <i class="fas fa-key text-yellow-400 relative z-10 animate-pulse text-xl"></i>
+                    <!-- Button Glow Effect -->
+                    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                </button>
+            </div>
+         </div>
+
+    </div>
+</div>

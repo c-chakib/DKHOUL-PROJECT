@@ -1,5 +1,5 @@
-import { Component, OnInit, signal, inject, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal, inject, computed, HostListener } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { ChatService, ChatUser } from '../../core/services/chat.service';
@@ -24,6 +24,7 @@ export class ServiceDetailComponent implements OnInit {
     private chatService = inject(ChatService);
     private authService = inject(AuthService);
     private toast = inject(ToastService);
+    private location = inject(Location);
 
     service = signal<Service | null>(null);
     isLoading = signal<boolean>(true);
@@ -43,10 +44,13 @@ export class ServiceDetailComponent implements OnInit {
     minDate = new Date().toISOString().split('T')[0];
 
     // Host info from API or fallback
-    // Host info from API or fallback
     host = signal<any>({ name: '', photo: '', bio: '' });
 
     activeImage = signal<string>('');
+
+    // Ligthbox State
+    lightboxOpen = signal<boolean>(false);
+    currentLightboxIndex = signal<number>(0);
 
     ngOnInit() {
         this.route.paramMap.pipe(
@@ -179,5 +183,46 @@ export class ServiceDetailComponent implements OnInit {
         if (!url) return null;
         if (url.startsWith('data:') || url.startsWith('http')) return url;
         return environment.apiUrl.replace('/api/v1', '') + url;
+    }
+
+    goBack(): void {
+        this.location.back();
+    }
+
+    openLightbox(index: number): void {
+        this.currentLightboxIndex.set(index);
+        this.lightboxOpen.set(true);
+        document.body.style.overflow = 'hidden'; // Disable scroll
+    }
+
+    closeLightbox(): void {
+        this.lightboxOpen.set(false);
+        document.body.style.overflow = 'auto'; // Re-enable scroll
+    }
+
+    nextLightboxImage(): void {
+        const s = this.service();
+        if (!s || !s.images) return;
+        const total = s.images.length;
+        this.currentLightboxIndex.update(i => (i + 1) % total);
+    }
+
+    prevLightboxImage(): void {
+        const s = this.service();
+        if (!s || !s.images) return;
+        const total = s.images.length;
+        this.currentLightboxIndex.update(i => (i - 1 + total) % total);
+    }
+
+    // Close on Escape key
+    @HostListener('document:keydown', ['$event'])
+    onKeydownHandler(event: KeyboardEvent) {
+        if (event.key === 'Escape' && this.lightboxOpen()) {
+            this.closeLightbox();
+        }
+        if (this.lightboxOpen()) {
+            if (event.key === 'ArrowRight') this.nextLightboxImage();
+            if (event.key === 'ArrowLeft') this.prevLightboxImage();
+        }
     }
 }

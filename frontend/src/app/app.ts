@@ -5,14 +5,16 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ChatWindowComponent } from './features/chat/chat-window/chat-window.component';
 import { AiGuideComponent } from './features/ai/ai-guide/ai-guide.component';
 import { AuthService } from './core/services/auth.service';
+import { WelcomeDoorComponent } from './core/components/welcome-door/welcome-door.component'; // Import WelcomeDoor
 
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, ChatWindowComponent, AiGuideComponent],
+  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, ChatWindowComponent, AiGuideComponent, WelcomeDoorComponent], // Add to imports
   template: `
+    <app-welcome-door></app-welcome-door> <!-- Add Welcome Door -->
     <div class="min-h-screen flex flex-col">
       <app-navbar></app-navbar>
       <main class="flex-grow pt-16">

@@ -63,10 +63,10 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
     cities = ['Tout le Maroc', 'Casablanca', 'Marrakech', 'Agadir', 'Tanger', 'Fès', 'Rabat', 'Essaouira', 'Merzouga', 'Chefchaouen', 'Ouarzazate'];
 
     categories = [
-        { value: '', label: 'Tout' },
-        { value: 'SPACE', label: 'Espaces' },
-        { value: 'SKILL', label: 'Compétences' },
-        { value: 'CONNECT', label: 'Connexions' }
+        { value: '', label: 'All' },
+        { value: 'SPACE', label: 'Spaces' },
+        { value: 'SKILL', label: 'Skills' },
+        { value: 'CONNECT', label: 'Connect' }
     ];
 
     sortOptions = [
