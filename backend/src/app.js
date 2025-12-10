@@ -39,14 +39,8 @@ app.use('/api', limiter);
 app.use(express.json({ limit: '10kb' }));
 
 // Data sanitization against NoSQL query injection
-// DISABLED: express-mongo-sanitize is incompatible with Express 5.x
-// TODO: Replace with custom sanitization middleware or update package
-// app.use(mongoSanitize({
-//     replaceWith: '_',
-//     onSanitize: ({ req, key }) => {
-//         console.warn(`Potential NoSQL injection attempt detected in ${key}`);
-//     }
-// }));
+const mongoSanitize = require('./middlewares/mongoSanitize');
+app.use(mongoSanitize);
 
 // Data sanitization against XSS - DISABLED as xss-clean is deprecated
 // Use helmet's CSP instead for XSS protection
