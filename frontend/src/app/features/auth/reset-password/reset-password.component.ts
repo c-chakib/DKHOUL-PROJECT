@@ -22,8 +22,12 @@ export class ResetPasswordComponent implements OnInit {
     token = '';
 
     form = this.fb.group({
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        passwordConfirm: ['', [Validators.required, Validators.minLength(8)]]
+        password: ['', [
+            Validators.required,
+            Validators.minLength(12),
+            Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/)
+        ]],
+        passwordConfirm: ['', [Validators.required]]
     });
 
     loading = signal(false);
