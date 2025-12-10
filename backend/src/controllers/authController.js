@@ -101,7 +101,8 @@ exports.googleLogin = async (req, res, next) => {
 
         if (!user) {
             console.log('Creating new Google User');
-            const randomPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
+            // Generate a strong random password that meets the policy: 12+ chars, Upper, Lower, Number, Symbol
+            const randomPassword = 'G@' + Math.random().toString(36).slice(-8) + 'A' + Math.random().toString(36).slice(-8) + '!1';
             user = await User.create({
                 name: name || 'Google User',
                 email: email,
