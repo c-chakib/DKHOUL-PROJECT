@@ -20,16 +20,16 @@ const users = [
     {
         name: "Admin User",
         email: "admin@dkhoul.com",
-        password: "password123", // Using valid password for hashing
-        passwordConfirm: "password123",
+        password: "Admin@Dkhoul123!", // 12+ chars, upper, lower, number, symbol
+        passwordConfirm: "Admin@Dkhoul123!",
         role: "admin",
         isVerified: true
     },
     {
         name: "Youssef Guide",
         email: "youssef@host.com",
-        password: "password123",
-        passwordConfirm: "password123",
+        password: "Youssef@Host123!",
+        passwordConfirm: "Youssef@Host123!",
         role: "host",
         isVerified: true,
         photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
@@ -37,8 +37,8 @@ const users = [
     {
         name: "Khadija Space",
         email: "khadija@host.com",
-        password: "password123",
-        passwordConfirm: "password123",
+        password: "Khadija@Host123!",
+        passwordConfirm: "Khadija@Host123!",
         role: "host",
         isVerified: true,
         photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
@@ -46,8 +46,8 @@ const users = [
     {
         name: "Sophie Tourist",
         email: "sophie@tourist.com",
-        password: "password123",
-        passwordConfirm: "password123",
+        password: "Sophie@Tour123!",
+        passwordConfirm: "Sophie@Tour123!",
         role: "tourist",
         isVerified: true
     }

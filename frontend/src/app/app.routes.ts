@@ -87,6 +87,10 @@ export const routes: Routes = [
         path: 'contact',
         loadComponent: () => import('./features/contact/contact.component').then(m => m.ContactComponent)
     },
+    {
+        path: 'about',
+        loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent)
+    },
 
     // Wildcard - Must be LAST (catches all unknown routes)
     { path: '**', redirectTo: '/error?type=404' }

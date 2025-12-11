@@ -2,208 +2,238 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const Service = require('./src/models/Service');
 const User = require('./src/models/User');
+const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const sharp = require('sharp');
+const fs = require('fs');
+const path = require('path');
 
-// --- CONSTANTS ---
+// --- CONFIG ---
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/dkhoul';
 const TARGET_HOST_EMAIL = 'superadmin@dkhoul.ma';
+const SEED_IMAGES_DIR = path.join(__dirname, 'seed_images');
 
-// --- 1. BIBLIOTHÈQUE D'IMAGES VÉRIFIÉE (Images Unsplash Génériques) ---
-const MOROCCAN_IMAGES = [
-    // --- VILLES & ARCHITECTURE ---
-    "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
-
-    // --- DÉSERT & NATURE ---
-    "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
-
-    // --- ARTISANAT ---
-    "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
-];
-
-// Fallback sûr
-const SAFE_FALLBACK_IMAGE = "https://images.unsplash.com/photo-1539655529457-36e3c09191d4?auto=format&fit=crop&w=800&q=80";
-
-// Helpers Image
-const getRandomImage = () => {
-    if (MOROCCAN_IMAGES.length === 0) return SAFE_FALLBACK_IMAGE;
-    return MOROCCAN_IMAGES[Math.floor(Math.random() * MOROCCAN_IMAGES.length)];
-};
-
-const generateDescription = (title, city, vibe) => {
-    const intros = [
-        `Découvrez la magie de ${city} à travers cette expérience unique.`,
-        `Plongez au cœur du vrai Maroc avec cet atelier authentique à ${city}.`,
-        `Une opportunité rare de vivre le quartier de ${vibe} comme un local.`,
-        `Loin des sentiers battus, rejoignez-nous pour un moment de partage à ${city}.`
-    ];
-    const details = [
-        `Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales.`,
-        `Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul).`,
-        `Votre hôte expert vous guidera étape par étape pour une immersion totale.`,
-        `Un moment de détente et d'apprentissage qui soutient l'économie locale.`
-    ];
-    return `${getRandomElement(intros)} ${title} est une activité pensée pour ceux qui cherchent l'authenticité. ${getRandomElement(details)} Repartez avec des souvenirs inoubliables.`;
-};
-
-// --- 2. CONFIGURATION GÉOGRAPHIQUE ---
 const CITY_CONFIG = {
     'Marrakech': {
         coords: [-7.9890, 31.6225],
         vibes: ['Jamaa el Fna', 'Medina', 'Palmeraie', 'Guéliz'],
         activities: ['Cours de Cuisine', 'Zellige', 'Hammam Royal', 'Rooftop Jazz', 'Tournée Street Food', 'Atelier Parfum', 'Yoga Riad', 'Calligraphie', 'Poterie Moderne', 'Vélo Medina']
     },
-    'Fès': {
+    'Casablanca': {
+        coords: [-7.5898, 33.5731],
+        vibes: ['Maarif', 'Anfa', 'Centre Ville', 'Ain Diab'],
+        activities: ['Visite Grande Mosquée', 'Architecture Art Déco', 'Marché Central', 'Dégustation Fruits de Mer', 'Shopping Luxury', 'Corniche Jogging', 'Business Networking']
+    },
+    'Fes': {
         coords: [-5.0078, 34.0181],
-        vibes: ['Mellah', 'Médina Antique', 'Tanneries', 'Bouanania'],
-        activities: ['Travail du Cuir', 'Reliure Traditionnelle', 'Dinanderie', 'Histoire Spirituelle', 'Cuisine Fassi', 'Mosaïque Géométrique', 'Oud & Musique Andalouse', 'Découverte Artisans', 'Poterie Bleue', 'Photographie Architecture']
+        vibes: ['Fes el Bali', 'Mellah', 'Ville Nouvelle'],
+        activities: ['Tanneries Chouara', 'Artisanat Cuir', 'Reliure Livre Ancien', 'Céramique Bleue', 'Dégustation Street Food', 'Tournée des Remparts']
+    },
+    'Tangier': {
+        coords: [-5.8339, 35.7595],
+        vibes: ['Kasbah', 'Malabata', 'Marshane'],
+        activities: ['Café Hafa Tea', 'Visite Grotte Hercule', 'Promenade Mer', 'Marché Grand Socco', 'Inspiration Littéraire']
+    },
+    'Agadir': {
+        coords: [-9.6037, 30.4278],
+        vibes: ['Marina', 'Talborjt', 'Taghazout'],
+        activities: ['Surf Initiation', 'Yoga Plage', 'Souk El Had', 'Grillade Poisson', 'Argan Oil Workshop']
+    },
+    'Rabat': {
+        coords: [-6.8498, 34.0209],
+        vibes: ['Agdal', 'Hassan', 'Oudayas'],
+        activities: ['Tour Hassan Histoire', 'Kayak Bouregreg', 'Musée Art Moderne', 'Promenade Chellah']
     },
     'Essaouira': {
-        coords: [-9.7595, 31.5085],
-        vibes: ['Mogador', 'Port de Pêche', 'Plage', 'Skala'],
-        activities: ['Surf Débutant', 'Cuisine Fruits de Mer', 'Marqueterie', 'Musique Gnaoua', 'Peinture Art Naïf', 'Balade à Cheval', 'Yoga Plage', 'Pêche Traditionnelle', 'Fabrication Huile Argan', 'Kitesurf']
-    },
-    'Merzouga': {
-        coords: [-4.0046, 31.0667],
-        vibes: ['Dunes Erg Chebbi', 'Sahara', 'Oasis', 'Camp Nomade'],
-        activities: ['Bivouac de Luxe', 'Observation Étoiles', 'Pain de Sable', 'Musique Tambours', 'Meditation Désert', 'Balade Dromadaire', 'Thé au Sahara', 'Sandboarding', 'Découverte Fossiles', 'Cuisine Berbère']
+        coords: [-9.7657, 31.5085],
+        vibes: ['Medina', 'Port', 'Diabat'],
+        activities: ['Kitesurf', 'Musique Gnaoua', 'Atelier Bois Thuya', 'Peinture Galeries', 'Poisson Frais Port']
     },
     'Chefchaouen': {
         coords: [-5.2684, 35.1688],
-        vibes: ['Perle Bleue', 'Montagne', 'Ras El Ma', 'Akchour'],
-        activities: ['Teinture Laine', 'Tissage Traditionnel', 'Photographie Rue Bleue', 'Randonnée Rif', 'Cuisine Montagnarde', 'Fromage de Chèvre', 'Balade Cascades', 'Atelier Savon', 'Peinture sur Bois', 'Yoga Montagne']
+        vibes: ['Medina Blue', 'Ras El Ma'],
+        activities: ['Photoshoot Bleu', 'Randonnée Rif', 'Tissage Laine', 'Fromage Chèvre Local']
     },
-    'Agadir': {
-        coords: [-9.6035, 30.4278],
-        vibes: ['Taghazout Bay', 'Souk El Had', 'Marina', 'Valée du Paradis'],
-        activities: ['Surf Pro', 'Paddle Board', 'Cuisine Souss', 'Fabrication Miel', 'Randonnée Paradise Valley', 'Jet Ski', 'Pêche en Mer', 'Yoga Sunset', 'Co-working Vue Mer', 'Grillade Sardines']
-    },
-    'Casablanca': {
-        coords: [-7.5898, 33.5731],
-        vibes: ['Art Déco', 'Corniche', 'Habous', 'Old Medina'],
-        activities: ['Architecture Tour', 'Cuisine Moderne', 'Business Networking', 'Photographie Urbaine', 'Mode & Design', 'Atelier DJing', 'Boxe Traditionnelle', 'Dégustation Poissons', 'Visite Mosquée Privée', 'Street Art Tour']
-    },
-    'Tanger': {
-        coords: [-5.8327, 35.7595],
-        vibes: ['Kasbah', 'Café Hafa', 'Cap Spartel', 'Grottes Hercule'],
-        activities: ['Écriture & Littérature', 'Peinture Marine', 'Cuisine Méditerranéenne', 'Balade Mythes & Légendes', 'Musique Jazz & Blues', 'Thé à la Menthe Hafa', 'Visite Légations', 'Design Textile', 'Photographie Détroit', 'Vannerie']
-    },
-    'Ouarzazate': {
-        coords: [-6.9370, 30.9189],
-        vibes: ['Hollywood Afrique', 'Ait Ben Haddou', 'Oasis Fint', 'Kasbahs'],
-        activities: ['Cinéma & Décors', 'Architecture Terre', 'Poterie Berbère', 'Tapis Glaoui', 'Randonnée Oasis', 'Quad Désert', 'Cuisine Tajine', 'Histoire Kasbah', 'Astronomie Kasbah', 'Gravures Rupestres']
+    'Merzouga': {
+        coords: [-4.0086, 31.0802],
+        vibes: ['Dunes', 'Camp Nomade'],
+        activities: ['Bivouac Désert', 'Sandboarding', 'Musique Tambours', 'Astrologie Désert']
     }
 };
 
-const LANGUAGES = ['Darija', 'Français', 'Anglais', 'Espagnol'];
+const IMAGE_MAPPING = {
+    'cooking': [
+        'moroccan_cooking_class_1765395820899.png',
+        'skills_1_cooking_class_1765399642513.png',
+        'space_8_kitchen_self_cooking_1765399567872.png'
+    ],
+    'coworking': [
+        'moroccan_coworking_riad_1765395835333.png',
+        'space_1_coworking_1765396058060.png',
+        'space_6_charging_1765399535451.png'
+    ],
+    'meeting': ['space_10_meeting_room_1765399599017.png'],
+    'souk': ['marrakech_souk_guide_1765395851764.png'],
+    'luggage': ['space_2_luggage_storage_1765396076793.png', 'space_9_laundry_1765399585384.png'],
+    'shower': ['space_3_shower_express_1765396092027.png'],
+    'nap': ['space_4_nap_room_1765396105592.png'],
+    'parking': ['space_5_secure_parking_1765396120920.png'],
+    'artisan': ['archetype_artisan_crafts_1765398119940.png'],
+    'music': ['archetype_music_culture_1765398134311.png'],
+    'pickup': ['archetype_transport_pickup_1765398150087.png'],
+    'family': ['archetype_family_care_1765398166024.png'],
+    'rooftop': ['archetype_rooftop_view_1765398181822.png', 'space_7_rooftop_view_1765399550131.png'],
+    'sport': ['archetype_sport_wellness_1765398196129.png'],
+    'darija': ['skills_2_darija_class_1765399655879.png']
+};
 
+const LANGUAGES = ['Français', 'Arabe (Darija)', 'Anglais', 'Espagnol'];
+
+// --- HELPERS ---
 const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomSubset = (arr, count) => [...arr].sort(() => 0.5 - Math.random()).slice(0, count);
 const getRandomFloat = (min, max) => Math.random() * (max - min) + min;
 const getRandomPrice = () => Math.floor(Math.random() * (600 - 100 + 1)) + 100;
 
-// --- MAIN GENERATOR ---
+const generateDescription = (title, city, vibe) => {
+    const intros = [
+        `Découvrez la magie de ${city} avec cette expérience unique.`,
+        `Plongez au cœur du vrai Maroc à ${city}.`,
+        `Vivez le quartier de ${vibe} comme un local.`,
+        `Une activité authentique hors des sentiers battus à ${city}.`
+    ];
+    return `${getRandomElement(intros)} ${title} est idéal pour ceux qui cherchent l'authenticité. Service professionnel et humain garanti par Dkhoul.`;
+};
+
+// --- S3 UPLOAD ---
+const s3 = new S3Client({
+    region: process.env.AWS_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    },
+});
+
+const uploadToS3 = async (filename, keyName) => {
+    try {
+        const filePath = path.join(SEED_IMAGES_DIR, filename);
+        if (!fs.existsSync(filePath)) {
+            console.warn(`⚠️ Warning: Local file ${filename} not found. Skipping.`);
+            return null;
+        }
+        const fileBuffer = fs.readFileSync(filePath);
+        const optimizedBuffer = await sharp(fileBuffer).resize(800).webp({ quality: 80 }).toBuffer();
+        const s3Key = `seeds/${keyName}.webp`;
+        await s3.send(new PutObjectCommand({
+            Bucket: process.env.AWS_BUCKET_NAME, Key: s3Key, Body: optimizedBuffer, ContentType: 'image/webp'
+        }));
+        return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${s3Key}`;
+    } catch (err) {
+        console.error(`❌ Failed to upload ${filename}:`, err.message);
+        return null;
+    }
+};
+
 const seedDB = async () => {
     try {
-        // SAFETY CHECK
-        if (process.env.NODE_ENV === 'production') {
-            console.error('🛑 CRITICAL SAFETY: Cannot run seed script in PRODUCTION without manual override.');
-            console.error('To bypass, set NODE_ENV to something else or modify this script.');
-            process.exit(1);
-        }
-
-        console.log('🌱 Connexion à MongoDB...');
+        console.log('🌱 Connecting to MongoDB...');
         await mongoose.connect(MONGO_URI, { dbName: 'dkhoul' });
-        console.log('✅ Connecté.');
 
         let hostUser = await User.findOne({ email: TARGET_HOST_EMAIL });
         if (!hostUser) {
             hostUser = await User.create({
-                name: 'Chakib SuperHost',
-                email: TARGET_HOST_EMAIL,
-                password: 'password123',
-                passwordConfirm: 'password123',
-                role: 'superadmin',
+                name: 'Chakib SuperHost', email: TARGET_HOST_EMAIL, password: 'password123', passwordConfirm: 'password123', role: 'superadmin',
                 photo: 'https://ui-avatars.com/api/?name=Chakib+Host&background=BC5627&color=fff'
             });
-            console.log('✅ Host créé.');
         }
-
         await Service.deleteMany({});
-        console.log('🧹 DB Nettoyée.');
+        console.log('🧹 DB Cleaned.');
 
-        const services = [];
-        const cities = Object.keys(CITY_CONFIG);
+        const servicesPayload = [];
+        const usedDescriptions = new Set(); // Avoid duplicates
 
-        // Boucle sur les villes
-        for (const city of cities) {
-            const config = CITY_CONFIG[city];
-            const cityActivities = config.activities;
+        // 1. SERVICES WITH IMAGES (from Inventory)
+        console.log('🖼️  Creating AI Image Services...');
+        for (const [key, files] of Object.entries(IMAGE_MAPPING)) {
+            for (const filename of files) {
+                let cat = 'SKILL';
+                if (['coworking', 'meeting', 'luggage', 'shower', 'nap', 'parking', 'rooftop', 'kitchen', 'charging'].includes(key)) cat = 'SPACE';
+                if (['souk', 'pickup', 'family', 'transport'].includes(key)) cat = 'CONNECT';
 
-            // Boucle sur les activités
-            for (const activityTitle of cityActivities) {
+                let title = `${key.charAt(0).toUpperCase() + key.slice(1)} Experience`;
+                if (key === 'cooking') title = 'Mastering Moroccan Tajine';
+                if (key === 'coworking') title = 'Silent Coworking Hub';
+                if (key === 'meeting') title = 'Private Meeting Room';
+                if (key === 'souk') title = 'Gems of the Souk Tour';
+                if (key === 'luggage') title = 'Secure Luggage Keep';
+                if (key === 'shower') title = 'Refresh Express Shower';
+                if (key === 'nap') title = 'Power Nap Station';
+                if (key === 'parking') title = '24/7 Secure Parking';
+                if (key === 'artisan') title = 'Zellige & Craft Workshop';
+                if (key === 'music') title = 'Oud & Music Session';
+                if (key === 'pickup') title = 'Airport Fast Pickup';
+                if (key === 'family') title = 'Trusted Family Care';
+                if (key === 'rooftop') title = 'Sunset Rooftop Access';
+                if (key === 'sport') title = 'Medina Yoga & Wellness';
+                if (key === 'darija') title = 'Speak Darija Like a Local';
 
-                let category = 'SKILL';
-                const titleLower = activityTitle.toLowerCase();
-                if (titleLower.includes('tour') || titleLower.includes('balade') || titleLower.includes('visite') || titleLower.includes('randonnée') || titleLower.includes('sandboarding') || titleLower.includes('quad')) {
-                    category = 'CONNECT';
-                } else if (titleLower.includes('bivouac') || titleLower.includes('co-working') || titleLower.includes('hammam') || titleLower.includes('hébergement') || titleLower.includes('riad')) {
-                    category = 'SPACE';
+                const s3Url = await uploadToS3(filename, `service_${key}_${Date.now()}_${Math.random()}`);
+                if (s3Url) {
+                    const city = getRandomElement(['Marrakech', 'Casablanca', 'Fes', 'Tangier']); // distribute these top assets
+                    const vibe = getRandomElement(CITY_CONFIG[city].vibes);
+                    servicesPayload.push({
+                        title: `${title} - ${city}`,
+                        host: hostUser._id,
+                        description: generateDescription(title, city, vibe),
+                        price: getRandomPrice(),
+                        category: cat,
+                        images: [s3Url],
+                        city: city,
+                        location: { type: 'Point', coordinates: CITY_CONFIG[city].coords, address: `Quartier ${vibe}, ${city}` },
+                        duration: 120, maxParticipants: 6, timeSlots: ["10:00", "14:00"], languages: ['Français', 'Anglais'], included: ['Service Pro'], requirements: ['Sourire']
+                    });
                 }
-
-                const vibe = getRandomElement(config.vibes);
-                const coords = [
-                    config.coords[0] + getRandomFloat(-0.02, 0.02),
-                    config.coords[1] + getRandomFloat(-0.02, 0.02)
-                ];
-
-                // Génération Images
-                const mainImage = getRandomImage();
-                // Pour la galerie, on prend 2 autres images
-                const gallery1 = getRandomImage();
-                const gallery2 = getRandomImage();
-
-                const service = {
-                    title: `${activityTitle} - ${vibe}`,
-                    host: hostUser._id,
-                    description: generateDescription(activityTitle, city, vibe),
-                    price: getRandomPrice(),
-                    category: category,
-                    images: [mainImage, gallery1, gallery2],
-                    city: city,
-                    location: {
-                        type: 'Point',
-                        coordinates: coords,
-                        address: `Quartier ${vibe}, ${city}, Maroc`
-                    },
-                    duration: Math.floor(Math.random() * 180) + 60,
-                    maxParticipants: Math.floor(Math.random() * 8) + 2,
-                    timeSlots: ["10:00", "15:00", "18:00"],
-                    languages: getRandomSubset(LANGUAGES, 2),
-                    included: ['Thé à la menthe', 'Matériel', 'Guide'],
-                    requirements: ['Curiosité', 'Respect local']
-                };
-
-                services.push(service);
             }
         }
 
-        console.log(`💾 Insertion de ${services.length} services...`);
-        await Service.insertMany(services);
+        // 2. FILL UP TO 60 (NO IMAGES)
+        console.log(`📝 Filling remaining to reach 60 (Current: ${servicesPayload.length})...`);
+        const cities = Object.keys(CITY_CONFIG);
+        while (servicesPayload.length < 60) {
+            const city = getRandomElement(cities);
+            const config = CITY_CONFIG[city];
+            const activity = getRandomElement(config.activities);
+            const vibe = getRandomElement(config.vibes);
 
-        console.log('🎉 SUCCESS: Les liens sont réparés (format ixlib) et fonctionnels !');
+            let cat = 'CONNECT';
+            const tLower = activity.toLowerCase();
+            if (tLower.includes('cours') || tLower.includes('atelier') || tLower.includes('initiation')) cat = 'SKILL';
+            if (tLower.includes('bivouac') || tLower.includes('parking') || tLower.includes('douche') || tLower.includes('coworking')) cat = 'SPACE';
+
+            servicesPayload.push({
+                title: `${activity} - ${vibe}`,
+                host: hostUser._id,
+                description: generateDescription(activity, city, vibe),
+                price: getRandomPrice(),
+                category: cat,
+                images: [], // Explicitly empty
+                city: city,
+                location: {
+                    type: 'Point',
+                    coordinates: [config.coords[0] + getRandomFloat(-0.01, 0.01), config.coords[1] + getRandomFloat(-0.01, 0.01)],
+                    address: `Quartier ${vibe}, ${city}`
+                },
+                duration: 90, maxParticipants: 3, timeSlots: ["10:00", "16:00"], languages: getRandomSubset(LANGUAGES, 2), included: ['Service Basic'], requirements: ['Ponctualité']
+            });
+        }
+
+        console.log(`💾 Inserting ${servicesPayload.length} services...`);
+        await Service.insertMany(servicesPayload);
+        console.log('🎉 SUCCESS.');
         process.exit(0);
 
     } catch (err) {
-        console.error('❌ ERREUR:', err);
+        console.error(err);
         process.exit(1);
     }
 };
-
 seedDB();

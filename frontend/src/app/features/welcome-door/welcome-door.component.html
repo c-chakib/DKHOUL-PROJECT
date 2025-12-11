@@ -27,27 +27,27 @@
         </div>
 
         <!-- FRONT CONTENT (Visible when Closed) -->
-         <div class="absolute inset-0 z-50 flex flex-col items-center justify-between py-24 pointer-events-none transition-all duration-700 ease-in-out"
+         <div class="absolute inset-x-0 top-[5%] bottom-[8%] z-50 flex flex-col items-center pointer-events-none transition-all duration-700 ease-in-out"
               [class.opacity-0]="doorState() === 'open'"
               [class.scale-110]="doorState() === 'open'"> 
             
-            <!-- TOP: Logo (Pinned to Top) -->
-            <div class="flex-none pt-4 animate-float">
-                <img src="/assets/images/logo.png" alt="DKHOUL" class="w-24 md:w-32 drop-shadow-2xl">
+            <!-- TOP: Logo -->
+            <div class="h-[25%] flex items-center justify-center animate-float">
+                <img src="/assets/images/logo.png" alt="DKHOUL" class="w-20 md:w-28 drop-shadow-2xl">
             </div>
             
-            <!-- MIDDLE: Branding Text (Centered in remaining space) -->
-            <div class="flex-grow flex items-center justify-center px-4">
-                 <p class="text-[#cda434] text-lg md:text-2xl font-light tracking-widest uppercase text-shadow-md bg-black/40 px-8 py-4 rounded-full backdrop-blur-md border border-[#d4af37]/40 text-center shadow-lg">
+            <!-- MIDDLE: Branding Text -->
+            <div class="h-[40%] flex items-center justify-center px-8">
+                 <p class="text-[#cda434] text-base md:text-xl font-light tracking-widest uppercase text-center drop-shadow-lg max-w-[90%]">
                     Dkhoul... et découvre le vrai Maroc
                 </p>
             </div>
 
-            <!-- BOTTOM: Button (Pinned to Bottom) -->
-            <div class="flex-none pointer-events-auto pb-4">
-                 <button (click)="openDoors()" class="group relative bg-[#BC5627] text-white px-12 py-5 rounded-full font-bold uppercase tracking-widest shadow-[0_0_30px_rgba(188,86,39,0.6)] hover:bg-[#a44920] transition-all hover:scale-105 border-2 border-[#d4af37] flex items-center gap-4 overflow-hidden">
-                    <span class="relative z-10 group-hover:tracking-[0.25em] transition-all duration-300 text-base md:text-lg">Accéder à la plateforme</span>
-                    <i class="fas fa-key text-yellow-400 relative z-10 animate-pulse text-xl"></i>
+            <!-- BOTTOM: Button -->
+            <div class="h-[35%] flex items-center justify-center pointer-events-auto">
+                 <button (click)="openDoors()" class="group relative bg-[#BC5627] text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest shadow-[0_0_30px_rgba(188,86,39,0.6)] hover:bg-[#a44920] transition-all hover:scale-105 border-2 border-[#d4af37] flex items-center gap-3 overflow-hidden">
+                    <span class="relative z-10 group-hover:tracking-[0.25em] transition-all duration-300 text-sm md:text-base">Accéder à la plateforme</span>
+                    <i class="fas fa-key text-yellow-400 relative z-10 animate-pulse text-lg"></i>
                     <!-- Button Glow Effect -->
                     <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                 </button>

@@ -1,0 +1,4268 @@
+[
+  {
+    "_id": "69396ed99959dbd0984726a0",
+    "title": "Cours de Cuisine - Jamaa el Fna",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Marrakech. Cours de Cuisine est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 548,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.970723982282828,
+        31.6366466005213
+      ],
+      "address": "Quartier Jamaa el Fna, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 237,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.314Z",
+    "updatedAt": "2025-12-10T13:00:09.314Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a1",
+    "title": "Zellige - Jamaa el Fna",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Marrakech à travers cette expérience unique. Zellige est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 409,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.995815106360045,
+        31.61331046685824
+      ],
+      "address": "Quartier Jamaa el Fna, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 80,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a2",
+    "title": "Hammam Royal - Guéliz",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Marrakech. Hammam Royal est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 143,
+    "category": "SPACE",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.005675799386417,
+        31.620199120144953
+      ],
+      "address": "Quartier Guéliz, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 186,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a3",
+    "title": "Rooftop Jazz - Palmeraie",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Marrakech. Rooftop Jazz est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 517,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.9849001543937685,
+        31.604811893211664
+      ],
+      "address": "Quartier Palmeraie, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 147,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a4",
+    "title": "Tournée Street Food - Jamaa el Fna",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Marrakech. Tournée Street Food est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 555,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.002256740031713,
+        31.614547568622296
+      ],
+      "address": "Quartier Jamaa el Fna, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 100,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a5",
+    "title": "Atelier Parfum - Palmeraie",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Marrakech à travers cette expérience unique. Atelier Parfum est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 417,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.976206132457555,
+        31.637739647359776
+      ],
+      "address": "Quartier Palmeraie, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 71,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a6",
+    "title": "Yoga Riad - Jamaa el Fna",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Marrakech. Yoga Riad est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 105,
+    "category": "SPACE",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.007256966794394,
+        31.619925076068714
+      ],
+      "address": "Quartier Jamaa el Fna, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 94,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a7",
+    "title": "Calligraphie - Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Marrakech à travers cette expérience unique. Calligraphie est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 185,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.998127410601854,
+        31.638832477941335
+      ],
+      "address": "Quartier Medina, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 138,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.316Z",
+    "updatedAt": "2025-12-10T13:00:09.316Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a8",
+    "title": "Poterie Moderne - Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Marrakech. Poterie Moderne est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 589,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.999689405691453,
+        31.622906393834988
+      ],
+      "address": "Quartier Medina, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 120,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726a9",
+    "title": "Vélo Medina - Palmeraie",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Palmeraie comme un local. Vélo Medina est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 247,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.975297385761769,
+        31.61238369675734
+      ],
+      "address": "Quartier Palmeraie, Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 127,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726aa",
+    "title": "Travail du Cuir - Mellah",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Mellah comme un local. Travail du Cuir est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 354,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.995061756031181,
+        34.02445475818425
+      ],
+      "address": "Quartier Mellah, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 148,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ab",
+    "title": "Reliure Traditionnelle - Médina Antique",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Médina Antique comme un local. Reliure Traditionnelle est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 510,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.015176382060163,
+        34.03033489746921
+      ],
+      "address": "Quartier Médina Antique, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 232,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ac",
+    "title": "Dinanderie - Mellah",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Fès. Dinanderie est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 234,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.994399467515512,
+        34.02735184713084
+      ],
+      "address": "Quartier Mellah, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 102,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ad",
+    "title": "Histoire Spirituelle - Médina Antique",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Médina Antique comme un local. Histoire Spirituelle est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 243,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.991865834230514,
+        34.018878714201584
+      ],
+      "address": "Quartier Médina Antique, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 156,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ae",
+    "title": "Cuisine Fassi - Médina Antique",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Fès à travers cette expérience unique. Cuisine Fassi est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 270,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.019360537053359,
+        34.03750321737079
+      ],
+      "address": "Quartier Médina Antique, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 111,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726af",
+    "title": "Mosaïque Géométrique - Bouanania",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Bouanania comme un local. Mosaïque Géométrique est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 398,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.004013366254128,
+        34.0223330594231
+      ],
+      "address": "Quartier Bouanania, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 223,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b0",
+    "title": "Oud & Musique Andalouse - Mellah",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Fès à travers cette expérience unique. Oud & Musique Andalouse est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 498,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.02250402727604,
+        34.01862548682397
+      ],
+      "address": "Quartier Mellah, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 131,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b1",
+    "title": "Découverte Artisans - Bouanania",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Fès. Découverte Artisans est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 278,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.019654478634278,
+        34.01198024632678
+      ],
+      "address": "Quartier Bouanania, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 218,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b2",
+    "title": "Poterie Bleue - Mellah",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Mellah comme un local. Poterie Bleue est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 133,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.993046263362171,
+        33.99970342158711
+      ],
+      "address": "Quartier Mellah, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 131,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b3",
+    "title": "Photographie Architecture - Bouanania",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Bouanania comme un local. Photographie Architecture est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 421,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.997411624865409,
+        34.0330730486947
+      ],
+      "address": "Quartier Bouanania, Fès, Maroc"
+    },
+    "city": "Fès",
+    "duration": 116,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b4",
+    "title": "Surf Débutant - Plage",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Essaouira. Surf Débutant est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 116,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.770058756625616,
+        31.50414388388998
+      ],
+      "address": "Quartier Plage, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 146,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b5",
+    "title": "Cuisine Fruits de Mer - Plage",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Essaouira. Cuisine Fruits de Mer est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 188,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.764711011969325,
+        31.524436465705048
+      ],
+      "address": "Quartier Plage, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 67,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b6",
+    "title": "Marqueterie - Skala",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Essaouira. Marqueterie est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 477,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.778229006082588,
+        31.525375988113854
+      ],
+      "address": "Quartier Skala, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 91,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.317Z",
+    "updatedAt": "2025-12-10T13:00:09.317Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b7",
+    "title": "Musique Gnaoua - Port de Pêche",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Essaouira à travers cette expérience unique. Musique Gnaoua est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 109,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.770797437666234,
+        31.504236647522294
+      ],
+      "address": "Quartier Port de Pêche, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 225,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b8",
+    "title": "Peinture Art Naïf - Plage",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Essaouira à travers cette expérience unique. Peinture Art Naïf est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 581,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.763024831819843,
+        31.51416711610918
+      ],
+      "address": "Quartier Plage, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 163,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726b9",
+    "title": "Balade à Cheval - Plage",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Essaouira. Balade à Cheval est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 458,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.767053042751474,
+        31.49557499398486
+      ],
+      "address": "Quartier Plage, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 110,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ba",
+    "title": "Yoga Plage - Skala",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Essaouira à travers cette expérience unique. Yoga Plage est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 199,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.743172128605615,
+        31.490885406797148
+      ],
+      "address": "Quartier Skala, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 93,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726bb",
+    "title": "Pêche Traditionnelle - Port de Pêche",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Port de Pêche comme un local. Pêche Traditionnelle est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 439,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.75909170590157,
+        31.506838940211303
+      ],
+      "address": "Quartier Port de Pêche, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 194,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726bc",
+    "title": "Fabrication Huile Argan - Plage",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Essaouira. Fabrication Huile Argan est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 402,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.751243340531346,
+        31.504606888545318
+      ],
+      "address": "Quartier Plage, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 112,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726bd",
+    "title": "Kitesurf - Mogador",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Essaouira. Kitesurf est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 490,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.773582156458323,
+        31.51461895876561
+      ],
+      "address": "Quartier Mogador, Essaouira, Maroc"
+    },
+    "city": "Essaouira",
+    "duration": 196,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726be",
+    "title": "Bivouac de Luxe - Camp Nomade",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Merzouga. Bivouac de Luxe est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 438,
+    "category": "SPACE",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.019413556197939,
+        31.053334993524853
+      ],
+      "address": "Quartier Camp Nomade, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 65,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726bf",
+    "title": "Observation Étoiles - Dunes Erg Chebbi",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Merzouga. Observation Étoiles est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 198,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.999120192686966,
+        31.070305690855232
+      ],
+      "address": "Quartier Dunes Erg Chebbi, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 195,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c0",
+    "title": "Pain de Sable - Sahara",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Merzouga. Pain de Sable est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 141,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.985989911629555,
+        31.08048390025406
+      ],
+      "address": "Quartier Sahara, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 122,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c1",
+    "title": "Musique Tambours - Sahara",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Merzouga. Musique Tambours est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 477,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.00095417881906,
+        31.064651267476545
+      ],
+      "address": "Quartier Sahara, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 79,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c2",
+    "title": "Meditation Désert - Dunes Erg Chebbi",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Dunes Erg Chebbi comme un local. Meditation Désert est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 148,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.013520820188355,
+        31.05249065500775
+      ],
+      "address": "Quartier Dunes Erg Chebbi, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 182,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c3",
+    "title": "Balade Dromadaire - Camp Nomade",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Merzouga. Balade Dromadaire est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 347,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.996868521366122,
+        31.083748185513702
+      ],
+      "address": "Quartier Camp Nomade, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 162,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c4",
+    "title": "Thé au Sahara - Dunes Erg Chebbi",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Merzouga. Thé au Sahara est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 504,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.9927318602775634,
+        31.06208553117517
+      ],
+      "address": "Quartier Dunes Erg Chebbi, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 80,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c5",
+    "title": "Sandboarding - Camp Nomade",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Merzouga à travers cette expérience unique. Sandboarding est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 260,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.986706943126397,
+        31.05641024122248
+      ],
+      "address": "Quartier Camp Nomade, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 171,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c6",
+    "title": "Découverte Fossiles - Camp Nomade",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Merzouga. Découverte Fossiles est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 509,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -3.9855946444377857,
+        31.07454067004963
+      ],
+      "address": "Quartier Camp Nomade, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 210,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c7",
+    "title": "Cuisine Berbère - Sahara",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Sahara comme un local. Cuisine Berbère est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 215,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.013026195097707,
+        31.07589261747743
+      ],
+      "address": "Quartier Sahara, Merzouga, Maroc"
+    },
+    "city": "Merzouga",
+    "duration": 191,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c8",
+    "title": "Teinture Laine - Montagne",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Chefchaouen. Teinture Laine est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 438,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.282489080824989,
+        35.177883809631886
+      ],
+      "address": "Quartier Montagne, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 186,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726c9",
+    "title": "Tissage Traditionnel - Perle Bleue",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Chefchaouen. Tissage Traditionnel est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 291,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.2574385426169945,
+        35.18003335460351
+      ],
+      "address": "Quartier Perle Bleue, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 105,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ca",
+    "title": "Photographie Rue Bleue - Akchour",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Chefchaouen. Photographie Rue Bleue est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 172,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.248791504125067,
+        35.169820653701386
+      ],
+      "address": "Quartier Akchour, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 212,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726cb",
+    "title": "Randonnée Rif - Akchour",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Akchour comme un local. Randonnée Rif est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 521,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.28363718199783,
+        35.172365966639525
+      ],
+      "address": "Quartier Akchour, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 70,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.318Z",
+    "updatedAt": "2025-12-10T13:00:09.318Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726cc",
+    "title": "Cuisine Montagnarde - Perle Bleue",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Chefchaouen. Cuisine Montagnarde est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 511,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.257547077333645,
+        35.151865685270586
+      ],
+      "address": "Quartier Perle Bleue, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 68,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726cd",
+    "title": "Fromage de Chèvre - Perle Bleue",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Chefchaouen à travers cette expérience unique. Fromage de Chèvre est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 153,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.252634533899925,
+        35.15054718792448
+      ],
+      "address": "Quartier Perle Bleue, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 216,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ce",
+    "title": "Balade Cascades - Akchour",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Chefchaouen. Balade Cascades est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 498,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.285578857233397,
+        35.16420322108929
+      ],
+      "address": "Quartier Akchour, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 166,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726cf",
+    "title": "Atelier Savon - Akchour",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Chefchaouen à travers cette expérience unique. Atelier Savon est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 437,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.2744416877489115,
+        35.18458129901698
+      ],
+      "address": "Quartier Akchour, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 91,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d0",
+    "title": "Peinture sur Bois - Perle Bleue",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Perle Bleue comme un local. Peinture sur Bois est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 190,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.270444323995635,
+        35.1546250737065
+      ],
+      "address": "Quartier Perle Bleue, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 84,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d1",
+    "title": "Yoga Montagne - Ras El Ma",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Ras El Ma comme un local. Yoga Montagne est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 141,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.277040361446816,
+        35.151801973714704
+      ],
+      "address": "Quartier Ras El Ma, Chefchaouen, Maroc"
+    },
+    "city": "Chefchaouen",
+    "duration": 213,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d2",
+    "title": "Surf Pro - Marina",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Agadir à travers cette expérience unique. Surf Pro est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 565,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.592654610485905,
+        30.425088875928964
+      ],
+      "address": "Quartier Marina, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 202,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d3",
+    "title": "Paddle Board - Souk El Had",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Souk El Had comme un local. Paddle Board est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 184,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.594585451541601,
+        30.424904046979318
+      ],
+      "address": "Quartier Souk El Had, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 167,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d4",
+    "title": "Cuisine Souss - Valée du Paradis",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Valée du Paradis comme un local. Cuisine Souss est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 550,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.61070484396538,
+        30.4214906909243
+      ],
+      "address": "Quartier Valée du Paradis, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 174,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d5",
+    "title": "Fabrication Miel - Souk El Had",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Agadir. Fabrication Miel est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 548,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.623421626349,
+        30.42834524332588
+      ],
+      "address": "Quartier Souk El Had, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 170,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.319Z",
+    "updatedAt": "2025-12-10T13:00:09.319Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d6",
+    "title": "Randonnée Paradise Valley - Valée du Paradis",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Agadir. Randonnée Paradise Valley est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 199,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.589932835543317,
+        30.440538908558434
+      ],
+      "address": "Quartier Valée du Paradis, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 89,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d7",
+    "title": "Jet Ski - Valée du Paradis",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Agadir. Jet Ski est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 501,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.614425164135266,
+        30.44263121945248
+      ],
+      "address": "Quartier Valée du Paradis, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 219,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d8",
+    "title": "Pêche en Mer - Valée du Paradis",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Agadir. Pêche en Mer est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 411,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.600148753567817,
+        30.44707107609418
+      ],
+      "address": "Quartier Valée du Paradis, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 87,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726d9",
+    "title": "Yoga Sunset - Taghazout Bay",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Taghazout Bay comme un local. Yoga Sunset est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 453,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.619524464856006,
+        30.429270472977315
+      ],
+      "address": "Quartier Taghazout Bay, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 172,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726da",
+    "title": "Co-working Vue Mer - Marina",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Agadir. Co-working Vue Mer est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 203,
+    "category": "SPACE",
+    "images": [
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.610675150574213,
+        30.422656365679906
+      ],
+      "address": "Quartier Marina, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 130,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726db",
+    "title": "Grillade Sardines - Taghazout Bay",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Agadir à travers cette expérience unique. Grillade Sardines est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 118,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.58938162034726,
+        30.422293844727403
+      ],
+      "address": "Quartier Taghazout Bay, Agadir, Maroc"
+    },
+    "city": "Agadir",
+    "duration": 237,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726dc",
+    "title": "Architecture Tour - Old Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Old Medina comme un local. Architecture Tour est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 481,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.577068797010369,
+        33.58780075117678
+      ],
+      "address": "Quartier Old Medina, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 220,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726dd",
+    "title": "Cuisine Moderne - Habous",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Habous comme un local. Cuisine Moderne est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 184,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.590756974104016,
+        33.56515480875949
+      ],
+      "address": "Quartier Habous, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 83,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726de",
+    "title": "Business Networking - Art Déco",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Casablanca. Business Networking est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 338,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.591916815228418,
+        33.584415592521275
+      ],
+      "address": "Quartier Art Déco, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 157,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726df",
+    "title": "Photographie Urbaine - Art Déco",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Casablanca. Photographie Urbaine est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 417,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.595152253965299,
+        33.57082859639882
+      ],
+      "address": "Quartier Art Déco, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 238,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e0",
+    "title": "Mode & Design - Corniche",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Casablanca. Mode & Design est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 344,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.572114676041894,
+        33.57810868426756
+      ],
+      "address": "Quartier Corniche, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 140,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e1",
+    "title": "Atelier DJing - Old Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Casablanca. Atelier DJing est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 578,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.572718589909158,
+        33.57286041536885
+      ],
+      "address": "Quartier Old Medina, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 147,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e2",
+    "title": "Boxe Traditionnelle - Habous",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Habous comme un local. Boxe Traditionnelle est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 500,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.5975955560129815,
+        33.56357234396098
+      ],
+      "address": "Quartier Habous, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 133,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e3",
+    "title": "Dégustation Poissons - Old Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Casablanca. Dégustation Poissons est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 256,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.606947593345811,
+        33.55470434694022
+      ],
+      "address": "Quartier Old Medina, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 144,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Espagnol"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e4",
+    "title": "Visite Mosquée Privée - Old Medina",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Casablanca. Visite Mosquée Privée est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 463,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.583753742924722,
+        33.58501275465612
+      ],
+      "address": "Quartier Old Medina, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 117,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e5",
+    "title": "Street Art Tour - Art Déco",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Art Déco comme un local. Street Art Tour est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 575,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.587662222590701,
+        33.57218712836049
+      ],
+      "address": "Quartier Art Déco, Casablanca, Maroc"
+    },
+    "city": "Casablanca",
+    "duration": 160,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e6",
+    "title": "Écriture & Littérature - Cap Spartel",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Tanger à travers cette expérience unique. Écriture & Littérature est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 355,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.841624983653471,
+        35.766952747138696
+      ],
+      "address": "Quartier Cap Spartel, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 110,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e7",
+    "title": "Peinture Marine - Grottes Hercule",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Tanger. Peinture Marine est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 151,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.845722755986148,
+        35.77803160462485
+      ],
+      "address": "Quartier Grottes Hercule, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 134,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e8",
+    "title": "Cuisine Méditerranéenne - Cap Spartel",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Cap Spartel comme un local. Cuisine Méditerranéenne est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 500,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.8223669270183445,
+        35.74347300369759
+      ],
+      "address": "Quartier Cap Spartel, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 93,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.320Z",
+    "updatedAt": "2025-12-10T13:00:09.320Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726e9",
+    "title": "Balade Mythes & Légendes - Kasbah",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Tanger. Balade Mythes & Légendes est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 129,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.82814607730734,
+        35.752786990467634
+      ],
+      "address": "Quartier Kasbah, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 146,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ea",
+    "title": "Musique Jazz & Blues - Café Hafa",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Tanger. Musique Jazz & Blues est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 509,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.851409226535779,
+        35.778355994115884
+      ],
+      "address": "Quartier Café Hafa, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 158,
+    "maxParticipants": 8,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726eb",
+    "title": "Thé à la Menthe Hafa - Café Hafa",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Tanger. Thé à la Menthe Hafa est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 445,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.846423247603469,
+        35.759452764658555
+      ],
+      "address": "Quartier Café Hafa, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 132,
+    "maxParticipants": 9,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ec",
+    "title": "Visite Légations - Café Hafa",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Tanger. Visite Légations est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 207,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.818765896218918,
+        35.744319305031695
+      ],
+      "address": "Quartier Café Hafa, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 98,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ed",
+    "title": "Design Textile - Grottes Hercule",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Tanger. Design Textile est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 562,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.8133116083581715,
+        35.74385272219736
+      ],
+      "address": "Quartier Grottes Hercule, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 188,
+    "maxParticipants": 4,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ee",
+    "title": "Photographie Détroit - Grottes Hercule",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Tanger. Photographie Détroit est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 193,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.825664672090196,
+        35.76040903277959
+      ],
+      "address": "Quartier Grottes Hercule, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 146,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726ef",
+    "title": "Vannerie - Café Hafa",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Tanger. Vannerie est une activité pensée pour ceux qui cherchent l'authenticité. Votre hôte expert vous guidera étape par étape pour une immersion totale. Repartez avec des souvenirs inoubliables.",
+    "price": 588,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.820860203822977,
+        35.773503988772326
+      ],
+      "address": "Quartier Café Hafa, Tanger, Maroc"
+    },
+    "city": "Tanger",
+    "duration": 115,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f0",
+    "title": "Cinéma & Décors - Ait Ben Haddou",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Ait Ben Haddou comme un local. Cinéma & Décors est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 599,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.933611631500465,
+        30.93400212497675
+      ],
+      "address": "Quartier Ait Ben Haddou, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 182,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.321Z",
+    "updatedAt": "2025-12-10T13:00:09.321Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f1",
+    "title": "Architecture Terre - Oasis Fint",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Ouarzazate. Architecture Terre est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 338,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.917222146490701,
+        30.91323962884679
+      ],
+      "address": "Quartier Oasis Fint, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 88,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f2",
+    "title": "Poterie Berbère - Ait Ben Haddou",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Ouarzazate. Poterie Berbère est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 181,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.919202753237258,
+        30.90706623998469
+      ],
+      "address": "Quartier Ait Ben Haddou, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 105,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f3",
+    "title": "Tapis Glaoui - Kasbahs",
+    "host": "693941008a490fb197096e22",
+    "description": "Une opportunité rare de vivre le quartier de Kasbahs comme un local. Tapis Glaoui est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 161,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1512521743077-a42eeaaa963c?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.923445758735904,
+        30.91435327847885
+      ],
+      "address": "Quartier Kasbahs, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 92,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Espagnol",
+      "Anglais"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f4",
+    "title": "Randonnée Oasis - Ait Ben Haddou",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Ouarzazate à travers cette expérience unique. Randonnée Oasis est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 516,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.945250223804496,
+        30.936549406345375
+      ],
+      "address": "Quartier Ait Ben Haddou, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 175,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Anglais",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f5",
+    "title": "Quad Désert - Ait Ben Haddou",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Ouarzazate. Quad Désert est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 391,
+    "category": "CONNECT",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.931364850343505,
+        30.93672446475447
+      ],
+      "address": "Quartier Ait Ben Haddou, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 157,
+    "maxParticipants": 6,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f6",
+    "title": "Cuisine Tajine - Oasis Fint",
+    "host": "693941008a490fb197096e22",
+    "description": "Loin des sentiers battus, rejoignez-nous pour un moment de partage à Ouarzazate. Cuisine Tajine est une activité pensée pour ceux qui cherchent l'authenticité. Nous utiliserons des matériaux locaux et respecterons les méthodes ancestrales. Repartez avec des souvenirs inoubliables.",
+    "price": 349,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1531545532551-b8d234a9b544?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.944835388867441,
+        30.917432779719462
+      ],
+      "address": "Quartier Oasis Fint, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 176,
+    "maxParticipants": 2,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f7",
+    "title": "Histoire Kasbah - Kasbahs",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Ouarzazate à travers cette expérience unique. Histoire Kasbah est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 231,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1553531384-cc64ac80f931?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.933498015860915,
+        30.929055275201808
+      ],
+      "address": "Quartier Kasbahs, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 141,
+    "maxParticipants": 7,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f8",
+    "title": "Astronomie Kasbah - Ait Ben Haddou",
+    "host": "693941008a490fb197096e22",
+    "description": "Plongez au cœur du vrai Maroc avec cet atelier authentique à Ouarzazate. Astronomie Kasbah est une activité pensée pour ceux qui cherchent l'authenticité. Parfait pour les débutants comme pour les passionnés, dans une ambiance conviviale (Dkhoul). Repartez avec des souvenirs inoubliables.",
+    "price": 298,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1559586616-361e18714958?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1590605927533-874288863e46?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.949945778615819,
+        30.907616747549003
+      ],
+      "address": "Quartier Ait Ben Haddou, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 145,
+    "maxParticipants": 5,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69396ed99959dbd0984726f9",
+    "title": "Gravures Rupestres - Kasbahs",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez la magie de Ouarzazate à travers cette expérience unique. Gravures Rupestres est une activité pensée pour ceux qui cherchent l'authenticité. Un moment de détente et d'apprentissage qui soutient l'économie locale. Repartez avec des souvenirs inoubliables.",
+    "price": 461,
+    "category": "SKILL",
+    "images": [
+      "https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1560132333-e7178de34749?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.956943105777177,
+        30.91223201696657
+      ],
+      "address": "Quartier Kasbahs, Ouarzazate, Maroc"
+    },
+    "city": "Ouarzazate",
+    "duration": 91,
+    "maxParticipants": 3,
+    "timeSlots": [
+      "10:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Darija",
+      "Français"
+    ],
+    "included": [
+      "Thé à la menthe",
+      "Matériel",
+      "Guide"
+    ],
+    "requirements": [
+      "Curiosité",
+      "Respect local"
+    ],
+    "rating": 0,
+    "availability": [],
+    "__v": 0,
+    "createdAt": "2025-12-10T13:00:09.322Z",
+    "updatedAt": "2025-12-10T13:00:09.322Z"
+  },
+  {
+    "_id": "69397a0740e033668e882240",
+    "title": "Cafe",
+    "host": "6939795a40e033668e882233",
+    "description": "Escape the bustling medina and find your oasis in a traditional Moroccan cafe. Sip on aroatic mint tea, savor delicious pastries, and let the enchanting ambiance transport you to a world of vibrant colors and captivating stories. A perfect place to unwind and soak up the magic of Morocco.\n",
+    "price": 70,
+    "category": "SPACE",
+    "images": [
+      "https://dkhoul-project.onrender.com/uploads/images/service-1765374438208-527896736.webp"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.9811,
+        31.6295
+      ],
+      "address": "Marrakech, Maroc"
+    },
+    "city": "Marrakech",
+    "duration": 60,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "14:00"
+    ],
+    "languages": [
+      "Français"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-10T13:47:51.435Z",
+    "updatedAt": "2025-12-10T13:47:51.435Z",
+    "__v": 0
+  }
+]
