@@ -9,6 +9,7 @@ import { ServiceService, Service } from '../../core/services/service.service';
 import { environment } from '../../../environments/environment';
 import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
     bookingService = inject(BookingService);
     serviceService = inject(ServiceService);
     router = inject(Router);
+    private toastService = inject(ToastService);
 
     bookings = signal<any[]>([]);
     loading = signal<boolean>(true);
@@ -97,11 +99,11 @@ export class DashboardComponent implements OnInit {
         this.serviceService.deleteService(id).subscribe({
             next: () => {
                 this.myServices.update(services => services.filter(s => s._id !== id));
-                alert('Annonce supprimée avec succès.');
+                this.toastService.success('Annonce supprimée avec succès.');
             },
             error: (err) => {
                 console.error('Error deleting service', err);
-                alert('Erreur lors de la suppression.');
+                this.toastService.error('Erreur lors de la suppression.');
             }
         });
     }
@@ -117,7 +119,7 @@ export class DashboardComponent implements OnInit {
 
     // Helper to transform relative image paths to full backend URLs
     getImageUrl(url: string | undefined): string {
-        if (!url) return 'assets/images/placeholder-service.jpg';
+        if (!url) return 'assets/images/placeholder-service.png';
         if (url.startsWith('data:') || url.startsWith('http')) return url;
         if (url.startsWith('/assets')) return url;
         return environment.apiUrl.replace('/api/v1', '') + url;

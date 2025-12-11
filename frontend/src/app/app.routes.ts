@@ -39,6 +39,11 @@ export const routes: Routes = [
         loadComponent: () => import('./features/service-detail/service-detail.component').then(m => m.ServiceDetailComponent)
     },
     {
+        path: 'bookings/:id',
+        loadComponent: () => import('./features/booking-detail/booking-detail.component').then(m => m.BookingDetailComponent),
+        canActivate: [authGuard]
+    },
+    {
         path: 'create-service',
         loadComponent: () => import('./features/create-service/create-service.component').then(m => m.CreateServiceComponent),
         canActivate: [authGuard, roleGuard],

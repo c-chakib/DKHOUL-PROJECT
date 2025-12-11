@@ -63,5 +63,6 @@ serviceSchema.index({ price: 1 });
 serviceSchema.index({ category: 1 });
 serviceSchema.index({ city: 1 });
 serviceSchema.index({ host: 1 });
+serviceSchema.index({ createdAt: -1 });
 
 module.exports = mongoose.model('Service', serviceSchema);

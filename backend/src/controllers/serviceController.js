@@ -41,14 +41,16 @@ const { getCache, setCache } = require('../services/cache.service');
 
 exports.getAllServices = async (req, res, next) => {
     try {
-        console.log('Fetching all services with pagination...');
+        console.time('TotalRequest');
 
         // 1. Check Cache
+        console.time('CacheGet');
         const cacheKey = `services:all:${JSON.stringify(req.query)}`;
         const cachedData = await getCache(cacheKey);
+        console.timeEnd('CacheGet');
 
         if (cachedData) {
-            console.log('Serving from cache');
+            console.timeEnd('TotalRequest');
             return res.status(200).json({
                 status: 'success',
                 results: cachedData.length,
@@ -69,9 +71,9 @@ exports.getAllServices = async (req, res, next) => {
             delete queryObj['price[gte]'];
         }
         if (queryObj['price[lte]']) {
-             if (!queryObj.price) queryObj.price = {};
-             queryObj.price.lte = queryObj['price[lte]'];
-             delete queryObj['price[lte]'];
+            if (!queryObj.price) queryObj.price = {};
+            queryObj.price.lte = queryObj['price[lte]'];
+            delete queryObj['price[lte]'];
         }
 
         const excludedFields = ['page', 'sort', 'limit', 'fields', 'search']; // Exclude 'search'
@@ -97,9 +99,8 @@ exports.getAllServices = async (req, res, next) => {
         const limit = req.query.limit * 1 || 9;
         const skip = (page - 1) * limit;
 
-        // 3) EXECUTE QUERY (Count & Data)
-        const total = await Service.countDocuments(filter);
-
+        // 3) EXECUTE QUERY (Count & Data in Parallel)
+        console.time('DBQuery');
         let query = Service.find(filter)
             .skip(skip)
             .limit(limit);
@@ -112,11 +113,18 @@ exports.getAllServices = async (req, res, next) => {
             query = query.sort('-createdAt');
         }
 
-        const services = await query;
-        console.log(`Found ${services.length} services (Page ${page})`);
+        const [total, services] = await Promise.all([
+            Service.countDocuments(filter),
+            query
+        ]);
+        console.timeEnd('DBQuery');
 
         // 4. Set Cache
+        console.time('CacheSet');
         await setCache(cacheKey, services, 3600);
+        console.timeEnd('CacheSet');
+
+        console.timeEnd('TotalRequest');
 
         // SEND RESPONSE
         res.status(200).json({

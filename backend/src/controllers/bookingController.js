@@ -229,7 +229,12 @@ exports.confirmBooking = async (req, res, next) => {
 exports.getMyBookings = async (req, res, next) => {
     try {
         // Find bookings where current user is tourist.
-        const bookings = await Booking.find({ tourist: req.user.id });
+        const bookings = await Booking.find({ tourist: req.user.id })
+            .populate({
+                path: 'service',
+                populate: { path: 'host' }
+            })
+            .sort('-createdAt');
 
         res.status(200).json({
             status: 'success',
@@ -387,6 +392,34 @@ exports.getBooking = async (req, res, next) => {
             data: {
                 booking
             }
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+/**
+ * Delete booking (Cleanup)
+ */
+exports.deleteBooking = async (req, res, next) => {
+    try {
+        const booking = await Booking.findById(req.params.id);
+        if (!booking) {
+            return next(new AppError('No booking found', 404));
+        }
+
+        // Check ownership (Only tourist or admin can delete)
+        // Host might want to hide it, but deletion removes it for both.
+        // For now, allow tourist to delete their own booking log.
+        if (booking.tourist.toString() !== req.user.id && !['admin', 'superadmin'].includes(req.user.role)) {
+            return next(new AppError('Not authorized to delete this booking', 403));
+        }
+
+        await Booking.findByIdAndDelete(req.params.id);
+
+        res.status(204).json({
+            status: 'success',
+            data: null
         });
     } catch (err) {
         next(err);

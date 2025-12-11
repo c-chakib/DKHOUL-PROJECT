@@ -230,6 +230,7 @@ router.patch('/:id/status', authController.restrictTo('host', 'admin', 'superadm
  *         description: Booking not found
  */
 router.get('/:id', bookingController.getBooking);
+router.delete('/:id', bookingController.deleteBooking);
 
 /**
  * @swagger

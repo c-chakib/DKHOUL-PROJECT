@@ -114,7 +114,7 @@ export class EditServiceComponent implements OnInit {
         const file: File = event.target.files[0];
         if (file) {
             if (this.uploadedImages().length >= 4) {
-                alert('Maximum 4 images allowed.');
+                this.toast.warning('Maximum 4 images allowed.');
                 return;
             }
 

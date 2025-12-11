@@ -30,10 +30,10 @@ export class CreateServiceComponent {
     categories = ['SPACE', 'SKILL', 'CONNECT'];
     cities = ['Casablanca', 'Marrakech', 'Agadir', 'Tanger', 'Fès', 'Rabat', 'Essaouira', 'Merzouga'];
     availableLanguages = ['Darija', 'Français', 'Anglais', 'Espagnol'];
-    
+
     // 👇 NOUVEAU : Liste des créneaux horaires affichés
     availableTimes = [
-        '08:00', '09:00', '10:00', '11:00', '12:00', 
+        '08:00', '09:00', '10:00', '11:00', '12:00',
         '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
     ];
 
@@ -48,7 +48,7 @@ export class CreateServiceComponent {
             description: ['', [Validators.required, Validators.minLength(20)]],
             languages: [[]],
             // 👇 NOUVEAU : Champ obligatoire pour les créneaux
-            timeSlots: [[], Validators.required] 
+            timeSlots: [[], Validators.required]
         });
     }
 
@@ -79,7 +79,7 @@ export class CreateServiceComponent {
         const file: File = event.target.files[0];
         if (file) {
             if (this.uploadedImages().length >= 4) {
-                alert('Maximum 4 images allowed.');
+                this.toast.warning('Maximum 4 images allowed.');
                 return;
             }
 
@@ -107,7 +107,7 @@ export class CreateServiceComponent {
     generateWithAI() {
         const { title, category } = this.serviceForm.value;
         if (!title || !category) {
-            alert('Veuillez entrer un titre et une catégorie.');
+            this.toast.warning('Veuillez entrer un titre et une catégorie.');
             return;
         }
 
@@ -119,7 +119,7 @@ export class CreateServiceComponent {
             },
             error: (err) => {
                 console.error('AI Generation Error', err);
-                alert('Erreur AI');
+                this.toast.error('Erreur AI');
                 this.isGenerating.set(false);
             }
         });
@@ -129,7 +129,7 @@ export class CreateServiceComponent {
         // Vérification incluant timeSlots grâce au Validators.required
         if (this.serviceForm.invalid || this.uploadedImages().length === 0) {
             this.serviceForm.markAllAsTouched();
-            alert('Veuillez remplir tous les champs (y compris les horaires) et ajouter une image.');
+            this.toast.warning('Veuillez remplir tous les champs (y compris les horaires) et ajouter une image.');
             return;
         }
 
