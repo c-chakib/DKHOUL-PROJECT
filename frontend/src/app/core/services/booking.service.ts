@@ -36,4 +36,8 @@ export class BookingService {
     updateStatus(bookingId: string, status: 'confirmed' | 'cancelled'): Observable<any> {
         return this.http.patch<any>(`${this.apiUrl}/${bookingId}/status`, { status });
     }
+
+    getBookingById(id: string): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/${id}`);
+    }
 }

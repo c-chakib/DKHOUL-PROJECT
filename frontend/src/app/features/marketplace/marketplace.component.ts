@@ -223,6 +223,7 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
         if (!url) return null;
         if (url.startsWith('data:')) return url;
         if (url.startsWith('http')) return url;
+        if (url.startsWith('/assets')) return url;
         if (url.startsWith('/uploads')) {
             return environment.apiUrl.replace('/api/v1', '') + url;
         }

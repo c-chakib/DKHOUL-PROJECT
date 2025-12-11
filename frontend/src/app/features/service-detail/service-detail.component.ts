@@ -182,6 +182,7 @@ export class ServiceDetailComponent implements OnInit {
     getImageUrl(url: string | undefined): string | null {
         if (!url) return null;
         if (url.startsWith('data:') || url.startsWith('http')) return url;
+        if (url.startsWith('/assets')) return url; // Local assets handled by frontend
         return environment.apiUrl.replace('/api/v1', '') + url;
     }
 

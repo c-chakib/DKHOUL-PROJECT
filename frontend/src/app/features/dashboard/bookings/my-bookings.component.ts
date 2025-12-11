@@ -31,7 +31,7 @@ import { environment } from '../../../../environments/environment';
         } @else {
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @for (booking of bookings; track booking._id) {
-                    <div class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group">
+                    <div [routerLink]="['/service', booking.service?._id]" class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group cursor-pointer relative">
                         <div class="relative h-48 bg-gray-200 overflow-hidden">
                             <img [src]="getImageUrl(booking.service?.images?.[0])" 
                                  [alt]="booking.service?.title"
@@ -104,6 +104,7 @@ export class MyBookingsComponent {
     getImageUrl(url: string | undefined): string {
         if (!url) return 'assets/images/placeholder-service.jpg';
         if (url.startsWith('data:') || url.startsWith('http')) return url;
+        if (url.startsWith('/assets')) return url;
         return environment.apiUrl.replace('/api/v1', '') + url;
     }
 }

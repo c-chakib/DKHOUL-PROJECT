@@ -119,6 +119,7 @@ export class DashboardComponent implements OnInit {
     getImageUrl(url: string | undefined): string {
         if (!url) return 'assets/images/placeholder-service.jpg';
         if (url.startsWith('data:') || url.startsWith('http')) return url;
+        if (url.startsWith('/assets')) return url;
         return environment.apiUrl.replace('/api/v1', '') + url;
     }
 }

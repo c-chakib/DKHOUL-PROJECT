@@ -8,7 +8,9 @@ dotenv.config({ path: './.env' });
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI); // Using MONGODB_URI as per your .env
+        const conn = await mongoose.connect(process.env.MONGODB_URI, {
+            dbName: 'dkhoul'
+        });
         console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
     } catch (error) {
         console.error(`Error: ${error.message}`.red);
@@ -20,7 +22,7 @@ const users = [
     {
         name: "Admin User",
         email: "admin@dkhoul.com",
-        password: "Admin@Dkhoul123!", // 12+ chars, upper, lower, number, symbol
+        password: "Admin@Dkhoul123!",
         passwordConfirm: "Admin@Dkhoul123!",
         role: "admin",
         isVerified: true
@@ -66,19 +68,20 @@ const importData = async () => {
         console.log('Creating users...'.yellow);
         const createdUsers = [];
         for (const user of users) {
-            console.log(`Creating user: ${user.email}`);
+            // Basic error handling for duplicates if run repeatedly without delete
             try {
                 const newUser = await User.create(user);
                 console.log(`User created: ${newUser.email}`);
                 createdUsers.push(newUser);
             } catch (err) {
-                console.error(`Failed to create user ${user.email}: ${err.message}`.red);
+                console.log(`User ${user.email} already exists or error: ${err.message}`);
+                // Try to fetch if exists to keep going? In this script we deleteMany so it should be fine.
             }
         }
-        console.log(`Total users created: ${createdUsers.length}`);
 
-        const youssef = createdUsers.find(u => u.email === "youssef@host.com");
-        const khadija = createdUsers.find(u => u.email === "khadija@host.com");
+        // Re-fetch to be sure we have the IDs
+        const youssef = await User.findOne({ email: "youssef@host.com" });
+        const khadija = await User.findOne({ email: "khadija@host.com" });
 
         if (!youssef || !khadija) {
             throw new Error("Hosts not created correctly");
@@ -86,156 +89,262 @@ const importData = async () => {
 
         console.log('Users Imported...'.green.inverse);
 
-        // 3. Create Services
+        // 3. Create Services (The new 17 validated services)
         const services = [
-            // --- SPACE ---
+            // === SPACE (5) ===
             {
-                title: "Stockage Bagages Sécurisé",
-                description: "Laissez vos valises en toute sécurité pendant que vous visitez le Maarif. Casier surveillé 24/7.",
-                price: 50,
+                title: "Stationnement Sécurisé - Médina",
+                description: "Garage privé surveillé 24/7 au cœur de la médina. Idéal pour garer votre voiture en toute sécurité pendant vos visites. Accès facile, porte automatique.",
+                price: 80,
                 category: "SPACE",
                 host: khadija._id,
-                location: { type: "Point", coordinates: [-7.632, 33.590], address: "Maarif, Casablanca" },
-                images: ["https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80"] // Storage/Luggage
-            },
-            {
-                title: "Coworking Calme avec Fibre",
-                description: "Espace de travail partagé avec connexion haut débit, café gratuit et salle de réunion.",
-                price: 100,
-                category: "SPACE",
-                host: khadija._id,
-                location: { type: "Point", coordinates: [-6.849, 34.000], address: "Agdal, Rabat" },
-                images: ["https://images.unsplash.com/photo-1520333789090-1afc82db536a?auto=format&fit=crop&w=800&q=80"] // Coworking
-            },
-            {
-                title: "Douche Express & Vestiaire",
-                description: "Idéal pour se rafraîchir après une excursion. Serviettes et savon fournis.",
-                price: 70,
-                category: "SPACE",
-                host: youssef._id,
-                location: { type: "Point", coordinates: [-8.008, 31.634], address: "Gueliz, Marrakech" },
-                images: ["https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"] // Bathroom/Shower
-            },
-            {
-                title: "Rooftop Vue Mer pour Photos",
-                description: "Accès exclusif à mon toit terrasse avec vue imprenable sur le détroit pour vos shootings.",
-                price: 150,
-                category: "SPACE",
-                host: khadija._id,
-                location: { type: "Point", coordinates: [-5.812, 35.789], address: "Kasbah, Tanger" },
-                images: ["https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80"] // Rooftop/View
-            },
-            {
-                title: "Sieste au calme dans Riad",
-                description: "Reposez-vous 2h dans une chambre fraîche et silencieuse au cœur de la médina.",
-                price: 200,
-                category: "SPACE",
-                host: youssef._id,
+                city: "Fès",
                 location: { type: "Point", coordinates: [-4.976, 34.062], address: "Médina, Fès" },
-                images: ["https://images.unsplash.com/photo-1532323544230-7191fd510c59?auto=format&fit=crop&w=800&q=80"] // Riad/Rest
+                images: ["/assets/images/parking_securise.png"],
+                duration: 480, // 8 heures
+                timeSlots: ["08:00", "14:00"],
+                languages: ["Français", "Darija"]
+            },
+            {
+                title: "Station Recharge Express",
+                description: "Rechargez tous vos appareils : téléphones, laptops, batteries caméra. Adaptateurs internationaux fournis. Wifi gratuit pendant l'attente.",
+                price: 25,
+                category: "SPACE",
+                host: youssef._id,
+                city: "Marrakech",
+                location: { type: "Point", coordinates: [-7.989, 31.629], address: "Gueliz, Marrakech" },
+                images: ["/assets/images/recharge_electronique.png"],
+                duration: 90, // 1h30
+                timeSlots: ["09:00", "12:00", "15:00", "18:00"],
+                languages: ["Français", "Anglais", "Darija"]
+            },
+            {
+                title: "Cuisine Équipée Self-Cooking",
+                description: "Accès à une cuisine traditionnelle marocaine entièrement équipée. Tajines, ustensiles, épices de base fournis. Parfait pour préparer vos propres repas.",
+                price: 90,
+                category: "SPACE",
+                host: khadija._id,
+                city: "Casablanca",
+                location: { type: "Point", coordinates: [-7.618, 33.595], address: "Maarif, Casablanca" },
+                images: ["/assets/images/cuisine_equipee.png"],
+                duration: 180, // 3 heures
+                timeSlots: ["10:00", "16:00"],
+                languages: ["Français", "Darija"]
+            },
+            {
+                title: "Laverie Express - Machine à Laver",
+                description: "Faites votre lessive en 2h : machine à laver moderne, lessive écologique incluse, séchoir disponible. Plus économique que les pressings.",
+                price: 60,
+                category: "SPACE",
+                host: youssef._id,
+                city: "Rabat",
+                location: { type: "Point", coordinates: [-6.849, 34.000], address: "Agdal, Rabat" },
+                images: ["/assets/images/laverie_machine.png"],
+                duration: 150, // 2h30
+                timeSlots: ["08:00", "11:00", "14:00", "17:00"],
+                languages: ["Français", "Darija"]
+            },
+            {
+                title: "Bureau Privé - Appels Visio",
+                description: "Espace calme et professionnel pour vos calls importants. Wifi fibre, fond neutre, éclairage parfait. Silence garanti 100%.",
+                price: 120,
+                category: "SPACE",
+                host: khadija._id,
+                city: "Tanger",
+                location: { type: "Point", coordinates: [-5.812, 35.789], address: "Centre-ville, Tanger" },
+                images: ["/assets/images/espace_reunion.png"],
+                duration: 60, // 1 heure
+                timeSlots: ["09:00", "11:00", "14:00", "16:00"],
+                languages: ["Français", "Anglais"]
             },
 
-            // --- SKILL ---
+            // === SKILL (6) ===
             {
-                title: "Masterclass Tajine au Citron",
-                description: "Apprenez les secrets du vrai tajine marocain avec ma grand-mère. Ingrédients inclus.",
-                price: 350,
+                title: "Cours de Darija Express",
+                description: "Apprenez 50 phrases essentielles en darija marocain en 2h. PDF inclus, mise en situation pratique au souk. Parfait pour communiquer avec les locaux !",
+                price: 200,
                 category: "SKILL",
-                host: khadija._id,
+                host: youssef._id,
+                city: "Marrakech",
                 location: { type: "Point", coordinates: [-7.989, 31.629], address: "Médina, Marrakech" },
-                images: ["https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=800&q=80"] // Tajine/Cooking
+                images: ["/assets/images/cours_darija.png"],
+                duration: 120, // 2 heures
+                timeSlots: ["10:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
-                title: "Initiation Menuiserie Bois Thuya",
-                description: "Découverte de l'artisanat local d'Essaouira. Repartez avec votre création.",
+                title: "Pâtisserie Marocaine - Cornes de Gazelle",
+                description: "Apprenez à préparer les célèbres cornes de gazelle, chebakia et ghriba avec une pâtissière experte. Ingrédients inclus, repartez avec vos créations !",
+                price: 280,
+                category: "SKILL",
+                host: khadija._id,
+                city: "Fès",
+                location: { type: "Point", coordinates: [-4.976, 34.062], address: "Médina, Fès" },
+                images: ["/assets/images/patisserie_marocaine.png"],
+                duration: 180, // 3 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Darija"]
+            },
+            {
+                title: "Art du Henné Traditionnel",
+                description: "Séance henné personnalisée par une nekacha expérimentée. Motifs berbères ou arabes selon vos goûts. Henné 100% naturel, conseils d'entretien inclus.",
+                price: 180,
+                category: "SKILL",
+                host: khadija._id,
+                city: "Essaouira",
+                location: { type: "Point", coordinates: [-9.770, 31.508], address: "Médina, Essaouira" },
+                images: ["/assets/images/henne_traditionnel.png"],
+                duration: 90, // 1h30
+                timeSlots: ["10:00", "14:00", "17:00"],
+                languages: ["Français", "Anglais", "Darija"]
+            },
+            {
+                title: "Masterclass Négociation Souk",
+                description: "Apprenez l'art de la négociation respectueuse au souk. 1h de théorie + 1h de pratique réelle. Vocabulaire, techniques, et accompagnement sur le terrain.",
                 price: 250,
                 category: "SKILL",
                 host: youssef._id,
-                location: { type: "Point", coordinates: [-9.770, 31.508], address: "Essaouira" },
-                images: ["https://images.unsplash.com/photo-1610557892470-55d9e80c0bce?auto=format&fit=crop&w=800&q=80"] // Woodworking
+                city: "Marrakech",
+                location: { type: "Point", coordinates: [-7.989, 31.629], address: "Souk, Marrakech" },
+                images: ["/assets/images/negociation_souk.png"],
+                duration: 120, // 2 heures
+                timeSlots: ["09:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
-                title: "Cours de Surf Débutant",
-                description: "Cours privé de 2h sur les vagues de Taghazout. Planche et combi fournies.",
-                price: 200,
-                category: "SKILL",
-                host: youssef._id,
-                location: { type: "Point", coordinates: [-9.711, 30.542], address: "Taghazout" },
-                images: ["https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80"] // Surf
-            },
-            {
-                title: "Atelier Poterie & Zellige",
-                description: "Façonnez l'argile et découvrez l'art du Zellige Fassi traditionnel.",
-                price: 300,
+                title: "Tissage Berbère - Création Tapis",
+                description: "Initiez-vous au tissage traditionnel sur métier ancestral. Créez votre propre pièce (sous-verre ou bracelet) sous la guidance d'une artisane berbère.",
+                price: 320,
                 category: "SKILL",
                 host: khadija._id,
-                location: { type: "Point", coordinates: [-4.980, 34.058], address: "Fès" },
-                images: ["https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80"] // Pottery
+                city: "Ouarzazate",
+                location: { type: "Point", coordinates: [-6.893, 30.920], address: "Kasbah, Ouarzazate" },
+                images: ["/assets/images/tissage_berbere.png"],
+                duration: 180, // 3 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Darija"]
             },
             {
-                title: "Cours de Percussion Gnaoua",
-                description: "Vibrez aux rythmes du désert. Initiation aux qraqeb et au tbel.",
-                price: 150,
+                title: "Atelier Épices & Ras-el-Hanout",
+                description: "Découvrez 25+ épices marocaines et leurs usages. Composez votre propre ras-el-hanout personnalisé à emporter. Dégustation thé incluse.",
+                price: 180,
                 category: "SKILL",
                 host: youssef._id,
-                location: { type: "Point", coordinates: [-4.013, 31.080], address: "Merzouga" },
-                images: ["https://images.unsplash.com/photo-1519892300165-31a5463f0f8f?auto=format&fit=crop&w=800&q=80"] // Music/Drums
+                city: "Chefchaouen",
+                location: { type: "Point", coordinates: [-5.268, 35.171], address: "Médina, Chefchaouen" },
+                images: ["/assets/images/atelier_epices.png"],
+                duration: 90, // 1h30
+                timeSlots: ["10:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
 
-            // --- CONNECT ---
+            // === CONNECT (6) ===
             {
-                title: "Guide Shopping Anti-Arnaque",
-                description: "Je vous accompagne dans les souks pour négocier les meilleurs prix sans stress.",
+                title: "Conseils Voyage par Téléphone",
+                description: "Appel de 45min avec un local passionné. Recommandations restos, bons plans, itinéraires personnalisés. Liste WhatsApp envoyée après l'appel.",
+                price: 80,
+                category: "CONNECT",
+                host: youssef._id,
+                city: "Casablanca",
+                location: { type: "Point", coordinates: [-7.618, 33.595], address: "Casablanca" },
+                images: ["/assets/images/conseils_telephone.png"],
+                duration: 45, // 45 minutes
+                timeSlots: ["09:00", "11:00", "14:00", "17:00", "20:00"],
+                languages: ["Français", "Anglais", "Darija"]
+            },
+            {
+                title: "Transfert Aéroport VIP",
+                description: "Accueil personnalisé à l'aéroport avec pancarte. Transport confortable, aide bagages, premiers conseils sur la ville. Ponctualité garantie.",
+                price: 250,
+                category: "CONNECT",
+                host: khadija._id,
+                city: "Marrakech",
+                location: { type: "Point", coordinates: [-8.038, 31.602], address: "Aéroport Menara, Marrakech" },
+                images: ["/assets/images/recuperation_aeroport.png"],
+                duration: 90, // 1h30
+                timeSlots: ["06:00", "10:00", "14:00", "18:00", "22:00"],
+                languages: ["Français", "Anglais", "Darija"]
+            },
+            {
+                title: "Baby-sitting Bilingue",
+                description: "Garde d'enfants par une professionnelle expérimentée. Bilingue français/arabe. Activités ludiques et éducatives. Références disponibles.",
+                price: 100,
+                category: "CONNECT",
+                host: khadija._id,
+                city: "Rabat",
+                location: { type: "Point", coordinates: [-6.849, 34.000], address: "Rabat" },
+                images: ["/assets/images/babysitting_bilingue.png"],
+                duration: 180, // 3 heures
+                timeSlots: ["18:00", "19:00", "20:00"],
+                languages: ["Français", "Anglais", "Darija"]
+            },
+            {
+                title: "Accompagnement Marché Local",
+                description: "Shopping au marché traditionnel avec un expert local. Sélection des meilleurs produits frais, négociation, conseils de préparation inclus.",
                 price: 100,
                 category: "CONNECT",
                 host: youssef._id,
-                location: { type: "Point", coordinates: [-7.990, 31.625], address: "Souk, Marrakech" },
-                images: ["https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"] // Souk/Shopping
+                city: "Fès",
+                location: { type: "Point", coordinates: [-4.976, 34.062], address: "Marché, Fès" },
+                images: ["/assets/images/courses_marche.png"],
+                duration: 120, // 2 heures
+                timeSlots: ["07:00", "09:00"],
+                languages: ["Français", "Darija"]
             },
             {
-                title: "Photographe Personnel Blue City",
-                description: "Photoshoot professionnel dans les ruelles bleues les plus instagrammables.",
-                price: 400,
+                title: "Interprète / Traducteur Ponctuel",
+                description: "Assistance traduction pour RDV administratif, médical ou commercial. Parfaitement bilingue français/arabe. Accompagnement physique ou visio.",
+                price: 200,
                 category: "CONNECT",
                 host: khadija._id,
-                location: { type: "Point", coordinates: [-5.268, 35.171], address: "Chefchaouen" },
-                images: ["https://images.unsplash.com/photo-1539655529457-36e3c09191d4?auto=format&fit=crop&w=800&q=80"] // Chefchaouen
-            },
-            {
-                title: "Tour Food Street (Msemmen/Harira)",
-                description: "Dégustation des meilleurs spots de street food casablancais (non touristiques).",
-                price: 120,
-                category: "CONNECT",
-                host: youssef._id,
+                city: "Casablanca",
                 location: { type: "Point", coordinates: [-7.618, 33.595], address: "Casablanca" },
-                images: ["https://images.unsplash.com/photo-1588647008107-167e4369da8a?auto=format&fit=crop&w=800&q=80"] // Moroccan Food
+                images: ["/assets/images/traduction_interprete.png"],
+                duration: 120, // 2 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
-                title: "Visite Historique Guidée",
-                description: "Découvrez les secrets du Chellah et de la Tour Hassan avec un passionné d'histoire.",
-                price: 80,
-                category: "CONNECT",
-                host: khadija._id,
-                location: { type: "Point", coordinates: [-6.835, 34.007], address: "Chellah, Rabat" },
-                images: ["https://images.unsplash.com/photo-1533604104257-ddef7b8bd918?auto=format&fit=crop&w=800&q=80"] // Rabat/History
-            },
-            {
-                title: "Compagnon Rando Toubkal (Demi-journée)",
-                description: "Randonnée niveau facile/moyen autour d'Imlil avec thé chez l'habitant.",
-                price: 300,
+                title: "Visite Quartier Authentique",
+                description: "Découverte des quartiers populaires loin des circuits touristiques. Anecdotes, rencontres habitants, pause thé chez l'habitant. Le vrai Maroc !",
+                price: 180,
                 category: "CONNECT",
                 host: youssef._id,
-                location: { type: "Point", coordinates: [-7.917, 31.141], address: "Imlil, Atlas" },
-                images: ["https://images.unsplash.com/photo-1502448404283-d51e73711909?auto=format&fit=crop&w=800&q=80"] // Hiking/Atlas
+                city: "Tanger",
+                location: { type: "Point", coordinates: [-5.812, 35.789], address: "Vieux Tanger" },
+                images: ["/assets/images/visite_quartier.png"],
+                duration: 150, // 2h30
+                timeSlots: ["09:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija", "Espagnol"]
             }
         ];
 
-        await Service.create(services);
-        console.log('Services Imported (15)...'.green.inverse);
+        console.log(`Adding ${services.length} services...`.yellow);
+
+        for (const service of services) {
+            try {
+                await Service.create(service);
+                console.log(`Created: ${service.title}`);
+            } catch (err) {
+                console.error(`Failed to create service ${service.title}: ${err.message}`.red);
+            }
+        }
 
         console.log('Data Imported Successfully'.green.inverse);
         process.exit();
+    } catch (error) {
+        console.error(`${error}`.red.inverse);
+        process.exit(1);
+    }
+};
 
+const destroyData = async () => {
+    try {
+        await connectDB();
+        await Service.deleteMany();
+        await User.deleteMany();
+        console.log('Data Destroyed!'.red.inverse);
+        process.exit();
     } catch (error) {
         console.error(`${error}`.red.inverse);
         process.exit(1);
@@ -243,8 +352,7 @@ const importData = async () => {
 };
 
 if (process.argv[2] === '-d') {
-    // Add delete function if needed, but import includes clean
-    // destroyData();
+    destroyData();
 } else {
     importData();
 }

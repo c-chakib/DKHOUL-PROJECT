@@ -16,6 +16,7 @@ export class WebpUrlPipe implements PipeTransform {
         // "assets/images/hero.png" -> "assets/images/hero.webp"
 
         // Replace extension if it is jpg, jpeg, or png
-        return url.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+        // return url.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+        return url;
     }
 }

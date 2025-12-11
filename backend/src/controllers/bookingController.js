@@ -347,3 +347,48 @@ exports.getAllBookings = async (req, res, next) => {
         next(new AppError('No bookings found', 404));
     }
 };
+
+/**
+ * Get single booking by ID
+ */
+exports.getBooking = async (req, res, next) => {
+    try {
+        const booking = await Booking.findById(req.params.id)
+            .populate({
+                path: 'service',
+                populate: { path: 'host' }
+            })
+            .populate('tourist');
+
+        if (!booking) {
+            return next(new AppError('No booking found with that ID', 404));
+        }
+
+        // Access Control
+        // Depending on population, IDs might be objects or strings
+        const userId = req.user.id;
+        const touristId = booking.tourist._id ? booking.tourist._id.toString() : booking.tourist.toString();
+
+        let hostId = null;
+        if (booking.service && booking.service.host) {
+            hostId = booking.service.host._id ? booking.service.host._id.toString() : booking.service.host.toString();
+        }
+
+        const isTourist = touristId === userId;
+        const isHost = hostId === userId;
+        const isAdmin = ['admin', 'superadmin'].includes(req.user.role);
+
+        if (!isTourist && !isHost && !isAdmin) {
+            return next(new AppError('You do not have permission to view this booking', 403));
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                booking
+            }
+        });
+    } catch (err) {
+        next(err);
+    }
+};

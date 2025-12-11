@@ -253,11 +253,11 @@
   <div *ngIf="lightboxOpen()" class="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in text-white">
     
     <!-- Close Button (Minimal Glass) -->
-    <button (click)="closeLightbox()" 
-            class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-red-500/80 hover:border-red-500 hover:scale-105 z-[10001] group"
-            title="Fermer (Echap)">
-         <i class="fas fa-times text-lg"></i>
-    </button>
+<button (click)="closeLightbox()" 
+        class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/50 bg-white/20 backdrop-blur-md flex items-center justify-center text-gray-800 transition-all hover:bg-white/40 hover:border-white hover:scale-105 z-[10001] group"
+        title="Fermer (Echap)">
+     <i class="fas fa-times text-lg"></i>
+</button>
     
     <!-- Main Image Area -->
     <div class="relative flex-1 w-full flex items-center justify-center p-4 overflow-hidden">

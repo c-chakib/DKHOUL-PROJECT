@@ -16,22 +16,6 @@ const connectDB = async () => {
     }
 };
 
-// Moroccan cities with coordinates
-const cities = [
-    { name: "Marrakech", coords: [-7.989, 31.629] },
-    { name: "Fès", coords: [-4.976, 34.062] },
-    { name: "Casablanca", coords: [-7.618, 33.595] },
-    { name: "Rabat", coords: [-6.849, 34.000] },
-    { name: "Tanger", coords: [-5.812, 35.789] },
-    { name: "Chefchaouen", coords: [-5.268, 35.171] },
-    { name: "Essaouira", coords: [-9.770, 31.508] },
-    { name: "Agadir", coords: [-9.598, 30.421] },
-    { name: "Ouarzazate", coords: [-6.893, 30.920] },
-    { name: "Merzouga", coords: [-4.013, 31.080] }
-];
-
-const getRandomCity = () => cities[Math.floor(Math.random() * cities.length)];
-
 const addNewServices = async () => {
     try {
         await connectDB();
@@ -47,7 +31,7 @@ const addNewServices = async () => {
 
         console.log('Found hosts: Youssef and Khadija'.green);
 
-        // New services with AI-generated images
+        // New services with AI-generated images (with required fields: duration, timeSlots)
         const newServices = [
             // === SPACE (5 new) ===
             {
@@ -59,7 +43,9 @@ const addNewServices = async () => {
                 city: "Fès",
                 location: { type: "Point", coordinates: [-4.976, 34.062], address: "Médina, Fès" },
                 images: ["/assets/images/parking_securise.png"],
-                isAiGenerated: true
+                duration: 480, // 8 heures
+                timeSlots: ["08:00", "14:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Station Recharge Express",
@@ -70,7 +56,9 @@ const addNewServices = async () => {
                 city: "Marrakech",
                 location: { type: "Point", coordinates: [-7.989, 31.629], address: "Gueliz, Marrakech" },
                 images: ["/assets/images/recharge_electronique.png"],
-                isAiGenerated: true
+                duration: 90, // 1h30
+                timeSlots: ["09:00", "12:00", "15:00", "18:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Cuisine Équipée Self-Cooking",
@@ -81,7 +69,9 @@ const addNewServices = async () => {
                 city: "Casablanca",
                 location: { type: "Point", coordinates: [-7.618, 33.595], address: "Maarif, Casablanca" },
                 images: ["/assets/images/cuisine_equipee.png"],
-                isAiGenerated: true
+                duration: 180, // 3 heures
+                timeSlots: ["10:00", "16:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Laverie Express - Machine à Laver",
@@ -92,7 +82,9 @@ const addNewServices = async () => {
                 city: "Rabat",
                 location: { type: "Point", coordinates: [-6.849, 34.000], address: "Agdal, Rabat" },
                 images: ["/assets/images/laverie_machine.png"],
-                isAiGenerated: true
+                duration: 150, // 2h30
+                timeSlots: ["08:00", "11:00", "14:00", "17:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Bureau Privé - Appels Visio",
@@ -103,7 +95,9 @@ const addNewServices = async () => {
                 city: "Tanger",
                 location: { type: "Point", coordinates: [-5.812, 35.789], address: "Centre-ville, Tanger" },
                 images: ["/assets/images/espace_reunion.png"],
-                isAiGenerated: true
+                duration: 60, // 1 heure
+                timeSlots: ["09:00", "11:00", "14:00", "16:00"],
+                languages: ["Français", "Anglais"]
             },
 
             // === SKILL (6 new) ===
@@ -116,7 +110,9 @@ const addNewServices = async () => {
                 city: "Marrakech",
                 location: { type: "Point", coordinates: [-7.989, 31.629], address: "Médina, Marrakech" },
                 images: ["/assets/images/cours_darija.png"],
-                isAiGenerated: true
+                duration: 120, // 2 heures
+                timeSlots: ["10:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Pâtisserie Marocaine - Cornes de Gazelle",
@@ -127,7 +123,9 @@ const addNewServices = async () => {
                 city: "Fès",
                 location: { type: "Point", coordinates: [-4.976, 34.062], address: "Médina, Fès" },
                 images: ["/assets/images/patisserie_marocaine.png"],
-                isAiGenerated: true
+                duration: 180, // 3 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Art du Henné Traditionnel",
@@ -138,7 +136,9 @@ const addNewServices = async () => {
                 city: "Essaouira",
                 location: { type: "Point", coordinates: [-9.770, 31.508], address: "Médina, Essaouira" },
                 images: ["/assets/images/henne_traditionnel.png"],
-                isAiGenerated: true
+                duration: 90, // 1h30
+                timeSlots: ["10:00", "14:00", "17:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Masterclass Négociation Souk",
@@ -149,7 +149,9 @@ const addNewServices = async () => {
                 city: "Marrakech",
                 location: { type: "Point", coordinates: [-7.989, 31.629], address: "Souk, Marrakech" },
                 images: ["/assets/images/negociation_souk.png"],
-                isAiGenerated: true
+                duration: 120, // 2 heures
+                timeSlots: ["09:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Tissage Berbère - Création Tapis",
@@ -160,7 +162,9 @@ const addNewServices = async () => {
                 city: "Ouarzazate",
                 location: { type: "Point", coordinates: [-6.893, 30.920], address: "Kasbah, Ouarzazate" },
                 images: ["/assets/images/tissage_berbere.png"],
-                isAiGenerated: true
+                duration: 180, // 3 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Atelier Épices & Ras-el-Hanout",
@@ -171,7 +175,9 @@ const addNewServices = async () => {
                 city: "Chefchaouen",
                 location: { type: "Point", coordinates: [-5.268, 35.171], address: "Médina, Chefchaouen" },
                 images: ["/assets/images/atelier_epices.png"],
-                isAiGenerated: true
+                duration: 90, // 1h30
+                timeSlots: ["10:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
 
             // === CONNECT (6 new) ===
@@ -184,7 +190,9 @@ const addNewServices = async () => {
                 city: "Casablanca",
                 location: { type: "Point", coordinates: [-7.618, 33.595], address: "Casablanca" },
                 images: ["/assets/images/conseils_telephone.png"],
-                isAiGenerated: true
+                duration: 45, // 45 minutes
+                timeSlots: ["09:00", "11:00", "14:00", "17:00", "20:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Transfert Aéroport VIP",
@@ -195,7 +203,9 @@ const addNewServices = async () => {
                 city: "Marrakech",
                 location: { type: "Point", coordinates: [-8.038, 31.602], address: "Aéroport Menara, Marrakech" },
                 images: ["/assets/images/recuperation_aeroport.png"],
-                isAiGenerated: true
+                duration: 90, // 1h30
+                timeSlots: ["06:00", "10:00", "14:00", "18:00", "22:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Baby-sitting Bilingue",
@@ -206,7 +216,9 @@ const addNewServices = async () => {
                 city: "Rabat",
                 location: { type: "Point", coordinates: [-6.849, 34.000], address: "Rabat" },
                 images: ["/assets/images/babysitting_bilingue.png"],
-                isAiGenerated: true
+                duration: 180, // 3 heures
+                timeSlots: ["18:00", "19:00", "20:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Accompagnement Marché Local",
@@ -217,7 +229,9 @@ const addNewServices = async () => {
                 city: "Fès",
                 location: { type: "Point", coordinates: [-4.976, 34.062], address: "Marché, Fès" },
                 images: ["/assets/images/courses_marche.png"],
-                isAiGenerated: true
+                duration: 120, // 2 heures
+                timeSlots: ["07:00", "09:00"],
+                languages: ["Français", "Darija"]
             },
             {
                 title: "Interprète / Traducteur Ponctuel",
@@ -228,7 +242,9 @@ const addNewServices = async () => {
                 city: "Casablanca",
                 location: { type: "Point", coordinates: [-7.618, 33.595], address: "Casablanca" },
                 images: ["/assets/images/traduction_interprete.png"],
-                isAiGenerated: true
+                duration: 120, // 2 heures
+                timeSlots: ["09:00", "14:00"],
+                languages: ["Français", "Anglais", "Darija"]
             },
             {
                 title: "Visite Quartier Authentique",
@@ -239,23 +255,27 @@ const addNewServices = async () => {
                 city: "Tanger",
                 location: { type: "Point", coordinates: [-5.812, 35.789], address: "Vieux Tanger" },
                 images: ["/assets/images/visite_quartier.png"],
-                isAiGenerated: true
+                duration: 150, // 2h30
+                timeSlots: ["09:00", "15:00"],
+                languages: ["Français", "Anglais", "Darija", "Espagnol"]
             }
         ];
 
         console.log(`Adding ${newServices.length} new services...`.yellow);
 
+        let successCount = 0;
         for (const service of newServices) {
             try {
                 await Service.create(service);
                 console.log(`✅ Created: ${service.title}`.green);
+                successCount++;
             } catch (err) {
                 console.error(`❌ Failed: ${service.title} - ${err.message}`.red);
             }
         }
 
         console.log('\n========================================'.cyan);
-        console.log(`${newServices.length} new services added successfully!`.green.bold);
+        console.log(`${successCount}/${newServices.length} services added successfully!`.green.bold);
         console.log('========================================'.cyan);
 
         process.exit();

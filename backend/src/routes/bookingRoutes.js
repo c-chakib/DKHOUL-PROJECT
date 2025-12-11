@@ -209,6 +209,30 @@ router.patch('/:id/status', authController.restrictTo('host', 'admin', 'superadm
 
 /**
  * @swagger
+ * /api/v1/bookings/{id}:
+ *   get:
+ *     summary: Get single booking by ID
+ *     tags: [Bookings]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Booking details
+ *       403:
+ *         description: Not authorized
+ *       404:
+ *         description: Booking not found
+ */
+router.get('/:id', bookingController.getBooking);
+
+/**
+ * @swagger
  * /api/v1/bookings:
  *   get:
  *     summary: Get all bookings (Admin only)

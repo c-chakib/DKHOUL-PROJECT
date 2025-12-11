@@ -207,6 +207,7 @@ export class HostBookingsComponent implements OnInit {
     getImageUrl(url: string | undefined): string {
         if (!url) return 'assets/default-avatar.png';
         if (url.startsWith('data:') || url.startsWith('http')) return url;
+        if (url.startsWith('/assets')) return url;
         return environment.apiUrl.replace('/api/v1', '') + url;
     }
 }
