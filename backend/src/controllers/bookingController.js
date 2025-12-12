@@ -112,7 +112,7 @@ exports.createPaymentIntent = async (req, res, next) => {
         const fullService = await Service.findById(serviceId).populate('host');
 
         if (fullService) {
-             await sendNewBookingEmails(fullService, req.user, newBooking);
+            await sendNewBookingEmails(fullService, req.user, newBooking);
         }
 
         res.status(200).json({
@@ -194,6 +194,7 @@ exports.confirmBooking = async (req, res, next) => {
 };
 
 exports.getMyBookings = async (req, res, next) => {
+    console.time('GetMyBookings');
     try {
         // Find bookings where current user is tourist.
         const bookings = await Booking.find({ tourist: req.user.id })
@@ -203,6 +204,7 @@ exports.getMyBookings = async (req, res, next) => {
             })
             .sort('-createdAt');
 
+        console.timeEnd('GetMyBookings');
         res.status(200).json({
             status: 'success',
             results: bookings.length,
@@ -211,6 +213,7 @@ exports.getMyBookings = async (req, res, next) => {
             }
         });
     } catch (err) {
+        console.timeEnd('GetMyBookings');
         next(err);
     }
 };

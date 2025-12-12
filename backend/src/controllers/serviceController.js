@@ -4,6 +4,13 @@ const AppError = require('../utils/appError');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+// Helper to check service ownership
+const checkServiceOwnership = (service, user, next) => {
+    if (service.host.toString() !== user.id && user.role !== 'admin' && user.role !== 'superadmin') {
+        throw new AppError('You do not have permission to perform this action', 403);
+    }
+};
+
 exports.createService = async (req, res, next) => {
     try {
         // Add host from authenticated user
@@ -105,6 +112,7 @@ exports.getAllServices = async (req, res, next) => {
         console.timeEnd('CacheGet');
 
         if (cachedData) {
+            console.timeEnd('CacheGet');
             console.timeEnd('TotalRequest');
             return res.status(200).json({
                 status: 'success',
@@ -282,9 +290,7 @@ exports.deleteService = async (req, res, next) => {
         }
 
         // Check ownership (unless admin)
-        if (service.host.toString() !== req.user.id && req.user.role !== 'admin' && req.user.role !== 'superadmin') {
-            return next(new AppError('You do not have permission to delete this service', 403));
-        }
+        checkServiceOwnership(service, req.user, next);
 
         await Service.findByIdAndDelete(req.params.id);
 
@@ -307,9 +313,7 @@ exports.updateService = async (req, res, next) => {
         }
 
         // Check ownership (unless admin)
-        if (service.host.toString() !== req.user.id && req.user.role !== 'admin' && req.user.role !== 'superadmin') {
-            return next(new AppError('You do not have permission to update this service', 403));
-        }
+        checkServiceOwnership(service, req.user, next);
 
         // Filter allowed fields
         const allowedFields = ['title', 'description', 'price', 'category', 'images', 'city',

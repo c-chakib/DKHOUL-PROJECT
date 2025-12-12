@@ -116,8 +116,9 @@ exports.googleLogin = async (req, res, next) => {
 
         if (!user) {
             console.log('Creating new Google User');
-            // Generate a strong random password that meets the policy: 12+ chars, Upper, Lower, Number, Symbol
-            const randomPassword = 'G@' + Math.random().toString(36).slice(-8) + 'A' + Math.random().toString(36).slice(-8) + '!1';
+            // Generate a secure random password
+            const randomPassword = crypto.randomBytes(16).toString('hex') + 'A!1';
+
             user = await User.create({
                 name: name || 'Google User',
                 email: email,
@@ -211,6 +212,7 @@ exports.resetPassword = async (req, res, next) => {
 };
 
 exports.protect = async (req, res, next) => {
+    console.time('ProtectMiddleware');
     try {
         // 1) Getting token and check of it's there
         let token;
@@ -222,6 +224,7 @@ exports.protect = async (req, res, next) => {
         }
 
         if (!token) {
+            console.timeEnd('ProtectMiddleware');
             return next(
                 new AppError('You are not logged in! Please log in to get access.', 401)
             );
@@ -233,6 +236,7 @@ exports.protect = async (req, res, next) => {
         // 3) Check if user still exists
         const currentUser = await User.findById(decoded.id);
         if (!currentUser) {
+            console.timeEnd('ProtectMiddleware');
             return next(
                 new AppError(
                     'The user belonging to this token does no longer exist.',
@@ -243,6 +247,7 @@ exports.protect = async (req, res, next) => {
 
         // 4) Check if user changed password after the token was issued
         if (currentUser.changedPasswordAfter && currentUser.changedPasswordAfter(decoded.iat)) {
+            console.timeEnd('ProtectMiddleware');
             return next(
                 new AppError('User recently changed password! Please log in again.', 401)
             );
@@ -250,8 +255,10 @@ exports.protect = async (req, res, next) => {
 
         // GRANT ACCESS TO PROTECTED ROUTE
         req.user = currentUser;
+        console.timeEnd('ProtectMiddleware');
         next();
     } catch (err) {
+        console.timeEnd('ProtectMiddleware');
         next(err);
     }
 };
