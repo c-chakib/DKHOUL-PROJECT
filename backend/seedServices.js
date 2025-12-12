@@ -133,6 +133,98 @@ const uploadToS3 = async (filename, keyName) => {
     }
 };
 
+const determineCategory = (key) => {
+    if (['coworking', 'meeting', 'luggage', 'shower', 'nap', 'parking', 'rooftop', 'kitchen', 'charging'].includes(key)) return 'SPACE';
+    if (['souk', 'pickup', 'family', 'transport'].includes(key)) return 'CONNECT';
+    return 'SKILL'; // Default
+};
+
+const getTitleForKey = (key) => {
+    const titles = {
+        'cooking': 'Mastering Moroccan Tajine',
+        'coworking': 'Silent Coworking Hub',
+        'meeting': 'Private Meeting Room',
+        'souk': 'Gems of the Souk Tour',
+        'luggage': 'Secure Luggage Keep',
+        'shower': 'Refresh Express Shower',
+        'nap': 'Power Nap Station',
+        'parking': '24/7 Secure Parking',
+        'artisan': 'Zellige & Craft Workshop',
+        'music': 'Oud & Music Session',
+        'pickup': 'Airport Fast Pickup',
+        'family': 'Trusted Family Care',
+        'rooftop': 'Sunset Rooftop Access',
+        'sport': 'Medina Yoga & Wellness',
+        'darija': 'Speak Darija Like a Local'
+    };
+    return titles[key] || `${key.charAt(0).toUpperCase() + key.slice(1)} Experience`;
+};
+
+const seedWithImages = async (hostUserId) => {
+    const services = [];
+    console.log('🖼️  Creating AI Image Services...');
+
+    for (const [key, files] of Object.entries(IMAGE_MAPPING)) {
+        for (const filename of files) {
+            const cat = determineCategory(key);
+            const title = getTitleForKey(key);
+
+            const s3Url = await uploadToS3(filename, `service_${key}_${Date.now()}_${Math.random()}`);
+            if (s3Url) {
+                const city = getRandomElement(['Marrakech', 'Casablanca', 'Fes', 'Tangier']); // distribute these top assets
+                const vibe = getRandomElement(CITY_CONFIG[city].vibes);
+                services.push({
+                    title: `${title} - ${city}`,
+                    host: hostUserId,
+                    description: generateDescription(title, city, vibe),
+                    price: getRandomPrice(),
+                    category: cat,
+                    images: [s3Url],
+                    city: city,
+                    location: { type: 'Point', coordinates: CITY_CONFIG[city].coords, address: `Quartier ${vibe}, ${city}` },
+                    duration: 120, maxParticipants: 6, timeSlots: ["10:00", "14:00"], languages: ['Français', 'Anglais'], included: ['Service Pro'], requirements: ['Sourire']
+                });
+            }
+        }
+    }
+    return services;
+};
+
+const seedWithoutImages = (hostUserId, currentCount) => {
+    const services = [];
+    console.log(`📝 Filling remaining to reach 60 (Current: ${currentCount})...`);
+    const cities = Object.keys(CITY_CONFIG);
+
+    while (currentCount + services.length < 60) {
+        const city = getRandomElement(cities);
+        const config = CITY_CONFIG[city];
+        const activity = getRandomElement(config.activities);
+        const vibe = getRandomElement(config.vibes);
+
+        let cat = 'CONNECT';
+        const tLower = activity.toLowerCase();
+        if (tLower.includes('cours') || tLower.includes('atelier') || tLower.includes('initiation')) cat = 'SKILL';
+        if (tLower.includes('bivouac') || tLower.includes('parking') || tLower.includes('douche') || tLower.includes('coworking')) cat = 'SPACE';
+
+        services.push({
+            title: `${activity} - ${vibe}`,
+            host: hostUserId,
+            description: generateDescription(activity, city, vibe),
+            price: getRandomPrice(),
+            category: cat,
+            images: [], // Explicitly empty
+            city: city,
+            location: {
+                type: 'Point',
+                coordinates: [config.coords[0] + getRandomFloat(-0.01, 0.01), config.coords[1] + getRandomFloat(-0.01, 0.01)],
+                address: `Quartier ${vibe}, ${city}`
+            },
+            duration: 90, maxParticipants: 3, timeSlots: ["10:00", "16:00"], languages: getRandomSubset(LANGUAGES, 2), included: ['Service Basic'], requirements: ['Ponctualité']
+        });
+    }
+    return services;
+};
+
 const seedDB = async () => {
     try {
         console.log('🌱 Connecting to MongoDB...');
@@ -148,86 +240,16 @@ const seedDB = async () => {
         await Service.deleteMany({});
         console.log('🧹 DB Cleaned.');
 
-        const servicesPayload = [];
-        const usedDescriptions = new Set(); // Avoid duplicates
+        // 1. SERVICES WITH IMAGES
+        const imageServices = await seedWithImages(hostUser._id);
 
-        // 1. SERVICES WITH IMAGES (from Inventory)
-        console.log('🖼️  Creating AI Image Services...');
-        for (const [key, files] of Object.entries(IMAGE_MAPPING)) {
-            for (const filename of files) {
-                let cat = 'SKILL';
-                if (['coworking', 'meeting', 'luggage', 'shower', 'nap', 'parking', 'rooftop', 'kitchen', 'charging'].includes(key)) cat = 'SPACE';
-                if (['souk', 'pickup', 'family', 'transport'].includes(key)) cat = 'CONNECT';
+        // 2. FILL UP TO 60
+        const fillerServices = seedWithoutImages(hostUser._id, imageServices.length);
 
-                let title = `${key.charAt(0).toUpperCase() + key.slice(1)} Experience`;
-                if (key === 'cooking') title = 'Mastering Moroccan Tajine';
-                if (key === 'coworking') title = 'Silent Coworking Hub';
-                if (key === 'meeting') title = 'Private Meeting Room';
-                if (key === 'souk') title = 'Gems of the Souk Tour';
-                if (key === 'luggage') title = 'Secure Luggage Keep';
-                if (key === 'shower') title = 'Refresh Express Shower';
-                if (key === 'nap') title = 'Power Nap Station';
-                if (key === 'parking') title = '24/7 Secure Parking';
-                if (key === 'artisan') title = 'Zellige & Craft Workshop';
-                if (key === 'music') title = 'Oud & Music Session';
-                if (key === 'pickup') title = 'Airport Fast Pickup';
-                if (key === 'family') title = 'Trusted Family Care';
-                if (key === 'rooftop') title = 'Sunset Rooftop Access';
-                if (key === 'sport') title = 'Medina Yoga & Wellness';
-                if (key === 'darija') title = 'Speak Darija Like a Local';
+        const allServices = [...imageServices, ...fillerServices];
 
-                const s3Url = await uploadToS3(filename, `service_${key}_${Date.now()}_${Math.random()}`);
-                if (s3Url) {
-                    const city = getRandomElement(['Marrakech', 'Casablanca', 'Fes', 'Tangier']); // distribute these top assets
-                    const vibe = getRandomElement(CITY_CONFIG[city].vibes);
-                    servicesPayload.push({
-                        title: `${title} - ${city}`,
-                        host: hostUser._id,
-                        description: generateDescription(title, city, vibe),
-                        price: getRandomPrice(),
-                        category: cat,
-                        images: [s3Url],
-                        city: city,
-                        location: { type: 'Point', coordinates: CITY_CONFIG[city].coords, address: `Quartier ${vibe}, ${city}` },
-                        duration: 120, maxParticipants: 6, timeSlots: ["10:00", "14:00"], languages: ['Français', 'Anglais'], included: ['Service Pro'], requirements: ['Sourire']
-                    });
-                }
-            }
-        }
-
-        // 2. FILL UP TO 60 (NO IMAGES)
-        console.log(`📝 Filling remaining to reach 60 (Current: ${servicesPayload.length})...`);
-        const cities = Object.keys(CITY_CONFIG);
-        while (servicesPayload.length < 60) {
-            const city = getRandomElement(cities);
-            const config = CITY_CONFIG[city];
-            const activity = getRandomElement(config.activities);
-            const vibe = getRandomElement(config.vibes);
-
-            let cat = 'CONNECT';
-            const tLower = activity.toLowerCase();
-            if (tLower.includes('cours') || tLower.includes('atelier') || tLower.includes('initiation')) cat = 'SKILL';
-            if (tLower.includes('bivouac') || tLower.includes('parking') || tLower.includes('douche') || tLower.includes('coworking')) cat = 'SPACE';
-
-            servicesPayload.push({
-                title: `${activity} - ${vibe}`,
-                host: hostUser._id,
-                description: generateDescription(activity, city, vibe),
-                price: getRandomPrice(),
-                category: cat,
-                images: [], // Explicitly empty
-                city: city,
-                location: {
-                    type: 'Point',
-                    coordinates: [config.coords[0] + getRandomFloat(-0.01, 0.01), config.coords[1] + getRandomFloat(-0.01, 0.01)],
-                    address: `Quartier ${vibe}, ${city}`
-                },
-                duration: 90, maxParticipants: 3, timeSlots: ["10:00", "16:00"], languages: getRandomSubset(LANGUAGES, 2), included: ['Service Basic'], requirements: ['Ponctualité']
-            });
-        }
-
-        console.log(`💾 Inserting ${servicesPayload.length} services...`);
-        await Service.insertMany(servicesPayload);
+        console.log(`💾 Inserting ${allServices.length} services...`);
+        await Service.insertMany(allServices);
         console.log('🎉 SUCCESS.');
         process.exit(0);
 
@@ -236,4 +258,5 @@ const seedDB = async () => {
         process.exit(1);
     }
 };
+
 seedDB();

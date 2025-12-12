@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
+import { Booking } from '../models/booking.model';
+
 @Injectable({
     providedIn: 'root'
 })
 export class BookingService {
-    private http = inject(HttpClient);
-    private apiUrl = `${environment.apiUrl}/bookings`;
+    private readonly http = inject(HttpClient);
+    private readonly apiUrl = `${environment.apiUrl}/bookings`;
 
     createPaymentIntent(serviceId: string, price: number, date?: string, time?: string, guests?: number, duration?: number): Observable<{ clientSecret: string; bookingId: string }> {
         return this.http.post<{ clientSecret: string; bookingId: string }>(`${this.apiUrl}/create-intent`, {
@@ -21,27 +23,27 @@ export class BookingService {
         });
     }
 
-    getMyBookings(): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/my-bookings`);
+    getMyBookings(): Observable<{ status: string, data: { bookings: Booking[] } }> {
+        return this.http.get<{ status: string, data: { bookings: Booking[] } }>(`${this.apiUrl}/my-bookings`);
     }
 
-    confirmBooking(bookingId: string): Observable<any> {
-        return this.http.patch<any>(`${this.apiUrl}/confirm/${bookingId}`, {});
+    confirmBooking(bookingId: string): Observable<{ status: string, data: { booking: Booking } }> {
+        return this.http.patch<{ status: string, data: { booking: Booking } }>(`${this.apiUrl}/confirm/${bookingId}`, {});
     }
 
-    getHostBookings(): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/host-bookings`);
+    getHostBookings(): Observable<{ status: string, data: { bookings: Booking[] } }> {
+        return this.http.get<{ status: string, data: { bookings: Booking[] } }>(`${this.apiUrl}/host-bookings`);
     }
 
-    updateStatus(bookingId: string, status: 'confirmed' | 'cancelled'): Observable<any> {
-        return this.http.patch<any>(`${this.apiUrl}/${bookingId}/status`, { status });
+    updateStatus(bookingId: string, status: 'confirmed' | 'cancelled'): Observable<{ status: string, data: { booking: Booking } }> {
+        return this.http.patch<{ status: string, data: { booking: Booking } }>(`${this.apiUrl}/${bookingId}/status`, { status });
     }
 
-    getBookingById(id: string): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/${id}`);
+    getBookingById(id: string): Observable<{ status: string, data: { booking: Booking } }> {
+        return this.http.get<{ status: string, data: { booking: Booking } }>(`${this.apiUrl}/${id}`);
     }
 
-    deleteBooking(id: string): Observable<any> {
-        return this.http.delete<any>(`${this.apiUrl}/${id}`);
+    deleteBooking(id: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/${id}`);
     }
 }

@@ -2,8 +2,8 @@
     <!-- Hero -->
     <div class="bg-gradient-to-br from-[#BC5627] to-[#8B3D1C] text-white py-16">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">Nous contacter</h1>
-            <p class="text-xl opacity-90">Notre équipe est là pour vous aider</p>
+            <h1 class="text-4xl font-bold mb-4">{{ 'STATIC.CONTACT.TITLE' | translate }}</h1>
+            <p class="text-xl opacity-90">{{ 'STATIC.CONTACT.SUBTITLE' | translate }}</p>
         </div>
     </div>
 
@@ -16,22 +16,22 @@
                 
                 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nom complet</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{ 'STATIC.CONTACT.FORM.NAME' | translate }}</label>
                         <input type="text" id="name" formControlName="name" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition">
                     </div>
                     
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{ 'STATIC.CONTACT.FORM.EMAIL' | translate }}</label>
                         <input type="email" id="email" formControlName="email" 
                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition">
                     </div>
                     
                     <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Sujet</label>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">{{ 'STATIC.CONTACT.FORM.SUBJECT' | translate }}</label>
                         <select id="subject" formControlName="subject" 
                                 class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition">
-                            <option value="">Sélectionnez un sujet</option>
+                            <option value="">{{ 'COMMON.CHOOSE' | translate }}</option>
                             <option value="reservation">Question sur une réservation</option>
                             <option value="payment">Problème de paiement</option>
                             <option value="host">Devenir hôte</option>
@@ -41,7 +41,7 @@
                     </div>
                     
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">{{ 'STATIC.CONTACT.FORM.MESSAGE' | translate }}</label>
                         <textarea id="message" formControlName="message" rows="5"
                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition resize-none"
                                   placeholder="Décrivez votre demande..."></textarea>
@@ -50,9 +50,9 @@
                     <button type="submit" [disabled]="isSubmitting()" 
                             class="w-full py-3 bg-[#BC5627] text-white font-bold rounded-lg hover:bg-[#a04620] transition shadow-md flex items-center justify-center">
                         @if (isSubmitting()) {
-                            <i class="fas fa-spinner fa-spin mr-2"></i> Envoi en cours...
+                            <i class="fas fa-spinner fa-spin mr-2"></i> {{ 'SHARED.LOADING' | translate }}
                         } @else {
-                            <i class="fas fa-paper-plane mr-2"></i> Envoyer
+                            <i class="fas fa-paper-plane mr-2"></i> {{ 'STATIC.CONTACT.FORM.SEND' | translate }}
                         }
                     </button>
                 </form>
@@ -60,7 +60,8 @@
 
             <!-- Contact Info -->
             <div class="space-y-6">
-                <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <!-- Info cards omitted for brevity, keeping structure -->
+                 <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
                     <div class="flex items-start gap-4">
                         <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
                             <i class="fas fa-envelope text-[#BC5627] text-xl"></i>

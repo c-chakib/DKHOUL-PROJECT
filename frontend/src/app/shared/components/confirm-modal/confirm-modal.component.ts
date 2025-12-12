@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-confirm-modal',
-    standalone: true,
-    imports: [CommonModule],
-    template: `
+  selector: 'app-confirm-modal',
+  standalone: true,
+  imports: [CommonModule],
+  template: `
     @if (isOpen) {
       <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
         <!-- Backdrop -->
@@ -53,21 +53,21 @@ import { CommonModule } from '@angular/common';
   `
 })
 export class ConfirmModalComponent {
-    @Input() isOpen = false;
-    @Input() title = 'Confirmation';
-    @Input() message = 'Are you sure?';
-    @Input() confirmText = 'Confirm';
-    @Input() cancelText = 'Cancel';
-    @Input() type: 'success' | 'danger' | 'warning' = 'success';
+  @Input() isOpen = false;
+  @Input() title = 'Confirmation';
+  @Input() message = 'Are you sure?';
+  @Input() confirmText = 'Confirm';
+  @Input() cancelText = 'Cancel';
+  @Input() type: 'success' | 'danger' | 'warning' = 'success';
 
-    @Output() confirm = new EventEmitter<void>();
-    @Output() cancel = new EventEmitter<void>();
+  @Output() confirmEvent = new EventEmitter<void>();
+  @Output() cancelEvent = new EventEmitter<void>();
 
-    onConfirm() {
-        this.confirm.emit();
-    }
+  onConfirm() {
+    this.confirmEvent.emit();
+  }
 
-    onCancel() {
-        this.cancel.emit();
-    }
+  onCancel() {
+    this.cancelEvent.emit();
+  }
 }

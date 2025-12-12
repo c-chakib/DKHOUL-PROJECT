@@ -9,18 +9,21 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 import { MatIconModule } from '@angular/material/icon';
-
 import { WebpUrlPipe } from '../../shared/pipes/webp-url.pipe';
+import { TranslateModule } from '@ngx-translate/core';
+import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
     selector: 'app-marketplace',
     standalone: true,
-    imports: [CommonModule, MapComponent, FormsModule, MatIconModule, WebpUrlPipe],
+    imports: [CommonModule, MapComponent, FormsModule, MatIconModule, WebpUrlPipe, TranslateModule, LangSelectPipe],
     templateUrl: './marketplace.component.html',
     styleUrls: ['./marketplace.component.scss']
 })
 export class MarketplaceComponent implements OnInit, OnDestroy {
     private serviceService = inject(ServiceService);
+    public languageService = inject(LanguageService);
     private router = inject(Router);
 
     // Search Debounce Subject
@@ -65,10 +68,10 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
     cities = ['Tout le Maroc', 'Casablanca', 'Marrakech', 'Agadir', 'Tanger', 'Fès', 'Rabat', 'Essaouira', 'Merzouga', 'Chefchaouen', 'Ouarzazate'];
 
     categories = [
-        { value: '', label: 'All' },
-        { value: 'SPACE', label: 'Spaces' },
-        { value: 'SKILL', label: 'Skills' },
-        { value: 'CONNECT', label: 'Connect' }
+        { value: '', label: 'ALL' },
+        { value: 'SPACE', label: 'SPACE' },
+        { value: 'SKILL', label: 'SKILL' },
+        { value: 'CONNECT', label: 'CONNECT' }
     ];
 
     sortOptions = [

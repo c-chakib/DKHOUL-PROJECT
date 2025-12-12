@@ -9,7 +9,10 @@ const connectDB = async () => {
             if (!uri.includes('dkhoul_test')) uri += '_test'; // Fallback
         }
         const conn = await mongoose.connect(uri, {
-            dbName: process.env.NODE_ENV === 'test' ? 'dkhoul_test' : 'dkhoul'
+            dbName: process.env.NODE_ENV === 'test' ? 'dkhoul_test' : 'dkhoul',
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
         });
 
         console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);

@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, inject, signal, computed, Input, SimpleChanges } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ImageFallbackDirective } from '../../../shared/directives/image-fallback.directive';
@@ -10,7 +11,7 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
 @Component({
     selector: 'app-my-bookings',
     standalone: true,
-    imports: [CommonModule, RouterLink, ImageFallbackDirective, ConfirmModalComponent],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective, ConfirmModalComponent, TranslateModule],
     styles: [`
         .filter-btn {
             @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent;
@@ -24,11 +25,11 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
     `],
     template: `
     <div class="mb-6 flex flex-wrap gap-2">
-        <button (click)="setFilter('all')" [class]="filter() === 'all' ? 'filter-btn active' : 'filter-btn inactive'">Tout</button>
-        <button (click)="setFilter('pending')" [class]="filter() === 'pending' ? 'filter-btn active' : 'filter-btn inactive'">⏳ En attente</button>
-        <button (click)="setFilter('confirmed')" [class]="filter() === 'confirmed' ? 'filter-btn active' : 'filter-btn inactive'">✅ Confirmées</button>
-        <button (click)="setFilter('completed')" [class]="filter() === 'completed' ? 'filter-btn active' : 'filter-btn inactive'">✨ Terminées</button>
-        <button (click)="setFilter('cancelled')" [class]="filter() === 'cancelled' ? 'filter-btn active' : 'filter-btn inactive'">❌ Annulées</button>
+        <button (click)="setFilter('all')" [class]="filter() === 'all' ? 'filter-btn active' : 'filter-btn inactive'">{{ 'DASHBOARD.MY_BOOKINGS.FILTER_ALL' | translate }}</button>
+        <button (click)="setFilter('pending')" [class]="filter() === 'pending' ? 'filter-btn active' : 'filter-btn inactive'">⏳ {{ 'DASHBOARD.MY_BOOKINGS.FILTER_PENDING' | translate }}</button>
+        <button (click)="setFilter('confirmed')" [class]="filter() === 'confirmed' ? 'filter-btn active' : 'filter-btn inactive'">✅ {{ 'DASHBOARD.MY_BOOKINGS.FILTER_CONFIRMED' | translate }}</button>
+        <button (click)="setFilter('completed')" [class]="filter() === 'completed' ? 'filter-btn active' : 'filter-btn inactive'">✨ {{ 'DASHBOARD.MY_BOOKINGS.FILTER_COMPLETED' | translate }}</button>
+        <button (click)="setFilter('cancelled')" [class]="filter() === 'cancelled' ? 'filter-btn active' : 'filter-btn inactive'">❌ {{ 'DASHBOARD.MY_BOOKINGS.FILTER_CANCELLED' | translate }}</button>
     </div>
 
     @if (loading) {
@@ -43,9 +44,9 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
                 <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <span class="text-3xl">🎫</span>
                 </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">Aucune réservation {{ filter() !== 'all' ? 'trouvée' : '' }}</h3>
-                <p class="text-gray-500 mb-6" *ngIf="filter() === 'all'">Vous n'avez pas encore de réservation.</p>
-                <a *ngIf="filter() === 'all'" routerLink="/marketplace" class="text-primary hover:underline font-medium">Explorer les expériences</a>
+                <h3 class="text-lg font-bold text-gray-900 mb-2">{{ 'DASHBOARD.MY_BOOKINGS.EMPTY_TITLE' | translate }}</h3>
+                <p class="text-gray-500 mb-6" *ngIf="filter() === 'all'">{{ 'DASHBOARD.MY_BOOKINGS.EMPTY_DESC' | translate }}</p>
+                <a *ngIf="filter() === 'all'" routerLink="/marketplace" class="text-primary hover:underline font-medium">{{ 'DASHBOARD.MY_BOOKINGS.EXPLORE_BTN' | translate }}</a>
             </div>
         } @else {
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,11 +56,11 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
                         <div class="bg-gray-50 rounded-xl shadow-sm border border-gray-200 p-6 relative opacity-75">
                             <button (click)="initDelete(booking._id, $event)" 
                                     class="absolute top-3 right-3 p-2 bg-white rounded-full shadow-sm text-red-500 hover:bg-red-50 z-20 transition-colors"
-                                    title="Supprimer cette réservation invalide">
+                                    [title]="'DASHBOARD.MY_BOOKINGS.DELETE_BTN' | translate">
                                 🗑️
                             </button>
                             <div class="h-40 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
-                                <span class="text-gray-400 font-medium">Service Supprimé</span>
+                                <span class="text-gray-400 font-medium">{{ 'DASHBOARD.MY_BOOKINGS.DELETED_SERVICE' | translate }}</span>
                             </div>
                             <div class="space-y-2">
                                 <div class="h-4 bg-gray-200 rounded w-3/4"></div>
@@ -78,7 +79,7 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
                             <!-- Delete Button (Top Right) -->
                             <button (click)="initDelete(booking._id, $event)" 
                                     class="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur rounded-full shadow-sm text-gray-400 hover:text-red-500 hover:bg-white z-20 transition-colors opacity-0 group-hover:opacity-100"
-                                    title="Supprimer">
+                                    [title]="'DASHBOARD.MY_BOOKINGS.DELETE_BTN' | translate">
                                 🗑️
                             </button>
 
@@ -92,7 +93,7 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
                                 <div class="absolute top-3 left-3">
                                     <span [class]="getStatusClass(booking.status)"
                                           class="px-3 py-1 rounded-full text-xs font-bold shadow-sm backdrop-blur-md">
-                                        {{ getStatusLabel(booking.status) }}
+                                        {{ getStatusLabel(booking.status) | translate }}
                                     </span>
                                 </div>
                             </div>
@@ -122,13 +123,13 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
 
     <app-confirm-modal 
         [isOpen]="showModal()"
-        [title]="modalConfig().title"
-        [message]="modalConfig().message"
-        [confirmText]="modalConfig().confirmText"
-        [cancelText]="modalConfig().cancelText"
+        [title]="modalConfig().title | translate"
+        [message]="modalConfig().message | translate"
+        [confirmText]="modalConfig().confirmText | translate"
+        [cancelText]="modalConfig().cancelText | translate"
         [type]="modalConfig().type"
-        (confirm)="modalConfig().action()"
-        (cancel)="showModal.set(false)">
+        (confirmEvent)="modalConfig().action()"
+        (cancelEvent)="showModal.set(false)">
     </app-confirm-modal>
     `
 })
@@ -138,6 +139,7 @@ export class MyBookingsComponent implements OnChanges {
 
     private bookingService = inject(BookingService);
     private toast = inject(ToastService);
+    private translate = inject(TranslateService);
 
     bookingsSig = signal<any[]>([]);
     filter = signal<string>('all');
@@ -147,8 +149,8 @@ export class MyBookingsComponent implements OnChanges {
     modalConfig = signal({
         title: '',
         message: '',
-        confirmText: 'Supprimer',
-        cancelText: 'Annuler',
+        confirmText: 'DASHBOARD.MY_BOOKINGS.DELETE_BTN',
+        cancelText: 'DASHBOARD.MY_BOOKINGS.CANCEL_BTN',
         type: 'danger' as 'danger' | 'success',
         action: () => { }
     });
@@ -175,10 +177,10 @@ export class MyBookingsComponent implements OnChanges {
         event.preventDefault();
 
         this.modalConfig.set({
-            title: 'Supprimer la réservation',
-            message: 'Voulez-vous vraiment supprimer cette réservation de votre historique ? Cette action est irréversible.',
-            confirmText: 'Supprimer',
-            cancelText: 'Annuler',
+            title: 'DASHBOARD.MY_BOOKINGS.DELETE_TITLE',
+            message: 'DASHBOARD.MY_BOOKINGS.DELETE_MSG',
+            confirmText: 'DASHBOARD.MY_BOOKINGS.DELETE_BTN',
+            cancelText: 'DASHBOARD.MY_BOOKINGS.CANCEL_BTN',
             type: 'danger',
             action: () => this.performDelete(id)
         });
@@ -190,11 +192,11 @@ export class MyBookingsComponent implements OnChanges {
         this.bookingService.deleteBooking(id).subscribe({
             next: () => {
                 this.bookingsSig.update(list => list.filter(b => b._id !== id));
-                this.toast.success('Réservation supprimée');
+                this.toast.success('DASHBOARD.TOASTS.DELETED'); // Need to ensure this key exists or use existing common toast
             },
             error: (err) => {
                 console.error('Delete failed', err);
-                this.toast.error('Impossible de supprimer la réservation.');
+                this.toast.error('TOASTS.ERROR');
             }
         });
     }
@@ -211,10 +213,10 @@ export class MyBookingsComponent implements OnChanges {
 
     getStatusLabel(status: string): string {
         switch (status) {
-            case 'pending': return 'En attente';
-            case 'confirmed': return 'Confirmée';
-            case 'cancelled': return 'Annulée';
-            case 'completed': return 'Terminée';
+            case 'pending': return 'DASHBOARD.HOST_BOOKINGS.STATUS.PENDING';
+            case 'confirmed': return 'DASHBOARD.HOST_BOOKINGS.STATUS.CONFIRMED';
+            case 'completed': return 'DASHBOARD.HOST_BOOKINGS.STATUS.COMPLETED';
+            case 'cancelled': return 'DASHBOARD.HOST_BOOKINGS.STATUS.CANCELLED';
             default: return status;
         }
     }

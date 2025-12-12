@@ -4,11 +4,12 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UserService } from '../../../core/services/user.service';
 import { ToastService } from '../../../core/services/toast.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-reset-password',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
     templateUrl: './reset-password.component.html',
     styleUrls: ['./reset-password.component.scss']
 })
@@ -18,6 +19,7 @@ export class ResetPasswordComponent implements OnInit {
     private router = inject(Router);
     private userService = inject(UserService);
     private toast = inject(ToastService);
+    private translate = inject(TranslateService);
 
     token = '';
 
@@ -37,7 +39,7 @@ export class ResetPasswordComponent implements OnInit {
     ngOnInit() {
         this.token = this.route.snapshot.paramMap.get('token') || '';
         if (!this.token) {
-            this.toast.error('Lien de réinitialisation invalide');
+            this.toast.error(this.translate.instant('AUTH.TOAST_INVALID_TOKEN'));
             this.router.navigate(['/forgot-password']);
         }
     }
@@ -49,7 +51,7 @@ export class ResetPasswordComponent implements OnInit {
         }
 
         if (this.form.value.password !== this.form.value.passwordConfirm) {
-            this.errorMsg.set('Les mots de passe ne correspondent pas');
+            this.errorMsg.set(this.translate.instant('AUTH.ERRORS.PASSWORD_MISMATCH'));
             return;
         }
 
@@ -63,15 +65,15 @@ export class ResetPasswordComponent implements OnInit {
         ).subscribe({
             next: (res) => {
                 this.resetSuccess.set(true);
-                this.toast.success('Mot de passe réinitialisé avec succès !');
+                this.toast.success(this.translate.instant('AUTH.TOAST_RESET_SUCCESS'));
                 if (res.token) {
                     localStorage.setItem('token', res.token);
                 }
                 this.loading.set(false);
             },
             error: (err) => {
-                this.errorMsg.set(err.error?.message || 'Token invalide ou expiré');
-                this.toast.error('Échec de la réinitialisation');
+                this.errorMsg.set(err.error?.message || this.translate.instant('AUTH.TOAST_INVALID_TOKEN'));
+                this.toast.error(this.translate.instant('AUTH.TOAST_RESET_ERROR'));
                 this.loading.set(false);
             }
         });

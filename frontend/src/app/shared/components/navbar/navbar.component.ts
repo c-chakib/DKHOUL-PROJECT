@@ -2,18 +2,21 @@ import { Component, HostListener, inject, signal, computed } from '@angular/core
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { LanguageService } from '../../../core/services/language.service';
 import { environment } from '../../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [CommonModule, RouterLink, RouterLinkActive],
+    imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule],
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-    private authService = inject(AuthService);
-    private router = inject(Router);
+    private readonly authService = inject(AuthService);
+    public readonly languageService = inject(LanguageService);
+    private readonly router = inject(Router);
 
     // Signals
 
@@ -33,6 +36,7 @@ export class NavbarComponent {
     isScrolled = signal(false);
     isMobileMenuOpen = signal(false);
     isProfileMenuOpen = signal(false);
+    isLangMenuOpen = signal(false);
 
     @HostListener('window:scroll')
     onWindowScroll() {
@@ -49,10 +53,20 @@ export class NavbarComponent {
 
     toggleProfileMenu() {
         this.isProfileMenuOpen.update(v => !v);
+        this.isLangMenuOpen.set(false);
     }
 
     closeProfileMenu() {
         this.isProfileMenuOpen.set(false);
+    }
+
+    toggleLangMenu() {
+        this.isLangMenuOpen.update(v => !v);
+        this.isProfileMenuOpen.set(false);
+    }
+
+    closeLangMenu() {
+        this.isLangMenuOpen.set(false);
     }
 
     onLogout() {
@@ -60,5 +74,11 @@ export class NavbarComponent {
         this.isProfileMenuOpen.set(false);
         this.isMobileMenuOpen.set(false);
         this.router.navigate(['/']);
+    }
+
+    switchLanguage(lang: string) {
+        this.languageService.switchLanguage(lang);
+        this.isMobileMenuOpen.set(false);
+        this.isLangMenuOpen.set(false);
     }
 }

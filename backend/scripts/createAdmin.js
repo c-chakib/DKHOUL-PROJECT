@@ -15,13 +15,11 @@ const DB = process.env.MONGODB_URI || (process.env.DATABASE ? process.env.DATABA
 
 console.log('Using Database:', DB);
 
-mongoose
-    .connect(DB)
-    .then(() => console.log('DB connection successful!'))
-    .catch((err) => console.error('DB connection error:', err));
-
 const createAdmins = async () => {
     try {
+        await mongoose.connect(DB);
+        console.log('DB connection successful!');
+
         // 1. Create Super Admin
         const superAdminEmail = 'superadmin@dkhoul.ma';
         await User.deleteOne({ email: superAdminEmail }); // FORCE DELETE to ensure password reset
@@ -67,9 +65,8 @@ const createAdmins = async () => {
     } catch (err) {
         console.error('❌ Error creating admins:', err);
     } finally {
-        setTimeout(() => {
-            process.exit();
-        }, 1000);
+        await mongoose.disconnect();
+        process.exit();
     }
 };
 

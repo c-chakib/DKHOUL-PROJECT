@@ -2,73 +2,73 @@
 <div class="fixed top-0 left-0 h-1 bg-primary z-50 transition-all duration-300" id="scrollIndicator"></div>
 
 <!-- Hero Section -->
-<section class="relative min-h-[90vh] flex items-center pt-28 pb-12 bg-background overflow-hidden">
+<section class="relative min-h-[90vh] flex items-center pt-28 pb-12 bg-background overflow-hidden" [dir]="translate.currentLang === 'ar' ? 'rtl' : 'ltr'">
   <!-- Background Patterns -->
   <div class="absolute inset-0 bg-dot-pattern opacity-30 pointer-events-none"></div>
   <div class="absolute inset-0 bg-gradient-to-b from-transparent to-background pointer-events-none"></div>
 
   <div class="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
     <!-- Hero Content -->
-    <div class="space-y-8 text-center lg:text-left">
+    <div class="space-y-8 text-center lg:text-left rtl:lg:text-right">
       <h1 class="text-5xl lg:text-7xl font-display font-bold text-secondary leading-tight">
-        Ne visitez pas le Maroc.
-        <span class="text-primary block mt-2">Vivez-le de l'intérieur.</span>
+        {{ 'HOME.HERO.TITLE' | translate }}
+        <span class="text-primary block mt-2">{{ 'HOME.HERO.TITLE_HIGHLIGHT' | translate }}</span>
       </h1>
       
-      <p class="text-lg text-secondary/80 max-w-lg leading-relaxed">
-        La première plateforme qui vous ouvre les portes des maisons marocaines.
-        <span class="block mt-2 font-medium text-secondary">Espaces privés • Savoir-faire • Rencontres</span>
+      <p class="text-lg text-secondary/80 max-w-lg leading-relaxed rtl:mr-0 rtl:ml-auto ltr:mr-auto">
+        {{ 'HOME.HERO.SUBTITLE' | translate }}
+        <span class="block mt-2 font-medium text-secondary">{{ 'HOME.HERO.SUBTITLE_HIGHLIGHT' | translate }}</span>
       </p>
       
-      <div class="text-2xl text-primary font-medium h-8 flex items-center gap-2">
+      <div class="text-2xl text-primary font-medium h-8 flex items-center justify-center lg:justify-start rtl:lg:justify-start gap-2">
         <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        <app-typed-text [texts]="typedTexts" [typeSpeed]="50" [backSpeed]="30" [loop]="true"></app-typed-text>
+        <app-typed-text [texts]="translatedTexts" [typeSpeed]="50" [backSpeed]="30" [loop]="true"></app-typed-text>
       </div>
 
-      <div class="flex flex-wrap justify-center lg:justify-start gap-3">
+      <div class="flex flex-wrap justify-center lg:justify-start rtl:lg:justify-start gap-3">
         <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
           <mat-icon class="text-tertiary !w-5 !h-5 text-[20px]">verified</mat-icon>
-          100% Authentique
+          {{ 'HOME.HERO.BADGES.AUTHENTIC' | translate }}
         </div>
         <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
           <mat-icon class="text-primary !w-5 !h-5 text-[20px]">savings</mat-icon>
-          Prix Locaux & Équitables
+          {{ 'HOME.HERO.BADGES.LOCAL_PRICE' | translate }}
         </div>
         <div class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-outline/10 text-sm font-medium text-secondary">
           <mat-icon class="text-secondary !w-5 !h-5 text-[20px]">security</mat-icon>
-          Paiement Sécurisé
+          {{ 'HOME.HERO.BADGES.SECURE' | translate }}
         </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start rtl:lg:justify-start">
         <button (click)="navigateToServices()" class="bg-[#BC5627] text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:bg-[#a0481f] transition-all duration-300 flex items-center gap-2 transform hover:-translate-y-0.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          Explorer les Services
+          {{ 'HOME.HERO.CTA_EXPLORE' | translate }}
         </button>
         @if (!currentUser()) {
         <button (click)="navigateToBecomeProvider()" class="bg-white text-[#BC5627] border-2 border-[#BC5627] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#BC5627]/5 transition-all duration-300 flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
-          Devenir Hôte
+          {{ 'HOME.HERO.CTA_HOST' | translate }}
         </button>
         }
       </div>
 
       <div class="grid grid-cols-3 gap-8 pt-8 border-t border-outline/20">
-        <div *ngFor="let stat of stats" class="text-center lg:text-left">
+        <div *ngFor="let stat of stats" class="text-center lg:text-left rtl:lg:text-right">
           <div class="text-3xl font-bold text-primary">
             {{ stat.isK ? (stat.current / 1000 | number:'1.0-1') + 'k' : stat.current }}{{ stat.suffix }}
           </div>
-          <div class="text-sm text-secondary/70">{{ stat.label }}</div>
+          <div class="text-sm text-secondary/70">{{ stat.labelKey | translate }}</div>
         </div>
       </div>
     </div>
 
     <!-- Hero Image/Carousel -->
-    <div class="relative hidden lg:block h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+    <div class="relative hidden lg:block h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500 rtl:-rotate-2">
       <app-hero-carousel [images]="heroImages"></app-hero-carousel>
     </div>
   </div>
@@ -78,15 +78,15 @@
 <section class="py-24 bg-surface-variant">
   <div class="container mx-auto px-4">
     <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="text-4xl font-display font-bold text-secondary mb-4">L'Expérience DKHOUL</h2>
-      <p class="text-xl text-secondary/70">Monétise ton espace, vends ton savoir-faire, loue ton temps</p>
+      <h2 class="text-4xl font-display font-bold text-secondary mb-4">{{ 'HOME.CATEGORIES.TITLE' | translate }}</h2>
+      <p class="text-xl text-secondary/70">{{ 'HOME.CATEGORIES.SUBTITLE' | translate }}</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      <div *ngFor="let category of mainCategories" class="group bg-surface rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-outline/10 h-full">
+      <div *ngFor="let category of mainCategories" class="group bg-surface rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-outline/10 h-full text-left rtl:text-right">
         <div class="h-48 -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-3xl relative">
-          <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-          <div class="absolute top-4 right-4 bg-surface/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
+          <img [src]="category.image" [alt]="category.nameKey | translate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute top-4 right-4 rtl:right-auto rtl:left-4 bg-surface/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
             {{ category.priceRange }}
           </div>
         </div>
@@ -96,22 +96,22 @@
             <mat-icon>{{ category.icon }}</mat-icon>
           </div>
           <div>
-            <h3 class="text-xl font-bold text-secondary">{{ category.name }}</h3>
-            <p class="text-sm text-primary font-medium">{{ category.tagline }}</p>
+            <h3 class="text-xl font-bold text-secondary">{{ category.nameKey | translate }}</h3>
+            <p class="text-sm text-primary font-medium">{{ category.taglineKey | translate }}</p>
           </div>
         </div>
 
-        <p class="text-secondary/70 mb-6 line-clamp-3">{{ category.description }}</p>
+        <p class="text-secondary/70 mb-6 line-clamp-3">{{ category.descriptionKey | translate }}</p>
 
         <div class="space-y-3 mb-8">
-          <div *ngFor="let example of category.examples.slice(0, 3)" class="flex items-center gap-2 text-sm text-secondary/80">
+          <div *ngFor="let exampleKey of category.examples.slice(0, 3)" class="flex items-center gap-2 text-sm text-secondary/80">
             <mat-icon class="text-tertiary text-base !w-4 !h-4">check_circle</mat-icon>
-            <span>{{ example }}</span>
+            <span>{{ exampleKey | translate }}</span>
           </div>
         </div>
 
         <button mat-stroked-button color="primary" class="w-full !rounded-xl !py-6" (click)="navigateToServices(category.categoryParam)">
-          Découvrir {{ category.name }}
+          {{ category.ctaKey | translate }}
         </button>
       </div>
     </div>
@@ -122,8 +122,8 @@
 <section class="py-24 bg-background">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-display font-bold text-secondary mb-4">Services les Plus Demandés</h2>
-      <p class="text-xl text-secondary/70">Authentiques, pratiques et abordables</p>
+      <h2 class="text-4xl font-display font-bold text-secondary mb-4">{{ 'HOME.FEATURED.TITLE' | translate }}</h2>
+      <p class="text-xl text-secondary/70">{{ 'HOME.FEATURED.SUBTITLE' | translate }}</p>
     </div>
 
     <!-- Loading State -->
@@ -133,22 +133,26 @@
 
     <!-- Services Grid -->
     <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-      <div *ngFor="let service of recentServices" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer" (click)="navigateToServices()">
+      <div *ngFor="let service of recentServices" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer text-left rtl:text-right" (click)="navigateToServices()" (keydown.enter)="navigateToServices()" tabindex="0">
         <!-- Image -->
         <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl relative">
              <img [src]="service.images[0] || 'assets/default-service.png'" [alt]="service.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
-             <div class="absolute top-4 right-4 bg-surface/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary shadow-sm">
+             <div class="absolute top-4 right-4 rtl:right-auto rtl:left-4 bg-surface/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary shadow-sm">
                 {{ service.category }}
              </div>
         </div>
         
-        <h3 class="text-lg font-bold text-secondary mb-2 group-hover:text-primary transition-colors line-clamp-1">{{ service.title }}</h3>
-        <p class="text-sm text-secondary/60 mb-4 line-clamp-2">{{ service.description }}</p>
+        <h3 class="text-lg font-bold text-secondary mb-2 group-hover:text-primary transition-colors line-clamp-1">
+            {{ service.title | langSelect: translate.currentLang }}
+        </h3>
+        <p class="text-sm text-secondary/60 mb-4 line-clamp-2">
+            {{ service.description | langSelect: translate.currentLang }}
+        </p>
         
         <div class="flex items-center justify-between pt-4 border-t border-outline/10">
           <span class="text-primary font-bold text-sm">{{ service.price }} DH</span>
           <div class="flex items-center text-xs text-secondary/50">
-            <mat-icon class="text-base !w-4 !h-4 mr-1">star</mat-icon>
+            <mat-icon class="text-base !w-4 !h-4 mr-1 rtl:ml-1 rtl:mr-0">star</mat-icon>
             4.8
           </div>
         </div>
@@ -157,7 +161,7 @@
     
     <!-- Empty State -->
     <div *ngIf="!isLoading && recentServices.length === 0" class="text-center py-12 text-secondary/60">
-      <p>Aucun service trouvé pour le moment.</p>
+      <p>{{ 'HOME.FEATURED.EMPTY' | translate }}</p>
     </div>
   </div>
 </section>
@@ -173,8 +177,8 @@
 <section class="py-24 bg-background">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-display font-bold text-secondary mb-4">Comment ça marche ?</h2>
-      <p class="text-xl text-secondary/70">Simple, rapide et sécurisé</p>
+      <h2 class="text-4xl font-display font-bold text-secondary mb-4">{{ 'HOME.HOW_IT_WORKS.TITLE' | translate }}</h2>
+      <p class="text-xl text-secondary/70">{{ 'HOME.HOW_IT_WORKS.SUBTITLE' | translate }}</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
@@ -185,8 +189,8 @@
         <div class="w-16 h-16 mx-auto bg-primary text-white rounded-2xl flex items-center justify-center text-2xl font-bold mb-6 shadow-lg transform rotate-3 hover:rotate-0 transition-transform">
           {{ step.step }}
         </div>
-        <h3 class="text-xl font-bold text-secondary mb-3">{{ step.title }}</h3>
-        <p class="text-secondary/70">{{ step.description }}</p>
+        <h3 class="text-xl font-bold text-secondary mb-3">{{ step.titleKey | translate }}</h3>
+        <p class="text-secondary/70">{{ step.descKey | translate }}</p>
       </div>
     </div>
   </div>
@@ -198,9 +202,9 @@
   
   <div class="container mx-auto px-4 relative z-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <h2 class="text-4xl font-display font-bold mb-6">Pourquoi choisir DKHOUL ?</h2>
-        <p class="text-xl text-white/80 mb-12">La seule plateforme qui valorise vraiment l'authenticité et l'équité.</p>
+      <div class="text-left rtl:text-right">
+        <h2 class="text-4xl font-display font-bold mb-6">{{ 'HOME.VALUE_PROP.TITLE' | translate }}</h2>
+        <p class="text-xl text-white/80 mb-12">{{ 'HOME.VALUE_PROP.SUBTITLE' | translate }}</p>
         
         <div class="space-y-8">
           <div *ngFor="let prop of valueProps" class="flex gap-4">
@@ -208,42 +212,42 @@
               <mat-icon class="text-tertiary">{{ prop.icon }}</mat-icon>
             </div>
             <div>
-              <h3 class="text-xl font-bold mb-2">{{ prop.title }}</h3>
-              <p class="text-white/70">{{ prop.description }}</p>
+              <h3 class="text-xl font-bold mb-2">{{ prop.titleKey | translate }}</h3>
+              <p class="text-white/70">{{ prop.descKey | translate }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-white/5 backdrop-blur rounded-3xl p-8 border border-white/10">
-        <table class="w-full text-left">
+      <div class="bg-white/5 backdrop-blur rounded-3xl p-8 border border-white/10 text-left rtl:text-right">
+        <table class="w-full">
           <thead>
             <tr class="border-b border-white/10">
-              <th class="py-4 font-normal text-white/50">Critère</th>
+              <th class="py-4 font-normal text-white/50">{{ 'HOME.VALUE_PROP.TABLE.CRITERIA' | translate }}</th>
               <th class="py-4 font-bold text-primary text-lg">DKHOUL</th>
-              <th class="py-4 font-normal text-white/50">Autres</th>
+              <th class="py-4 font-normal text-white/50">{{ 'HOME.VALUE_PROP.TABLE.OTHERS' | translate }}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-white/5">
             <tr>
-              <td class="py-4">Prix moyen</td>
+              <td class="py-4">{{ 'HOME.VALUE_PROP.TABLE.ROW_PRICE' | translate }}</td>
               <td class="py-4 font-bold text-tertiary">50-300 DH</td>
               <td class="py-4 text-white/50">400+ DH</td>
             </tr>
             <tr>
-              <td class="py-4">Revenus hôtes</td>
+              <td class="py-4">{{ 'HOME.VALUE_PROP.TABLE.ROW_REVENUE' | translate }}</td>
               <td class="py-4 font-bold text-tertiary">80%</td>
               <td class="py-4 text-white/50">20-70%</td>
             </tr>
             <tr>
-              <td class="py-4">Authenticité</td>
-              <td class="py-4 font-bold text-tertiary">100% Local</td>
-              <td class="py-4 text-white/50">Standardisé</td>
+              <td class="py-4">{{ 'HOME.VALUE_PROP.TABLE.ROW_AUTH' | translate }}</td>
+              <td class="py-4 font-bold text-tertiary">{{ 'HOME.VALUE_PROP.TABLE.LOCAL' | translate }}</td>
+              <td class="py-4 text-white/50">{{ 'HOME.VALUE_PROP.TABLE.STANDARD' | translate }}</td>
             </tr>
             <tr>
-              <td class="py-4">Micro-services</td>
-              <td class="py-4 font-bold text-tertiary">✅ Oui</td>
-              <td class="py-4 text-white/50">❌ Non</td>
+              <td class="py-4">{{ 'HOME.VALUE_PROP.TABLE.ROW_MICRO' | translate }}</td>
+              <td class="py-4 font-bold text-tertiary">✅ {{ 'HOME.VALUE_PROP.TABLE.YES' | translate }}</td>
+              <td class="py-4 text-white/50">❌ {{ 'HOME.VALUE_PROP.TABLE.NO' | translate }}</td>
             </tr>
           </tbody>
         </table>
@@ -256,12 +260,12 @@
 <section class="py-24 bg-background">
   <div class="container mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-display font-bold text-secondary mb-4">Ils nous font confiance</h2>
-      <p class="text-xl text-secondary/70">Découvrez les avis de notre communauté</p>
+      <h2 class="text-4xl font-display font-bold text-secondary mb-4">{{ 'HOME.TESTIMONIALS.TITLE' | translate }}</h2>
+      <p class="text-xl text-secondary/70">{{ 'HOME.TESTIMONIALS.SUBTITLE' | translate }}</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div *ngFor="let testimonial of testimonials" class="bg-surface p-8 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 border border-outline/10 relative transform hover:-translate-y-1">
+      <div *ngFor="let testimonial of testimonials" class="bg-surface p-8 rounded-3xl shadow-sm hover:shadow-lg transition-all duration-300 border border-outline/10 relative transform hover:-translate-y-1 text-left rtl:text-right">
         
         <div class="flex items-center gap-4 mb-6">
           <div class="relative w-14 h-14">
@@ -279,30 +283,29 @@
           </div>
         </div>
         
-        <p class="text-secondary/80 italic mb-6 relative z-10 leading-relaxed text-lg">"{{ testimonial.text }}"</p>
+        <p class="text-secondary/80 italic mb-6 relative z-10 leading-relaxed text-lg">"{{ testimonial.textKey | translate }}"</p>
         
         <div class="flex items-center justify-between pt-4 border-t border-outline/10">
             <div class="flex items-center gap-2 text-xs text-primary font-bold uppercase tracking-wider">
               <!-- Service Icons Switch -->
               <div [ngSwitch]="testimonial.serviceIcon" class="w-4 h-4">
                 <svg *ngSwitchCase="'luggage'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
-                <svg *ngSwitchCase="'restaurant'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> <!-- Using Shopping Cart path for now as 'restaurant' fallback or generic icon if precise not found, wait, users expect specific. Let's use Utensils if possible. -->
-                <!-- Correcting path for 'restaurant' to Cutlery/Utensils -->
+                <svg *ngSwitchCase="'restaurant'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg> 
                 
                 <svg *ngSwitchCase="'shopping_bag'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
-                <svg *ngSwitchCase="'shower'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-4.5 4.5m0-6h9v9a9 9 0 11-18 0v-9h9z" /></svg> <!-- Generic water drop/shower abstraction -->
+                <svg *ngSwitchCase="'shower'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-4.5 4.5m0-6h9v9a9 9 0 11-18 0v-9h9z" /></svg> 
                 
                 <svg *ngSwitchCase="'school'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /></svg>
                 <svg *ngSwitchCase="'translate'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" /></svg>
                 <svg *ngSwitchCase="'wifi'" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
                 
-                <!-- Fallback for restaurant (re-doing path to be sure) -->
+                <!-- Fallback for restaurant -->
                 <svg *ngSwitchDefault xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               </div>
-              {{ testimonial.serviceType }}
+              {{ testimonial.serviceTypeKey | translate }}
             </div>
             <!-- Quote Icon SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary/10 w-10 h-10 transform rotate-12" viewBox="0 0 24 24" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="text-primary/10 w-10 h-10 transform rotate-12 rtl:-rotate-12" viewBox="0 0 24 24" fill="currentColor">
               <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 7.55228 14.017 7V3H19.017C20.6739 3 22.017 4.34315 22.017 6V15C22.017 16.6569 20.6739 18 19.017 18H16.017V21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 7.55228 5.0166 7V3H10.0166C11.6735 3 13.0166 4.34315 13.0166 6V15C13.0166 16.6569 11.6735 18 10.0166 18H7.0166V21H5.0166Z" />
             </svg>
         </div>

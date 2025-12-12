@@ -28,15 +28,19 @@ const createSendToken = (user, statusCode, res) => {
 
 exports.signup = async (req, res, next) => {
     try {
-        console.log('Signup Entry - typeof next:', typeof next); // DEBUG
-        console.log('Signup Body:', req.body);
+        // console.log('Signup Entry');
+
+        // Sanitize
+        req.body.email = String(req.body.email);
+        req.body.password = String(req.body.password);
+        req.body.passwordConfirm = String(req.body.passwordConfirm);
 
         const newUser = await User.create({
             name: req.body.name,
             email: req.body.email,
             password: req.body.password,
             passwordConfirm: req.body.passwordConfirm,
-            role: req.body.role,
+            role: req.body.role || 'user',
             isVerified: req.body.isVerified,
         });
 
@@ -69,8 +73,10 @@ exports.signup = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
-        console.log('Login Attempt for:', email);
+        const email = String(req.body.email);
+        const password = String(req.body.password);
+
+        // 1) Check if email and password exist.log('Login Attempt for:', email);
 
         if (!email || !password) {
             return next(new AppError('Please provide email and password!', 400));
@@ -95,7 +101,7 @@ exports.login = async (req, res, next) => {
 exports.googleLogin = async (req, res, next) => {
     try {
         const { googleToken, email, name } = req.body;
-        console.log('Google Login Attempt for:', email);
+        // console.log('Google Login Attempt for:', email);
 
         if (!googleToken) {
             return next(new AppError('Google Token is required', 400));

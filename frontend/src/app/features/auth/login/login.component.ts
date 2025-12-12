@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -8,7 +9,7 @@ import { ToastService } from '../../../core/services/toast.service';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [CommonModule, ReactiveFormsModule, RouterLink, TranslateModule],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
     authService = inject(AuthService);
     router = inject(Router);
     toast = inject(ToastService);
+    translate = inject(TranslateService);
 
     loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
@@ -55,11 +57,11 @@ export class LoginComponent implements OnInit {
 
                 this.authService.loginWithGoogle(response.credential, userData).subscribe({
                     next: () => {
-                        this.toast.success('Bienvenue !', 'Connexion réussie');
+                        this.toast.success(this.translate.instant('AUTH.SUCCESS_LOGIN'), this.translate.instant('TOASTS.SUCCESS'));
                         this.router.navigate(['/']);
                     },
                     error: (err) => {
-                        this.toast.error('Erreur lors de la connexion Google.');
+                        this.toast.error(this.translate.instant('TOASTS.NETWORK_ERROR'));
                         this.errorMsg = 'Erreur Google Login.';
                     }
                 });
@@ -75,7 +77,7 @@ export class LoginComponent implements OnInit {
             this.authService.login(this.loginForm.value as any).subscribe({
                 next: () => {
                     this.loading = false;
-                    this.toast.success('Bienvenue !', 'Connexion réussie');
+                    this.toast.success(this.translate.instant('AUTH.SUCCESS_LOGIN'), this.translate.instant('TOASTS.SUCCESS'));
                     // Small delay to ensure toast is visible before navigation
                     setTimeout(() => {
                         this.router.navigate(['/']);
@@ -83,8 +85,8 @@ export class LoginComponent implements OnInit {
                 },
                 error: (err) => {
                     this.loading = false;
-                    this.toast.error('Identifiants incorrects');
-                    this.errorMsg = err.error?.message || 'Une erreur est survenue lors de la connexion.';
+                    this.toast.error(err.error?.message || this.translate.instant('TOASTS.ERROR'));
+                    this.errorMsg = err.error?.message || this.translate.instant('TOASTS.NETWORK_ERROR');
                 }
             });
         } else {

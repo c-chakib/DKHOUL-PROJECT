@@ -1,12 +1,15 @@
-import { Component, inject, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 
 import { ServiceService } from '../../core/services/service.service';
+import { LanguageService } from '../../core/services/language.service';
 
 import { TypedTextComponent } from '../../shared/components/typed-text/typed-text.component';
 import { MapSectionComponent } from '../../shared/components/map-section/map-section.component';
@@ -14,13 +17,7 @@ import { HeroCarouselComponent } from '../../shared/components/hero-carousel/her
 import { LoggerService } from '../../core/services/logger.service';
 import { AuthService } from '../../core/services/auth.service';
 
-export interface FeaturedService {
-    name: string;
-    badge: string;
-    rating: number;
-    price: string;
-    image: string;
-}
+import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
 
 @Component({
     selector: 'app-home',
@@ -33,18 +30,50 @@ export interface FeaturedService {
         MatProgressSpinnerModule,
         HeroCarouselComponent,
         TypedTextComponent,
-        MapSectionComponent
+        MapSectionComponent,
+        TranslateModule,
+        LangSelectPipe
     ],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
     private scrollListener?: () => void;
-    recentServices: any[] = []; // Relaxed type to avoid interface issues
+    private langChangeSub?: Subscription;
+    recentServices: any[] = [];
     isLoading = true;
     private serviceService = inject(ServiceService);
     private router = inject(Router);
     private logger = inject(LoggerService);
+    public translate = inject(TranslateService);
+    private renderer = inject(Renderer2);
+
+    currentYear = new Date().getFullYear();
+
+    // Translation Keys for Home
+    homeKeys = {
+        HERO: 'HOME.HERO',
+        CATEGORIES: 'HOME.CATEGORIES',
+        FEATURED: 'HOME.FEATURED',
+        HOW_IT_WORKS: 'HOME.HOW_IT_WORKS',
+        VALUE_PROP: 'HOME.VALUE_PROP',
+        TESTIMONIALS: 'HOME.TESTIMONIALS'
+    };
+
+    stats = [
+        { labelKey: 'HOME.HERO.STATS.HOSTS', target: 500, current: 0, suffix: '+' },
+        { labelKey: 'HOME.HERO.STATS.TRAVELERS', target: 10000, current: 0, suffix: '+', isK: true },
+        { labelKey: 'HOME.HERO.STATS.SERVICES', target: 5000, current: 0, suffix: '+', isK: true }
+    ];
+
+    // Typed Text Logic
+    typedTextsKeys = [
+        'HOME.HERO.TYPED.TEXT_1',
+        'HOME.HERO.TYPED.TEXT_2',
+        'HOME.HERO.TYPED.TEXT_3',
+        'HOME.HERO.TYPED.TEXT_4'
+    ];
+    translatedTexts: string[] = [];
 
     mapLocations = [
         { lat: 33.5731, lng: -7.5898, label: 'Casablanca' },
@@ -53,82 +82,96 @@ export class HomeComponent implements OnInit, OnDestroy {
         { lat: 34.0209, lng: -6.8416, label: 'Rabat' }
     ];
 
-    // DKHOUL's 3 Main Categories
+    // Array of keys for ngFor loops, actual content will be piped | translate
     mainCategories = [
         {
             icon: 'home',
-            name: 'DKHOUL Space',
-            tagline: 'Monétise ton espace',
+            nameKey: 'HOME.CATEGORIES.ITEMS.SPACE.NAME',
+            taglineKey: 'HOME.CATEGORIES.ITEMS.SPACE.TAGLINE',
             count: 250,
-            priceRange: '20-150 DH',
-            description: 'Micro-services pratiques : stockage bagages, douche express, wifi, stationnement, coworking à domicile',
-            subcategories: ['Stockage bagages (20 DH)', 'Douche express (30 DH)', 'Wifi/Coworking (50 DH)', 'Stationnement (50 DH)'],
-            examples: ['Stockage sécurisé de bagages', 'Accès wifi + café', 'Garage privé', 'Salon coworking'],
+            priceRangeKey: 'HOME.CATEGORIES.ITEMS.SPACE.PRICE_RANGE', // Add to JSON if needed or keep static
+            priceRange: '20-150 DH', // Static for now
+            descriptionKey: 'HOME.CATEGORIES.ITEMS.SPACE.DESC',
+            ctaKey: 'HOME.CATEGORIES.ITEMS.SPACE.CTA',
+            examples: [
+                'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.1',
+                'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.2',
+                'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.3',
+                'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.4'
+            ],
             image: 'assets/images/space.png',
             categoryParam: 'SPACE'
         },
         {
             icon: 'school',
-            name: 'DKHOUL Skills',
-            tagline: 'Vends ton savoir-faire',
+            nameKey: 'HOME.CATEGORIES.ITEMS.SKILL.NAME',
+            taglineKey: 'HOME.CATEGORIES.ITEMS.SKILL.TAGLINE',
             count: 180,
             priceRange: '150-400 DH',
-            description: 'Apprentissages authentiques : cuisine marocaine, artisanat, langues, musique traditionnelle',
-            subcategories: ['Cours cuisine (200 DH)', 'Darija (150 DH)', 'Artisanat (200 DH)', 'Musique (250 DH)'],
-            examples: ['Tajine/Couscous chez l\'habitant', 'Initiation darija conversationnelle', 'Poterie berbère', 'Rythmes gnaoua'],
+            descriptionKey: 'HOME.CATEGORIES.ITEMS.SKILL.DESC',
+            ctaKey: 'HOME.CATEGORIES.ITEMS.SKILL.CTA',
+            examples: [
+                'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.1',
+                'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.2',
+                'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.3',
+                'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.4'
+            ],
             image: 'assets/images/skills.png',
             categoryParam: 'SKILL'
         },
         {
             icon: 'groups',
-            name: 'DKHOUL Connect',
-            tagline: 'Loue ton temps',
+            nameKey: 'HOME.CATEGORIES.ITEMS.CONNECT.NAME',
+            taglineKey: 'HOME.CATEGORIES.ITEMS.CONNECT.TAGLINE',
             count: 150,
             priceRange: '50-300 DH',
-            description: 'Expériences humaines : accompagnement souk, conseils locaux, transport personnalisé, baby-sitting',
-            subcategories: ['Shopping souk (100 DH/h)', 'Conseils locaux (50 DH)', 'Transport aéroport', 'Baby-sitting (80 DH/h)'],
-            examples: ['Guide shopping médina', 'Bons plans restos', 'Trajet privé aéroport', 'Garde enfants bilingue'],
+            descriptionKey: 'HOME.CATEGORIES.ITEMS.CONNECT.DESC',
+            ctaKey: 'HOME.CATEGORIES.ITEMS.CONNECT.CTA',
+            examples: [
+                'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.1',
+                'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.2',
+                'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.3',
+                'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.4'
+            ],
             image: 'assets/images/connect.png',
             categoryParam: 'CONNECT'
         }
     ];
 
     howItWorks = [
-        {
-            step: 1,
-            icon: 'explore',
-            title: 'Découvrez',
-            description: 'Explorez Spaces, Skills & Connect - trouvez l\'expérience parfaite'
-        },
-        {
-            step: 2,
-            icon: 'calendar_today',
-            title: 'Réservez',
-            description: 'Réservez facilement et payez en toute sécurité en ligne'
-        },
-        {
-            step: 3,
-            icon: 'verified',
-            title: 'Vivez',
-            description: 'Profitez d\'expériences locales authentiques avec des hôtes vérifiés'
-        },
-        {
-            step: 4,
-            icon: 'star',
-            title: 'Partagez',
-            description: 'Évaluez votre expérience et aidez la communauté'
-        }
+        { step: 1, icon: 'explore', titleKey: 'HOME.HOW_IT_WORKS.STEPS.1.TITLE', descKey: 'HOME.HOW_IT_WORKS.STEPS.1.DESC' },
+        { step: 2, icon: 'calendar_today', titleKey: 'HOME.HOW_IT_WORKS.STEPS.2.TITLE', descKey: 'HOME.HOW_IT_WORKS.STEPS.2.DESC' },
+        { step: 3, icon: 'verified', titleKey: 'HOME.HOW_IT_WORKS.STEPS.3.TITLE', descKey: 'HOME.HOW_IT_WORKS.STEPS.3.DESC' },
+        { step: 4, icon: 'star', titleKey: 'HOME.HOW_IT_WORKS.STEPS.4.TITLE', descKey: 'HOME.HOW_IT_WORKS.STEPS.4.DESC' }
     ];
 
-    // Testimonials - Figma Inspired
+    heroImages = [
+        { src: 'assets/images/hero-riad.png', alt: 'HOME.HERO_IMAGES.RIAD' },
+        { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.png', alt: 'HOME.HERO_IMAGES.HOSTS' },
+        { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.png', alt: 'HOME.HERO_IMAGES.EXPERIENCES' },
+        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'HOME.HERO_IMAGES.TRAVEL' },
+        { src: 'assets/images/Gemini_Generated_Image_i1bvcoi1bvcoi1bv.png', alt: 'HOME.HERO_IMAGES.CRAFTS' },
+        { src: 'assets/images/Gemini_Generated_Image_lhlkz1lhlkz1lhlk.png', alt: 'HOME.HERO_IMAGES.FOOD' },
+        { src: 'assets/images/Gemini_Generated_Image_lhrdlmlhrdlmlhrd.png', alt: 'HOME.HERO_IMAGES.LANDSCAPES' },
+        { src: 'assets/images/Gemini_Generated_Image_npjqhjnpjqhjnpjq.png', alt: 'HOME.HERO_IMAGES.WORK' },
+        { src: 'assets/images/Gemini_Generated_Image_ssvgmpssvgmpssvg.png', alt: 'HOME.HERO_IMAGES.ARCHI' },
+        { src: 'assets/images/Gemini_Generated_Image_sszal4sszal4ssza.png', alt: 'HOME.HERO_IMAGES.HOSPITALITY' }
+    ];
+
+    // Explicitly exposing currentYear as a public property if needed by template, 
+    // though I declared it above. Ensuring it's cleaner.
+    // currentYear is already at top of class.
+
+    // ... Methods below
+
     testimonials = [
         {
             name: 'Sophie Martin',
             country: 'France',
             rating: 5,
             image: 'assets/images/avatar1.png',
-            text: "J'ai stocké mes bagages chez Ahmed pendant 4h. Service impeccable, 20 DH seulement !",
-            serviceType: 'Stockage Bagages',
+            textKey: 'HOME.TESTIMONIALS.REVIEWS.1',
+            serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.LUGGAGE',
             serviceIcon: 'luggage'
         },
         {
@@ -136,8 +179,8 @@ export class HomeComponent implements OnInit, OnDestroy {
             country: 'États-Unis',
             rating: 5,
             image: 'assets/images/avatar2.png',
-            text: "Le cours de cuisine marocaine chez Fatima était incroyable. J'ai appris à faire un tajine authentique pour 200 DH. Expérience unique !",
-            serviceType: 'Cours Cuisine',
+            textKey: 'HOME.TESTIMONIALS.REVIEWS.2',
+            serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.COOKING',
             serviceIcon: 'restaurant'
         },
         {
@@ -145,67 +188,18 @@ export class HomeComponent implements OnInit, OnDestroy {
             country: 'Espagne',
             rating: 5,
             image: 'assets/images/avatar3.png',
-            text: "Youssef m'a accompagnée dans les souks de Marrakech. Meilleurs prix, conseils locaux, 100 DH pour 2h. Un guide parfait !",
-            serviceType: 'Guide Souk',
+            textKey: 'HOME.TESTIMONIALS.REVIEWS.3',
+            serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.GUIDE',
             serviceIcon: 'shopping_bag'
         }
     ];
 
-
-    // Value Proposition
     valueProps = [
-        {
-            icon: 'savings',
-            title: 'Prix 50-70% moins chers',
-            description: 'DKHOUL: 50-300 DH vs Airbnb Experiences: 400-1500 DH vs GetYourGuide: 600-2000 DH',
-            highlight: true
-        },
-        {
-            icon: 'verified',
-            title: '80% des revenus aux hôtes',
-            description: 'Commission DKHOUL 20% vs 30% Airbnb vs 70-80% GetYourGuide - Redistribution équitable',
-            highlight: true
-        },
-        {
-            icon: 'schedule',
-            title: 'Flexibilité totale',
-            description: 'Réservation J ou J-1, durée 1-3h vs format rigide demi-journée ailleurs',
-            highlight: false
-        },
-        {
-            icon: 'handshake',
-            title: 'Micro-services uniques',
-            description: 'Seule plateforme avec bagages, wifi, douche - services pratiques introuvables ailleurs',
-            highlight: false
-        }
+        { icon: 'savings', titleKey: 'HOME.VALUE_PROP.ITEMS.PRICE.TITLE', descKey: 'HOME.VALUE_PROP.ITEMS.PRICE.DESC', highlight: true },
+        { icon: 'verified', titleKey: 'HOME.VALUE_PROP.ITEMS.REVENUE.TITLE', descKey: 'HOME.VALUE_PROP.ITEMS.REVENUE.DESC', highlight: true },
+        { icon: 'schedule', titleKey: 'HOME.VALUE_PROP.ITEMS.FLEX.TITLE', descKey: 'HOME.VALUE_PROP.ITEMS.FLEX.DESC', highlight: false },
+        { icon: 'handshake', titleKey: 'HOME.VALUE_PROP.ITEMS.MICRO.TITLE', descKey: 'HOME.VALUE_PROP.ITEMS.MICRO.DESC', highlight: false }
     ];
-
-    stats = [
-        { label: 'Hôtes Marocains', target: 500, current: 0, suffix: '+' },
-        { label: 'Voyageurs Aidés', target: 10000, current: 0, suffix: '+', isK: true },
-        { label: 'Services Fournis', target: 5000, current: 0, suffix: '+', isK: true }
-    ];
-
-    typedTexts = [
-        'Vivez l\'hospitalité marocaine',
-        'Accédez à des lieux exclusifs',
-        'Apprenez des métiers d\'art',
-        'Partagez un thé, une histoire'
-    ];
-
-    heroImages = [
-        { src: 'assets/images/hero-riad.png', alt: 'Vivez le Maroc Authentique - Riad Traditionnel' },
-        { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.png', alt: 'Rencontrez des hôtes exceptionnels' },
-        { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.png', alt: 'Vivez des expériences locales' },
-        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'DKHOUL - Voyagez autrement' },
-        { src: 'assets/images/Gemini_Generated_Image_i1bvcoi1bvcoi1bv.png', alt: 'Artisanat et Créativité Marocaine' },
-        { src: 'assets/images/Gemini_Generated_Image_lhlkz1lhlkz1lhlk.png', alt: 'Saveurs et Gastronomie Locale' },
-        { src: 'assets/images/Gemini_Generated_Image_lhrdlmlhrdlmlhrd.png', alt: 'Découverte des Paysages du Sud' },
-        { src: 'assets/images/Gemini_Generated_Image_npjqhjnpjqhjnpjq.png', alt: 'Espaces de Travail Inspirants' },
-        { src: 'assets/images/Gemini_Generated_Image_ssvgmpssvgmpssvg.png', alt: 'Architecture et Patrimoine' },
-        { src: 'assets/images/Gemini_Generated_Image_sszal4sszal4ssza.png', alt: 'Hospitalité et Convivialité' }
-    ];
-    currentYear = new Date().getFullYear();
 
     private authService = inject(AuthService);
     currentUser = this.authService.currentUser;
@@ -214,6 +208,18 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.initScrollProgress();
         this.loadRecentServices();
         this.animateStats();
+
+        // Typed Text Translation
+        this.updateTypedTexts();
+        this.langChangeSub = this.translate.onLangChange.subscribe(() => {
+            this.updateTypedTexts();
+        });
+    }
+
+    updateTypedTexts() {
+        this.translate.get(this.typedTextsKeys).subscribe(translations => {
+            this.translatedTexts = this.typedTextsKeys.map(key => translations[key]);
+        });
     }
 
     private animateStats() {
@@ -240,6 +246,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         if (this.scrollListener) {
             this.scrollListener();
+        }
+        if (this.langChangeSub) {
+            this.langChangeSub.unsubscribe();
         }
     }
 

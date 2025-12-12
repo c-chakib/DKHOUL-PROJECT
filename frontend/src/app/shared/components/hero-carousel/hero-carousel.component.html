@@ -5,7 +5,7 @@
          [class.opacity-100]="currentSlide === i">
       <img [src]="img.src" [alt]="img.alt" class="w-full h-full object-cover">
        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
-          <p class="text-lg font-bold">{{img.alt}}</p>
+          <p class="text-lg font-bold">{{img.alt | translate}}</p>
        </div>
     </div>
 </div>

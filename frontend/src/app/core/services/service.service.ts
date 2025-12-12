@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 
 export interface Service {
     _id: string;
-    title: string;
-    description: string;
+    title: string | any;
+    description: string | any;
     price: number;
     category: 'SPACE' | 'SKILL' | 'CONNECT';
     location?: {

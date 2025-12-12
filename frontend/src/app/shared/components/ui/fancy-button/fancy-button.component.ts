@@ -100,11 +100,11 @@ export class FancyButtonComponent {
     @Input() label: string = 'Button';
     @Input() loading: boolean = false;
     @Input() disabled: boolean = false;
-    @Output() onClick = new EventEmitter<void>();
+    @Output() clickEvent = new EventEmitter<void>();
 
     handleClick() {
         if (!this.loading && !this.disabled) {
-            this.onClick.emit();
+            this.clickEvent.emit();
         }
     }
 }

@@ -5,6 +5,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ChatWindowComponent } from './features/chat/chat-window/chat-window.component';
 import { AiGuideComponent } from './features/ai/ai-guide/ai-guide.component';
 import { AuthService } from './core/services/auth.service';
+import { LanguageService } from './core/services/language.service';
 import { WelcomeDoorComponent } from './features/welcome-door/welcome-door.component'; // Import WelcomeDoor
 
 import { CommonModule } from '@angular/common';
@@ -33,8 +34,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   authService = inject(AuthService);
+  private languageService = inject(LanguageService);
 
   ngOnInit() {
     this.authService.initGoogleAuth();
+    this.languageService.initLanguage();
   }
 }

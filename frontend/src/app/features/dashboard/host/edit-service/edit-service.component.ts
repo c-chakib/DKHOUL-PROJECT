@@ -1,6 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ServiceService } from '../../../../core/services/service.service';
 import { ToastService } from '../../../../core/services/toast.service';
@@ -8,7 +9,7 @@ import { ToastService } from '../../../../core/services/toast.service';
 @Component({
     selector: 'app-edit-service',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, TranslateModule],
     templateUrl: './edit-service.component.html'
 })
 export class EditServiceComponent implements OnInit {
@@ -17,6 +18,7 @@ export class EditServiceComponent implements OnInit {
     private router = inject(Router);
     private serviceService = inject(ServiceService);
     private toast = inject(ToastService);
+    private translate = inject(TranslateService);
 
     serviceForm: FormGroup;
     serviceId = signal<string>('');

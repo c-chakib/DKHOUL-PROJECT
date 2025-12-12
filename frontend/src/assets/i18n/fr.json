@@ -1,0 +1,524 @@
+{
+    "NAV": {
+        "HOME": "ACCUEIL",
+        "EXPLORE": "EXPLORER",
+        "CREATE_EXP": "Créer une expérience",
+        "LOGIN": "Se connecter",
+        "REGISTER": "S'inscrire",
+        "DASHBOARD": "Tableau de bord",
+        "PROFILE": "Mon Profil",
+        "LOGOUT": "Déconnexion",
+        "ACCOUNT": "Compte",
+        "SUPER_ADMIN": "Super Admin"
+    },
+    "HOME": {
+        "MAP": {
+            "TITLE": "Nos Destinations"
+        },
+        "HERO_IMAGES": {
+            "RIAD": "Vivez le Maroc Authentique - Riad Traditionnel",
+            "HOSTS": "Rencontrez des hôtes exceptionnels",
+            "EXPERIENCES": "Vivez des expériences locales",
+            "TRAVEL": "DKHOUL - Voyagez autrement",
+            "CRAFTS": "Artisanat et Créativité Marocaine",
+            "FOOD": "Saveurs et Gastronomie Locale",
+            "LANDSCAPES": "Découverte des Paysages du Sud",
+            "WORK": "Espaces de Travail Inspirants",
+            "ARCHI": "Architecture et Patrimoine",
+            "HOSPITALITY": "Hospitalité et Convivialité"
+        },
+        "HERO": {
+            "TITLE": "Ne visitez pas le Maroc.",
+            "TITLE_HIGHLIGHT": "Vivez-le de l'intérieur.",
+            "SUBTITLE": "La première plateforme qui vous ouvre les portes des maisons marocaines.",
+            "SUBTITLE_HIGHLIGHT": "Espaces privés • Savoir-faire • Rencontres",
+            "TYPED": {
+                "TEXT_1": "Vivez l'hospitalité marocaine",
+                "TEXT_2": "Accédez à des lieux exclusifs",
+                "TEXT_3": "Apprenez des métiers d'art",
+                "TEXT_4": "Partagez un thé, une histoire"
+            },
+            "BADGES": {
+                "AUTHENTIC": "100% Authentique",
+                "LOCAL_PRICE": "Prix Locaux & Équitables",
+                "SECURE": "Paiement Sécurisé"
+            },
+            "CTA_EXPLORE": "Explorer les Services",
+            "CTA_HOST": "Devenir Hôte",
+            "STATS": {
+                "HOSTS": "Hôtes Marocains",
+                "TRAVELERS": "Voyageurs Aidés",
+                "SERVICES": "Services Fournis"
+            }
+        },
+        "CATEGORIES": {
+            "TITLE": "L'Expérience DKHOUL",
+            "SUBTITLE": "Monétise ton espace, vends ton savoir-faire, loue ton temps",
+            "ITEMS": {
+                "SPACE": {
+                    "NAME": "DKHOUL Space",
+                    "TAGLINE": "Monétise ton espace",
+                    "DESC": "Micro-services pratiques : stockage bagages, douche express, wifi, stationnement, coworking à domicile",
+                    "CTA": "Découvrir DKHOUL Space",
+                    "EXAMPLES": {
+                        "1": "Stockage Bagages",
+                        "2": "Douche Express",
+                        "3": "Wifi & Coworking",
+                        "4": "Stationnement"
+                    }
+                },
+                "SKILL": {
+                    "NAME": "DKHOUL Skills",
+                    "TAGLINE": "Vends ton savoir-faire",
+                    "DESC": "Apprentissages authentiques : cuisine marocaine, artisanat, langues, musique traditionnelle",
+                    "CTA": "Découvrir DKHOUL Skills",
+                    "EXAMPLES": {
+                        "1": "Cuisine Marocaine",
+                        "2": "Artisanat",
+                        "3": "Langues",
+                        "4": "Musique"
+                    }
+                },
+                "CONNECT": {
+                    "NAME": "DKHOUL Connect",
+                    "TAGLINE": "Loue ton temps",
+                    "DESC": "Expériences humaines : accompagnement souk, conseils locaux, transport personnalisé, baby-sitting",
+                    "CTA": "Découvrir DKHOUL Connect",
+                    "EXAMPLES": {
+                        "1": "Accompagnement Souk",
+                        "2": "Conseils Locaux",
+                        "3": "Transport",
+                        "4": "Baby-sitting"
+                    }
+                }
+            }
+        },
+        "FEATURED": {
+            "TITLE": "Services les Plus Demandés",
+            "SUBTITLE": "Authentiques, pratiques et abordables",
+            "EMPTY": "Aucun service trouvé pour le moment."
+        },
+        "HOW_IT_WORKS": {
+            "TITLE": "Comment ça marche ?",
+            "SUBTITLE": "Simple, rapide et sécurisé",
+            "STEPS": {
+                "1": {
+                    "TITLE": "Découvrez",
+                    "DESC": "Explorez Spaces, Skills & Connect - trouvez l'expérience parfaite"
+                },
+                "2": {
+                    "TITLE": "Réservez",
+                    "DESC": "Réservez facilement et payez en toute sécurité en ligne"
+                },
+                "3": {
+                    "TITLE": "Vivez",
+                    "DESC": "Profitez d'expériences locales authentiques avec des hôtes vérifiés"
+                },
+                "4": {
+                    "TITLE": "Partagez",
+                    "DESC": "Évaluez votre expérience et aidez la communauté"
+                }
+            }
+        },
+        "VALUE_PROP": {
+            "TITLE": "Pourquoi choisir DKHOUL ?",
+            "SUBTITLE": "La seule plateforme qui valorise vraiment l'authenticité et l'équité.",
+            "ITEMS": {
+                "PRICE": {
+                    "TITLE": "Prix 50-70% moins chers",
+                    "DESC": "DKHOUL: 50-300 DH vs Airbnb Experiences: 400-1500 DH vs GetYourGuide: 600-2000 DH"
+                },
+                "REVENUE": {
+                    "TITLE": "80% des revenus aux hôtes",
+                    "DESC": "Commission DKHOUL 20% vs 30% Airbnb vs 70-80% GetYourGuide - Redistribution équitable"
+                },
+                "FLEX": {
+                    "TITLE": "Flexibilité totale",
+                    "DESC": "Réservation J ou J-1, durée 1-3h vs format rigide demi-journée ailleurs"
+                },
+                "MICRO": {
+                    "TITLE": "Micro-services uniques",
+                    "DESC": "Seule plateforme avec bagages, wifi, douche - services pratiques introuvables ailleurs"
+                }
+            },
+            "TABLE": {
+                "CRITERIA": "Critère",
+                "OTHERS": "Autres",
+                "ROW_PRICE": "Prix moyen",
+                "ROW_REVENUE": "Revenus hôtes",
+                "ROW_AUTH": "Authenticité",
+                "ROW_MICRO": "Micro-services",
+                "YES": "Oui",
+                "NO": "Non",
+                "LOCAL": "100% Local",
+                "STANDARD": "Standardisé"
+            }
+        },
+        "TESTIMONIALS": {
+            "TITLE": "Ils nous font confiance",
+            "SUBTITLE": "Découvrez les avis de notre communauté",
+            "REVIEWS": {
+                "1": "J'ai stocké mes bagages chez Ahmed pendant 4h. Service impeccable, 20 DH seulement !",
+                "2": "Le cours de cuisine marocaine chez Fatima était incroyable. J'ai appris à faire un tajine authentique pour 200 DH. Expérience unique !",
+                "3": "Youssef m'a accompagnée dans les souks de Marrakech. Meilleurs prix, conseils locaux, 100 DH pour 2h. Un guide parfait !"
+            },
+            "TYPES": {
+                "LUGGAGE": "Stockage Bagages",
+                "COOKING": "Cours Cuisine",
+                "GUIDE": "Guide Souk"
+            }
+        }
+    },
+    "DASHBOARD": {
+        "HELLO": "Bonjour",
+        "WELCOME": "Bienvenue sur votre tableau de bord",
+        "EDIT_PROFILE": "Modifier",
+        "STATUS": "Statut",
+        "STATS_BOOKINGS": "Réservations",
+        "STATS_SERVICES": "Mes Annonces",
+        "TAB_BOOKINGS": "Mes Réservations",
+        "TAB_HOST_BOOKINGS": "Demandes Reçues",
+        "TAB_SERVICES": "Mes Annonces",
+        "EMPTY_SERVICES_TITLE": "Aucune annonce",
+        "EMPTY_SERVICES_DESC": "Commencez à gagner de l'argent en partageant votre espace ou vos compétences.",
+        "CREATE_BTN": "Créer une annonce",
+        "MY_BOOKINGS": {
+            "FILTER_ALL": "Tout",
+            "FILTER_PENDING": "En attente",
+            "FILTER_CONFIRMED": "Confirmées",
+            "FILTER_COMPLETED": "Terminées",
+            "FILTER_CANCELLED": "Annulées",
+            "EMPTY_TITLE": "Aucune réservation trouvée",
+            "EMPTY_DESC": "Vous n'avez pas encore de réservation.",
+            "EXPLORE_BTN": "Explorer les expériences",
+            "DELETED_SERVICE": "Service Supprimé",
+            "DELETE_TITLE": "Supprimer la réservation",
+            "DELETE_MSG": "Voulez-vous vraiment supprimer cette réservation ?",
+            "DELETE_BTN": "Supprimer",
+            "CANCEL_BTN": "Annuler"
+        },
+        "HOST_BOOKINGS": {
+            "TITLE": "Réservations Reçues",
+            "SUBTITLE": "Gérez les demandes de réservation pour vos expériences.",
+            "EMPTY_TITLE": "Aucune demande",
+            "EMPTY_DESC": "Vous n'avez pas encore reçu de demande.",
+            "COL_TRAVELER": "Voyageur",
+            "COL_EXP": "Expérience",
+            "COL_DATE": "Date & Heure",
+            "COL_PRICE": "Prix",
+            "COL_STATUS": "Statut",
+            "COL_ACTIONS": "Actions",
+            "STATUS": {
+                "PENDING": "En attente",
+                "CONFIRMED": "Confirmée",
+                "COMPLETED": "Terminée",
+                "CANCELLED": "Annulée"
+            },
+            "MODAL_ACCEPT_TITLE": "Accepter la réservation",
+            "MODAL_REFUSE_TITLE": "Refuser la réservation",
+            "MODAL_ACCEPT_MSG": "Voulez-vous accepter la réservation de {{name}} ?",
+            "MODAL_REFUSE_MSG": "Êtes-vous sûr de vouloir refuser cette réservation ?",
+            "BTN_ACCEPT": "Accepter",
+            "BTN_REFUSE": "Refuser",
+            "NO_ACTION": "Aucune action"
+        },
+        "EDIT_SERVICE": {
+            "TITLE": "Modifier l'Expérience",
+            "CANCEL": "Annuler",
+            "LABEL_TITLE": "Titre",
+            "LABEL_DESC": "Description",
+            "LABEL_PRICE": "Prix (MAD)",
+            "LABEL_CATEGORY": "Catégorie",
+            "LABEL_CITY": "Ville",
+            "LABEL_DURATION": "Durée (min)",
+            "BTN_SAVE": "Mettre à jour",
+            "BTN_SAVING": "Enregistrement...",
+            "OPTS_CATEGORY": {
+                "SKILL": "Atelier (Skill)",
+                "SPACE": "Espace (Space)",
+                "CONNECT": "Rencontre (Connect)"
+            }
+        }
+    },
+    "WELCOME": {
+        "SLOGAN": "Dkhoul... et découvre le vrai Maroc",
+        "ENTER": "Accéder à la plateforme"
+    },
+    "AUTH": {
+        "LOGIN_TITLE": "Marhba !",
+        "LOGIN_SUBTITLE": "Heureux de vous revoir parmi nous.",
+        "JOIN_TITLE": "Rejoignez DKHOUL",
+        "JOIN_SUBTITLE": "Commencez votre aventure marocaine aujourd'hui.",
+        "GOOGLE_CONTINUE": "Continuer avec Google",
+        "OR_EMAIL": "Ou continuer avec l'email",
+        "EMAIL_LABEL": "Adresse Email",
+        "PASSWORD_LABEL": "Mot de passe",
+        "ROLE_LABEL": "Je veux être :",
+        "ROLE_TOURIST": "Touriste",
+        "ROLE_HOST": "Hôte",
+        "PLACEHOLDERS": {
+            "NAME": "Nom complet",
+            "EMAIL": "votre@email.com",
+            "PASSWORD": "Votre mot de passe",
+            "NEW_PASSWORD": "Nouveau mot de passe",
+            "PASSWORD_HINT": "Min. 12 caractères",
+            "CONFIRM_PASSWORD": "Répétez le mot de passe"
+        },
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Email valide requis",
+            "PASSWORD_REQUIRED": "Mot de passe requis (min 6 caractères)",
+            "NAME_REQUIRED": "Nom complet requis",
+            "PASSWORD_MISMATCH": "Les mots de passe ne correspondent pas.",
+            "PASSWORD_MIN_LENGTH": "Min 12 caractères requis",
+            "PASSWORD_PATTERN": "Requis: Majuscule, minuscule, chiffre, symbole"
+        },
+        "LOGIN_BTN": "Se connecter",
+        "LOGIN_LOADING": "Connexion en cours...",
+        "REGISTER_BTN": "S'inscrire",
+        "REGISTER_LOADING": "Inscription...",
+        "FORGOT_PASSWORD": "Mot de passe oublié ?",
+        "FORGOT_PASSWORD_SUBTITLE": "Entrez votre email pour recevoir un lien de réinitialisation",
+        "SEND_RESET_LINK": "Envoyer le lien",
+        "EMAIL_SENT_TITLE": "Email envoyé !",
+        "EMAIL_SENT_DESC": "Vérifiez votre boîte de réception (et vos spams) pour le lien de réinitialisation.",
+        "LINK_EXPIRATION": "Le lien expire dans 10 minutes.",
+        "RESEND_EMAIL": "Renvoyer l'email",
+        "BACK_TO_LOGIN": "Retour à la connexion",
+        "TOAST_EMAIL_SENT": "Email envoyé ! Vérifiez votre boîte de réception.",
+        "TOAST_SEND_ERROR": "Erreur lors de l'envoi",
+        "RESET_PASSWORD_TITLE": "Nouveau mot de passe",
+        "RESET_PASSWORD_SUBTITLE": "Créez un nouveau mot de passe sécurisé",
+        "NEW_PASSWORD_LABEL": "Nouveau mot de passe",
+        "CONFIRM_PASSWORD_LABEL": "Confirmer le mot de passe",
+        "RESET_PASSWORD_BTN": "Réinitialiser le mot de passe",
+        "RESET_SUCCESS_TITLE": "Mot de passe réinitialisé !",
+        "RESET_SUCCESS_DESC": "Votre nouveau mot de passe est actif. Vous pouvez maintenant vous connecter.",
+        "TOAST_RESET_SUCCESS": "Mot de passe réinitialisé avec succès !",
+        "TOAST_RESET_ERROR": "Échec de la réinitialisation",
+        "TOAST_INVALID_TOKEN": "Lien de réinitialisation invalide",
+        "NO_ACCOUNT": "Pas encore de compte ? S'inscrire",
+        "ALREADY_ACCOUNT": "Déjà un compte ? Se connecter",
+        "SUCCESS_REGISTER": "Compte créé avec succès ! Bienvenue.",
+        "SUCCESS_LOGIN": "Connexion réussie",
+        "LOGOUT_SUCCESS": "Déconnexion réussie"
+    },
+    "SERVICE": {
+        "BACK": "Retour",
+        "REVIEWS_COUNT": "avis",
+        "SHOW_PHOTOS": "Voir toutes les photos",
+        "HOSTED_BY": "Proposé par",
+        "HOST_EXP": "Hôte expérimenté",
+        "ABOUT": "À propos de cette expérience",
+        "INCLUDED": "Ce qui est inclus",
+        "NO_AMENITIES": "Aucun équipement spécifique listé.",
+        "REVIEWS_TITLE": "Commentaires",
+        "NO_REVIEWS": "Aucun avis pour le moment.",
+        "PRICE_TOTAL": "Prix total",
+        "DATE": "Date",
+        "TIME": "Heure",
+        "DURATION": "Durée",
+        "GUESTS": "Voyageurs",
+        "CHOOSE": "Choisir",
+        "HOUR_UNIT": "heure(s)",
+        "PERSON_UNIT": "personne(s)",
+        "BOOK_BTN": "Réserver pour {{price}} MAD",
+        "CONTACT_HOST": "Contacter l'hôte",
+        "NO_CHARGE": "Aucun montant débité pour le moment",
+        "REPORT": "Signaler ce service"
+    },
+    "MARKETPLACE": {
+        "TITLE": "Marketplace",
+        "RESULTS_COUNT": "{{count}} expérience(s) trouvée(s)",
+        "SEARCH_PLACEHOLDER": "Rechercher une activité, une ambiance...",
+        "CHOOSE_CITY": "Choisir une ville",
+        "ALL_CITIES": "Tout le Maroc",
+        "FILTERS": "Filtres",
+        "PRICE": "Prix",
+        "MIN": "Min",
+        "MAX": "Max",
+        "OK": "OK",
+        "SORT_DEFAULT": "Trier par défaut",
+        "SORT_PRICE_ASC": "Prix croissant",
+        "SORT_PRICE_DESC": "Prix décroissant",
+        "SORT_RATING": "Mieux notés",
+        "VIEW_LIST": "Liste",
+        "VIEW_MAP": "Carte",
+        "RESET": "Réinitialiser",
+        "NO_RESULTS": "Aucun résultat trouvé.",
+        "EMPTY_TITLE": "Aucun service trouvé",
+        "EMPTY_DESC": "Aucune expérience ne correspond à vos critères. Essayez de modifier vos filtres ou explorez d'autres catégories.",
+        "VIEW_ALL": "Voir toutes les expériences",
+        "NO_IMAGE": "Pas d'image",
+        "PREV": "Précédent",
+        "NEXT": "Suivant",
+        "MAP_LOADING": "Chargement de la carte...",
+        "MAP_ERROR": "Impossible de charger la carte.",
+        "MAP_PLACEHOLDER": "Carte interactive"
+    },
+    "FOOTER": {
+        "SUBTITLE": "Votre passerelle vers des expériences marocaines authentiques.",
+        "EXPLORE": "Explorer",
+        "LODGING": "Hébergements",
+        "EXPERIENCES": "Expériences",
+        "GUIDES": "Guides",
+        "HELP": "Aide",
+        "HELP_CENTER": "Centre d'aide",
+        "TRUST": "Confiance et sécurité",
+        "CONTACT": "Nous contacter",
+        "ABOUT": "À propos",
+        "STAY_INFORMED": "Restez Informé",
+        "NEWSLETTER_DESC": "Rejoignez notre communauté pour des offres exclusives.",
+        "EMAIL_PLACEHOLDER": "Votre email",
+        "SUBSCRIBE": "S'inscrire",
+        "COPYRIGHT": "DKHOUL. Fait avec ❤️ au Maroc."
+    },
+    "COMMON": {
+        "CONFIRM": "Confirmer",
+        "CANCEL": "Annuler",
+        "DELETE": "Supprimer",
+        "EDIT": "Modifier",
+        "VIEW": "Voir",
+        "Loading": "Chargement..."
+    },
+    "TOASTS": {
+        "SUCCESS": "Succès",
+        "ERROR": "Erreur",
+        "INFO": "Information",
+        "WARNING": "Attention",
+        "NETWORK_ERROR": "Erreur réseau, veuillez réessayer.",
+        "IMAGE_UPLOADED": "Image téléchargée",
+        "UPLOAD_FAILED": "Échec du téléchargement",
+        "MAX_IMAGES_Warning": "Maximum 4 images autorisées",
+        "AI_ERROR": "Erreur de génération IA",
+        "FILL_ALL_FIELDS": "Veuillez remplir tous les champs obligatoires",
+        "SERVICE_CREATED": "Service créé avec succès",
+        "SERVICE_UPDATED": "Service mis à jour avec succès",
+        "SERVICE_DELETED": "Service supprimé avec succès",
+        "PROFILE_UPDATED": "Profil mis à jour",
+        "PASSWORD_CHANGED": "Mot de passe modifié",
+        "EMAIL_SENT": "Email envoyé",
+        "LOGIN_SUCCESS": "Connexion réussie",
+        "PAYMENT_SUCCESS": "Paiement réussi",
+        "MESSAGE_SENT": "Message envoyé",
+        "LOGIN_REQUIRED": "Veuillez vous connecter pour continuer",
+        "HOST_CONTACT_INITIATED": "Conversation commencée avec l'hôte",
+        "SELECT_DATE_TIME": "Veuillez sélectionner une date et une heure"
+    },
+    "CREATE_SERVICE": {
+        "TITLE": "Créer une nouvelle expérience",
+        "SECTION_BASIC": "Informations de base",
+        "LABEL_TITLE": "Titre de l'expérience",
+        "PLACEHOLDER_TITLE": "Ex: Cérémonie traditionnelle du thé...",
+        "LABEL_CATEGORY": "Catégorie",
+        "PLACEHOLDER_CATEGORY": "Choisir une catégorie",
+        "LABEL_CITY": "Ville",
+        "LABEL_PRICE": "Prix (MAD)",
+        "SECTION_LOGISTICS": "Logistique",
+        "LABEL_DURATION": "Durée (minutes)",
+        "LABEL_MAX_PARTICIPANTS": "Participants max",
+        "LABEL_LANGUAGES": "Langues parlées",
+        "LABEL_SLOTS": "Créneaux horaires disponibles",
+        "SUB_SLOTS": "Sélectionnez les heures de début possibles.",
+        "ERROR_SLOTS": "Veuillez sélectionner au moins un créneau horaire.",
+        "SECTION_DESC": "Description",
+        "BTN_AI": "✨ Générer avec IA",
+        "BTN_AI_GENERATING": "Génération...",
+        "PLACEHOLDER_DESC": "Décrivez votre expérience en détail...",
+        "HINT_DESC": "Astuce : Utilisez le bouton IA pour générer une description magique basée sur votre titre et catégorie.",
+        "SECTION_GALLERY": "Galerie Photos",
+        "UPLOAD_TITLE": "Cliquez pour ajouter des photos",
+        "UPLOAD_SUB": "JPG, PNG, WEBP (Max 5MB)",
+        "BTN_SUBMIT": "🚀 Publier l'expérience",
+        "BTN_SUBMITTING": "Publication en cours..."
+    },
+    "CATEGORIES": {
+        "SPACE": "Espaces",
+        "SKILL": "Savoir-faire",
+        "CONNECT": "Rencontres",
+        "All": "Tout"
+    },
+    "SHARED": {
+        "LOGO_ALT": "Logo DKHOUL",
+        "GOOGLE_ICON": "Logo Google",
+        "LOADING": "Chargement...",
+        "CLOSE": "Fermer",
+        "MENU": "Menu"
+    },
+    "CITIES": {
+        "Casablanca": "Casablanca",
+        "Marrakech": "Marrakech",
+        "Agadir": "Agadir",
+        "Tanger": "Tanger",
+        "Fès": "Fès",
+        "Rabat": "Rabat",
+        "Essaouira": "Essaouira",
+        "Merzouga": "Merzouga",
+        "Chefchaouen": "Chefchaouen",
+        "Ouarzazate": "Ouarzazate",
+        "Tout le Maroc": "Tout le Maroc"
+    },
+    "STATIC": {
+        "ABOUT": {
+            "TITLE": "À Propos de DKHOUL",
+            "SUBTITLE": "L'authenticité marocaine à portée de clic",
+            "MISSION_TITLE": "Notre Mission",
+            "MISSION_DESC": "Connecter les voyageurs aux habitants...",
+            "VALUES_TITLE": "Nos Valeurs"
+        },
+        "CONTACT": {
+            "TITLE": "Contactez-nous",
+            "SUBTITLE": "Une question ? Une suggestion ? N'hésitez pas !",
+            "FORM": {
+                "NAME": "Nom complet",
+                "EMAIL": "Email",
+                "SUBJECT": "Sujet",
+                "MESSAGE": "Message",
+                "SEND": "Envoyer"
+            }
+        },
+        "HELP": {
+            "TITLE": "Centre d'aide",
+            "SUBTITLE": "Comment pouvons-nous vous aider ?",
+            "SEARCH_PLACEHOLDER": "Rechercher une question...",
+            "FAQ_TITLE": "Questions Fréquentes",
+            "CATEGORIES": {
+                "general": "Général",
+                "account": "Compte",
+                "payments": "Paiements",
+                "trust": "Confiance & Sécurité"
+            },
+            "FAQ": {
+                "Q1": "Comment puis-je créer un compte ?",
+                "A1": "Cliquez sur 'S'inscrire' en haut à droite de la page. Vous pouvez vous inscrire avec votre email ou votre compte Google.",
+                "Q2": "Comment annuler une réservation ?",
+                "A2": "Rendez-vous dans votre tableau de bord, section 'Mes Réservations', puis cliquez sur la réservation à annuler.",
+                "Q3": "Quels modes de paiement acceptez-vous ?",
+                "A3": "Nous acceptons les cartes Visa, Mastercard et American Express via notre partenaire Stripe."
+            },
+            "NOT_FOUND": "Vous ne trouvez pas ce que vous cherchez ?",
+            "CONTACT_BTN": "Contactez-nous",
+            "ACCOUNT_DESC": "Modifier mon profil, mot de passe",
+            "BOOKING_DESC": "Réserver, annuler, modifier une réservation",
+            "PAYMENT_DESC": "Méthodes de paiement, factures"
+        },
+        "TRUST": {
+            "TITLE": "Confiance et Sécurité",
+            "SUBTITLE": "Votre sécurité est notre priorité absolue",
+            "hero_title": "Une communauté bâtie sur la confiance",
+            "hero_desc": "Nous mettons tout en œuvre pour que chaque expérience soit sécurisée.",
+            "verified_hosts": "Hôtes Vérifiés",
+            "verified_hosts_desc": "Tous nos hôtes passent par un processus de vérification",
+            "secure_payments": "Paiements Sécurisés",
+            "secure_payments_desc": "Transactions cryptées via Stripe",
+            "support": "Support 24/7",
+            "support_desc": "Notre équipe est disponible pour vous aider",
+            "DATA_TITLE": "Protection des données",
+            "DATA_DESC": "Vos données personnelles sont protégées conformément au RGPD. Nous utilisons un chiffrement SSL 256 bits pour toutes les communications. Vos informations de paiement ne sont jamais stockées sur nos serveurs.",
+            "REPORT_TITLE": "Signalement",
+            "REPORT_DESC": "Si vous constatez un comportement inapproprié ou une annonce suspecte, vous pouvez la signaler directement depuis la page du service. Notre équipe de modération examine chaque signalement sous 24h.",
+            "REFUND_TITLE": "Politique de remboursement",
+            "REFUND_DESC": "En cas d'annulation par l'hôte ou de service non conforme à la description, vous êtes intégralement remboursé. Les remboursements sont traités sous 5 à 10 jours ouvrés.",
+            "REPORT_BTN": "Signaler un problème"
+        }
+    }
+}

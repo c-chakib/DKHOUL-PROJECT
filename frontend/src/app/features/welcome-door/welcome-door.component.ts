@@ -1,12 +1,13 @@
 import { Component, signal, WritableSignal, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-welcome-door',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './welcome-door.component.html',
   styleUrls: ['./welcome-door.component.scss'],
   animations: [

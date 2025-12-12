@@ -44,8 +44,7 @@ exports.generateDescription = async (req, res, next) => {
 exports.chatWithGuide = async (req, res, next) => {
     try {
         const { message } = req.body;
-        console.log('AI Chat Request Body:', req.body);
-        console.log('User from Request:', req.user);
+        // console.log('AI Chat Request');
 
         // Security Check
         if (!req.user || !req.user.id) {

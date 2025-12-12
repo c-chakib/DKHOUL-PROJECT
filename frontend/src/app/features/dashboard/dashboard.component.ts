@@ -11,10 +11,14 @@ import { ImageFallbackDirective } from '../../shared/directives/image-fallback.d
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 import { ToastService } from '../../core/services/toast.service';
 
+import { TranslateModule } from '@ngx-translate/core';
+import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
+import { LanguageService } from '../../core/services/language.service';
+
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CommonModule, RouterLink, ImageFallbackDirective, MyBookingsComponent, HostBookingsComponent, ConfirmModalComponent],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective, MyBookingsComponent, HostBookingsComponent, ConfirmModalComponent, TranslateModule, LangSelectPipe],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss']
 })
@@ -23,6 +27,7 @@ export class DashboardComponent implements OnInit {
     bookingService = inject(BookingService);
     serviceService = inject(ServiceService);
     router = inject(Router);
+    public languageService = inject(LanguageService);
     private toastService = inject(ToastService);
 
     bookings = signal<any[]>([]);

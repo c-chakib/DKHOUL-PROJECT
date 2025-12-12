@@ -3,6 +3,7 @@ const Booking = require('../models/Booking');
 const Service = require('../models/Service');
 const AppError = require('../utils/appError');
 const { sendBookingConfirmation } = require('../utils/email');
+const { checkSlotAvailability, sendNewBookingEmails, sendStatusUpdateEmail } = require('../utils/bookingUtils');
 
 const stripeKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeKey) {
@@ -26,31 +27,20 @@ exports.checkAvailability = async (req, res, next) => {
             return next(new AppError('Service not found', 404));
         }
 
-        // Parse the requested date
-        const requestedDate = new Date(date);
-        requestedDate.setHours(0, 0, 0, 0);
+        const availability = checkSlotAvailability(service, date);
 
-        // Find availability slot for this date
-        const slot = service.availability.find(a => {
-            const slotDate = new Date(a.date);
-            slotDate.setHours(0, 0, 0, 0);
-            return slotDate.getTime() === requestedDate.getTime();
-        });
-
-        // If no availability array or slot not found, treat as available (open by default)
-        // Or: If slot exists and has 0 slots, it's full
-        if (slot && slot.slots <= 0) {
+        if (!availability.available) {
             return res.status(200).json({
                 status: 'success',
                 available: false,
-                message: 'Créneau complet ou indisponible'
+                message: availability.error
             });
         }
 
         res.status(200).json({
             status: 'success',
             available: true,
-            slotsRemaining: slot ? slot.slots : service.maxParticipants
+            slotsRemaining: availability.slots
         });
 
     } catch (error) {
@@ -76,17 +66,9 @@ exports.createPaymentIntent = async (req, res, next) => {
 
         // Check availability if date is provided
         if (date) {
-            const requestedDate = new Date(date);
-            requestedDate.setHours(0, 0, 0, 0);
-
-            const slot = service.availability.find(a => {
-                const slotDate = new Date(a.date);
-                slotDate.setHours(0, 0, 0, 0);
-                return slotDate.getTime() === requestedDate.getTime();
-            });
-
-            if (slot && slot.slots <= 0) {
-                return next(new AppError('Créneau complet ou indisponible', 400));
+            const availability = checkSlotAvailability(service, date);
+            if (!availability.available) {
+                return next(new AppError(availability.error || 'Créneau complet ou indisponible', 400));
             }
         }
 
@@ -94,7 +76,7 @@ exports.createPaymentIntent = async (req, res, next) => {
         // Amount must be in cents/centimes for Stripe
         const amount = Math.round(price * 100);
 
-        console.log(`Creating payment intent for ${amount} MAD (centimes)`);
+        // console.log(`Creating payment intent for ${amount} MAD (centimes)`);
 
         const paymentIntent = await stripe.paymentIntents.create({
             amount: amount,
@@ -127,25 +109,10 @@ exports.createPaymentIntent = async (req, res, next) => {
         // 3. Send Client Secret to Frontend
         // 3. Send Client Secret to Frontend
 
-        // --- EMAIL NOTIFICATION LOGIC ---
-        // Fetch full service details to get Host info
-        // We need to populate 'host' from the service. The service variable above is just the doc found by ID.
-        // It might not have 'host' populated if it's just findById(serviceId) without populate.
-        // Check Service model: usually host is an ObjectId ref 'User'.
-
         const fullService = await Service.findById(serviceId).populate('host');
 
-        if (fullService && fullService.host) {
-            // Send Notification to Host
-            const emailModule = require('../utils/email'); // Lazy load to ensure circular deps safe if any
-
-            // We need guest info too. req.user is the guest.
-            try {
-                await emailModule.sendNewRequestToHost(fullService.host, req.user, newBooking, fullService);
-                await emailModule.sendRequestAckToGuest(req.user, fullService);
-            } catch (emailErr) {
-                console.error('Failed to send booking notifications:', emailErr);
-            }
+        if (fullService) {
+             await sendNewBookingEmails(fullService, req.user, newBooking);
         }
 
         res.status(200).json({
@@ -203,7 +170,7 @@ exports.confirmBooking = async (req, res, next) => {
             if (slotIndex !== -1 && service.availability[slotIndex].slots > 0) {
                 service.availability[slotIndex].slots -= 1;
                 await service.save();
-                console.log(`Decremented slot for ${service.title} on ${booking.bookingDate}`);
+                // console.log(`Decremented slot for ${service.title} on ${booking.bookingDate}`);
             }
         }
 
@@ -212,7 +179,7 @@ exports.confirmBooking = async (req, res, next) => {
             // MOVED TO updateBookingStatus (When host explicitly accepts)
             // Prevent sending "Confirmed" email while status is still 'pending'
             // await sendBookingConfirmation(booking.tourist, booking, booking.service);
-            console.log('Skipping immediate confirmation email - waiting for Host Approval.');
+            // console.log('Skipping immediate confirmation email - waiting for Host Approval.');
         }
 
         res.status(200).json({
@@ -314,17 +281,8 @@ exports.updateBookingStatus = async (req, res, next) => {
         await booking.save();
 
         // --- EMAIL STATUS NOTIFICATION ---
-        const emailModule = require('../utils/email');
-        // booking has tourist (ID) and service (ID/Object). Need to ensure tourist is populated to get email.
         const fullBooking = await Booking.findById(id).populate('tourist').populate('service');
-
-        if (fullBooking && fullBooking.tourist) {
-            try {
-                await emailModule.sendBookingStatusToGuest(fullBooking.tourist, fullBooking, fullBooking.service);
-            } catch (emailErr) {
-                console.error('Failed to send status update email:', emailErr);
-            }
-        }
+        await sendStatusUpdateEmail(fullBooking);
 
         res.status(200).json({
             status: 'success',

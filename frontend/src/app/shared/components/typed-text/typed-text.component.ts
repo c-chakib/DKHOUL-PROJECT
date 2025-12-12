@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
     templateUrl: './typed-text.component.html',
     styleUrls: ['./typed-text.component.scss']
 })
-export class TypedTextComponent implements OnInit, OnDestroy {
+export class TypedTextComponent implements OnInit, OnDestroy, OnChanges {
     @Input() texts: string[] = [];
     @Input() typeSpeed = 100;
     @Input() backSpeed = 50;
@@ -20,7 +20,21 @@ export class TypedTextComponent implements OnInit, OnDestroy {
     private timeoutId: any;
 
     ngOnInit() {
-        this.type();
+        // Initial check, but real trigger usually comes from ngOnChanges for async data
+        if (this.texts && this.texts.length > 0) {
+            this.type();
+        }
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['texts'] && this.texts && this.texts.length > 0) {
+            // Restart typing if texts change significantly or populate for first time
+            clearTimeout(this.timeoutId);
+            this.currentTextIndex = 0;
+            this.isDeleting = false;
+            this.displayText = '';
+            this.type();
+        }
     }
 
     ngOnDestroy() {
@@ -28,7 +42,11 @@ export class TypedTextComponent implements OnInit, OnDestroy {
     }
 
     private type() {
+        // Double check availability
+        if (!this.texts || this.texts.length === 0) return;
+
         const currentFullText = this.texts[this.currentTextIndex];
+        if (!currentFullText) return;
 
         if (this.isDeleting) {
             this.displayText = currentFullText.substring(0, this.displayText.length - 1);

@@ -7,22 +7,20 @@
   <!-- HEADER -->
   <div class="mb-8 pt-6">
     <button (click)="goBack()" 
-            class="group inline-flex items-center gap-3 text-gray-500 hover:text-[#BC5627] transition-all duration-300">
-        <div class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#BC5627] group-hover:bg-[#BC5627] group-hover:text-white transition-all duration-300 shadow-sm">
-             <i class="fas fa-arrow-left text-sm transition-transform group-hover:-translate-x-0.5"></i>
-        </div>
-        <span class="font-bold text-xs uppercase tracking-[0.15em] relative top-[1px]">Retour</span>
+            class="group inline-flex items-center gap-2 px-6 py-3 bg-[#BC5627] text-white rounded-full shadow-lg hover:bg-[#a04620] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+        <i class="fas fa-arrow-left text-white/90 group-hover:text-white transition-colors duration-300 text-sm"></i>
+        <span class="font-bold text-sm uppercase tracking-wider">{{ 'SERVICE.BACK' | translate }}</span>
     </button>
   </div>
 
   <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ s.title }}</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ s.title | langSelect: languageService.currentLang() }}</h1>
     <div class="flex items-center text-sm text-gray-600">
       <i class="fas fa-star text-[#BC5627] mr-1"></i>
       <span class="font-bold mr-1">4.9</span>
-      <span class="underline mr-4">({{ s.reviews?.length || 0 }} avis)</span>
+      <span class="underline mr-4">({{ s.reviews?.length || 0 }} {{ 'SERVICE.REVIEWS_COUNT' | translate }})</span>
       <span class="mr-4">·</span>
-      <span class="underline font-bold">{{ s.city }}, Maroc</span>
+      <span class="underline font-bold">{{ 'CITIES.' + s.city | translate }}, Maroc</span>
     </div>
   </div>
 
@@ -30,99 +28,86 @@
   <div class="relative rounded-2xl overflow-hidden shadow-lg mb-12 h-[300px] md:h-[450px] group">
     
     <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-full">
-        <!-- Main Image (Left Half) -->
-        <div class="md:col-span-2 md:row-span-2 relative overflow-hidden bg-gray-100 h-full group/main cursor-pointer" (click)="openLightbox(0)">
-            <ng-container *ngIf="getImageUrl(s.images[0]) as url; else placeholderMain">
+        <!-- Main Image -->
+        <div class="relative overflow-hidden bg-gray-100 h-full group/main cursor-pointer" 
+             [ngClass]="{'md:col-span-4 md:row-span-2': validImages().length === 1, 'md:col-span-2 md:row-span-2': validImages().length > 1}"
+             (click)="openLightbox(0)">
+            <ng-container *ngIf="validImages().length > 0 && getImageUrl(validImages()[0]) as url">
                 <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/main:scale-105">
                 <div class="absolute inset-0 bg-black/0 group-hover/main:bg-black/10 transition-colors duration-300"></div>
             </ng-container>
-            <ng-template #placeholderMain>
-                <div class="w-full h-full flex items-center justify-center text-gray-300">
-                    <i class="fas fa-image text-4xl"></i>
-                </div>
-            </ng-template>
+            <div *ngIf="validImages().length === 0" class="w-full h-full flex items-center justify-center text-gray-300">
+                <i class="fas fa-image text-4xl"></i>
+            </div>
         </div>
 
-        <!-- Secondary Images (Right Half - 3 Slots) -->
+        <!-- Secondary Images (Only show if they exist in validImages) -->
         
-        <!-- Top Right (Full Width) -->
-        <div class="hidden md:block md:col-span-2 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(1)">
-            <ng-container *ngIf="getImageUrl(s.images[1]) as url; else placeholderSec">
-                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
-                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
-            </ng-container>
+        <!-- Top Right -->
+        <div *ngIf="validImages().length > 1" class="hidden md:block md:col-span-2 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(1)">
+            <img [src]="getImageUrl(validImages()[1])" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+            <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
         </div>
 
         <!-- Bottom Left -->
-        <div class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(2)">
-             <ng-container *ngIf="getImageUrl(s.images[2]) as url; else placeholderSec">
-                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
-                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
-             </ng-container>
+        <div *ngIf="validImages().length > 2" class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(2)">
+             <img [src]="getImageUrl(validImages()[2])" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+             <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
         </div>
 
         <!-- Bottom Right (+Overlay) -->
-        <div class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(3)">
-             <ng-container *ngIf="getImageUrl(s.images[3]) as url; else placeholderSec">
-                <img [src]="url" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
-                <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
-                
-                <!-- Plus Overlay (Shows if more than 4 images) -->
-                <div *ngIf="s.images.length > 4" class="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-bold text-xl backdrop-blur-[2px] transition-colors hover:bg-black/40">
-                    +{{ s.images.length - 4 }}
-                </div>
-             </ng-container>
+        <div *ngIf="validImages().length > 3" class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" (click)="openLightbox(3)">
+             <img [src]="getImageUrl(validImages()[3])" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+             <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
+             
+             <!-- Plus Overlay -->
+             <div *ngIf="validImages().length > 4" class="absolute inset-0 bg-black/50 flex items-center justify-center text-white font-bold text-xl backdrop-blur-[2px] transition-colors hover:bg-black/40">
+                 +{{ validImages().length - 4 }}
+             </div>
         </div>
-
-        <ng-template #placeholderSec>
-            <div class="w-full h-full flex items-center justify-center text-gray-300 bg-gray-50">
-                <i class="fas fa-image text-xl"></i>
-            </div>
-        </ng-template>
     </div>
 
     <!-- Floating "Show All" Button -->
     <button (click)="openLightbox(0)" class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm hover:bg-white px-4 py-2 rounded-lg shadow-md border border-gray-200 text-sm font-bold text-gray-800 transition-all hover:scale-105 flex items-center gap-2">
         <i class="fas fa-th"></i>
-        <span>Voir toutes les photos</span>
+        <span>{{ 'SERVICE.SHOW_PHOTOS' | translate }}</span>
     </button>
   </div>
 
   <!-- MAIN CONTENT GRID -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-    
-    <!-- LEFT COLUMN (Details) -->
+    <!-- ... existing content ... -->
+    <!-- LEFT COLUMN (Details) - NO CHANGES HERE, SKIPPING FOR BREVITY -->
     <div class="md:col-span-2">
-      
       <!-- HOST INFO -->
       <div class="flex items-center justify-between py-6 border-b border-gray-200">
         <div>
-          <h2 class="text-xl font-bold mb-1">Proposé par {{ host().name }}</h2>
-          <p class="text-gray-500">Hôte expérimenté</p>
+          <h2 class="text-xl font-bold mb-1">{{ 'SERVICE.HOSTED_BY' | translate }} {{ host().name }}</h2>
+          <p class="text-gray-500">{{ 'SERVICE.HOST_EXP' | translate }}</p>
         </div>
         <img [src]="host().photo" class="w-14 h-14 rounded-full object-cover border border-gray-200">
       </div>
-        <h2 class="text-xl font-bold mb-4">À propos de cette expérience</h2>
+        <h2 class="text-xl font-bold mb-4">{{ 'SERVICE.ABOUT' | translate }}</h2>
         <p class="text-gray-700 leading-relaxed whitespace-pre-line">
-          {{ s.description }}
+          {{ s.description | langSelect: languageService.currentLang() }}
         </p>
       </div>
 
       <!-- AMENITIES -->
       <div class="py-8 border-b border-gray-200">
-        <h2 class="text-xl font-bold mb-4">Ce qui est inclus</h2>
+        <h2 class="text-xl font-bold mb-4">{{ 'SERVICE.INCLUDED' | translate }}</h2>
         <div class="grid grid-cols-2 gap-4">
           <div *ngFor="let item of s.included" class="flex items-center gap-3">
             <i class="fas fa-check text-green-600"></i>
             <span class="text-gray-700 capitalize">{{ item }}</span>
           </div>
-          <div *ngIf="s.included.length === 0" class="text-gray-500">Aucun équipement spécifique listé.</div>
+          <div *ngIf="s.included.length === 0" class="text-gray-500">{{ 'SERVICE.NO_AMENITIES' | translate }}</div>
         </div>
       </div>
 
       <!-- REVIEWS -->
       <div class="py-8 border-b border-gray-200">
-        <h2 class="text-xl font-bold mb-4">Commentaires</h2>
+        <h2 class="text-xl font-bold mb-4">{{ 'SERVICE.REVIEWS_TITLE' | translate }}</h2>
         <div *ngIf="s.reviews && s.reviews.length > 0; else noReviews" class="space-y-6">
             <div *ngFor="let review of s.reviews" class="bg-gray-50 p-4 rounded-lg">
                 <div class="flex items-center gap-2 mb-2">
@@ -133,7 +118,7 @@
             </div>
         </div>
         <ng-template #noReviews>
-            <p class="text-gray-500 italic">Aucun avis pour le moment.</p>
+            <p class="text-gray-500 italic">{{ 'SERVICE.NO_REVIEWS' | translate }}</p>
         </ng-template>
       </div>
 
@@ -158,7 +143,7 @@
              <!-- Date & Time -->
             <div class="flex border-b border-gray-300">
                 <div class="w-1/2 p-3 border-r border-gray-300">
-                    <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">Date</label>
+                    <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">{{ 'SERVICE.DATE' | translate }}</label>
                     <input type="date" 
                            [min]="minDate"
                            [value]="selectedDate()" 
@@ -166,9 +151,9 @@
                            class="w-full text-sm outline-none bg-transparent font-medium cursor-pointer">
                 </div>
                 <div class="w-1/2 p-3">
-                     <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">Heure</label>
+                     <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">{{ 'SERVICE.TIME' | translate }}</label>
                      <select [value]="selectedTime()" (change)="onTimeChange($event)" class="w-full text-sm outline-none bg-transparent font-medium cursor-pointer">
-                        <option value="" disabled>Choisir</option>
+                        <option value="" disabled>{{ 'SERVICE.CHOOSE' | translate }}</option>
                         <ng-container *ngIf="s.timeSlots && s.timeSlots.length > 0; else defaultSlots">
                             <option *ngFor="let slot of s.timeSlots" [value]="slot">{{ slot }}</option>
                         </ng-container>
@@ -187,12 +172,12 @@
             <!-- Duration -->
             <div class="flex border-b border-gray-300 bg-gray-50">
                  <div class="w-full p-3">
-                    <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">Durée</label>
+                    <label class="text-[10px] font-bold uppercase text-gray-500 block mb-1">{{ 'SERVICE.DURATION' | translate }}</label>
                     <select [value]="duration()" (change)="onDurationChange($event)" class="w-full text-sm outline-none bg-transparent font-medium cursor-pointer">
-                        <option [value]="1">1 heure</option>
-                        <option [value]="2">2 heures</option>
-                        <option [value]="3">3 heures</option>
-                        <option [value]="4">4 heures</option>
+                        <option [value]="1">1 {{ 'SERVICE.HOUR_UNIT' | translate }}</option>
+                        <option [value]="2">2 {{ 'SERVICE.HOUR_UNIT' | translate }}</option>
+                        <option [value]="3">3 {{ 'SERVICE.HOUR_UNIT' | translate }}</option>
+                        <option [value]="4">4 {{ 'SERVICE.HOUR_UNIT' | translate }}</option>
                     </select>
                  </div>
             </div>
@@ -200,8 +185,8 @@
             <!-- Guests -->
             <div class="p-4 flex justify-between items-center">
                 <div>
-                    <div class="text-[10px] font-bold uppercase text-gray-500">Voyageurs</div>
-                    <div class="text-sm font-medium">{{ guests() }} personne(s)</div>
+                    <div class="text-[10px] font-bold uppercase text-gray-500">{{ 'SERVICE.GUESTS' | translate }}</div>
+                    <div class="text-sm font-medium">{{ guests() }} {{ 'SERVICE.PERSON_UNIT' | translate }}</div>
                 </div>
                 <div class="flex items-center gap-3">
                     <button (click)="decrementGuests()" 
@@ -219,21 +204,21 @@
         </div>
 
         <button (click)="bookNow()" class="w-full bg-[#BC5627] hover:bg-[#a04620] text-white font-bold py-4 rounded-xl mb-4 transition-all shadow-lg hover:shadow-xl active:scale-[0.98]">
-          Réserver pour {{ totalPrice() }} MAD
+          {{ 'SERVICE.BOOK_BTN' | translate:{price: totalPrice()} }}
         </button>
 
         <button (click)="contactHost()" class="w-full bg-white border border-black hover:bg-gray-50 text-black font-bold py-3 rounded-xl transition-colors">
-            Contacter l'hôte
+            {{ 'SERVICE.CONTACT_HOST' | translate }}
         </button>
 
         <div class="mt-4 text-center text-gray-500 text-xs">
-          Aucun montant débité pour le moment
+          {{ 'SERVICE.NO_CHARGE' | translate }}
         </div>
 
         <!-- Report Button -->
         <button (click)="reportModal.open()" 
                 class="mt-6 w-full flex items-center justify-center gap-2 text-gray-400 hover:text-red-500 text-xs transition-colors group">
-            <span class="group-hover:underline">🚩 Signaler ce service</span>
+            <span class="group-hover:underline">🚩 {{ 'SERVICE.REPORT' | translate }}</span>
         </button>
 
       </div>
@@ -251,36 +236,44 @@
 
   <!-- LIGHTBOX OVERLAY -->
   <div *ngIf="lightboxOpen()" class="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center animate-fade-in text-white">
-    
-    <!-- Close Button (Minimal Glass) -->
-<button (click)="closeLightbox()" 
-        class="absolute top-6 right-6 w-12 h-12 rounded-full border border-white/50 bg-white/20 backdrop-blur-md flex items-center justify-center text-gray-800 transition-all hover:bg-white/40 hover:border-white hover:scale-105 z-[10001] group"
-        title="Fermer (Echap)">
-     <i class="fas fa-times text-lg"></i>
-</button>
+    <!-- Close Button -->
+    <button (click)="closeLightbox()" 
+            style="width: 64px; height: 64px; min-width: 64px; min-height: 64px; border-radius: 9999px; background-color: white; color: black; display: flex; align-items: center; justify-content: center;"
+            class="absolute top-6 right-6 shadow-2xl transition-all hover:scale-110 hover:bg-gray-100 z-[10001] cursor-pointer border-2 border-white/50"
+            [title]="'SHARED.CLOSE' | translate">
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+         </svg>
+    </button>
     
     <!-- Main Image Area -->
     <div class="relative flex-1 w-full flex items-center justify-center p-4 overflow-hidden">
-        <img [src]="getImageUrl(s.images[currentLightboxIndex()])" 
-             class="max-h-[75vh] max-w-[90vw] object-contain rounded-lg shadow-2xl animate-scale-in select-none"
+        <img [src]="getImageUrl(validImages()[currentLightboxIndex()])" 
+             class="max-h-[90vh] max-w-[95vw] object-contain rounded-lg shadow-2xl animate-scale-in select-none"
              (click)="$event.stopPropagation()">
              
-        <!-- Prev Button (Glass) -->
-        <button (click)="prevLightboxImage(); $event.stopPropagation()" 
-                class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-white hover:text-black hover:scale-105 z-[10000] group">
-            <i class="fas fa-chevron-left text-xl group-hover:-translate-x-0.5 transition-transform"></i>
+        <!-- Prev Button -->
+        <button *ngIf="validImages().length > 1" (click)="prevLightboxImage(); $event.stopPropagation()" 
+                style="width: 64px; height: 64px; min-width: 64px; min-height: 64px; border-radius: 9999px; background-color: white; color: black; display: flex; align-items: center; justify-content: center;"
+                class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 shadow-2xl transition-all hover:scale-110 hover:bg-[#BC5627] hover:text-white group z-[10000] cursor-pointer border-2 border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
         </button>
 
-        <!-- Next Button (Glass) -->
-        <button (click)="nextLightboxImage(); $event.stopPropagation()" 
-                class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full border border-white/30 bg-black/20 backdrop-blur-md flex items-center justify-center text-white transition-all hover:bg-white hover:text-black hover:scale-105 z-[10000] group">
-            <i class="fas fa-chevron-right text-xl group-hover:translate-x-0.5 transition-transform"></i>
+        <!-- Next Button -->
+        <button *ngIf="validImages().length > 1" (click)="nextLightboxImage(); $event.stopPropagation()" 
+                style="width: 64px; height: 64px; min-width: 64px; min-height: 64px; border-radius: 9999px; background-color: white; color: black; display: flex; align-items: center; justify-content: center;"
+                class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 shadow-2xl transition-all hover:scale-110 hover:bg-[#BC5627] hover:text-white group z-[10000] cursor-pointer border-2 border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-black group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
         </button>
     </div>
 
     <!-- Thumbnails Strip -->
     <div class="h-24 w-full flex items-center justify-center gap-4 pb-6 z-[10000]">
-        <div *ngFor="let img of s.images; let i = index" 
+        <div *ngFor="let img of validImages(); let i = index" 
              (click)="currentLightboxIndex.set(i); $event.stopPropagation()"
              class="relative w-16 h-16 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 border-2"
              [class.border-white]="currentLightboxIndex() === i"
@@ -294,7 +287,7 @@
     
     <!-- Counter moved to top left -->
     <div class="absolute top-8 left-8 text-white/80 font-medium bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-sm tracking-widest border border-white/10">
-        {{ currentLightboxIndex() + 1 }} / {{ s.images.length }}
+        {{ currentLightboxIndex() + 1 }} / {{ validImages().length }}
     </div>
 
   </div>

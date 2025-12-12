@@ -1,0 +1,524 @@
+{
+    "NAV": {
+        "HOME": "HOME",
+        "EXPLORE": "EXPLORE",
+        "CREATE_EXP": "Create an Experience",
+        "LOGIN": "Login",
+        "REGISTER": "Register",
+        "DASHBOARD": "Dashboard",
+        "PROFILE": "My Profile",
+        "LOGOUT": "Logout",
+        "ACCOUNT": "Account",
+        "SUPER_ADMIN": "Super Admin"
+    },
+    "HOME": {
+        "MAP": {
+            "TITLE": "Our Destinations"
+        },
+        "HERO_IMAGES": {
+            "RIAD": "Experience Authentic Morocco - Traditional Riad",
+            "HOSTS": "Meet Exceptional Hosts",
+            "EXPERIENCES": "Live Local Experiences",
+            "TRAVEL": "DKHOUL - Travel Differently",
+            "CRAFTS": "Moroccan Crafts and Creativity",
+            "FOOD": "Local Flavors and Gastronomy",
+            "LANDSCAPES": "Discovering Southern Landscapes",
+            "WORK": "Inspiring Workspaces",
+            "ARCHI": "Architecture and Heritage",
+            "HOSPITALITY": "Hospitality and Conviviality"
+        },
+        "HERO": {
+            "TITLE": "Don't just visit Morocco.",
+            "TITLE_HIGHLIGHT": "Live it from the inside.",
+            "SUBTITLE": "The first platform opening the doors of Moroccan homes to you.",
+            "SUBTITLE_HIGHLIGHT": "Private Spaces • Skills • Connections",
+            "TYPED": {
+                "TEXT_1": "Experience Moroccan hospitality",
+                "TEXT_2": "Access exclusive places",
+                "TEXT_3": "Learn traditional crafts",
+                "TEXT_4": "Share tea, share a story"
+            },
+            "BADGES": {
+                "AUTHENTIC": "100% Authentic",
+                "LOCAL_PRICE": "Local & Fair Prices",
+                "SECURE": "Secure Payment"
+            },
+            "CTA_EXPLORE": "Explore Services",
+            "CTA_HOST": "Become a Host",
+            "STATS": {
+                "HOSTS": "Moroccan Hosts",
+                "TRAVELERS": "Travelers Helped",
+                "SERVICES": "Services Provided"
+            }
+        },
+        "CATEGORIES": {
+            "TITLE": "The DKHOUL Experience",
+            "SUBTITLE": "Monetize your space, sell your skills, rent your time",
+            "ITEMS": {
+                "SPACE": {
+                    "NAME": "DKHOUL Space",
+                    "TAGLINE": "Monetize your space",
+                    "DESC": "Practical micro-services: luggage storage, express shower, wifi, parking, home coworking",
+                    "CTA": "Discover DKHOUL Space",
+                    "EXAMPLES": {
+                        "1": "Luggage Storage",
+                        "2": "Express Shower",
+                        "3": "Wifi & Coworking",
+                        "4": "Parking"
+                    }
+                },
+                "SKILL": {
+                    "NAME": "DKHOUL Skills",
+                    "TAGLINE": "Sell your skills",
+                    "DESC": "Authentic learning: Moroccan cooking, crafts, languages, traditional music",
+                    "CTA": "Discover DKHOUL Skills",
+                    "EXAMPLES": {
+                        "1": "Moroccan Cooking",
+                        "2": "Crafts",
+                        "3": "Languages",
+                        "4": "Music"
+                    }
+                },
+                "CONNECT": {
+                    "NAME": "DKHOUL Connect",
+                    "TAGLINE": "Rent your time",
+                    "DESC": "Human experiences: souk companion, local advice, personalized transport, babysitting",
+                    "CTA": "Discover DKHOUL Connect",
+                    "EXAMPLES": {
+                        "1": "Souk Companion",
+                        "2": "Local Advice",
+                        "3": "Transport",
+                        "4": "Babysitting"
+                    }
+                }
+            }
+        },
+        "FEATURED": {
+            "TITLE": "Most Requested Services",
+            "SUBTITLE": "Authentic, practical, and affordable",
+            "EMPTY": "No services found at the moment."
+        },
+        "HOW_IT_WORKS": {
+            "TITLE": "How it Works?",
+            "SUBTITLE": "Simple, fast, and secure",
+            "STEPS": {
+                "1": {
+                    "TITLE": "Discover",
+                    "DESC": "Explore Spaces, Skills & Connect - find the perfect experience"
+                },
+                "2": {
+                    "TITLE": "Book",
+                    "DESC": "Book easily and pay securely online"
+                },
+                "3": {
+                    "TITLE": "Live It",
+                    "DESC": "Enjoy authentic local experiences with verified hosts"
+                },
+                "4": {
+                    "TITLE": "Share",
+                    "DESC": "Rate your experience and help the community"
+                }
+            }
+        },
+        "VALUE_PROP": {
+            "TITLE": "Why Choose DKHOUL?",
+            "SUBTITLE": "The only platform that truly values authenticity and fairness.",
+            "ITEMS": {
+                "PRICE": {
+                    "TITLE": "Prices 50-70% Cheaper",
+                    "DESC": "DKHOUL: 50-300 DH vs Airbnb Experiences: 400-1500 DH vs GetYourGuide: 600-2000 DH"
+                },
+                "REVENUE": {
+                    "TITLE": "80% Revenue to Hosts",
+                    "DESC": "DKHOUL Commission 20% vs 30% Airbnb vs 70-80% GetYourGuide - Fair redistribution"
+                },
+                "FLEX": {
+                    "TITLE": "Total Flexibility",
+                    "DESC": "Same-day booking, 1-3h duration vs rigid half-day formats elsewhere"
+                },
+                "MICRO": {
+                    "TITLE": "Unique Micro-services",
+                    "DESC": "Only platform with luggage, wifi, shower - practical services not found elsewhere"
+                }
+            },
+            "TABLE": {
+                "CRITERIA": "Criteria",
+                "OTHERS": "Others",
+                "ROW_PRICE": "Average Price",
+                "ROW_REVENUE": "Host Revenue",
+                "ROW_AUTH": "Authenticity",
+                "ROW_MICRO": "Micro-services",
+                "YES": "Yes",
+                "NO": "No",
+                "LOCAL": "100% Local",
+                "STANDARD": "Standardized"
+            }
+        },
+        "TESTIMONIALS": {
+            "TITLE": "They Trust Us",
+            "SUBTITLE": "Discover reviews from our community",
+            "REVIEWS": {
+                "1": "I stored my luggage at Ahmed's for 4h. Impeccable service, only 20 DH!",
+                "2": "The cooking class at Fatima's was incredible. I learned to make authentic tagine for 200 DH. Unique experience!",
+                "3": "Youssef accompanied me in the Marrakech souks. Best prices, local advice, 100 DH for 2h. Perfect guide!"
+            },
+            "TYPES": {
+                "LUGGAGE": "Luggage Storage",
+                "COOKING": "Cooking Class",
+                "GUIDE": "Souk Guide"
+            }
+        }
+    },
+    "DASHBOARD": {
+        "HELLO": "Hello",
+        "WELCOME": "Welcome to your dashboard",
+        "EDIT_PROFILE": "Edit",
+        "STATUS": "Status",
+        "STATS_BOOKINGS": "Bookings",
+        "STATS_SERVICES": "My Listings",
+        "TAB_BOOKINGS": "My Bookings",
+        "TAB_HOST_BOOKINGS": "Received Requests",
+        "TAB_SERVICES": "My Listings",
+        "EMPTY_SERVICES_TITLE": "No listings yet",
+        "EMPTY_SERVICES_DESC": "Start earning by sharing your space or skills.",
+        "CREATE_BTN": "Create a Listing",
+        "MY_BOOKINGS": {
+            "FILTER_ALL": "All",
+            "FILTER_PENDING": "Pending",
+            "FILTER_CONFIRMED": "Confirmed",
+            "FILTER_COMPLETED": "Completed",
+            "FILTER_CANCELLED": "Cancelled",
+            "EMPTY_TITLE": "No bookings found",
+            "EMPTY_DESC": "You don't have any bookings yet.",
+            "EXPLORE_BTN": "Explore Experiences",
+            "DELETED_SERVICE": "Service Deleted",
+            "DELETE_TITLE": "Delete Booking",
+            "DELETE_MSG": "Are you sure you want to delete this booking?",
+            "DELETE_BTN": "Delete",
+            "CANCEL_BTN": "Cancel"
+        },
+        "HOST_BOOKINGS": {
+            "TITLE": "Received Bookings",
+            "SUBTITLE": "Manage booking requests for your experiences.",
+            "EMPTY_TITLE": "No requests",
+            "EMPTY_DESC": "You haven't received any requests yet.",
+            "COL_TRAVELER": "Traveler",
+            "COL_EXP": "Experience",
+            "COL_DATE": "Date & Time",
+            "COL_PRICE": "Price",
+            "COL_STATUS": "Status",
+            "COL_ACTIONS": "Actions",
+            "STATUS": {
+                "PENDING": "Pending",
+                "CONFIRMED": "Confirmed",
+                "COMPLETED": "Completed",
+                "CANCELLED": "Cancelled"
+            },
+            "MODAL_ACCEPT_TITLE": "Accept Booking",
+            "MODAL_REFUSE_TITLE": "Decline Booking",
+            "MODAL_ACCEPT_MSG": "Do you want to accept the booking from {{name}}?",
+            "MODAL_REFUSE_MSG": "Are you sure you want to decline this booking?",
+            "BTN_ACCEPT": "Accept",
+            "BTN_REFUSE": "Decline",
+            "NO_ACTION": "No action"
+        },
+        "EDIT_SERVICE": {
+            "TITLE": "Edit Experience",
+            "CANCEL": "Cancel",
+            "LABEL_TITLE": "Title",
+            "LABEL_DESC": "Description",
+            "LABEL_PRICE": "Price (MAD)",
+            "LABEL_CATEGORY": "Category",
+            "LABEL_CITY": "City",
+            "LABEL_DURATION": "Duration (min)",
+            "BTN_SAVE": "Update",
+            "BTN_SAVING": "Saving...",
+            "OPTS_CATEGORY": {
+                "SKILL": "Skill Workshop",
+                "SPACE": "Space",
+                "CONNECT": "Meetup (Connect)"
+            }
+        }
+    },
+    "WELCOME": {
+        "SLOGAN": "Dkhoul... and discover the real Morocco",
+        "ENTER": "Enter Platform"
+    },
+    "AUTH": {
+        "LOGIN_TITLE": "Marhba!",
+        "LOGIN_SUBTITLE": "Happy to see you again.",
+        "JOIN_TITLE": "Join DKHOUL",
+        "JOIN_SUBTITLE": "Start your Moroccan adventure today.",
+        "GOOGLE_CONTINUE": "Continue with Google",
+        "OR_EMAIL": "Or continue with email",
+        "EMAIL_LABEL": "Email Address",
+        "PASSWORD_LABEL": "Password",
+        "ROLE_LABEL": "I want to be:",
+        "ROLE_TOURIST": "Tourist",
+        "ROLE_HOST": "Host",
+        "PLACEHOLDERS": {
+            "NAME": "Full Name",
+            "EMAIL": "your@email.com",
+            "PASSWORD": "Your password",
+            "NEW_PASSWORD": "New password",
+            "PASSWORD_HINT": "Min. 12 chars",
+            "CONFIRM_PASSWORD": "Repeat password"
+        },
+        "ERRORS": {
+            "EMAIL_REQUIRED": "Valid email required",
+            "PASSWORD_REQUIRED": "Password required (min 6 chars)",
+            "NAME_REQUIRED": "Full name required",
+            "PASSWORD_MISMATCH": "Passwords do not match.",
+            "PASSWORD_MIN_LENGTH": "Min 12 chars required",
+            "PASSWORD_PATTERN": "Required: Uppercase, lowercase, number, symbol"
+        },
+        "LOGIN_BTN": "Login",
+        "LOGIN_LOADING": "Logging in...",
+        "REGISTER_BTN": "Register",
+        "REGISTER_LOADING": "Registering...",
+        "FORGOT_PASSWORD": "Forgot password?",
+        "FORGOT_PASSWORD_SUBTITLE": "Enter your email to receive a reset link",
+        "SEND_RESET_LINK": "Send link",
+        "EMAIL_SENT_TITLE": "Email sent!",
+        "EMAIL_SENT_DESC": "Check your inbox (and spam) for the reset link.",
+        "LINK_EXPIRATION": "Link expires in 10 minutes.",
+        "RESEND_EMAIL": "Resend email",
+        "BACK_TO_LOGIN": "Back to login",
+        "TOAST_EMAIL_SENT": "Email sent! Check your inbox.",
+        "TOAST_SEND_ERROR": "Error sending email",
+        "RESET_PASSWORD_TITLE": "New Password",
+        "RESET_PASSWORD_SUBTITLE": "Create a new secure password",
+        "NEW_PASSWORD_LABEL": "New Password",
+        "CONFIRM_PASSWORD_LABEL": "Confirm Password",
+        "RESET_PASSWORD_BTN": "Reset Password",
+        "RESET_SUCCESS_TITLE": "Password Reset!",
+        "RESET_SUCCESS_DESC": "Your new password is active. You can now login.",
+        "TOAST_RESET_SUCCESS": "Password reset successfully!",
+        "TOAST_RESET_ERROR": "Reset failed",
+        "TOAST_INVALID_TOKEN": "Invalid reset link",
+        "NO_ACCOUNT": "No account? Register",
+        "ALREADY_ACCOUNT": "Already have an account? Login",
+        "SUCCESS_REGISTER": "Account created successfully! Welcome.",
+        "SUCCESS_LOGIN": "Login successful",
+        "LOGOUT_SUCCESS": "Logout successful"
+    },
+    "SERVICE": {
+        "BACK": "Back",
+        "REVIEWS_COUNT": "reviews",
+        "SHOW_PHOTOS": "Show all photos",
+        "HOSTED_BY": "Hosted by",
+        "HOST_EXP": "Experienced Host",
+        "ABOUT": "About this experience",
+        "INCLUDED": "What's included",
+        "NO_AMENITIES": "No specific amenities listed.",
+        "REVIEWS_TITLE": "Reviews",
+        "NO_REVIEWS": "No reviews yet.",
+        "PRICE_TOTAL": "Total Price",
+        "DATE": "Date",
+        "TIME": "Time",
+        "DURATION": "Duration",
+        "GUESTS": "Guests",
+        "CHOOSE": "Choose",
+        "HOUR_UNIT": "hour(s)",
+        "PERSON_UNIT": "person(s)",
+        "BOOK_BTN": "Book for {{price}} MAD",
+        "CONTACT_HOST": "Contact Host",
+        "NO_CHARGE": "You won't be charged yet",
+        "REPORT": "Report this service"
+    },
+    "MARKETPLACE": {
+        "TITLE": "Marketplace",
+        "RESULTS_COUNT": "{{count}} experience(s) found",
+        "SEARCH_PLACEHOLDER": "Search for an activity, a vibe...",
+        "CHOOSE_CITY": "Choose a city",
+        "ALL_CITIES": "All Morocco",
+        "FILTERS": "Filters",
+        "PRICE": "Price",
+        "MIN": "Min",
+        "MAX": "Max",
+        "OK": "OK",
+        "SORT_DEFAULT": "Default sorting",
+        "SORT_PRICE_ASC": "Price: Low to High",
+        "SORT_PRICE_DESC": "Price: High to Low",
+        "SORT_RATING": "Top Rated",
+        "VIEW_LIST": "List",
+        "VIEW_MAP": "Map",
+        "RESET": "Reset",
+        "NO_RESULTS": "No results found.",
+        "EMPTY_TITLE": "No services found",
+        "EMPTY_DESC": "No experience matches your criteria. Try changing filters or explore other categories.",
+        "VIEW_ALL": "View all experiences",
+        "NO_IMAGE": "No image",
+        "PREV": "Previous",
+        "NEXT": "Next",
+        "MAP_LOADING": "Loading map...",
+        "MAP_ERROR": "Unable to load map.",
+        "MAP_PLACEHOLDER": "Interactive Map"
+    },
+    "FOOTER": {
+        "SUBTITLE": "Your gateway to authentic Moroccan experiences.",
+        "EXPLORE": "Explore",
+        "LODGING": "Lodging",
+        "EXPERIENCES": "Experiences",
+        "GUIDES": "Guides",
+        "HELP": "Help",
+        "HELP_CENTER": "Help Center",
+        "TRUST": "Trust & Safety",
+        "CONTACT": "Contact Us",
+        "ABOUT": "About",
+        "STAY_INFORMED": "Stay Informed",
+        "NEWSLETTER_DESC": "Join our community for exclusive offers.",
+        "EMAIL_PLACEHOLDER": "Your email",
+        "SUBSCRIBE": "Subscribe",
+        "COPYRIGHT": "DKHOUL. Made with ❤️ in Morocco."
+    },
+    "COMMON": {
+        "CONFIRM": "Confirm",
+        "CANCEL": "Cancel",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "VIEW": "View",
+        "Loading": "Loading..."
+    },
+    "TOASTS": {
+        "SUCCESS": "Success",
+        "ERROR": "Error",
+        "INFO": "Info",
+        "WARNING": "Warning",
+        "NETWORK_ERROR": "Network error, please try again.",
+        "IMAGE_UPLOADED": "Image uploaded",
+        "UPLOAD_FAILED": "Upload failed",
+        "MAX_IMAGES_Warning": "Maximum 4 images allowed",
+        "AI_ERROR": "AI Generator Error",
+        "FILL_ALL_FIELDS": "Please fill all required fields",
+        "SERVICE_CREATED": "Service created successfully",
+        "SERVICE_UPDATED": "Service updated successfully",
+        "SERVICE_DELETED": "Service deleted successfully",
+        "PROFILE_UPDATED": "Profile updated",
+        "PASSWORD_CHANGED": "Password changed",
+        "EMAIL_SENT": "Email sent",
+        "LOGIN_SUCCESS": "Login successful",
+        "PAYMENT_SUCCESS": "Payment successful",
+        "MESSAGE_SENT": "Message sent",
+        "LOGIN_REQUIRED": "Please login to continue",
+        "HOST_CONTACT_INITIATED": "Chat started with host",
+        "SELECT_DATE_TIME": "Please select a date and time"
+    },
+    "CREATE_SERVICE": {
+        "TITLE": "Create a New Experience",
+        "SECTION_BASIC": "Basic Information",
+        "LABEL_TITLE": "Experience Title",
+        "PLACEHOLDER_TITLE": "Ex: Traditional Tea Ceremony...",
+        "LABEL_CATEGORY": "Category",
+        "PLACEHOLDER_CATEGORY": "Choose a category",
+        "LABEL_CITY": "City",
+        "LABEL_PRICE": "Price (MAD)",
+        "SECTION_LOGISTICS": "Logistics",
+        "LABEL_DURATION": "Duration (minutes)",
+        "LABEL_MAX_PARTICIPANTS": "Max Participants",
+        "LABEL_LANGUAGES": "Spoken Languages",
+        "LABEL_SLOTS": "Available Time Slots",
+        "SUB_SLOTS": "Select possible start times.",
+        "ERROR_SLOTS": "Please select at least one time slot.",
+        "SECTION_DESC": "Description",
+        "BTN_AI": "✨ Generate with AI",
+        "BTN_AI_GENERATING": "Generating...",
+        "PLACEHOLDER_DESC": "Describe your experience in detail...",
+        "HINT_DESC": "Tip: Use the AI button to generate a magical description based on your title.",
+        "SECTION_GALLERY": "Photo Gallery",
+        "UPLOAD_TITLE": "Click to add photos",
+        "UPLOAD_SUB": "JPG, PNG, WEBP (Max 5MB)",
+        "BTN_SUBMIT": "🚀 Publish Experience",
+        "BTN_SUBMITTING": "Publishing..."
+    },
+    "CATEGORIES": {
+        "SPACE": "Spaces",
+        "SKILL": "Skills",
+        "CONNECT": "Connect",
+        "All": "All"
+    },
+    "SHARED": {
+        "LOGO_ALT": "DKHOUL Logo",
+        "GOOGLE_ICON": "Google Logo",
+        "LOADING": "Loading...",
+        "CLOSE": "Close",
+        "MENU": "Menu"
+    },
+    "CITIES": {
+        "Casablanca": "Casablanca",
+        "Marrakech": "Marrakech",
+        "Agadir": "Agadir",
+        "Tanger": "Tangier",
+        "Fès": "Fes",
+        "Rabat": "Rabat",
+        "Essaouira": "Essaouira",
+        "Merzouga": "Merzouga",
+        "Chefchaouen": "Chefchaouen",
+        "Ouarzazate": "Ouarzazate",
+        "Tout le Maroc": "All of Morocco"
+    },
+    "STATIC": {
+        "ABOUT": {
+            "TITLE": "About DKHOUL",
+            "SUBTITLE": "Moroccan authenticity at your fingertips",
+            "MISSION_TITLE": "Our Mission",
+            "MISSION_DESC": "Connecting travelers with locals...",
+            "VALUES_TITLE": "Our Values"
+        },
+        "CONTACT": {
+            "TITLE": "Contact Us",
+            "SUBTITLE": "A question? A suggestion? Don't hesitate!",
+            "FORM": {
+                "NAME": "Full Name",
+                "EMAIL": "Email",
+                "SUBJECT": "Subject",
+                "MESSAGE": "Message",
+                "SEND": "Send"
+            }
+        },
+        "HELP": {
+            "TITLE": "Help Center",
+            "SUBTITLE": "How can we help you?",
+            "SEARCH_PLACEHOLDER": "Search for a question...",
+            "FAQ_TITLE": "Frequently Asked Questions",
+            "CATEGORIES": {
+                "general": "General",
+                "account": "Account",
+                "payments": "Payments",
+                "trust": "Trust & Safety"
+            },
+            "FAQ": {
+                "Q1": "How do I create an account?",
+                "A1": "Click on 'Register' at the top right of the page. You can sign up with your email or Google account.",
+                "Q2": "How do I cancel a booking?",
+                "A2": "Go to your dashboard, 'My Bookings' section, then click on the booking to cancel.",
+                "Q3": "What payment methods do you accept?",
+                "A3": "We accept Visa, Mastercard, and American Express via our partner Stripe."
+            },
+            "NOT_FOUND": "Can't find what you're looking for?",
+            "CONTACT_BTN": "Contact Us",
+            "ACCOUNT_DESC": "Edit profile, password",
+            "BOOKING_DESC": "Book, cancel, modify a booking",
+            "PAYMENT_DESC": "Payment methods, invoices"
+        },
+        "TRUST": {
+            "TITLE": "Trust and Safety",
+            "SUBTITLE": "Your safety is our absolute priority",
+            "hero_title": "A community built on trust",
+            "hero_desc": "We do everything to ensure every experience is secure.",
+            "verified_hosts": "Verified Hosts",
+            "verified_hosts_desc": "All our hosts go through a verification process",
+            "secure_payments": "Secure Payments",
+            "secure_payments_desc": "Encrypted transactions via Stripe",
+            "support": "24/7 Support",
+            "support_desc": "Our team is available to help you",
+            "DATA_TITLE": "Data Protection",
+            "DATA_DESC": "Your personal data is protected in compliance with GDPR. We use 256-bit SSL encryption for all communications. Your payment information is never stored on our servers.",
+            "REPORT_TITLE": "Reporting",
+            "REPORT_DESC": "If you notice inappropriate behavior or a suspicious listing, you can report it directly from the service page. Our moderation team reviews every report within 24h.",
+            "REFUND_TITLE": "Refund Policy",
+            "REFUND_DESC": "In case of cancellation by the host or service not matching description, you are fully refunded. Refunds are processed within 5 to 10 business days.",
+            "REPORT_BTN": "Report an issue"
+        }
+    }
+}

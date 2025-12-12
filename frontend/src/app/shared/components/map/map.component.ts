@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, OnChanges, OnDestroy {
+export class MapComponent implements OnChanges, OnDestroy {
     @Input() services: Service[] = [];
     @ViewChild('mapContainer') mapContainer!: ElementRef;
 
@@ -22,9 +22,7 @@ export class MapComponent implements OnInit, OnChanges, OnDestroy {
         private router: Router
     ) { }
 
-    ngOnInit(): void {
-        // Init logic moved to AfterViewInit via initMap call in ngOnChanges or explicit call
-    }
+
 
     ngAfterViewInit() {
         if (isPlatformBrowser(this.platformId)) {

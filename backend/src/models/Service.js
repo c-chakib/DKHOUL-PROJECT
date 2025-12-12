@@ -1,9 +1,17 @@
 const mongoose = require('mongoose');
 
 const serviceSchema = new mongoose.Schema({
-    title: { type: String, required: true, trim: true },
+    title: {
+        fr: { type: String },
+        en: { type: String },
+        ar: { type: String }
+    },
     host: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
-    description: { type: String, required: true },
+    description: {
+        fr: { type: String },
+        en: { type: String },
+        ar: { type: String }
+    },
     price: { type: Number, required: true },
 
     category: {

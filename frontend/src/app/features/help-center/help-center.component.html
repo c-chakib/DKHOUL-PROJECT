@@ -2,11 +2,11 @@
     <!-- Hero -->
     <div class="bg-gradient-to-br from-[#BC5627] to-[#8B3D1C] text-white py-16">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold mb-4">Centre d'aide</h1>
-            <p class="text-xl opacity-90">Comment pouvons-nous vous aider ?</p>
+            <h1 class="text-4xl font-bold mb-4">{{ 'STATIC.HELP.TITLE' | translate }}</h1>
+            <p class="text-xl opacity-90">{{ 'STATIC.HELP.SUBTITLE' | translate }}</p>
             <div class="mt-8 max-w-xl mx-auto">
                 <div class="relative">
-                    <input type="text" placeholder="Rechercher dans l'aide..." 
+                    <input type="text" [placeholder]="'STATIC.HELP.SEARCH_PLACEHOLDER' | translate" 
                            class="w-full px-6 py-4 rounded-xl text-gray-900 shadow-lg focus:ring-4 focus:ring-orange-300 outline-none">
                     <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-[#BC5627] text-white px-4 py-2 rounded-lg hover:bg-[#a04620] transition">
                         <i class="fas fa-search"></i>
@@ -18,55 +18,55 @@
 
     <!-- FAQ Categories -->
     <div class="max-w-6xl mx-auto px-4 py-12">
-        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Questions fréquentes</h2>
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">{{ 'STATIC.HELP.FAQ_TITLE' | translate }}</h2>
         
         <div class="grid md:grid-cols-3 gap-6 mb-12">
             <a routerLink="/profile" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 block">
                 <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
                     <i class="fas fa-user text-[#BC5627] text-xl"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-2">Mon compte</h3>
-                <p class="text-gray-500 text-sm">Modifier mon profil, mot de passe</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'STATIC.HELP.CATEGORIES.account' | translate }}</h3>
+                <p class="text-gray-500 text-sm">{{ 'STATIC.HELP.ACCOUNT_DESC' | translate }}</p>
             </a>
             
             <a routerLink="/dashboard" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 block">
                 <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
                     <i class="fas fa-calendar-check text-[#BC5627] text-xl"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-2">Réservations</h3>
-                <p class="text-gray-500 text-sm">Réserver, annuler, modifier une réservation</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'DASHBOARD.STATS_BOOKINGS' | translate }}</h3>
+                <p class="text-gray-500 text-sm">{{ 'STATIC.HELP.BOOKING_DESC' | translate }}</p>
             </a>
             
             <a routerLink="/profile" [queryParams]="{tab: 'payments'}" class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition cursor-pointer border border-gray-100 block">
                 <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
                     <i class="fas fa-credit-card text-[#BC5627] text-xl"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-2">Paiements</h3>
-                <p class="text-gray-500 text-sm">Méthodes de paiement, factures</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'STATIC.HELP.CATEGORIES.payments' | translate }}</h3>
+                <p class="text-gray-500 text-sm">{{ 'STATIC.HELP.PAYMENT_DESC' | translate }}</p>
             </a>
         </div>
 
         <!-- FAQ Accordion -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 divide-y">
             <div class="p-6">
-                <h3 class="font-bold text-gray-900 mb-2">Comment puis-je créer un compte ?</h3>
-                <p class="text-gray-600">Cliquez sur "S'inscrire" en haut à droite de la page. Vous pouvez vous inscrire avec votre email ou votre compte Google.</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'STATIC.HELP.FAQ.Q1' | translate }}</h3>
+                <p class="text-gray-600">{{ 'STATIC.HELP.FAQ.A1' | translate }}</p>
             </div>
             <div class="p-6">
-                <h3 class="font-bold text-gray-900 mb-2">Comment annuler une réservation ?</h3>
-                <p class="text-gray-600">Rendez-vous dans votre tableau de bord, section "Mes Réservations", puis cliquez sur la réservation à annuler.</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'STATIC.HELP.FAQ.Q2' | translate }}</h3>
+                <p class="text-gray-600">{{ 'STATIC.HELP.FAQ.A2' | translate }}</p>
             </div>
             <div class="p-6">
-                <h3 class="font-bold text-gray-900 mb-2">Quels modes de paiement acceptez-vous ?</h3>
-                <p class="text-gray-600">Nous acceptons les cartes Visa, Mastercard et American Express via notre partenaire Stripe.</p>
+                <h3 class="font-bold text-gray-900 mb-2">{{ 'STATIC.HELP.FAQ.Q3' | translate }}</h3>
+                <p class="text-gray-600">{{ 'STATIC.HELP.FAQ.A3' | translate }}</p>
             </div>
         </div>
 
         <!-- Contact CTA -->
         <div class="mt-12 text-center">
-            <p class="text-gray-600 mb-4">Vous ne trouvez pas ce que vous cherchez ?</p>
+            <p class="text-gray-600 mb-4">{{ 'STATIC.HELP.NOT_FOUND' | translate }}</p>
             <a routerLink="/contact" class="inline-flex items-center px-6 py-3 bg-[#BC5627] text-white font-medium rounded-lg hover:bg-[#a04620] transition">
-                <i class="fas fa-envelope mr-2"></i> Contactez-nous
+                <i class="fas fa-envelope mr-2"></i> {{ 'STATIC.HELP.CONTACT_BTN' | translate }}
             </a>
         </div>
     </div>

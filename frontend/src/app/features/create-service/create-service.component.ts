@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { ServiceService } from '../../core/services/service.service';
 import { ToastService } from '../../core/services/toast.service';
 import { environment } from '../../../environments/environment';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
     selector: 'app-create-service',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [CommonModule, ReactiveFormsModule, TranslateModule],
     templateUrl: './create-service.component.html',
     styleUrls: ['./create-service.component.scss']
 })
@@ -18,6 +20,8 @@ export class CreateServiceComponent {
     private serviceService = inject(ServiceService);
     private router = inject(Router);
     private toast = inject(ToastService);
+    private translate = inject(TranslateService);
+    private languageService = inject(LanguageService);
 
     serviceForm: FormGroup;
 
@@ -79,7 +83,7 @@ export class CreateServiceComponent {
         const file: File = event.target.files[0];
         if (file) {
             if (this.uploadedImages().length >= 4) {
-                this.toast.warning('Maximum 4 images allowed.');
+                this.toast.warning(this.translate.instant('TOASTS.MAX_IMAGES_Warning'));
                 return;
             }
 
@@ -89,11 +93,11 @@ export class CreateServiceComponent {
                     const imageUrl = res.url.startsWith('data:') ? res.url : environment.apiUrl.replace('/api/v1', '') + res.url;
                     this.uploadedImages.update(imgs => [...imgs, imageUrl]);
                     this.isUploading.set(false);
-                    this.toast.success('Image téléchargée');
+                    this.toast.success(this.translate.instant('TOASTS.IMAGE_UPLOADED'));
                 },
                 error: (err) => {
                     console.error('Upload Failed', err);
-                    this.toast.error('Échec du téléchargement');
+                    this.toast.error(this.translate.instant('TOASTS.UPLOAD_FAILED'));
                     this.isUploading.set(false);
                 }
             });
@@ -107,7 +111,7 @@ export class CreateServiceComponent {
     generateWithAI() {
         const { title, category } = this.serviceForm.value;
         if (!title || !category) {
-            this.toast.warning('Veuillez entrer un titre et une catégorie.');
+            this.toast.warning(this.translate.instant('TOASTS.FILL_ALL_FIELDS'));
             return;
         }
 
@@ -119,7 +123,7 @@ export class CreateServiceComponent {
             },
             error: (err) => {
                 console.error('AI Generation Error', err);
-                this.toast.error('Erreur AI');
+                this.toast.error(this.translate.instant('TOASTS.AI_ERROR'));
                 this.isGenerating.set(false);
             }
         });
@@ -129,7 +133,7 @@ export class CreateServiceComponent {
         // Vérification incluant timeSlots grâce au Validators.required
         if (this.serviceForm.invalid || this.uploadedImages().length === 0) {
             this.serviceForm.markAllAsTouched();
-            this.toast.warning('Veuillez remplir tous les champs (y compris les horaires) et ajouter une image.');
+            this.toast.warning(this.translate.instant('TOASTS.FILL_ALL_FIELDS'));
             return;
         }
 
@@ -143,17 +147,18 @@ export class CreateServiceComponent {
                 type: 'Point',
                 address: `${formValue.city}, Maroc`,
                 coordinates: [-7.9811, 31.6295] // Coordonnées par défaut (Marrakech), idéalement à dynamiser plus tard
-            }
+            },
+            lang: this.languageService.currentLang() // Pass current language for Gemini Translation Logic
         };
 
         this.serviceService.createService(newService).subscribe({
             next: (res) => {
-                this.toast.success('Annonce publiée avec succès !', 'Félicitations');
+                this.toast.success(this.translate.instant('TOASTS.SERVICE_CREATED'));
                 this.router.navigate(['/dashboard']);
             },
             error: (err) => {
                 console.error('Error creating service:', err);
-                this.toast.error('Erreur lors de la création');
+                this.toast.error(this.translate.instant('TOASTS.ERROR'));
             }
         });
     }

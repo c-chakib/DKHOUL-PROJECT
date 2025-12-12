@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Toast Service - Clean wrapper around ngx-toastr
@@ -10,33 +11,46 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ToastService {
     private toastr = inject(ToastrService);
+    private translate = inject(TranslateService);
 
     /**
-     * Success notification (green)
+     * Success notification
      */
-    success(message: string, title: string = 'Succès'): void {
-        this.toastr.success(message, title);
+    success(message: string, title?: string): void {
+        this.toastr.success(
+            this.translate.instant(message),
+            title ? this.translate.instant(title) : this.translate.instant('TOASTS.SUCCESS')
+        );
     }
 
     /**
-     * Error notification (red)
+     * Error notification
      */
-    error(message: string, title: string = 'Erreur'): void {
-        this.toastr.error(message, title);
+    error(message: string, title?: string): void {
+        this.toastr.error(
+            this.translate.instant(message),
+            title ? this.translate.instant(title) : this.translate.instant('TOASTS.ERROR')
+        );
     }
 
     /**
-     * Warning notification (orange)
+     * Warning notification
      */
-    warning(message: string, title: string = 'Attention'): void {
-        this.toastr.warning(message, title);
+    warning(message: string, title?: string): void {
+        this.toastr.warning(
+            this.translate.instant(message),
+            title ? this.translate.instant(title) : this.translate.instant('TOASTS.WARNING')
+        );
     }
 
     /**
-     * Info notification (blue)
+     * Info notification
      */
-    info(message: string, title: string = 'Info'): void {
-        this.toastr.info(message, title);
+    info(message: string, title?: string): void {
+        this.toastr.info(
+            this.translate.instant(message),
+            title ? this.translate.instant(title) : this.translate.instant('TOASTS.INFO')
+        );
     }
 
     /**

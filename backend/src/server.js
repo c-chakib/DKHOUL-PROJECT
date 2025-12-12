@@ -58,6 +58,7 @@ io.on('connection', (socket) => {
 
 const { initBackupScheduler } = require('./utils/backupScheduler');
 
+// Trigger Restart for Redis Connection
 (async () => {
     await connectDB();
     await initRedis();

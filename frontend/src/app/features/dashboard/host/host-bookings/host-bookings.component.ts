@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BookingService } from '../../../../core/services/booking.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { environment } from '../../../../../environments/environment';
@@ -8,38 +9,38 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
 @Component({
     selector: 'app-host-bookings',
     standalone: true,
-    imports: [CommonModule, ConfirmModalComponent],
+    imports: [CommonModule, ConfirmModalComponent, TranslateModule],
     template: `
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative"> <!-- Added relative for modal context if needed -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative">
       <div class="p-6 border-b border-gray-100">
-        <h2 class="text-xl font-bold text-gray-900">Réservations Reçues</h2>
-        <p class="text-gray-500 text-sm">Gérez les demandes de réservation pour vos expériences.</p>
+        <h2 class="text-xl font-bold text-gray-900">{{ 'DASHBOARD.HOST_BOOKINGS.TITLE' | translate }}</h2>
+        <p class="text-gray-500 text-sm">{{ 'DASHBOARD.HOST_BOOKINGS.SUBTITLE' | translate }}</p>
       </div>
       
       @if (loading()) {
         <div class="p-8 text-center">
             <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
-            <p class="mt-2 text-gray-500">Chargement...</p>
+            <p class="mt-2 text-gray-500">{{ 'SHARED.LOADING' | translate }}</p>
         </div>
       } @else if (bookings().length === 0) {
         <div class="p-12 text-center">
             <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span class="text-3xl">📭</span>
             </div>
-            <h3 class="text-lg font-bold text-gray-900">Aucune demande</h3>
-            <p class="text-gray-500">Vous n'avez pas encore reçu de demande de réservation.</p>
+            <h3 class="text-lg font-bold text-gray-900">{{ 'DASHBOARD.HOST_BOOKINGS.EMPTY_TITLE' | translate }}</h3>
+            <p class="text-gray-500">{{ 'DASHBOARD.HOST_BOOKINGS.EMPTY_DESC' | translate }}</p>
         </div>
       } @else {
         <div class="overflow-x-auto">
             <table class="w-full text-left text-sm text-gray-600">
                 <thead class="bg-gray-50 text-gray-900 border-b border-gray-100">
                     <tr>
-                        <th class="px-6 py-4 font-semibold">Voyageur</th>
-                        <th class="px-6 py-4 font-semibold">Expérience</th>
-                        <th class="px-6 py-4 font-semibold">Date & Heure</th>
-                        <th class="px-6 py-4 font-semibold">Prix</th>
-                        <th class="px-6 py-4 font-semibold">Statut</th>
-                        <th class="px-6 py-4 font-semibold text-right">Actions</th>
+                        <th class="px-6 py-4 font-semibold">{{ 'DASHBOARD.HOST_BOOKINGS.COL_TRAVELER' | translate }}</th>
+                        <th class="px-6 py-4 font-semibold">{{ 'DASHBOARD.HOST_BOOKINGS.COL_EXP' | translate }}</th>
+                        <th class="px-6 py-4 font-semibold">{{ 'DASHBOARD.HOST_BOOKINGS.COL_DATE' | translate }}</th>
+                        <th class="px-6 py-4 font-semibold">{{ 'DASHBOARD.HOST_BOOKINGS.COL_PRICE' | translate }}</th>
+                        <th class="px-6 py-4 font-semibold">{{ 'DASHBOARD.HOST_BOOKINGS.COL_STATUS' | translate }}</th>
+                        <th class="px-6 py-4 font-semibold text-right">{{ 'DASHBOARD.HOST_BOOKINGS.COL_ACTIONS' | translate }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -68,7 +69,7 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
                             <td class="px-6 py-4">
                                 <span [class]="getStatusClass(booking.status)" 
                                       class="px-2.5 py-1 rounded-full text-xs font-bold capitalize">
-                                    {{ getStatusLabel(booking.status) }}
+                                    {{ getStatusLabel(booking.status) | translate }}
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-right">
@@ -76,21 +77,21 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
                                     <div class="flex items-center justify-end gap-2">
                                         <button (click)="confirmAction(booking, 'confirmed')" 
                                                 class="p-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                                                title="Accepter">
+                                                [title]="'DASHBOARD.HOST_BOOKINGS.BTN_ACCEPT' | translate">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
                                         <button (click)="confirmAction(booking, 'cancelled')" 
                                                 class="p-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                                                title="Refuser">
+                                                [title]="'DASHBOARD.HOST_BOOKINGS.BTN_REFUSE' | translate">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
                                     </div>
                                 } @else {
-                                    <span class="text-xs text-gray-400 italic">Aucune action</span>
+                                    <span class="text-xs text-gray-400 italic">{{ 'DASHBOARD.HOST_BOOKINGS.NO_ACTION' | translate }}</span>
                                 }
                             </td>
                         </tr>
@@ -103,13 +104,13 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
       <!-- Confirm Modal -->
       <app-confirm-modal 
         [isOpen]="showModal()"
-        [title]="modalConfig().title"
-        [message]="modalConfig().message"
-        [confirmText]="modalConfig().confirmText"
-        [cancelText]="modalConfig().cancelText"
+        [title]="modalConfig().title | translate"
+        [message]="modalConfig().message" 
+        [confirmText]="modalConfig().confirmText | translate"
+        [cancelText]="modalConfig().cancelText | translate"
         [type]="modalConfig().type"
-        (confirm)="modalConfig().action()"
-        (cancel)="showModal.set(false)">
+        (confirmEvent)="modalConfig().action()"
+        (cancelEvent)="showModal.set(false)">
       </app-confirm-modal>
     </div>
   `
@@ -117,6 +118,7 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
 export class HostBookingsComponent implements OnInit {
     bookingService = inject(BookingService);
     toast = inject(ToastService);
+    translate = inject(TranslateService);
 
     bookings = signal<any[]>([]);
     loading = signal<boolean>(true);
@@ -126,8 +128,8 @@ export class HostBookingsComponent implements OnInit {
     modalConfig = signal({
         title: '',
         message: '',
-        confirmText: 'Confirmer',
-        cancelText: 'Annuler',
+        confirmText: 'DASHBOARD.HOST_BOOKINGS.BTN_ACCEPT',
+        cancelText: 'DASHBOARD.HOST_BOOKINGS.BTN_REFUSE',
         type: 'success' as 'danger' | 'success',
         action: () => { }
     });
@@ -151,17 +153,20 @@ export class HostBookingsComponent implements OnInit {
 
     confirmAction(booking: any, status: 'confirmed' | 'cancelled') {
         const isConfirm = status === 'confirmed';
-        this.modalConfig.set({
-            title: isConfirm ? 'Accepter la réservation' : 'Refuser la réservation',
-            message: isConfirm
-                ? `Voulez-vous accepter la réservation de ${booking.tourist?.name || 'ce voyageur'} pour ${booking.price} MAD ?`
-                : `Êtes-vous sûr de vouloir refuser cette réservation ? Cette action est irréversible.`,
-            confirmText: isConfirm ? 'Accepter' : 'Refuser',
-            cancelText: 'Annuler',
-            type: isConfirm ? 'success' : 'danger',
-            action: () => this.updateStatus(booking, status)
+        const name = booking.tourist?.name || 'Guest';
+        const msgKey = isConfirm ? 'DASHBOARD.HOST_BOOKINGS.MODAL_ACCEPT_MSG' : 'DASHBOARD.HOST_BOOKINGS.MODAL_REFUSE_MSG';
+
+        this.translate.get(msgKey, { name: name }).subscribe((msg: string) => {
+            this.modalConfig.set({
+                title: isConfirm ? 'DASHBOARD.HOST_BOOKINGS.MODAL_ACCEPT_TITLE' : 'DASHBOARD.HOST_BOOKINGS.MODAL_REFUSE_TITLE',
+                message: msg,
+                confirmText: isConfirm ? 'DASHBOARD.HOST_BOOKINGS.BTN_ACCEPT' : 'DASHBOARD.HOST_BOOKINGS.BTN_REFUSE',
+                cancelText: 'COMMON.CANCEL',
+                type: isConfirm ? 'success' : 'danger',
+                action: () => this.updateStatus(booking, status)
+            });
+            this.showModal.set(true);
         });
-        this.showModal.set(true);
     }
 
     updateStatus(booking: any, status: 'confirmed' | 'cancelled') {
@@ -173,11 +178,11 @@ export class HostBookingsComponent implements OnInit {
 
         this.bookingService.updateStatus(booking._id, status).subscribe({
             next: () => {
-                this.toast.success('Succès', `Réservation ${status === 'confirmed' ? 'acceptée' : 'refusée'}`);
+                this.toast.success('TOASTS.SUCCESS');
             },
             error: (err) => {
                 console.error('Error updating status:', err);
-                this.toast.error('Erreur', 'Action impossible');
+                this.toast.error('TOASTS.ERROR');
                 // Revert on error
                 this.bookings.update(bs => bs.map(b => b._id === booking._id ? { ...b, status: oldStatus } : b));
             }
@@ -196,10 +201,10 @@ export class HostBookingsComponent implements OnInit {
 
     getStatusLabel(status: string): string {
         switch (status) {
-            case 'pending': return 'En attente';
-            case 'confirmed': return 'Confirmée';
-            case 'completed': return 'Terminée';
-            case 'cancelled': return 'Annulée';
+            case 'pending': return 'DASHBOARD.HOST_BOOKINGS.STATUS.PENDING';
+            case 'confirmed': return 'DASHBOARD.HOST_BOOKINGS.STATUS.CONFIRMED';
+            case 'completed': return 'DASHBOARD.HOST_BOOKINGS.STATUS.COMPLETED';
+            case 'cancelled': return 'DASHBOARD.HOST_BOOKINGS.STATUS.CANCELLED';
             default: return status;
         }
     }

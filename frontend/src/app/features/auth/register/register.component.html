@@ -1,69 +1,69 @@
 <div class="min-h-screen bg-sand flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full space-y-8 bg-white p-10 rounded-xl shadow-xl border border-gray-100">
         <div class="text-center">
-            <h1 class="text-3xl font-playfair font-bold text-primary mb-2">Rejoignez DKHOUL</h1>
-            <p class="text-gray-500">Commencez votre aventure marocaine aujourd'hui.</p>
+            <h1 class="text-3xl font-playfair font-bold text-primary mb-2">{{ 'AUTH.JOIN_TITLE' | translate }}</h1>
+            <p class="text-gray-500">{{ 'AUTH.JOIN_SUBTITLE' | translate }}</p>
         </div>
 
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
             <div class="space-y-4">
                 <div>
-                    <label for="name" class="sr-only">Nom complet</label>
+                    <label for="name" class="sr-only">{{ 'AUTH.PLACEHOLDERS.NAME' | translate }}</label>
                     <input id="name" type="text" formControlName="name" autocomplete="name"
                         class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-shadow" 
-                        placeholder="Nom complet">
+                        [placeholder]="'AUTH.PLACEHOLDERS.NAME' | translate">
                     @if (registerForm.get('name')?.touched && registerForm.get('name')?.errors) {
-                        <p class="mt-1 text-xs text-red-500 pl-1">Nom requis</p>
+                        <p class="mt-1 text-xs text-red-500 pl-1">{{ 'AUTH.ERRORS.NAME_REQUIRED' | translate }}</p>
                     }
                 </div>
 
                 <div>
-                    <label for="email" class="sr-only">Adresse Email</label>
+                    <label for="email" class="sr-only">{{ 'AUTH.EMAIL_LABEL' | translate }}</label>
                     <input id="email" type="email" formControlName="email" autocomplete="email"
                         class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-shadow" 
-                        placeholder="Adresse Email">
+                        [placeholder]="'AUTH.PLACEHOLDERS.EMAIL' | translate">
                      @if (registerForm.get('email')?.touched && registerForm.get('email')?.errors) {
-                        <p class="mt-1 text-xs text-red-500 pl-1">Email valide requis</p>
+                        <p class="mt-1 text-xs text-red-500 pl-1">{{ 'AUTH.ERRORS.EMAIL_REQUIRED' | translate }}</p>
                     }
                 </div>
 
                 <div class="grid grid-cols-2 gap-4">
                      <div>
-                        <label for="password" class="sr-only">Mot de passe</label>
+                        <label for="password" class="sr-only">{{ 'AUTH.PASSWORD_LABEL' | translate }}</label>
                         <input id="password" type="password" formControlName="password" autocomplete="new-password"
                             class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-shadow" 
-                            placeholder="Mot de passe">
+                            [placeholder]="'AUTH.PLACEHOLDERS.PASSWORD' | translate">
                          @if (registerForm.get('password')?.touched && registerForm.get('password')?.errors) {
                             @if (registerForm.get('password')?.errors?.['minlength']) {
-                                <p class="mt-1 text-xs text-red-500 pl-1">Min 12 caractères requis</p>
+                                <p class="mt-1 text-xs text-red-500 pl-1">{{ 'AUTH.ERRORS.PASSWORD_MIN_LENGTH' | translate }}</p>
                             }
                             @if (registerForm.get('password')?.errors?.['pattern']) {
-                                <p class="mt-1 text-xs text-red-500 pl-1">Requis: Majuscule, minuscule, chiffre, symbole</p>
+                                <p class="mt-1 text-xs text-red-500 pl-1">{{ 'AUTH.ERRORS.PASSWORD_PATTERN' | translate }}</p>
                             }
                         }
                     </div>
                     <div>
-                        <label for="passwordConfirm" class="sr-only">Confirmer</label>
+                        <label for="passwordConfirm" class="sr-only">{{ 'AUTH.PLACEHOLDERS.NEW_PASSWORD' | translate }}</label>
                         <input id="passwordConfirm" type="password" formControlName="passwordConfirm" autocomplete="new-password"
                             class="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:z-10 sm:text-sm transition-shadow" 
-                            placeholder="Confirmer">
+                            [placeholder]="'AUTH.PLACEHOLDERS.NEW_PASSWORD' | translate">
                     </div>
                 </div>
 
                 <!-- Role Selection -->
                 <div class="mt-4">
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Je veux être :</label>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">{{ 'AUTH.ROLE_LABEL' | translate }}</label>
                     <div class="grid grid-cols-2 gap-4">
                         <label class="cursor-pointer">
                             <input type="radio" formControlName="role" value="tourist" class="peer sr-only">
                             <div class="p-4 rounded-lg border-2 border-gray-200 peer-checked:border-primary peer-checked:bg-primary/5 hover:bg-gray-50 transition-all text-center">
-                                <span class="block font-medium text-gray-900 peer-checked:text-primary">Touriste</span>
+                                <span class="block font-medium text-gray-900 peer-checked:text-primary">{{ 'AUTH.ROLE_TOURIST' | translate }}</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" formControlName="role" value="host" class="peer sr-only">
                             <div class="p-4 rounded-lg border-2 border-gray-200 peer-checked:border-secondary peer-checked:bg-secondary/5 hover:bg-gray-50 transition-all text-center">
-                                <span class="block font-medium text-gray-900 peer-checked:text-secondary">Hôte</span>
+                                <span class="block font-medium text-gray-900 peer-checked:text-secondary">{{ 'AUTH.ROLE_HOST' | translate }}</span>
                             </div>
                         </label>
                     </div>
@@ -82,16 +82,16 @@
                     class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl">
                     @if (loading) {
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        Inscription en cours...
+                        {{ 'AUTH.REGISTER_LOADING' | translate }}
                     } @else {
-                        Créer mon compte
+                        {{ 'AUTH.REGISTER_BTN' | translate }}
                     }
                 </button>
             </div>
             
             <div class="text-sm text-center">
                 <a routerLink="/login" class="font-medium text-secondary hover:text-secondary-dark transition-colors">
-                    Déjà un compte ? Se connecter
+                    {{ 'AUTH.ALREADY_ACCOUNT' | translate }}
                 </a>
             </div>
         </form>

@@ -6,10 +6,12 @@ import { ToastService } from '../../core/services/toast.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @Component({
     selector: 'app-contact',
     standalone: true,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, TranslateModule],
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss']
 })

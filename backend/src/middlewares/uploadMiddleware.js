@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 const sharp = require('sharp');
-const AppError = require('../utils/appError');
+const uuid = require('uuid');
 const fs = require('fs');
 
 // Ensure upload directory exists

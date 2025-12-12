@@ -1,4 +1,5 @@
 import { Component, OnInit, signal, inject, computed, HostListener } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ServiceService, Service } from '../../core/services/service.service';
@@ -9,11 +10,13 @@ import { map, switchMap } from 'rxjs/operators';
 import { ImageFallbackDirective } from '../../shared/directives/image-fallback.directive';
 import { ReportModalComponent } from '../../shared/components/modals/report-modal/report-modal.component';
 import { environment } from '../../../environments/environment';
+import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
+import { LanguageService } from '../../core/services/language.service';
 
 @Component({
     selector: 'app-service-detail',
     standalone: true,
-    imports: [CommonModule, RouterModule, ReportModalComponent],
+    imports: [CommonModule, RouterModule, ReportModalComponent, TranslateModule, LangSelectPipe],
     templateUrl: './service-detail.component.html',
     styleUrls: ['./service-detail.component.scss']
 })
@@ -25,6 +28,7 @@ export class ServiceDetailComponent implements OnInit {
     private authService = inject(AuthService);
     private toast = inject(ToastService);
     private location = inject(Location);
+    public languageService = inject(LanguageService);
 
     service = signal<Service | null>(null);
     isLoading = signal<boolean>(true);
@@ -47,6 +51,13 @@ export class ServiceDetailComponent implements OnInit {
     host = signal<any>({ name: '', photo: '', bio: '' });
 
     activeImage = signal<string>('');
+
+    // Computed property for valid images only
+    validImages = computed(() => {
+        const s = this.service();
+        if (!s || !s.images) return [];
+        return s.images.filter(img => !!img && img.trim() !== '');
+    });
 
     // Ligthbox State
     lightboxOpen = signal<boolean>(false);
@@ -149,12 +160,15 @@ export class ServiceDetailComponent implements OnInit {
         }
 
         // Navigate with queryParams
+        const currentLang = this.languageService.currentLang();
+        const title = (s.title && s.title[currentLang]) ? s.title[currentLang] : (s.title['fr'] || s.title);
+
         this.router.navigate(['/payment'], {
             queryParams: {
                 serviceId: s._id,
-                price: this.totalPrice(), // Pass calculated total
-                basePrice: s.price,      // Pass base price for reference
-                title: s.title,
+                price: this.totalPrice(),
+                basePrice: s.price,
+                title: title,
                 date: this.selectedDate(),
                 time: this.selectedTime(),
                 guests: this.guests(),
@@ -171,8 +185,12 @@ export class ServiceDetailComponent implements OnInit {
         }
         const host = this.service()?.host;
         if (host && host._id) {
+            const s = this.service();
+            const currentLang = this.languageService.currentLang();
+            const title = s ? ((s.title && s.title[currentLang]) ? s.title[currentLang] : (s.title['fr'] || s.title)) : '';
+
             // Pass Host Object + Context (Service Title)
-            this.chatService.initiateChat(host._id, host, `Intéressé par : ${this.service()?.title}`);
+            this.chatService.initiateChat(host._id, host, `Intéressé par : ${title}`);
             this.toast.success(`Discussion ouverte avec l'hôte`);
         } else {
             this.toast.error('Host info missing');
@@ -202,17 +220,15 @@ export class ServiceDetailComponent implements OnInit {
     }
 
     nextLightboxImage(): void {
-        const s = this.service();
-        if (!s || !s.images) return;
-        const total = s.images.length;
-        this.currentLightboxIndex.update(i => (i + 1) % total);
+        const images = this.validImages();
+        if (images.length === 0) return;
+        this.currentLightboxIndex.update(i => (i + 1) % images.length);
     }
 
     prevLightboxImage(): void {
-        const s = this.service();
-        if (!s || !s.images) return;
-        const total = s.images.length;
-        this.currentLightboxIndex.update(i => (i - 1 + total) % total);
+        const images = this.validImages();
+        if (images.length === 0) return;
+        this.currentLightboxIndex.update(i => (i - 1 + images.length) % images.length);
     }
 
     // Close on Escape key

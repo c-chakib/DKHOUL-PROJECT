@@ -1,8 +1,8 @@
 <div class="container mx-auto px-4 py-8 max-w-2xl">
   <div class="bg-white rounded-xl shadow-lg p-6">
     <div class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold text-gray-800">Modifier l'Expérience</h1>
-      <a routerLink="/dashboard" class="text-gray-500 hover:text-gray-700">Annuler</a>
+      <h1 class="text-2xl font-bold text-gray-800">{{ 'DASHBOARD.EDIT_SERVICE.TITLE' | translate }}</h1>
+      <a routerLink="/dashboard" class="text-gray-500 hover:text-gray-700">{{ 'DASHBOARD.EDIT_SERVICE.CANCEL' | translate }}</a>
     </div>
 
     @if (isLoading()) {
@@ -13,14 +13,14 @@
       <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="space-y-6">
         <!-- Title -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Titre</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_TITLE' | translate }}</label>
           <input type="text" formControlName="title" 
                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all">
         </div>
 
         <!-- Description -->
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_DESC' | translate }}</label>
           <textarea formControlName="description" rows="4"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all"></textarea>
         </div>
@@ -28,19 +28,19 @@
         <div class="grid grid-cols-2 gap-4">
           <!-- Price -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Prix (MAD)</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_PRICE' | translate }}</label>
             <input type="number" formControlName="price"
                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all">
           </div>
           
           <!-- Category -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Catégorie</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_CATEGORY' | translate }}</label>
             <select formControlName="category"
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all">
-              <option value="SKILL">Atelier (Skill)</option>
-              <option value="SPACE">Espace (Space)</option>
-              <option value="CONNECT">Rencontre (Connect)</option>
+              <option value="SKILL">{{ 'DASHBOARD.EDIT_SERVICE.OPTS_CATEGORY.SKILL' | translate }}</option>
+              <option value="SPACE">{{ 'DASHBOARD.EDIT_SERVICE.OPTS_CATEGORY.SPACE' | translate }}</option>
+              <option value="CONNECT">{{ 'DASHBOARD.EDIT_SERVICE.OPTS_CATEGORY.CONNECT' | translate }}</option>
             </select>
           </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="grid grid-cols-2 gap-4">
             <!-- City -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Ville</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_CITY' | translate }}</label>
               <select formControlName="city"
                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all">
                 <option value="Marrakech">Marrakech</option>
@@ -64,7 +64,7 @@
             
             <!-- Duration -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Durée (min)</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">{{ 'DASHBOARD.EDIT_SERVICE.LABEL_DURATION' | translate }}</label>
               <input type="number" formControlName="duration"
                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#BC5627] focus:border-transparent outline-none transition-all">
             </div>
@@ -72,7 +72,7 @@
 
         <button type="submit" [disabled]="serviceForm.invalid || isLoading()"
                 class="w-full bg-[#BC5627] text-white font-bold py-3 rounded-xl hover:bg-[#a0451f] transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-          {{ isLoading() ? 'Enregistrement...' : 'Mettre à jour' }}
+          {{ (isLoading() ? 'DASHBOARD.EDIT_SERVICE.BTN_SAVING' : 'DASHBOARD.EDIT_SERVICE.BTN_SAVE') | translate }}
         </button>
       </form>
     }

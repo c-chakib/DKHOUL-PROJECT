@@ -1,9 +1,9 @@
 <div class="min-h-screen bg-sand font-lato page-content">
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-        <h1 class="text-4xl font-playfair font-bold text-primary text-center md:text-left">Marketplace</h1>
+        <h1 class="text-4xl font-playfair font-bold text-primary text-center md:text-left">{{ 'MARKETPLACE.TITLE' | translate }}</h1>
         <p class="text-gray-500 font-medium" *ngIf="!isLoading()">
-            {{ total() }} expérience(s) trouvée(s)
+            {{ 'MARKETPLACE.RESULTS_COUNT' | translate:{count: total()} }}
         </p>
     </div>
     
@@ -16,15 +16,16 @@
                 <input type="text" 
                        [ngModel]="searchQuery()" 
                        (input)="onSearchInput($event)"
-                       placeholder="Rechercher une activité, une ambiance..." 
+                       [placeholder]="'MARKETPLACE.SEARCH_PLACEHOLDER' | translate" 
                        class="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
             </div>
             
             <div class="md:col-span-4">
                 <select [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event); triggerSearch()" 
                         class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary bg-white cursor-pointer appearance-none">
-                    <option value="" disabled selected>Choisir une ville</option>
-                    <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+                    <option value="" disabled selected>{{ 'MARKETPLACE.CHOOSE_CITY' | translate }}</option>
+                    <option value="Tout le Maroc">{{ 'MARKETPLACE.ALL_CITIES' | translate }}</option>
+                    <option *ngFor="let city of cities.slice(1)" [value]="city">{{ city }}</option>
                 </select>
             </div>
         </div>
@@ -40,7 +41,7 @@
                         [class.bg-gray-50]="selectedCategory() !== cat.value"
                         [class.text-gray-600]="selectedCategory() !== cat.value"
                         class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-primary hover:text-white">
-                    {{ cat.label }}
+                    {{ 'CATEGORIES.' + cat.label | translate }}
                 </button>
             </div>
 
@@ -48,16 +49,19 @@
             <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
                 <!-- Price Range -->
                 <div class="flex items-center gap-2 bg-gray-50 px-3 py-2 rounded-lg border border-gray-200">
-                    <span class="text-sm text-gray-500">Prix:</span>
-                    <input type="number" [ngModel]="minPrice()" (ngModelChange)="minPrice.set($event)" placeholder="Min" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
+                    <span class="text-sm text-gray-500">{{ 'MARKETPLACE.PRICE' | translate }}:</span>
+                    <input type="number" [ngModel]="minPrice()" (ngModelChange)="minPrice.set($event)" [placeholder]="'MARKETPLACE.MIN' | translate" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
                     <span class="text-gray-400">-</span>
-                    <input type="number" [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)" placeholder="Max" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
-                    <button (click)="triggerSearch()" class="text-primary hover:text-primary-dark font-bold">OK</button>
+                    <input type="number" [ngModel]="maxPrice()" (ngModelChange)="maxPrice.set($event)" [placeholder]="'MARKETPLACE.MAX' | translate" class="w-16 bg-transparent border-b border-gray-300 focus:border-primary focus:outline-none text-sm text-center">
+                    <button (click)="triggerSearch()" class="text-primary hover:text-primary-dark font-bold">{{ 'MARKETPLACE.OK' | translate }}</button>
                 </div>
 
                 <!-- Sort -->
                 <select [ngModel]="sortOption()" (ngModelChange)="sortOption.set($event); triggerSearch()" class="px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary text-sm bg-white cursor-pointer">
-                     <option *ngFor="let opt of sortOptions" [value]="opt.value">{{ opt.label }}</option>
+                     <option value="">{{ 'MARKETPLACE.SORT_DEFAULT' | translate }}</option>
+                     <option value="price">{{ 'MARKETPLACE.SORT_PRICE_ASC' | translate }}</option>
+                     <option value="-price">{{ 'MARKETPLACE.SORT_PRICE_DESC' | translate }}</option>
+                     <option value="-rating">{{ 'MARKETPLACE.SORT_RATING' | translate }}</option>
                 </select>
 
                 <!-- View Toggle (Desktop) -->
@@ -83,7 +87,7 @@
                 <button (click)="resetFilters()" 
                         class="px-3 py-2 text-sm text-gray-500 hover:text-red-500 font-medium transition-colors flex items-center gap-1 border border-transparent hover:border-red-100 rounded-lg hover:bg-red-50 ml-2">
                     <mat-icon class="!w-4 !h-4 text-sm leading-none">restart_alt</mat-icon>
-                    Reset
+                    {{ 'MARKETPLACE.RESET' | translate }}
                 </button>
             </div>
         </div>
@@ -114,13 +118,13 @@
             <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span class="text-5xl">🏜️</span>
             </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">Aucun service trouvé</h3>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ 'MARKETPLACE.EMPTY_TITLE' | translate }}</h3>
             <p class="text-gray-500 mb-6 max-w-md mx-auto">
-                Aucune expérience ne correspond à vos critères. Essayez de modifier vos filtres ou explorez d'autres catégories.
+                {{ 'MARKETPLACE.EMPTY_DESC' | translate }}
             </p>
             <button (click)="onCategoryChange('')" 
                     class="inline-flex items-center px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors">
-                Voir toutes les expériences →
+                {{ 'MARKETPLACE.VIEW_ALL' | translate }} →
             </button>
         </div>
     }
@@ -140,26 +144,26 @@
                         <ng-template #noImage>
                             <div class="w-full h-full flex flex-col items-center justify-center text-gray-400 bg-gray-100">
                                 <span class="text-4xl mb-2 opacity-50">📷</span>
-                                <span class="text-sm font-medium">No picture available</span>
+                                <span class="text-sm font-medium">{{ 'MARKETPLACE.NO_IMAGE' | translate }}</span>
                             </div>
                         </ng-template>
 
                         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-sm font-bold flex items-center shadow-sm text-primary">
-                            {{ service.category }}
+                            {{ 'CATEGORIES.' + service.category | translate }}
                         </div>
                     </div>
 
                     <div class="p-6">
                         <div class="flex items-center text-sm text-gray-500 mb-2">
                              <svg class="w-4 h-4 mr-1 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            {{ service.location?.address || service.city || 'Maroc' }}
+                             {{ service.location?.address || ('CITIES.' + (service.city || '') | translate) || 'Maroc' }}
                         </div>
                         <h3 class="text-xl font-bold font-playfair text-gray-900 mb-2 group-hover:text-primary transition-colors">
-                            {{ service.title }}
+                            {{ service.title | langSelect: languageService.currentLang() }}
                         </h3>
                         <div class="flex justify-between items-center mt-4">
                             <span class="text-lg font-bold text-gray-900">{{ service.price }} MAD <span class="text-sm font-normal text-gray-500">/pers</span></span>
-                            <span class="text-primary font-medium text-sm group-hover:underline">Réserver &rarr;</span>
+                            <span class="text-primary font-medium text-sm group-hover:underline">{{ 'COMMON.VIEW' | translate }} &rarr;</span>
                         </div>
                     </div>
                 </div>
@@ -172,7 +176,7 @@
             <button (click)="onPageChange(currentPage() - 1)" 
                     [disabled]="currentPage() === 1"
                     class="w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-               <span class="sr-only">Précédent</span>
+               <span class="sr-only">{{ 'MARKETPLACE.PREV' | translate }}</span>
                ←
             </button>
 
@@ -197,7 +201,7 @@
             <button (click)="onPageChange(currentPage() + 1)" 
                     [disabled]="currentPage() >= totalPages()"
                     class="w-10 h-10 rounded-full border border-gray-300 text-gray-600 hover:bg-gray-50 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
-               <span class="sr-only">Suivant</span>
+               <span class="sr-only">{{ 'MARKETPLACE.NEXT' | translate }}</span>
                →
             </button>
         </div>
@@ -210,15 +214,15 @@
                 <app-map [services]="mapServices()"></app-map>
             } @placeholder {
                  <div class="flex items-center justify-center h-full bg-gray-50">
-                    <p class="text-gray-500 font-medium">Carte interactive</p>
+                    <p class="text-gray-500 font-medium">{{ 'MARKETPLACE.MAP_PLACEHOLDER' | translate }}</p>
                 </div>
             } @loading {
                 <div class="flex items-center justify-center h-full bg-gray-50">
-                    <p class="text-gray-500 font-medium animate-pulse">Chargement de la carte...</p>
+                    <p class="text-gray-500 font-medium animate-pulse">{{ 'MARKETPLACE.MAP_LOADING' | translate }}</p>
                 </div>
             } @error {
                 <div class="flex items-center justify-center h-full bg-red-50 text-red-500">
-                    <p>Impossible de charger la carte.</p>
+                    <p>{{ 'MARKETPLACE.MAP_ERROR' | translate }}</p>
                 </div>
             }
         </div>
@@ -233,13 +237,13 @@
                 [class.bg-primary]="viewMode() === 'list'"
                 [class.text-white]="viewMode() === 'list'"
                 class="px-5 py-3 transition-colors flex items-center gap-2">
-            📋 <span class="font-medium">Liste</span>
+            📋 <span class="font-medium">{{ 'MARKETPLACE.VIEW_LIST' | translate }}</span>
         </button>
         <button (click)="setViewMode('map')"
                 [class.bg-primary]="viewMode() === 'map'"
                 [class.text-white]="viewMode() === 'map'"
                 class="px-5 py-3 transition-colors flex items-center gap-2">
-            🗺️ <span class="font-medium">Carte</span>
+            🗺️ <span class="font-medium">{{ 'MARKETPLACE.VIEW_MAP' | translate }}</span>
         </button>
     </div>
   </div>

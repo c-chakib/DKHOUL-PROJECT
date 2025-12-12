@@ -154,25 +154,26 @@
   <app-confirm-modal
     [isOpen]="showDeleteModal()"
     title="Supprimer l'utilisateur"
-    message="⚠️ Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible et supprimera toutes ses données associées (réservations, services, etc.)."
-    confirmText="Supprimer définitivement"
+    message="Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible."
+    confirmText="Supprimer"
     cancelText="Annuler"
     type="danger"
-    (confirm)="onConfirmDelete()"
-    (cancel)="closeDeleteModal()"
+    (confirmEvent)="onConfirmDelete()"
+    (cancelEvent)="closeDeleteModal()"
   ></app-confirm-modal>
 
-  <!-- ROLE CHANGE MODAL -->
-  <app-confirm-modal
-    [isOpen]="showRoleModal()"
-    title="Changer le rôle"
-    [message]="'Êtes-vous sûr de vouloir changer le rôle de ' + (userToChangeRole()?.name || 'cet utilisateur') + ' vers ' + (pendingRole() || '') + ' ?'"
-    confirmText="Confirmer le changement"
+  <!-- Confirm Verify Modal -->
+  <!-- Confirm Verify Modal (Disabled: Missing Implementation) -->
+  <!-- <app-confirm-modal
+    [isOpen]="!!userToVerify"
+    [title]="(userToVerify?.isVerified ? 'Révoquer' : 'Vérifier') + ' l\'utilisateur'"
+    [message]="'Êtes-vous sûr de vouloir ' + (userToVerify?.isVerified ? 'révoquer' : 'vérifier') + ' cet utilisateur ?'"
+    [confirmText]="userToVerify?.isVerified ? 'Révoquer' : 'Vérifier'"
     cancelText="Annuler"
-    type="warning"
-    (confirm)="onConfirmRoleChange()"
-    (cancel)="onCancelRoleChange()"
-  ></app-confirm-modal>
+    [type]="userToVerify?.isVerified ? 'warning' : 'success'"
+    (confirmEvent)="onVerifyConfirm()"
+    (cancelEvent)="onVerifyCancel()"
+  ></app-confirm-modal> -->
 
   <!-- PASSWORD RESET MODAL -->
   <div *ngIf="showPasswordModal()" class="fixed inset-0 z-50 flex items-center justify-center p-4">

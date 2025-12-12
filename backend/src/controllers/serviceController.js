@@ -1,28 +1,83 @@
 const Service = require('../models/Service');
 const AppError = require('../utils/appError');
 
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
 exports.createService = async (req, res, next) => {
     try {
         // Add host from authenticated user
         if (!req.body.host) req.body.host = req.user.id;
 
+        const { title, description, lang } = req.body;
+        const sourceLang = lang || 'fr'; // Default source language
+
+        // 1. Prepare Multilingual Object (Initial)
+        let multiTitle = {};
+        let multiDesc = {};
+
+        // 2. Set the Source Language Content
+        multiTitle[sourceLang] = title;
+        multiDesc[sourceLang] = description;
+
+        // 3. Call Gemini for Auto-Translation
+        if (process.env.GEMINI_API_KEY) {
+            try {
+                const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+                const prompt = `
+                Translate the following JSON object from '${sourceLang}' to English (en), French (fr), and Arabic (ar).
+                If a key matches the source language, keep it as is.
+                Return ONLY a valid JSON object with this structure:
+                {
+                    "title": { "fr": "...", "en": "...", "ar": "..." },
+                    "description": { "fr": "...", "en": "...", "ar": "..." }
+                }
+
+                Input:
+                {
+                    "title": "${title}",
+                    "description": "${description}"
+                }
+                `;
+
+                const result = await model.generateContent(prompt);
+                const response = await result.response;
+                const text = response.text();
+
+                // Clean and Parse JSON
+                const jsonStr = text.replace(/```json/g, '').replace(/```/g, '').trim();
+                const translatedData = JSON.parse(jsonStr);
+
+                // Merge Translations
+                multiTitle = { ...multiTitle, ...translatedData.title };
+                multiDesc = { ...multiDesc, ...translatedData.description };
+
+            } catch (aiError) {
+                console.error("Gemini Translation Failed:", aiError);
+                // Fallback: Use source text for all languages to avoid validation errors
+                ['fr', 'en', 'ar'].forEach(l => {
+                    if (!multiTitle[l]) multiTitle[l] = title;
+                    if (!multiDesc[l]) multiDesc[l] = description;
+                });
+            }
+        } else {
+            // Fallback if no API Key
+            ['fr', 'en', 'ar'].forEach(l => {
+                if (!multiTitle[l]) multiTitle[l] = title;
+                if (!multiDesc[l]) multiDesc[l] = description;
+            });
+        }
+
         // Security: Filter allowed fields only
         const filteredBody = {
-            title: req.body.title,
-            description: req.body.description,
-            price: req.body.price,
-            category: req.body.category,
-            images: req.body.images,
-            city: req.body.city,
-            duration: req.body.duration,
-            maxParticipants: req.body.maxParticipants,
-            languages: req.body.languages,
-            included: req.body.included,
-            requirements: req.body.requirements,
-            location: req.body.location,
-            metadata: req.body.metadata,
+            ...req.body,
+            title: multiTitle,
+            description: multiDesc,
             host: req.user.id
         };
+
+        // Remove 'lang' from filteredBody if it exists (not in schema)
+        delete filteredBody.lang;
 
         const newService = await Service.create(filteredBody);
 
@@ -84,9 +139,12 @@ exports.getAllServices = async (req, res, next) => {
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
         const filter = JSON.parse(queryStr);
 
+        const escapeStringRegexp = require('../utils/escape-string-regexp');
+
         // 1C) Search (Title/Description)
         if (req.query.search) {
-            const searchRegex = new RegExp(req.query.search, 'i');
+            const sanitizedSearch = escapeStringRegexp(req.query.search);
+            const searchRegex = new RegExp(sanitizedSearch, 'i');
             filter.$or = [
                 { title: { $regex: searchRegex } },
                 { description: { $regex: searchRegex } },

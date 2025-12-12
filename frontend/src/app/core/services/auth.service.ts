@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, inject } from '@angular/core';
+import { Injectable, signal, computed, inject, PLATFORM_ID, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -17,8 +17,10 @@ export interface User {
     providedIn: 'root'
 })
 export class AuthService {
-    private http = inject(HttpClient);
-    private router = inject(Router);
+    private readonly http = inject(HttpClient);
+    private readonly router = inject(Router);
+    private readonly platformId = inject(PLATFORM_ID);
+    private readonly ngZone = inject(NgZone);
     private apiUrl = `${environment.apiUrl}/users`;
 
     // Signal for current user state
@@ -70,8 +72,8 @@ export class AuthService {
     initGoogleAuth() {
         // Placeholder for Google Auth Initialization
         // In a real implementation, this would load the GSI script and initialize the client
-        if (typeof window !== 'undefined' && (window as any).google) {
-            // (window as any).google.accounts.id.initialize(...)
+        if (typeof globalThis !== 'undefined' && (globalThis as any).google) {
+            // (globalThis as any).google.accounts.id.initialize(...)
         }
     }
 

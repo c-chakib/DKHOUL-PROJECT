@@ -13,42 +13,51 @@ const initRedis = async () => {
                         return new Error('Max retries exhausted');
                     }
                     return Math.min(retries * 50, 1000);
-                }
-            }
+                },
+                connectTimeout: 5000 // 5s timeout
+            },
+            // Prevent command queuing when disconnected to avoid blocking requests
+            disableOfflineQueue: true
         });
 
         redisClient.on('error', (err) => {
-            // Suppress initial connection errors to prevent crash
-            console.error('Redis Client Error (handled):', err.message);
+            // Only log if it's not a known reconnection causing spam
+            // console.error('Redis Client Error:', err.message);
         });
 
         redisClient.on('connect', () => console.log('Redis connected successfully'.green));
 
-        await redisClient.connect();
+        // Don't await connection here to allow server start. Connect in background.
+        redisClient.connect().catch(err => {
+            console.error('Initial Redis connection failed'.yellow);
+        });
+
     } catch (err) {
-        console.error('Failed to connect to Redis. Server will continue without caching.'.yellow, err.message);
-        // Do not throw, allow server to maximize resilience
+        console.error('Failed to initialize Redis client'.yellow, err.message);
         redisClient = null;
     }
 };
 
 const getCache = async (key) => {
-    if (!redisClient?.isOpen) return null;
+    // CRITICAL: Check isReady to ensure we don't wait on queued commands during downtime
+    if (!redisClient || !redisClient.isReady) return null;
+
     try {
         const data = await redisClient.get(key);
         return data ? JSON.parse(data) : null;
     } catch (err) {
-        console.error('Redis Get Error:', err);
+        // Fallback silently to DB
         return null;
     }
 };
 
 const setCache = async (key, value, ttlSeconds = 3600) => {
-    if (!redisClient?.isOpen) return;
+    if (!redisClient || !redisClient.isReady) return;
     try {
         await redisClient.set(key, JSON.stringify(value), {
             EX: ttlSeconds
         });
+
     } catch (err) {
         console.error('Redis Set Error:', err);
     }
