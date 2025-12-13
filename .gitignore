@@ -28,3 +28,11 @@ backend/update-env.js
 fix-env.js
 test-email.js
 update-env.js
+
+# Seed & Generation
+backend/generateMoreImages.js
+backend/generateMapEntries.js
+backend/generated_map.txt
+backend/entries.txt
+backend/seed_images/
+backend/applyBranding.js

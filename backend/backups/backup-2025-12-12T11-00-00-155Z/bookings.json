@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "69397a2640e033668e882251",
+    "tourist": "6939795a40e033668e882233",
+    "service": "69397a0740e033668e882240",
+    "price": 210,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentIntentId": "pi_3ScnkgBWWDhyBzjN07slB2k6",
+    "bookingDate": "2025-12-10T00:00:00.000Z",
+    "time": "09:00",
+    "guests": 1,
+    "duration": 3,
+    "createdAt": "2025-12-10T13:48:22.368Z",
+    "updatedAt": "2025-12-10T13:50:23.634Z",
+    "__v": 0
+  },
+  {
+    "_id": "693ac68833417af6325bec26",
+    "tourist": "693941008a490fb197096e22",
+    "service": "693abd63147b9095f0f2c1c4",
+    "price": 400,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentIntentId": "pi_3Sd9t6BWWDhyBzjN0UfGyGXS",
+    "bookingDate": "2025-12-11T00:00:00.000Z",
+    "time": "09:00",
+    "guests": 1,
+    "duration": 2,
+    "createdAt": "2025-12-11T13:26:32.486Z",
+    "updatedAt": "2025-12-11T13:27:27.097Z",
+    "__v": 0
+  },
+  {
+    "_id": "693b343a82ce36632d23dc13",
+    "tourist": "693941008a490fb197096e22",
+    "service": "693abd63147b9095f0f2c1c2",
+    "price": 100,
+    "status": "confirmed",
+    "paymentStatus": "paid",
+    "paymentIntentId": "pi_3SdHC2BWWDhyBzjN11GMTb1o",
+    "bookingDate": "2025-12-18T00:00:00.000Z",
+    "time": "09:00",
+    "guests": 1,
+    "duration": 1,
+    "createdAt": "2025-12-11T21:14:34.820Z",
+    "updatedAt": "2025-12-11T21:15:01.357Z",
+    "__v": 0
+  }
+]

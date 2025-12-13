@@ -1,0 +1,656 @@
+[
+  {
+    "_id": "693abd61147b9095f0f2c1a6",
+    "title": "Stationnement Sécurisé - Médina",
+    "host": "693941008a490fb197096e22",
+    "description": "Garage privé surveillé 24/7 au cœur de la médina. Idéal pour garer votre voiture en toute sécurité pendant vos visites. Accès facile, porte automatique.",
+    "price": 80,
+    "category": "SPACE",
+    "images": [
+      "/assets/images/parking_securise.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.976,
+        34.062
+      ],
+      "address": "Médina, Fès"
+    },
+    "city": "Fès",
+    "duration": 480,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "08:00",
+      "14:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.065Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1a8",
+    "title": "Station Recharge Express",
+    "host": "693941008a490fb197096e22",
+    "description": "Rechargez tous vos appareils : téléphones, laptops, batteries caméra. Adaptateurs internationaux fournis. Wifi gratuit pendant l'attente.",
+    "price": 25,
+    "category": "SPACE",
+    "images": [
+      "/assets/images/recharge_electronique.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.989,
+        31.629
+      ],
+      "address": "Gueliz, Marrakech"
+    },
+    "city": "Marrakech",
+    "duration": 90,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "12:00",
+      "15:00",
+      "18:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.193Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1aa",
+    "title": "Cuisine Équipée Self-Cooking",
+    "host": "693941008a490fb197096e22",
+    "description": "Accès à une cuisine traditionnelle marocaine entièrement équipée. Tajines, ustensiles, épices de base fournis. Parfait pour préparer vos propres repas.",
+    "price": 90,
+    "category": "SPACE",
+    "images": [
+      "/assets/images/cuisine_equipee.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.618,
+        33.595
+      ],
+      "address": "Maarif, Casablanca"
+    },
+    "city": "Casablanca",
+    "duration": 180,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "10:00",
+      "16:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.288Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1ac",
+    "title": "Laverie Express - Machine à Laver",
+    "host": "693941008a490fb197096e22",
+    "description": "Faites votre lessive en 2h : machine à laver moderne, lessive écologique incluse, séchoir disponible. Plus économique que les pressings.",
+    "price": 60,
+    "category": "SPACE",
+    "images": [
+      "/assets/images/laverie_machine.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.849,
+        34
+      ],
+      "address": "Agdal, Rabat"
+    },
+    "city": "Rabat",
+    "duration": 150,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "08:00",
+      "11:00",
+      "14:00",
+      "17:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.439Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1ae",
+    "title": "Bureau Privé - Appels Visio",
+    "host": "693941008a490fb197096e22",
+    "description": "Espace calme et professionnel pour vos calls importants. Wifi fibre, fond neutre, éclairage parfait. Silence garanti 100%.",
+    "price": 120,
+    "category": "SPACE",
+    "images": [
+      "/assets/images/espace_reunion.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.812,
+        35.789
+      ],
+      "address": "Centre-ville, Tanger"
+    },
+    "city": "Tanger",
+    "duration": 60,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "11:00",
+      "14:00",
+      "16:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.553Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1b0",
+    "title": "Cours de Darija Express",
+    "host": "693941008a490fb197096e22",
+    "description": "Apprenez 50 phrases essentielles en darija marocain en 2h. PDF inclus, mise en situation pratique au souk. Parfait pour communiquer avec les locaux !",
+    "price": 200,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/cours_darija.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.989,
+        31.629
+      ],
+      "address": "Médina, Marrakech"
+    },
+    "city": "Marrakech",
+    "duration": 120,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "10:00",
+      "15:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.630Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1b2",
+    "title": "Pâtisserie Marocaine - Cornes de Gazelle",
+    "host": "693941008a490fb197096e22",
+    "description": "Apprenez à préparer les célèbres cornes de gazelle, chebakia et ghriba avec une pâtissière experte. Ingrédients inclus, repartez avec vos créations !",
+    "price": 280,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/patisserie_marocaine.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.976,
+        34.062
+      ],
+      "address": "Médina, Fès"
+    },
+    "city": "Fès",
+    "duration": 180,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "14:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.713Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd61147b9095f0f2c1b4",
+    "title": "Art du Henné Traditionnel",
+    "host": "693941008a490fb197096e22",
+    "description": "Séance henné personnalisée par une nekacha expérimentée. Motifs berbères ou arabes selon vos goûts. Henné 100% naturel, conseils d'entretien inclus.",
+    "price": 180,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/henne_traditionnel.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -9.77,
+        31.508
+      ],
+      "address": "Médina, Essaouira"
+    },
+    "city": "Essaouira",
+    "duration": 90,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "10:00",
+      "14:00",
+      "17:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:29.787Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd62147b9095f0f2c1b6",
+    "title": "Masterclass Négociation Souk",
+    "host": "693941008a490fb197096e22",
+    "description": "Apprenez l'art de la négociation respectueuse au souk. 1h de théorie + 1h de pratique réelle. Vocabulaire, techniques, et accompagnement sur le terrain.",
+    "price": 250,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/negociation_souk.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.989,
+        31.629
+      ],
+      "address": "Souk, Marrakech"
+    },
+    "city": "Marrakech",
+    "duration": 120,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "15:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:30.246Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd62147b9095f0f2c1b8",
+    "title": "Tissage Berbère - Création Tapis",
+    "host": "693941008a490fb197096e22",
+    "description": "Initiez-vous au tissage traditionnel sur métier ancestral. Créez votre propre pièce (sous-verre ou bracelet) sous la guidance d'une artisane berbère.",
+    "price": 320,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/tissage_berbere.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.893,
+        30.92
+      ],
+      "address": "Kasbah, Ouarzazate"
+    },
+    "city": "Ouarzazate",
+    "duration": 180,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "14:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:30.731Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd62147b9095f0f2c1ba",
+    "title": "Atelier Épices & Ras-el-Hanout",
+    "host": "693941008a490fb197096e22",
+    "description": "Découvrez 25+ épices marocaines et leurs usages. Composez votre propre ras-el-hanout personnalisé à emporter. Dégustation thé incluse.",
+    "price": 180,
+    "category": "SKILL",
+    "images": [
+      "/assets/images/atelier_epices.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.268,
+        35.171
+      ],
+      "address": "Médina, Chefchaouen"
+    },
+    "city": "Chefchaouen",
+    "duration": 90,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "10:00",
+      "15:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:30.889Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd63147b9095f0f2c1bc",
+    "title": "Conseils Voyage par Téléphone",
+    "host": "693941008a490fb197096e22",
+    "description": "Appel de 45min avec un local passionné. Recommandations restos, bons plans, itinéraires personnalisés. Liste WhatsApp envoyée après l'appel.",
+    "price": 80,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/conseils_telephone.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.618,
+        33.595
+      ],
+      "address": "Casablanca"
+    },
+    "city": "Casablanca",
+    "duration": 45,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "11:00",
+      "14:00",
+      "17:00",
+      "20:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:31.393Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd63147b9095f0f2c1be",
+    "title": "Transfert Aéroport VIP",
+    "host": "693941008a490fb197096e22",
+    "description": "Accueil personnalisé à l'aéroport avec pancarte. Transport confortable, aide bagages, premiers conseils sur la ville. Ponctualité garantie.",
+    "price": 250,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/recuperation_aeroport.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -8.038,
+        31.602
+      ],
+      "address": "Aéroport Menara, Marrakech"
+    },
+    "city": "Marrakech",
+    "duration": 90,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "06:00",
+      "10:00",
+      "14:00",
+      "18:00",
+      "22:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:31.562Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd63147b9095f0f2c1c0",
+    "title": "Baby-sitting Bilingue",
+    "host": "693941008a490fb197096e22",
+    "description": "Garde d'enfants par une professionnelle expérimentée. Bilingue français/arabe. Activités ludiques et éducatives. Références disponibles.",
+    "price": 100,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/babysitting_bilingue.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -6.849,
+        34
+      ],
+      "address": "Rabat"
+    },
+    "city": "Rabat",
+    "duration": 180,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "18:00",
+      "19:00",
+      "20:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:31.689Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd63147b9095f0f2c1c2",
+    "title": "Accompagnement Marché Local",
+    "host": "693941008a490fb197096e22",
+    "description": "Shopping au marché traditionnel avec un expert local. Sélection des meilleurs produits frais, négociation, conseils de préparation inclus.",
+    "price": 100,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/courses_marche.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -4.976,
+        34.062
+      ],
+      "address": "Marché, Fès"
+    },
+    "city": "Fès",
+    "duration": 120,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "07:00",
+      "09:00"
+    ],
+    "languages": [
+      "Français",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:31.850Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd63147b9095f0f2c1c4",
+    "title": "Interprète / Traducteur Ponctuel",
+    "host": "693941008a490fb197096e22",
+    "description": "Assistance traduction pour RDV administratif, médical ou commercial. Parfaitement bilingue français/arabe. Accompagnement physique ou visio.",
+    "price": 200,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/traduction_interprete.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -7.618,
+        33.595
+      ],
+      "address": "Casablanca"
+    },
+    "city": "Casablanca",
+    "duration": 120,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "14:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:31.995Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  },
+  {
+    "_id": "693abd64147b9095f0f2c1c6",
+    "title": "Visite Quartier Authentique",
+    "host": "693941008a490fb197096e22",
+    "description": "Découverte des quartiers populaires loin des circuits touristiques. Anecdotes, rencontres habitants, pause thé chez l'habitant. Le vrai Maroc !",
+    "price": 180,
+    "category": "CONNECT",
+    "images": [
+      "/assets/images/visite_quartier.png"
+    ],
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -5.812,
+        35.789
+      ],
+      "address": "Vieux Tanger"
+    },
+    "city": "Tanger",
+    "duration": 150,
+    "maxParticipants": 10,
+    "timeSlots": [
+      "09:00",
+      "15:00"
+    ],
+    "languages": [
+      "Français",
+      "Anglais",
+      "Darija",
+      "Espagnol"
+    ],
+    "included": [],
+    "requirements": [],
+    "rating": 0,
+    "availability": [],
+    "createdAt": "2025-12-11T12:47:32.805Z",
+    "updatedAt": "2025-12-11T13:15:29.915Z",
+    "__v": 0
+  }
+]

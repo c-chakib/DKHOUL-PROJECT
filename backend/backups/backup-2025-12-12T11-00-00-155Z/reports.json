@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "69398d10e6be01461785b24e",
+    "reporter": "693941008a490fb197096e22",
+    "targetType": "service",
+    "targetService": "69396ed99959dbd0984726f4",
+    "reason": "fake_profile",
+    "details": "",
+    "status": "pending",
+    "createdAt": "2025-12-10T15:09:04.941Z",
+    "updatedAt": "2025-12-10T15:09:04.941Z",
+    "__v": 0
+  }
+]

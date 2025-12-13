@@ -1,0 +1,268 @@
+[
+  {
+    "_id": "69396531bed26c61f49f99e7",
+    "user": "693964f5bed26c61f49f99df",
+    "history": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Salam",
+            "_id": "69396532bed26c61f49f99ea"
+          }
+        ],
+        "_id": "69396532bed26c61f49f99e9",
+        "timestamp": "2025-12-10T12:18:58.627Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Wa alaikum as-salam! Welcome, friend! How can I sprinkle a little Moroccan magic into your day? Are you seeking adventure, serenity, or a taste of our delicious culture? Let me know what your heart desires!\n",
+            "_id": "69396532bed26c61f49f99ec"
+          }
+        ],
+        "_id": "69396532bed26c61f49f99eb",
+        "timestamp": "2025-12-10T12:18:58.628Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Hder b darija",
+            "_id": "6939653cbed26c61f49f99f5"
+          }
+        ],
+        "_id": "6939653cbed26c61f49f99f4",
+        "timestamp": "2025-12-10T12:19:08.728Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Ahlan bik! Mrahba bik fi DKHOUL. Bghiti chi haja? (Welcome to DKHOUL! Is there anything you need?)\n",
+            "_id": "6939653cbed26c61f49f99f7"
+          }
+        ],
+        "_id": "6939653cbed26c61f49f99f6",
+        "timestamp": "2025-12-10T12:19:08.728Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Ah bghit ilyass",
+            "_id": "69396549bed26c61f49f9a04"
+          }
+        ],
+        "_id": "69396549bed26c61f49f9a03",
+        "timestamp": "2025-12-10T12:19:21.001Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Ah, sma7li, m3arfouch Ilyass. Ana Chakib, un guide السياحي. Ki nqder n3awnk bach tktachef lmaghrib? (I'm sorry, I don't know Ilyass. I am Chakib, a tour guide. How can I help you discover Morocco?)\n",
+            "_id": "69396549bed26c61f49f9a06"
+          }
+        ],
+        "_id": "69396549bed26c61f49f9a05",
+        "timestamp": "2025-12-10T12:19:21.001Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Bghit nsafr",
+            "_id": "69396563bed26c61f49f9a17"
+          }
+        ],
+        "_id": "69396563bed26c61f49f9a16",
+        "timestamp": "2025-12-10T12:19:47.827Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Mrahba bik! Morocco is calling you! Tell me, what kind of journey are you dreaming of? Do you want to wander through the souks of Marrakech, explore the Sahara's golden dunes, or perhaps relax by the Atlantic coast? I can help you find the perfect experience.\n",
+            "_id": "69396563bed26c61f49f9a19"
+          }
+        ],
+        "_id": "69396563bed26c61f49f9a18",
+        "timestamp": "2025-12-10T12:19:47.827Z"
+      }
+    ],
+    "lastUpdated": "2025-12-10T12:19:47.828Z",
+    "__v": 4
+  },
+  {
+    "_id": "69396adabed26c61f49f9a96",
+    "user": "69396ab0bed26c61f49f9a8d",
+    "history": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "fin 3chiri",
+            "_id": "69396adcbed26c61f49f9a99"
+          }
+        ],
+        "_id": "69396adcbed26c61f49f9a98",
+        "timestamp": "2025-12-10T12:43:08.152Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Ahlan, my friend! You speak Darija! \"Fin 3chiri\" means \"Where are my friends?\" in Moroccan Arabic. Are you trying to meet up with them in a specific city, perhaps Marrakech or Fes? I can help you find the best places to gather and enjoy the magic of Morocco together!\n",
+            "_id": "69396adcbed26c61f49f9a9b"
+          }
+        ],
+        "_id": "69396adcbed26c61f49f9a9a",
+        "timestamp": "2025-12-10T12:43:08.152Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "dwi m3aya bdarija",
+            "_id": "69396af3bed26c61f49f9aa4"
+          }
+        ],
+        "_id": "69396af3bed26c61f49f9aa3",
+        "timestamp": "2025-12-10T12:43:31.795Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Wakha, a sidi! Mrahba bik! Ach khbarek? شنو ناوِي تدير اليوم فالمغرب؟ (Okay, welcome! How are you? What are you planning to do in Morocco today?) Let me know what you'd like to experience!\n",
+            "_id": "69396af3bed26c61f49f9aa6"
+          }
+        ],
+        "_id": "69396af3bed26c61f49f9aa5",
+        "timestamp": "2025-12-10T12:43:31.796Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "ana brit nchofk ri nti",
+            "_id": "69396b00bed26c61f49f9ab3"
+          }
+        ],
+        "_id": "69396b00bed26c61f49f9ab2",
+        "timestamp": "2025-12-10T12:43:44.116Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "(Slight pause, maintaining professional tone):\n\nAh, shukran for the compliment! I am glad you find my assistance helpful. However, as a guide, my purpose is to help you explore the beauty and culture of Morocco. I can suggest some fantastic places to visit that will truly captivate you! Perhaps a romantic riad in the medina, or a stunning sunset over the Sahara?\n",
+            "_id": "69396b00bed26c61f49f9ab5"
+          }
+        ],
+        "_id": "69396b00bed26c61f49f9ab4",
+        "timestamp": "2025-12-10T12:43:44.116Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "britk tjawbni bdarija",
+            "_id": "69396ba4bed26c61f49f9ac6"
+          }
+        ],
+        "_id": "69396ba4bed26c61f49f9ac5",
+        "timestamp": "2025-12-10T12:46:28.539Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Wakha, a sidi. Ana hna باش نعاونك تستكشف المغرب و ثقافتو. واش كاين شي حاجة معينة باغي تعرفها ولا تجربها؟ شي مدينة باغي تمشي ليها ولا نشاط باغي ديرو؟ (Okay, sir. I'm here to help you discover Morocco and its culture. Is there anything specific you want to know or experience? Is there a city you want to go to or an activity you want to do?)\n",
+            "_id": "69396ba4bed26c61f49f9ac8"
+          }
+        ],
+        "_id": "69396ba4bed26c61f49f9ac7",
+        "timestamp": "2025-12-10T12:46:28.540Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "ana britk nt3araf 3lik nti o tjawbi bdarija",
+            "_id": "69396bc4bed26c61f49f9add"
+          }
+        ],
+        "_id": "69396bc4bed26c61f49f9adc",
+        "timestamp": "2025-12-10T12:47:00.168Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "(Politely, but firmly redirecting the conversation):\n\nAfwan, a sidi. Ana chakib, المرشد السياحي ديالك هنا فدخول. مهمتي هي نساعدك تكتشف المغرب. نقدر نعطيك معلومات على تاريخ المغرب، الأماكن السياحية، التقاليد و العادات. واش بغيتي تعرف شي حاجة معينة؟ (Excuse me, sir. I am Chakib, your tour guide here at Dkhoul. My mission is to help you discover Morocco. I can give you information about the history of Morocco, tourist attractions, traditions and customs. Do you want to know something specific?) Let's focus on your journey through Morocco, inshallah!\n",
+            "_id": "69396bc4bed26c61f49f9adf"
+          }
+        ],
+        "_id": "69396bc4bed26c61f49f9ade",
+        "timestamp": "2025-12-10T12:47:00.168Z"
+      },
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "wakha 3tini chi plan bach ndor frebat",
+            "_id": "69396bddbed26c61f49f9af8"
+          }
+        ],
+        "_id": "69396bddbed26c61f49f9af7",
+        "timestamp": "2025-12-10T12:47:25.020Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Mzyan! Rabat is a wonderful choice! Here's a plan for a day in Rabat, combining history and culture:\n\n*   **Morning (9:00 AM):** Start with the *Kasbah of the Udayas*. Stroll through its blue and white alleys, enjoy the Andalusian garden, and take in the breathtaking views of the Atlantic Ocean.\n*   **Midday (12:00 PM):** Head to the *Hassan Tower and Mausoleum of Mohammed V*. Marvel at the unfinished minaret and the grandeur of the mausoleum, a masterpiece of Moroccan architecture.\n*   **Afternoon (2:00 PM):** Explore the *Chellah Necropolis*, a serene historical site with Roman and Islamic ruins. Afterwards enjoy a lunch of Moroccan tagine.\n*   **Evening (6:00 PM):** Stroll along the *Bouregreg Marina* at sunset, enjoy a refreshing mint tea, and maybe even take a boat trip.\n\nEnjoy your time in Rabat! Besaha!\n",
+            "_id": "69396bddbed26c61f49f9afa"
+          }
+        ],
+        "_id": "69396bddbed26c61f49f9af9",
+        "timestamp": "2025-12-10T12:47:25.020Z"
+      }
+    ],
+    "lastUpdated": "2025-12-10T12:47:25.021Z",
+    "__v": 6
+  },
+  {
+    "_id": "693b04564aa69f9797471c5a",
+    "user": "693b03df4aa69f9797471c4c",
+    "history": [
+      {
+        "role": "user",
+        "parts": [
+          {
+            "text": "fin ",
+            "_id": "693b04574aa69f9797471c5d"
+          }
+        ],
+        "_id": "693b04574aa69f9797471c5c",
+        "timestamp": "2025-12-11T17:50:15.916Z"
+      },
+      {
+        "role": "model",
+        "parts": [
+          {
+            "text": "Ahlan! It seems you are asking \"where?\" in Darija. Where in Morocco are you interested in exploring today? Are you looking for bustling city adventures, serene desert landscapes, or perhaps a taste of the Atlantic coast? Let me know your desires, and I will guide you!\n",
+            "_id": "693b04574aa69f9797471c5f"
+          }
+        ],
+        "_id": "693b04574aa69f9797471c5e",
+        "timestamp": "2025-12-11T17:50:15.918Z"
+      }
+    ],
+    "lastUpdated": "2025-12-11T17:50:16.010Z",
+    "__v": 1
+  }
+]

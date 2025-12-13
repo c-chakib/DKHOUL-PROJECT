@@ -358,9 +358,9 @@
     "FOOTER": {
         "SUBTITLE": "Your gateway to authentic Moroccan experiences.",
         "EXPLORE": "Explore",
-        "LODGING": "Lodging",
-        "EXPERIENCES": "Experiences",
-        "GUIDES": "Guides",
+        "LODGING": "Spaces",
+        "EXPERIENCES": "Skills",
+        "GUIDES": "Connect",
         "HELP": "Help",
         "HELP_CENTER": "Help Center",
         "TRUST": "Trust & Safety",
@@ -435,7 +435,7 @@
         "SPACE": "Spaces",
         "SKILL": "Skills",
         "CONNECT": "Connect",
-        "All": "All"
+        "ALL": "All"
     },
     "SHARED": {
         "LOGO_ALT": "DKHOUL Logo",

@@ -358,9 +358,9 @@
     "FOOTER": {
         "SUBTITLE": "Votre passerelle vers des expériences marocaines authentiques.",
         "EXPLORE": "Explorer",
-        "LODGING": "Hébergements",
-        "EXPERIENCES": "Expériences",
-        "GUIDES": "Guides",
+        "LODGING": "Espaces",
+        "EXPERIENCES": "Savoir-faire",
+        "GUIDES": "Rencontres",
         "HELP": "Aide",
         "HELP_CENTER": "Centre d'aide",
         "TRUST": "Confiance et sécurité",
@@ -435,7 +435,7 @@
         "SPACE": "Espaces",
         "SKILL": "Savoir-faire",
         "CONNECT": "Rencontres",
-        "All": "Tout"
+        "ALL": "Tout"
     },
     "SHARED": {
         "LOGO_ALT": "Logo DKHOUL",

@@ -107,19 +107,27 @@ exports.getAllServices = async (req, res, next) => {
 
         // 1. Check Cache
         console.time('CacheGet');
-        const cacheKey = `services:all:${JSON.stringify(req.query)}`;
-        const cachedData = await getCache(cacheKey);
+        // FORCE REFRESH: Bump version to v6
+        const cacheKey = `services:v6:all:${JSON.stringify(req.query)}`;
+
+        // Add Cache-Control headers to prevent 304 browser caching issues
+        res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.set('Pragma', 'no-cache');
+        res.set('Expires', '0');
+        res.set('Surrogate-Control', 'no-store');
+
+        const cachedResult = await getCache(cacheKey);
         console.timeEnd('CacheGet');
 
-        if (cachedData) {
-            console.timeEnd('CacheGet');
+        if (cachedResult) {
             console.timeEnd('TotalRequest');
             return res.status(200).json({
                 status: 'success',
-                results: cachedData.length,
+                total: cachedResult.total || 0,
+                results: cachedResult.services.length,
                 source: 'cache',
                 data: {
-                    services: cachedData
+                    services: cachedResult.services
                 }
             });
         }
@@ -127,19 +135,7 @@ exports.getAllServices = async (req, res, next) => {
         // 1A) Filtering
         const queryObj = { ...req.query };
 
-        // Handle flat keys from Angular (e.g. price[gte]) if parser didn't nest them
-        if (queryObj['price[gte]']) {
-            if (!queryObj.price) queryObj.price = {};
-            queryObj.price.gte = queryObj['price[gte]'];
-            delete queryObj['price[gte]'];
-        }
-        if (queryObj['price[lte]']) {
-            if (!queryObj.price) queryObj.price = {};
-            queryObj.price.lte = queryObj['price[lte]'];
-            delete queryObj['price[lte]'];
-        }
-
-        const excludedFields = ['page', 'sort', 'limit', 'fields', 'search']; // Exclude 'search'
+        const excludedFields = ['page', 'sort', 'limit', 'fields', 'search'];
         excludedFields.forEach((el) => delete queryObj[el]);
 
         // 1B) Advanced Filtering
@@ -154,8 +150,10 @@ exports.getAllServices = async (req, res, next) => {
             const sanitizedSearch = escapeStringRegexp(req.query.search);
             const searchRegex = new RegExp(sanitizedSearch, 'i');
             filter.$or = [
-                { title: { $regex: searchRegex } },
-                { description: { $regex: searchRegex } },
+                { 'title.fr': { $regex: searchRegex } },
+                { 'title.en': { $regex: searchRegex } },
+                { 'description.fr': { $regex: searchRegex } },
+                { 'description.en': { $regex: searchRegex } },
                 { city: { $regex: searchRegex } }
             ];
         }
@@ -187,7 +185,7 @@ exports.getAllServices = async (req, res, next) => {
 
         // 4. Set Cache
         console.time('CacheSet');
-        await setCache(cacheKey, services, 3600);
+        await setCache(cacheKey, { services, total }, 3600);
         console.timeEnd('CacheSet');
 
         console.timeEnd('TotalRequest');
@@ -340,4 +338,3 @@ exports.updateService = async (req, res, next) => {
         next(err);
     }
 };
-
