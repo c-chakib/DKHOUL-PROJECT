@@ -14,12 +14,10 @@ export class SocketService {
         this.socket = io(environment.socketUrl || 'http://localhost:5000');
 
         this.socket.on('connect', () => {
-            console.log('Global Socket connected');
             this.isConnected = true;
         });
 
         this.socket.on('disconnect', () => {
-            console.log('Global Socket disconnected');
             this.isConnected = false;
         });
     }

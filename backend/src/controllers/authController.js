@@ -103,6 +103,9 @@ exports.googleLogin = async (req, res, next) => {
         const { googleToken, email, name } = req.body;
         // console.log('Google Login Attempt for:', email);
 
+        // Anti-injection
+        const safeEmail = String(email);
+
         if (!googleToken) {
             return next(new AppError('Google Token is required', 400));
         }
@@ -111,7 +114,7 @@ exports.googleLogin = async (req, res, next) => {
             return next(new AppError('Email is required for Google Login (Mock)', 400));
         }
 
-        let user = await User.findOne({ email });
+        let user = await User.findOne({ email: safeEmail });
         console.log('Google User found:', user ? 'Yes' : 'No');
 
         if (!user) {
@@ -121,7 +124,7 @@ exports.googleLogin = async (req, res, next) => {
 
             user = await User.create({
                 name: name || 'Google User',
-                email: email,
+                email: safeEmail,
                 password: randomPassword,
                 passwordConfirm: randomPassword,
                 role: 'tourist',

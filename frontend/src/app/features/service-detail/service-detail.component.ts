@@ -1,4 +1,5 @@
 import { Component, OnInit, signal, inject, computed, HostListener } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule, Location } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -29,6 +30,8 @@ export class ServiceDetailComponent implements OnInit {
     private toast = inject(ToastService);
     private location = inject(Location);
     public languageService = inject(LanguageService);
+    private metaService = inject(Meta);
+    private titleService = inject(Title);
 
     service = signal<Service | null>(null);
     isLoading = signal<boolean>(true);
@@ -73,15 +76,30 @@ export class ServiceDetailComponent implements OnInit {
         ).subscribe({
             next: (res: any) => {
                 if (res.data && res.data.service) {
-                    this.service.set(res.data.service);
+                    const s = res.data.service;
+                    this.service.set(s);
+
+                    // SEO: Update Title & Meta Tags
+                    const lang = this.languageService.currentLang();
+                    const title = s.title[lang] || s.title['fr'] || s.title['en'];
+                    const desc = s.description[lang] || s.description['fr'] || s.description['en'];
+
+                    this.titleService.setTitle(`${title} | DKHOUL`);
+                    this.metaService.updateTag({ name: 'description', content: desc });
+                    this.metaService.updateTag({ property: 'og:title', content: title });
+                    this.metaService.updateTag({ property: 'og:description', content: desc });
+                    if (s.images && s.images.length > 0) {
+                        this.metaService.updateTag({ property: 'og:image', content: s.images[0] });
+                    }
+
                     // Set initial active image
-                    if (res.data.service.images && res.data.service.images.length > 0) {
-                        this.activeImage.set(res.data.service.images[0]);
+                    if (s.images && s.images.length > 0) {
+                        this.activeImage.set(s.images[0]);
                     }
 
                     // If service has host info, update it
-                    if (res.data.service.host) {
-                        const h = res.data.service.host;
+                    if (s.host) {
+                        const h = s.host;
                         this.host.set({
                             _id: h._id || '',
                             name: h.name || 'Youssef',
@@ -91,8 +109,8 @@ export class ServiceDetailComponent implements OnInit {
                     }
 
                     // Set default time from slots if available
-                    if (res.data.service.timeSlots && res.data.service.timeSlots.length > 0) {
-                        this.selectedTime.set(res.data.service.timeSlots[0]);
+                    if (s.timeSlots && s.timeSlots.length > 0) {
+                        this.selectedTime.set(s.timeSlots[0]);
                     }
                 }
                 this.isLoading.set(false);

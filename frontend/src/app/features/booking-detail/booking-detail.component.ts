@@ -37,8 +37,6 @@ export class BookingDetailComponent implements OnInit {
     loadBooking(id: string) {
         this.bookingService.getBookingById(id).subscribe({
             next: (res) => {
-                console.log('Booking Loaded:', res.data.booking);
-                console.log('Service Images:', res.data.booking?.service?.images);
                 this.booking.set(res.data.booking);
                 this.loading.set(false);
             },

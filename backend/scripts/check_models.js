@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function listModels() {
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Dummy init to access client? No, need to verify if listModels exists on client or ...
+        // const model = genAI.getGenerativeModel({ model: "gemini-pro" }); // Removed unused variable
         // Actually typically it's specific. Let's try to just output what we can.
         // The node SDK might not have listModels exposed easily on the main class in older versions?
         // Let's try the direct method if available.

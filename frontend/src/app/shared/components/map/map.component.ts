@@ -46,14 +46,12 @@ export class MapComponent implements OnChanges, OnDestroy {
     }
 
     private initMap(): void {
-        console.log('MapComponent: initMap called. Container:', this.mapContainer);
         if (this.map) return;
 
         this.fixLeafletIcons();
 
         try {
             this.map = L.map(this.mapContainer.nativeElement).setView([31.7917, -7.0926], 6);
-            console.log('MapComponent: Leaflet map initialized');
 
             L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
                 attribution: '&copy; OpenStreetMap contributors',
@@ -62,7 +60,6 @@ export class MapComponent implements OnChanges, OnDestroy {
 
             setTimeout(() => {
                 this.map?.invalidateSize();
-                console.log('MapComponent: invalidateSize called');
                 this.updateMarkers();
             }, 200);
         } catch (error) {
@@ -72,7 +69,6 @@ export class MapComponent implements OnChanges, OnDestroy {
 
     private updateMarkers(): void {
         if (!this.map) return;
-        console.log('MapComponent: Updating markers. Services count:', this.services.length);
 
         // Clear existing markers
         this.markers.forEach(marker => marker.remove());

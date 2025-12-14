@@ -36,3 +36,7 @@ backend/generated_map.txt
 backend/entries.txt
 backend/seed_images/
 backend/applyBranding.js
+
+# Backups (Sensitive Data)
+backend/backups/
+backups/

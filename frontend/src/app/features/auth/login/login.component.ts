@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
     }
 
     loginWithGoogle() {
-        console.log("Please use the rendered Google Button.");
+        // console.log("Please use the rendered Google Button.");
     }
 
     private decodeJwt(token: string): any {

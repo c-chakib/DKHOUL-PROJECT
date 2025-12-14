@@ -30,8 +30,9 @@
             
             <!-- AVATAR SECTION -->
             <div class="flex items-center mb-8">
-               <div class="relative group cursor-pointer" (click)="triggerFileInput()">
+               <div class="relative group cursor-pointer" (click)="triggerFileInput()" (keydown.enter)="triggerFileInput()" tabindex="0" role="button" aria-label="Change profile photo">
                  <img [src]="imagePreview() || 'assets/images/placeholder-avatar.jpg'" 
+                      alt="Profile Avatar"
                       class="w-24 h-24 rounded-full object-cover border-2 border-gray-100 group-hover:opacity-75 transition">
                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                    <i class="fas fa-camera text-white text-xl drop-shadow-md"></i>

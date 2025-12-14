@@ -73,12 +73,10 @@ export class ChatService {
         });
 
         this.socket.on('connect', () => {
-            console.log('Socket connected');
             this.connected.set(true);
         });
 
         this.socket.on('disconnect', () => {
-            console.log('Socket disconnected');
             this.connected.set(false);
         });
     }

@@ -13,7 +13,7 @@ try {
 
 try {
     console.log('2. Loading app.js...');
-    const app = require('./src/app');
+    require('./src/app');
     console.log('✅ app.js loaded.');
 } catch (error) {
     console.error('❌ app.js FAILED:', error);

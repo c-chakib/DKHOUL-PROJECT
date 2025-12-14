@@ -22,7 +22,8 @@ exports.checkAvailability = async (req, res, next) => {
             return next(new AppError('Please provide serviceId and date', 400));
         }
 
-        const service = await Service.findById(serviceId);
+        const safeServiceId = String(serviceId);
+        const service = await Service.findById(safeServiceId);
         if (!service) {
             return next(new AppError('Service not found', 404));
         }
@@ -59,7 +60,9 @@ exports.createPaymentIntent = async (req, res, next) => {
             return next(new AppError('Please provide serviceId and price', 400));
         }
 
-        const service = await Service.findById(serviceId);
+        const safeServiceId = String(serviceId);
+
+        const service = await Service.findById(safeServiceId);
         if (!service) {
             return next(new AppError('Service not found', 404));
         }
@@ -85,7 +88,7 @@ exports.createPaymentIntent = async (req, res, next) => {
                 enabled: true,
             },
             metadata: {
-                serviceId: serviceId,
+                serviceId: safeServiceId,
                 userId: req.user.id,
                 date: date || '',
                 time: time || '',
@@ -96,7 +99,7 @@ exports.createPaymentIntent = async (req, res, next) => {
         // 2. Create Booking in DB (Pending)
         const newBooking = await Booking.create({
             tourist: req.user.id,
-            service: serviceId,
+            service: safeServiceId,
             price: price,
             status: 'pending',
             paymentIntentId: paymentIntent.id,
@@ -107,9 +110,8 @@ exports.createPaymentIntent = async (req, res, next) => {
         });
 
         // 3. Send Client Secret to Frontend
-        // 3. Send Client Secret to Frontend
 
-        const fullService = await Service.findById(serviceId).populate('host');
+        const fullService = await Service.findById(safeServiceId).populate('host');
 
         if (fullService) {
             await sendNewBookingEmails(fullService, req.user, newBooking);

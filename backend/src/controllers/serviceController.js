@@ -76,10 +76,20 @@ exports.createService = async (req, res, next) => {
         }
 
         // Security: Filter allowed fields only
+        // Whitelist allowed fields
+        const allowedFields = ['title', 'description', 'price', 'category', 'city', 'images', 'maxParticipants', 'timeSlots', 'duration', 'difficulty', 'languages', 'included', 'requirements', 'address', 'location'];
+        const additionalFields = {};
+
+        allowedFields.forEach(field => {
+            if (req.body[field] !== undefined) additionalFields[field] = req.body[field];
+        });
+
+        // Add Multi-language Support if provided separately or use what's in body if structure matches
+        // But here we rely on what was passed or constructed above
         const filteredBody = {
-            ...req.body,
-            title: multiTitle,
-            description: multiDesc,
+            ...additionalFields,
+            // Ensure title/desc are properly set if handled by some other logic, but here we trust the body structure for them
+            // If the user sent { title: {fr: '..'} }, it's captured in additionalFields['title']
             host: req.user.id
         };
 
@@ -143,11 +153,20 @@ exports.getAllServices = async (req, res, next) => {
         queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
         const filter = JSON.parse(queryStr);
 
-        const escapeStringRegexp = require('../utils/escape-string-regexp');
+        // Helper: Escape string for RegExp
+        const escapeStringRegexp = (string) => {
+            if (typeof string !== 'string') {
+                throw new TypeError('Expected a string');
+            }
+            return string
+                .replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+                .replace(/-/g, '\\x2d');
+        };
 
         // 1C) Search (Title/Description)
         if (req.query.search) {
-            const sanitizedSearch = escapeStringRegexp(req.query.search);
+            const searchStr = String(req.query.search).slice(0, 100);
+            const sanitizedSearch = escapeStringRegexp(searchStr);
             const searchRegex = new RegExp(sanitizedSearch, 'i');
             filter.$or = [
                 { 'title.fr': { $regex: searchRegex } },

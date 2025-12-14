@@ -1,7 +1,8 @@
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-const mongoose = require('mongoose');
-const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
+const { S3Client, PutObjectCommand, ListObjectsV2Command } = require('@aws-sdk/client-s3');
 const sharp = require('sharp');
 const Service = require('./src/models/Service');
 const User = require('./src/models/User');

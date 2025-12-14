@@ -64,19 +64,22 @@ exports.createReport = async (req, res, next) => {
             details: details || ''
         };
 
+        // Sanitize targetId
+        const safeTargetId = String(targetId);
+
         // Set the correct target reference
         if (targetType === 'service') {
-            const service = await Service.findById(targetId);
+            const service = await Service.findById(safeTargetId);
             if (!service) {
                 return next(new AppError('Service not found', 404));
             }
-            reportData.targetService = targetId;
+            reportData.targetService = safeTargetId;
         } else if (targetType === 'user') {
-            const user = await User.findById(targetId);
+            const user = await User.findById(safeTargetId);
             if (!user) {
                 return next(new AppError('User not found', 404));
             }
-            reportData.targetUser = targetId;
+            reportData.targetUser = safeTargetId;
         }
 
         const report = await Report.create(reportData);
