@@ -85,7 +85,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       <div *ngFor="let category of mainCategories" class="group bg-surface rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-outline/10 h-full text-left rtl:text-right">
         <div class="h-48 -mx-8 -mt-8 mb-8 overflow-hidden rounded-t-3xl relative">
-          <img [src]="category.image" [alt]="category.nameKey | translate" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+          <img [src]="category.image" 
+               [alt]="category.nameKey | translate" 
+               width="400" height="300" 
+               loading="lazy"
+               class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
           <div class="absolute top-4 right-4 rtl:right-auto rtl:left-4 bg-surface/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-primary shadow-sm">
             {{ category.priceRange }}
           </div>
@@ -136,7 +140,11 @@
       <div *ngFor="let service of recentServices" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer text-left rtl:text-right" (click)="navigateToServices()" (keydown.enter)="navigateToServices()" tabindex="0">
         <!-- Image -->
         <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl relative">
-             <img [src]="service.images[0] || 'assets/default-service.png'" [alt]="service.title" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+             <img [src]="service.images[0] || 'assets/default-service.png'" 
+                  [alt]="service.title" 
+                  width="400" height="300"
+                  loading="lazy"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
              <div class="absolute top-4 right-4 rtl:right-auto rtl:left-4 bg-surface/90 backdrop-blur px-2 py-1 rounded text-xs font-bold text-primary shadow-sm">
                 {{ service.category }}
              </div>

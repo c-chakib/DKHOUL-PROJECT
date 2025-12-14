@@ -3,7 +3,12 @@
          class="absolute inset-0 transition-opacity duration-1000 ease-in-out"
          [class.opacity-0]="currentSlide !== i"
          [class.opacity-100]="currentSlide === i">
-      <img [src]="img.src" [alt]="img.alt" class="w-full h-full object-cover">
+      <!-- Use NgOptimizedImage -->
+      <img [ngSrc]="img.src" 
+           [alt]="img.alt" 
+           fill
+           [priority]="i === 0"
+           class="object-cover">
        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
           <p class="text-lg font-bold">{{img.alt | translate}}</p>
        </div>

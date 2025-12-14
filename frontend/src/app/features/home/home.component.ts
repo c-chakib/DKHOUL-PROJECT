@@ -99,7 +99,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.4'
             ],
-            image: 'assets/images/space.png',
+            image: 'assets/images/space.webp',
             categoryParam: 'SPACE'
         },
         {
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.4'
             ],
-            image: 'assets/images/skills.png',
+            image: 'assets/images/skills.webp',
             categoryParam: 'SKILL'
         },
         {
@@ -133,7 +133,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.4'
             ],
-            image: 'assets/images/connect.png',
+            image: 'assets/images/connect.webp',
             categoryParam: 'CONNECT'
         }
     ];
@@ -146,16 +146,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
 
     heroImages = [
-        { src: 'assets/images/hero-riad.png', alt: 'HOME.HERO_IMAGES.RIAD' },
-        { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.png', alt: 'HOME.HERO_IMAGES.HOSTS' },
-        { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.png', alt: 'HOME.HERO_IMAGES.EXPERIENCES' },
-        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.png', alt: 'HOME.HERO_IMAGES.TRAVEL' },
-        { src: 'assets/images/Gemini_Generated_Image_i1bvcoi1bvcoi1bv.png', alt: 'HOME.HERO_IMAGES.CRAFTS' },
-        { src: 'assets/images/Gemini_Generated_Image_lhlkz1lhlkz1lhlk.png', alt: 'HOME.HERO_IMAGES.FOOD' },
-        { src: 'assets/images/Gemini_Generated_Image_lhrdlmlhrdlmlhrd.png', alt: 'HOME.HERO_IMAGES.LANDSCAPES' },
-        { src: 'assets/images/Gemini_Generated_Image_npjqhjnpjqhjnpjq.png', alt: 'HOME.HERO_IMAGES.WORK' },
-        { src: 'assets/images/Gemini_Generated_Image_ssvgmpssvgmpssvg.png', alt: 'HOME.HERO_IMAGES.ARCHI' },
-        { src: 'assets/images/Gemini_Generated_Image_sszal4sszal4ssza.png', alt: 'HOME.HERO_IMAGES.HOSPITALITY' }
+        { src: 'assets/images/hero-riad.webp', alt: 'HOME.HERO_IMAGES.RIAD' },
+        { src: 'assets/images/Gemini_Generated_Image_9keka9keka9keka9.webp', alt: 'HOME.HERO_IMAGES.HOSTS' },
+        { src: 'assets/images/Gemini_Generated_Image_b94gjrb94gjrb94g.webp', alt: 'HOME.HERO_IMAGES.EXPERIENCES' },
+        { src: 'assets/images/Gemini_Generated_Image_bbfwmdbbfwmdbbfw.webp', alt: 'HOME.HERO_IMAGES.TRAVEL' },
+        { src: 'assets/images/Gemini_Generated_Image_i1bvcoi1bvcoi1bv.webp', alt: 'HOME.HERO_IMAGES.CRAFTS' },
+        { src: 'assets/images/Gemini_Generated_Image_lhlkz1lhlkz1lhlk.webp', alt: 'HOME.HERO_IMAGES.FOOD' },
+        { src: 'assets/images/Gemini_Generated_Image_lhrdlmlhrdlmlhrd.webp', alt: 'HOME.HERO_IMAGES.LANDSCAPES' },
+        { src: 'assets/images/Gemini_Generated_Image_npjqhjnpjqhjnpjq.webp', alt: 'HOME.HERO_IMAGES.WORK' },
+        { src: 'assets/images/Gemini_Generated_Image_ssvgmpssvgmpssvg.webp', alt: 'HOME.HERO_IMAGES.ARCHI' },
+        { src: 'assets/images/Gemini_Generated_Image_sszal4sszal4ssza.webp', alt: 'HOME.HERO_IMAGES.HOSPITALITY' }
     ];
 
     // Explicitly exposing currentYear as a public property if needed by template, 

@@ -196,7 +196,34 @@
              <a routerLink="/register" (click)="closeMobileMenu()" class="text-center py-3 bg-[#BC5627] text-white rounded-lg font-bold shadow-sm text-sm hover:bg-[#a0451f]">{{ 'NAV.REGISTER' | translate }}</a>
            </div>
          }
-      </nav>
+     </nav>
+
+     <!-- Language Switcher Mobile -->
+     <div class="border-t border-gray-100 mt-6 pt-6">
+        <div class="flex items-center justify-between px-2">
+            <span class="text-sm font-bold text-gray-500 uppercase tracking-wider">Language</span>
+            <div class="flex items-center gap-3">
+                <button (click)="switchLanguage('fr')" 
+                        [class.bg-[#BC5627]/10]="languageService.currentLang() === 'fr'" 
+                        [class.border-[#BC5627]]="languageService.currentLang() === 'fr'"
+                        class="h-10 w-10 flex items-center justify-center rounded-xl border border-gray-200 text-xl hover:border-[#BC5627] hover:bg-[#BC5627]/5 transition-all duration-300">
+                    🇫🇷
+                </button>
+                <button (click)="switchLanguage('en')" 
+                        [class.bg-[#BC5627]/10]="languageService.currentLang() === 'en'" 
+                        [class.border-[#BC5627]]="languageService.currentLang() === 'en'"
+                        class="h-10 w-10 flex items-center justify-center rounded-xl border border-gray-200 text-xl hover:border-[#BC5627] hover:bg-[#BC5627]/5 transition-all duration-300">
+                    🇬🇧
+                </button>
+                <button (click)="switchLanguage('ar')" 
+                        [class.bg-[#BC5627]/10]="languageService.currentLang() === 'ar'" 
+                        [class.border-[#BC5627]]="languageService.currentLang() === 'ar'"
+                        class="h-10 w-10 flex items-center justify-center rounded-xl border border-gray-200 text-xl hover:border-[#BC5627] hover:bg-[#BC5627]/5 transition-all duration-300">
+                    🇲🇦
+                </button>
+            </div>
+        </div>
+     </div>
     </div>
   </div>
 }
