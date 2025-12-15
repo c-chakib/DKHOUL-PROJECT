@@ -7,11 +7,13 @@ import { BookingService } from '../../../core/services/booking.service';
 import { ToastService } from '../../../core/services/toast.service';
 import { environment } from '../../../../environments/environment';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
+import { LangSelectPipe } from '../../../shared/pipes/lang-select.pipe';
+import { LanguageService } from '../../../core/services/language.service';
 
 @Component({
     selector: 'app-my-bookings',
     standalone: true,
-    imports: [CommonModule, RouterLink, ImageFallbackDirective, ConfirmModalComponent, TranslateModule],
+    imports: [CommonModule, RouterLink, ImageFallbackDirective, ConfirmModalComponent, TranslateModule, LangSelectPipe],
     styles: [`
         .filter-btn {
             @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border border-transparent;
@@ -98,7 +100,7 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
                                 </div>
                             </div>
                             <div class="p-5">
-                                <h3 class="text-lg font-bold text-gray-900 line-clamp-1 mb-2">{{ booking.service?.title }}</h3>
+                                <h3 class="text-lg font-bold text-gray-900 line-clamp-1 mb-2">{{ booking.service?.title | langSelect: languageService.currentLang() }}</h3>
                                 <div class="flex items-center text-sm text-gray-500 mb-3">
                                     <span class="mr-2">📅 {{ booking.bookingDate | date:'d MMM yyyy' }}</span>
                                     <span>🕔 {{ booking.time }}</span>
@@ -139,7 +141,9 @@ export class MyBookingsComponent implements OnChanges {
 
     private bookingService = inject(BookingService);
     private toast = inject(ToastService);
+
     private translate = inject(TranslateService);
+    public languageService = inject(LanguageService);
 
     bookingsSig = signal<any[]>([]);
     filter = signal<string>('all');
