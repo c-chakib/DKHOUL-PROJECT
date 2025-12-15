@@ -14,12 +14,16 @@ import { environment } from '../../../environments/environment';
 import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
 import { LanguageService } from '../../core/services/language.service';
 
+import { ResolveUrlPipe } from '../../shared/pipes/resolve-url.pipe';
+import { ChangeDetectionStrategy } from '@angular/core';
+
 @Component({
     selector: 'app-service-detail',
     standalone: true,
-    imports: [CommonModule, RouterModule, ReportModalComponent, TranslateModule, LangSelectPipe],
+    imports: [CommonModule, RouterModule, ReportModalComponent, TranslateModule, LangSelectPipe, ResolveUrlPipe],
     templateUrl: './service-detail.component.html',
-    styleUrls: ['./service-detail.component.scss']
+    styleUrls: ['./service-detail.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ServiceDetailComponent implements OnInit {
     private route = inject(ActivatedRoute);
@@ -215,12 +219,7 @@ export class ServiceDetailComponent implements OnInit {
         }
     }
 
-    getImageUrl(url: string | undefined): string | null {
-        if (!url) return null;
-        if (url.startsWith('data:') || url.startsWith('http')) return url;
-        if (url.startsWith('/assets')) return url; // Local assets handled by frontend
-        return environment.apiUrl.replace('/api/v1', '') + url;
-    }
+
 
     goBack(): void {
         this.location.back();

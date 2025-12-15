@@ -3,10 +3,8 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideHttpClient, withFetch, withInterceptors, HttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideNgxStripe } from 'ngx-stripe';
-import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
 import { provideToastr } from 'ngx-toastr';
-import { provideLottieOptions } from 'ngx-lottie';
-import player from 'lottie-web';
 import { provideServiceWorker } from '@angular/service-worker';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
@@ -41,11 +39,7 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       newestOnTop: true
     }),
-    provideLottieOptions({
-      player: () => player
-    }),
     provideNgxStripe('pk_test_L5FB3QoapHgjMt61e739qsYc'),
-    provideCharts(withDefaultRegisterables()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: true,
       registrationStrategy: 'registerWhenStable:30000'

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminService } from '../../../core/services/admin.service';
 import { SocketService } from '../../../core/services/socket.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastService } from '../../../core/services/toast.service';
 import { environment } from '../../../../environments/environment';
 import { Subscription } from 'rxjs';
 
@@ -19,7 +19,7 @@ import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/
 export class SuperAdminComponent implements OnInit, OnDestroy {
     adminService = inject(AdminService);
     socketService = inject(SocketService);
-    toastr = inject(ToastrService);
+    toastr = inject(ToastService);
 
     // Signals
     stats = signal<any>(null);
@@ -53,7 +53,7 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
         // Listen for new users
         this.socketSub.add(
             this.socketService.listen<any>('user-created').subscribe((newUser) => {
-                this.toastr.info(`Nouvel utilisateur : ${newUser.name}`, 'Real-time Update');
+                this.toastr.info('ADMIN.MESSAGES.USER_CREATED', 'TOASTS.INFO');
                 this.users.update(current => [newUser, ...current]);
 
                 // Update stats locally (optimistic)
@@ -69,6 +69,43 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
                 this.users.update(current =>
                     current.map(u => u._id === updatedUser._id ? updatedUser : u)
                 );
+            })
+        );
+        // Listen for user deletion
+        this.socketSub.add(
+            this.socketService.listen<any>('user-deleted').subscribe((data) => {
+                const userId = data._id;
+                this.toastr.info('ADMIN.MESSAGES.USER_DELETED_SOCKET', 'TOASTS.INFO');
+                this.users.update(current => current.filter(u => u._id !== userId));
+                if (this.stats()) {
+                    this.stats.update(s => ({ ...s, usersCount: s.usersCount - 1 }));
+                }
+            })
+        );
+
+        // Listen for new bookings
+        this.socketSub.add(
+            this.socketService.listen<any>('booking-created').subscribe((booking) => {
+                // Determine if we should show a toast (maybe too noisy if high volume, but good for demo)
+                this.toastr.info('ADMIN.MESSAGES.NEW_BOOKING', 'TOASTS.INFO');
+                if (this.stats()) {
+                    this.stats.update(s => ({
+                        ...s,
+                        bookingsCount: s.bookingsCount + 1,
+                        // Add to recent bookings if we had the object structure match
+                        // recentBookings: [booking, ...s.recentBookings].slice(0, 5) 
+                    }));
+                }
+            })
+        );
+
+        // Listen for booking updates (status change or payment)
+        this.socketSub.add(
+            this.socketService.listen<any>('booking-updated').subscribe((updatedBooking) => {
+                // Refresh stats to get correct revenue and confirmation status
+                // Alternatively, update locally if simple.
+                // For now, let's just re-fetch stats to be accurate on revenue
+                this.loadDashboard();
             })
         );
     }
@@ -99,14 +136,14 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
         const newStatus = !user.isVerified;
         this.adminService.updateUser(user._id, { isVerified: newStatus }).subscribe({
             next: (res) => {
-                const action = newStatus ? 'vérifié' : 'mis en attente';
-                this.toastr.success(`Utilisateur ${action} avec succès`);
+                const action = newStatus ? 'VERIFIED' : 'PENDING';
+                this.toastr.success(`ADMIN.MESSAGES.USER_${action}`);
                 // Update local list (although socket might do it too, this is faster feedback)
                 this.users.update(current =>
                     current.map(u => u._id === user._id ? { ...u, isVerified: newStatus } : u)
                 );
             },
-            error: (err) => this.toastr.error('Erreur lors de la mise à jour')
+            error: (err) => this.toastr.error('TOASTS.ERROR')
         });
     }
 
@@ -120,14 +157,14 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
 
         this.adminService.updateUser(user._id, { role: newRole }).subscribe({
             next: (res) => {
-                this.toastr.success(`Rôle modifié en ${newRole} avec succès`);
+                this.toastr.success('ADMIN.MESSAGES.ROLE_UPDATED');
                 this.users.update(current =>
                     current.map(u => u._id === user._id ? { ...u, role: newRole } : u)
                 );
                 this.closeRoleModal();
             },
             error: (err) => {
-                this.toastr.error('Erreur lors du changement de rôle');
+                this.toastr.error('TOASTS.ERROR');
                 this.closeRoleModal();
             }
         });
@@ -198,7 +235,7 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
 
         this.adminService.deleteUser(userId).subscribe({
             next: () => {
-                this.toastr.success('Utilisateur supprimé avec succès');
+                this.toastr.success('ADMIN.MESSAGES.USER_DELETED');
                 // Remove from list
                 this.users.update(current => current.filter(u => u._id !== userId));
                 if (this.stats()) {
@@ -207,7 +244,7 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
                 this.closeDeleteModal();
             },
             error: (err) => {
-                this.toastr.error(err.error?.message || 'Erreur lors de la suppression');
+                this.toastr.error('TOASTS.ERROR');
                 this.closeDeleteModal();
             }
         });
@@ -231,16 +268,16 @@ export class SuperAdminComponent implements OnInit, OnDestroy {
 
         if (!userId) return;
         if (password.length < 8) {
-            this.toastr.warning('Le mot de passe est trop court !');
+            this.toastr.warning('AUTH.ERRORS.PASSWORD_MIN_LENGTH');
             return;
         }
 
         this.adminService.resetUserPassword(userId, password).subscribe({
             next: () => {
-                this.toastr.success('Mot de passe réinitialisé avec succès');
+                this.toastr.success('TOASTS.PASSWORD_CHANGED');
                 this.closePasswordModal();
             },
-            error: (err) => this.toastr.error(err.error?.message || 'Erreur')
+            error: (err) => this.toastr.error('TOASTS.ERROR')
         });
     }
 

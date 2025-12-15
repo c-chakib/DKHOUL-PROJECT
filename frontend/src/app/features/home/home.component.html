@@ -131,13 +131,13 @@
     </div>
 
     <!-- Loading State -->
-    <div *ngIf="isLoading" class="flex justify-center py-12">
+    <div *ngIf="isLoading()" class="flex justify-center py-12">
       <mat-spinner diameter="40"></mat-spinner>
     </div>
 
     <!-- Services Grid -->
-    <div *ngIf="!isLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-      <div *ngFor="let service of recentServices" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer text-left rtl:text-right" (click)="navigateToServices()" (keydown.enter)="navigateToServices()" tabindex="0">
+    <div *ngIf="!isLoading()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+      <div *ngFor="let service of recentServices()" class="bg-surface rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-outline/10 group cursor-pointer text-left rtl:text-right" (click)="navigateToServices()" (keydown.enter)="navigateToServices()" tabindex="0">
         <!-- Image -->
         <div class="h-48 -mx-6 -mt-6 mb-4 overflow-hidden rounded-t-2xl relative">
              <img [src]="service.images[0] || 'assets/default-service.png'" 
@@ -168,7 +168,7 @@
     </div>
     
     <!-- Empty State -->
-    <div *ngIf="!isLoading && recentServices.length === 0" class="text-center py-12 text-secondary/60">
+    <div *ngIf="!isLoading() && recentServices().length === 0" class="text-center py-12 text-secondary/60">
       <p>{{ 'HOME.FEATURED.EMPTY' | translate }}</p>
     </div>
   </div>

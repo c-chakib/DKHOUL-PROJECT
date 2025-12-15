@@ -8,7 +8,8 @@
       
       <!-- LOGO -->
       <a routerLink="/" class="flex items-center gap-2 group relative z-10">
-        <img src="assets/icons/logo.png" alt="DKHOUL" 
+        <img src="assets/icons/logo.webp" alt="DKHOUL" 
+             width="128" height="128"
              class="transition-all duration-300 cursor-pointer object-contain"
              [class.h-10]="isScrolled()" [class.h-12]="!isScrolled()">
       </a>
@@ -76,7 +77,7 @@
           <div class="relative ml-4">
             <button (click)="toggleProfileMenu()" class="flex items-center gap-3 pl-1 pr-2 py-1 rounded-full hover:bg-gray-50 transition-all duration-300 group border border-transparent hover:border-gray-100">
               <div class="h-9 w-9 rounded-full p-0.5 border border-gray-200 group-hover:border-[#BC5627] transition-colors bg-white">
-                  <img [src]="userPhotoUrl()" class="h-full w-full rounded-full object-cover">
+                  <img [src]="userPhotoUrl() | resolveUrl" class="h-full w-full rounded-full object-cover">
               </div>
               <div class="flex flex-col items-start pr-2">
                   <span class="text-[10px] text-gray-400 leading-none">{{ 'NAV.ACCOUNT' | translate }}</span>
@@ -153,7 +154,7 @@
     
     <!-- Header with Close Button -->
     <div class="flex justify-between items-center p-4 border-b border-gray-100">
-       <img src="assets/icons/logo.png" [alt]="'SHARED.LOGO_ALT' | translate" class="h-10 w-auto object-contain transition-all duration-300">
+       <img src="assets/icons/logo.webp" [alt]="'SHARED.LOGO_ALT' | translate" width="128" height="128" class="h-10 w-auto object-contain transition-all duration-300">
        <button (click)="closeMobileMenu()" class="p-2 bg-gray-50 rounded-full text-gray-500 hover:bg-gray-100 transition-colors">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -167,7 +168,7 @@
       <!-- User Info (if logged in) -->
       @if (currentUser()) {
         <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-xl border border-gray-100">
-          <img [src]="userPhotoUrl()" class="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm">
+          <img [src]="userPhotoUrl() | resolveUrl" class="h-12 w-12 rounded-full object-cover border-2 border-white shadow-sm">
           <div>
             <div class="font-bold text-gray-900 text-base">{{ currentUser()?.name }}</div>
             <div class="text-xs text-gray-500">{{ currentUser()?.email }}</div>

@@ -1,42 +1,48 @@
-import { Component, HostListener, inject, signal, computed } from '@angular/core';
+import { Component, HostListener, inject, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { LanguageService } from '../../../core/services/language.service';
 import { environment } from '../../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
+import { ResolveUrlPipe } from '../../pipes/resolve-url.pipe';
 
 @Component({
     selector: 'app-navbar',
     standalone: true,
-    imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule],
+    imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule, ResolveUrlPipe],
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss']
+    styleUrls: ['./navbar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
     private readonly authService = inject(AuthService);
     public readonly languageService = inject(LanguageService);
     private readonly router = inject(Router);
 
-    // Signals
-
     currentUser = this.authService.currentUser;
 
     userPhotoUrl = computed(() => {
         const user = this.currentUser();
         if (!user?.photo) return 'assets/default-avatar.png';
-        if (user.photo.startsWith('data:') || user.photo.startsWith('http')) return user.photo;
-        return environment.apiUrl.replace('/api/v1', '') + user.photo;
+        // Now using ResolveUrlPipe in template, but if we need it here for some reason, 
+        // we can just return the raw path if the pipe handles it, 
+        // OR rely on template pipe. 
+        // Actually, the template uses `userPhotoUrl()` which returns a string.
+        // If the string is relative, the template needs `| resolveUrl`.
+        // Let's check template usage.
+        return user.photo;
     });
 
     userFirstName = computed(() => {
         const user = this.currentUser();
         return user?.name ? user.name.split(' ')[0] : '';
     });
-    isScrolled = signal(false);
+
     isMobileMenuOpen = signal(false);
     isProfileMenuOpen = signal(false);
     isLangMenuOpen = signal(false);
+    isScrolled = signal(false);
 
     @HostListener('window:scroll')
     onWindowScroll() {

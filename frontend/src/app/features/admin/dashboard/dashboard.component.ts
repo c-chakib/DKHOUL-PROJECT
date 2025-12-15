@@ -4,12 +4,15 @@ import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartType } from 'chart.js';
 import { AdminService, DashboardStats } from '../../../core/services/admin.service';
 
+import { ChangeDetectionStrategy } from '@angular/core';
+
 @Component({
     selector: 'app-admin-dashboard',
     standalone: true,
     imports: [CommonModule, BaseChartDirective],
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
     private adminService = inject(AdminService);

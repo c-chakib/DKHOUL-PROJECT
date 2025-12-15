@@ -32,7 +32,7 @@
         <div class="relative overflow-hidden bg-gray-100 h-full group/main cursor-pointer" 
              [ngClass]="{'md:col-span-4 md:row-span-2': validImages().length === 1, 'md:col-span-2 md:row-span-2': validImages().length > 1}"
              (click)="openLightbox(0)" (keydown.enter)="openLightbox(0)" tabindex="0" role="button" aria-label="View main image">
-            <ng-container *ngIf="validImages().length > 0 && getImageUrl(validImages()[0]) as url">
+            <ng-container *ngIf="validImages().length > 0 && (validImages()[0] | resolveUrl) as url">
                 <img [src]="url" alt="Main Service Image" class="w-full h-full object-cover transition-transform duration-700 group-hover/main:scale-105">
                 <div class="absolute inset-0 bg-black/0 group-hover/main:bg-black/10 transition-colors duration-300"></div>
             </ng-container>
@@ -46,21 +46,21 @@
         <!-- Top Right -->
         <div *ngIf="validImages().length > 1" class="hidden md:block md:col-span-2 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" 
              (click)="openLightbox(1)" (keydown.enter)="openLightbox(1)" tabindex="0" role="button" aria-label="View second image">
-            <img [src]="getImageUrl(validImages()[1])" alt="Service Image 2" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+            <img [src]="validImages()[1] | resolveUrl" alt="Service Image 2" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
             <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
         </div>
 
         <!-- Bottom Left -->
         <div *ngIf="validImages().length > 2" class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" 
              (click)="openLightbox(2)" (keydown.enter)="openLightbox(2)" tabindex="0" role="button" aria-label="View third image">
-             <img [src]="getImageUrl(validImages()[2])" alt="Service Image 3" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+             <img [src]="validImages()[2] | resolveUrl" alt="Service Image 3" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
              <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
         </div>
 
         <!-- Bottom Right (+Overlay) -->
         <div *ngIf="validImages().length > 3" class="hidden md:block md:col-span-1 md:row-span-1 relative overflow-hidden bg-gray-100 cursor-pointer group/sec" 
              (click)="openLightbox(3)" (keydown.enter)="openLightbox(3)" tabindex="0" role="button" aria-label="View more images">
-             <img [src]="getImageUrl(validImages()[3])" alt="Service Image 4" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
+             <img [src]="validImages()[3] | resolveUrl" alt="Service Image 4" class="w-full h-full object-cover transition-transform duration-700 group-hover/sec:scale-105">
              <div class="absolute inset-0 bg-black/0 group-hover/sec:bg-black/10 transition-colors duration-300"></div>
              
              <!-- Plus Overlay -->
@@ -251,7 +251,7 @@
     
     <!-- Main Image Area -->
     <div class="relative flex-1 w-full flex items-center justify-center p-4 overflow-hidden">
-        <img [src]="getImageUrl(validImages()[currentLightboxIndex()])" 
+        <img [src]="validImages()[currentLightboxIndex()] | resolveUrl" 
              alt="Full size service image"
              class="max-h-[90vh] max-w-[95vw] object-contain rounded-lg shadow-2xl animate-scale-in select-none"
              (click)="$event.stopPropagation()">
@@ -285,7 +285,7 @@
              [class.opacity-50]="currentLightboxIndex() !== i"
              [class.opacity-100]="currentLightboxIndex() === i"
              [class.scale-110]="currentLightboxIndex() === i">
-            <img [src]="getImageUrl(img)" class="w-full h-full object-cover">
+            <img [src]="img | resolveUrl" class="w-full h-full object-cover">
         </div>
     </div>
     

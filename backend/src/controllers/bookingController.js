@@ -117,6 +117,27 @@ exports.createPaymentIntent = async (req, res, next) => {
             await sendNewBookingEmails(fullService, req.user, newBooking);
         }
 
+        // Emit Socket Event (Booking Created)
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            // Emit full booking or just essential info? Full is better for listeners.
+            // But we might need to populate tourist info for the dashboard to display it nicely immediately
+            // Rationale: Dashboard lists usually show tourist name.
+            // So let's re-fetch or populate manually.
+            // newBooking.tourist is just ID here.
+            // Let's rely on standard populate if possible or just send ID.
+            // Listeners can fetch updates or we optimise.
+            // Optimisation:
+            const populatedBooking = await Booking.findById(newBooking._id)
+                .populate('tourist', 'name email photo')
+                .populate('service', 'title');
+
+            io.emit('booking-created', populatedBooking);
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
+        }
+
         res.status(200).json({
             status: 'success',
             clientSecret: paymentIntent.client_secret,
@@ -182,6 +203,15 @@ exports.confirmBooking = async (req, res, next) => {
             // Prevent sending "Confirmed" email while status is still 'pending'
             // await sendBookingConfirmation(booking.tourist, booking, booking.service);
             // console.log('Skipping immediate confirmation email - waiting for Host Approval.');
+        }
+
+        // Emit Socket Event (Booking Updated - Paid/Confirmed)
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            io.emit('booking-updated', booking);
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
         }
 
         res.status(200).json({
@@ -288,6 +318,15 @@ exports.updateBookingStatus = async (req, res, next) => {
         // --- EMAIL STATUS NOTIFICATION ---
         const fullBooking = await Booking.findById(id).populate('tourist').populate('service');
         await sendStatusUpdateEmail(fullBooking);
+
+        // Emit Socket Event (Booking Updated - Status Change)
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            io.emit('booking-updated', fullBooking);
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
+        }
 
         res.status(200).json({
             status: 'success',

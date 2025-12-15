@@ -169,6 +169,15 @@ exports.deleteUser = async (req, res, next) => {
             return next(new AppError('User not found', 404));
         }
 
+        // Emit Socket Event for Admin Dashboard
+        try {
+            const socketModule = require('../socket');
+            const io = socketModule.getIO();
+            io.emit('user-deleted', { _id: req.params.id });
+        } catch (socketErr) {
+            console.error('Socket emit failed:', socketErr.message);
+        }
+
         res.status(204).json({
             status: 'success',
             data: null

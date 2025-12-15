@@ -11,6 +11,17 @@
         "ACCOUNT": "Compte",
         "SUPER_ADMIN": "Super Admin"
     },
+    "ADMIN": {
+        "MESSAGES": {
+            "USER_CREATED": "Nouvel utilisateur inscrit",
+            "USER_DELETED_SOCKET": "Un utilisateur a été supprimé",
+            "NEW_BOOKING": "Nouvelle réservation reçue !",
+            "USER_VERIFIED": "Utilisateur vérifié avec succès",
+            "USER_PENDING": "Utilisateur mis en attente",
+            "ROLE_UPDATED": "Rôle utilisateur mis à jour",
+            "USER_DELETED": "Utilisateur supprimé avec succès"
+        }
+    },
     "HOME": {
         "MAP": {
             "TITLE": "Nos Destinations"

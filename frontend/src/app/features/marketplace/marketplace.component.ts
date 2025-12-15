@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, inject, computed, OnDestroy } from '@angular/core';
+import { Component, OnInit, signal, inject, computed, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,12 +14,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
 import { LanguageService } from '../../core/services/language.service';
 
+import { ResolveUrlPipe } from '../../shared/pipes/resolve-url.pipe';
+
 @Component({
     selector: 'app-marketplace',
     standalone: true,
-    imports: [CommonModule, MapComponent, FormsModule, MatIconModule, WebpUrlPipe, TranslateModule, LangSelectPipe],
+    imports: [CommonModule, MapComponent, FormsModule, MatIconModule, WebpUrlPipe, ResolveUrlPipe, TranslateModule, LangSelectPipe],
     templateUrl: './marketplace.component.html',
-    styleUrls: ['./marketplace.component.scss']
+    styleUrls: ['./marketplace.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarketplaceComponent implements OnInit, OnDestroy {
     private serviceService = inject(ServiceService);
@@ -222,14 +225,5 @@ export class MarketplaceComponent implements OnInit, OnDestroy {
         this.router.navigate(['/service', service._id || service.id]);
     }
 
-    getImageUrl(url: string | undefined): string | null {
-        if (!url) return null;
-        if (url.startsWith('data:')) return url;
-        if (url.startsWith('http')) return url;
-        if (url.startsWith('/assets')) return url;
-        if (url.startsWith('/uploads')) {
-            return environment.apiUrl.replace('/api/v1', '') + url;
-        }
-        return url;
-    }
+
 }

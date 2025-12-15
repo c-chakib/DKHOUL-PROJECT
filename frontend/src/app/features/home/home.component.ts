@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, HostListener, Renderer2 } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, HostListener, Renderer2, ChangeDetectionStrategy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -35,13 +35,14 @@ import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
         LangSelectPipe
     ],
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit, OnDestroy {
     private scrollListener?: () => void;
     private langChangeSub?: Subscription;
-    recentServices: any[] = [];
-    isLoading = true;
+    recentServices = signal<any[]>([]);
+    isLoading = signal<boolean>(true);
     private serviceService = inject(ServiceService);
     private router = inject(Router);
     private logger = inject(LoggerService);
@@ -99,7 +100,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.SPACE.EXAMPLES.4'
             ],
-            image: 'assets/images/space.webp',
+            image: 'assets/images/space_small.webp',
             categoryParam: 'SPACE'
         },
         {
@@ -116,7 +117,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.SKILL.EXAMPLES.4'
             ],
-            image: 'assets/images/skills.webp',
+            image: 'assets/images/skills_small.webp',
             categoryParam: 'SKILL'
         },
         {
@@ -133,7 +134,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.3',
                 'HOME.CATEGORIES.ITEMS.CONNECT.EXAMPLES.4'
             ],
-            image: 'assets/images/connect.webp',
+            image: 'assets/images/connect_small.webp',
             categoryParam: 'CONNECT'
         }
     ];
@@ -169,7 +170,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             name: 'Sophie Martin',
             country: 'France',
             rating: 5,
-            image: 'assets/images/avatar1.png',
+            image: 'assets/images/avatar1.webp',
             textKey: 'HOME.TESTIMONIALS.REVIEWS.1',
             serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.LUGGAGE',
             serviceIcon: 'luggage'
@@ -178,7 +179,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             name: 'John Smith',
             country: 'États-Unis',
             rating: 5,
-            image: 'assets/images/avatar2.png',
+            image: 'assets/images/avatar2.webp',
             textKey: 'HOME.TESTIMONIALS.REVIEWS.2',
             serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.COOKING',
             serviceIcon: 'restaurant'
@@ -187,7 +188,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             name: 'Maria Garcia',
             country: 'Espagne',
             rating: 5,
-            image: 'assets/images/avatar3.png',
+            image: 'assets/images/avatar3.webp',
             textKey: 'HOME.TESTIMONIALS.REVIEWS.3',
             serviceTypeKey: 'HOME.TESTIMONIALS.TYPES.GUIDE',
             serviceIcon: 'shopping_bag'
@@ -272,17 +273,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
 
     loadRecentServices(): void {
-        this.isLoading = true;
+        this.isLoading.set(true);
         this.serviceService.getAllServices({ limit: 8 }).subscribe({
             next: (response: any) => {
                 // Backend returns: { results: number, data: { services: [...] } }
-                this.recentServices = response.data?.services || [];
-                this.logger.info(`Loaded ${this.recentServices.length} services`);
-                this.isLoading = false;
+                this.recentServices.set(response.data?.services || []);
+                this.logger.info(`Loaded ${this.recentServices().length} services`);
+                this.isLoading.set(false);
             },
             error: (error) => {
                 this.logger.error('Error loading services:', error);
-                this.isLoading = false;
+                this.isLoading.set(false);
             }
         });
     }

@@ -138,8 +138,11 @@
                     
                     <!-- Image with Text Fallback -->
                     <div class="relative h-64 bg-gray-200 overflow-hidden">
-                        <ng-container *ngIf="getImageUrl(service.images[0]) | webp as url; else noImage">
-                             <img [src]="url" [alt]="service.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <ng-container *ngIf="service.images[0] | resolveUrl | webp as url; else noImage">
+                             <img [src]="url" [alt]="service.title" 
+                                  width="400" height="300"
+                                  loading="lazy"
+                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         </ng-container>
                         <ng-template #noImage>
                             <div class="w-full h-full flex flex-col items-center justify-center text-gray-400 bg-gray-100">
