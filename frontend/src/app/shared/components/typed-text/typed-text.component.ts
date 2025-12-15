@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,6 +18,7 @@ export class TypedTextComponent implements OnInit, OnDestroy, OnChanges {
     private currentTextIndex = 0;
     private isDeleting = false;
     private timeoutId: any;
+    private cdr = inject(ChangeDetectorRef);
 
     ngOnInit() {
         // Initial check, but real trigger usually comes from ngOnChanges for async data
@@ -53,6 +54,8 @@ export class TypedTextComponent implements OnInit, OnDestroy, OnChanges {
         } else {
             this.displayText = currentFullText.substring(0, this.displayText.length + 1);
         }
+
+        this.cdr.detectChanges();
 
         let typeSpeed = this.isDeleting ? this.backSpeed : this.typeSpeed;
 

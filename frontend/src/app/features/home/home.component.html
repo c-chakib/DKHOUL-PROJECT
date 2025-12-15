@@ -60,7 +60,7 @@
       <div class="grid grid-cols-3 gap-8 pt-8 border-t border-outline/20">
         <div *ngFor="let stat of stats" class="text-center lg:text-left rtl:lg:text-right">
           <div class="text-3xl font-bold text-primary">
-            {{ stat.isK ? (stat.current / 1000 | number:'1.0-1') + 'k' : stat.current }}{{ stat.suffix }}
+            {{ (stat.isK && stat.current >= 1000) ? (stat.current / 1000 | number:'1.0-1') + 'k' : stat.current }}{{ stat.suffix }}
           </div>
           <div class="text-sm text-secondary/70">{{ stat.labelKey | translate }}</div>
         </div>

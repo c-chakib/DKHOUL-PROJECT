@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy, HostListener, Renderer2, ChangeDetectionStrategy, signal } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, HostListener, Renderer2, ChangeDetectionStrategy, signal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -47,7 +47,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router = inject(Router);
     private logger = inject(LoggerService);
     public translate = inject(TranslateService);
+
     private renderer = inject(Renderer2);
+    private cdr = inject(ChangeDetectorRef);
 
     currentYear = new Date().getFullYear();
 
@@ -220,6 +222,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     updateTypedTexts() {
         this.translate.get(this.typedTextsKeys).subscribe(translations => {
             this.translatedTexts = this.typedTextsKeys.map(key => translations[key]);
+            this.cdr.markForCheck();
         });
     }
 
@@ -240,6 +243,7 @@ export class HomeComponent implements OnInit, OnDestroy {
                 } else {
                     stat.current = Math.floor(increment * currentStep);
                 }
+                this.cdr.markForCheck();
             }, intervalTime);
         });
     }
