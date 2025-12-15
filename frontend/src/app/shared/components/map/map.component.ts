@@ -1,8 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, Inject, PLATFORM_ID, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, Inject, PLATFORM_ID, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Service } from '../../../core/services/service.service';
 import * as L from 'leaflet';
 import { Router } from '@angular/router';
+import { LanguageService } from '../../../core/services/language.service';
+import { LangSelectPipe } from '../../pipes/lang-select.pipe';
 
 @Component({
     selector: 'app-map',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnChanges, OnDestroy {
+export class MapComponent implements OnChanges, OnDestroy, AfterViewInit {
     @Input() services: Service[] = [];
     @ViewChild('mapContainer') mapContainer!: ElementRef;
 
@@ -19,7 +21,8 @@ export class MapComponent implements OnChanges, OnDestroy {
 
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
-        private router: Router
+        private router: Router,
+        private languageService: LanguageService
     ) { }
 
 
@@ -90,10 +93,12 @@ export class MapComponent implements OnChanges, OnDestroy {
                         .addTo(this.map!);
 
                     // Create popup content
+                    const langPipe = new LangSelectPipe();
+                    const title = langPipe.transform(service.title, this.languageService.currentLang());
                     const popupContent = document.createElement('div');
                     popupContent.className = 'text-center p-2';
                     popupContent.innerHTML = `
-                        <div class="font-playfair font-bold text-gray-900 text-lg mb-1">${service.title}</div>
+                        <div class="font-playfair font-bold text-gray-900 text-lg mb-1">${title}</div>
                         <div class="text-[#BC5627] font-bold text-base mb-2">${service.price} MAD</div>
                         <button id="btn-${service._id}" class="bg-[#BC5627] text-white text-xs px-3 py-1 rounded hover:bg-[#a0451f]">
                             Voir

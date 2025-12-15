@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService, Service } from '../../core/services/service.service';
 import { ToastService } from '../../core/services/toast.service';
 import { environment } from '../../../environments/environment';
+import { LanguageService } from '../../core/services/language.service';
+import { LangSelectPipe } from '../../shared/pipes/lang-select.pipe';
 
 @Component({
     selector: 'app-edit-service',
@@ -20,6 +22,7 @@ export class EditServiceComponent implements OnInit {
     private serviceService = inject(ServiceService);
     private toast = inject(ToastService);
 
+    private languageService = inject(LanguageService);
     serviceId = signal<string>('');
     serviceForm: FormGroup;
     isLoading = signal(true);
@@ -66,15 +69,18 @@ export class EditServiceComponent implements OnInit {
                 if (res.data && res.data.service) {
                     const s = res.data.service;
 
+                    const langPipe = new LangSelectPipe();
+                    const currentLang = this.languageService.currentLang();
+
                     // Pre-fill form with existing data
                     this.serviceForm.patchValue({
-                        title: s.title,
+                        title: typeof s.title === 'object' ? langPipe.transform(s.title, currentLang) : s.title,
                         category: s.category,
                         city: s.city,
                         price: s.price,
                         duration: s.duration,
                         maxParticipants: s.maxParticipants,
-                        description: s.description,
+                        description: typeof s.description === 'object' ? langPipe.transform(s.description, currentLang) : s.description,
                         languages: s.languages || []
                     });
 

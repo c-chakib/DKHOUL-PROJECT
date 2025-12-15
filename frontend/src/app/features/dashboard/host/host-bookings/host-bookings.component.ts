@@ -6,10 +6,12 @@ import { ToastService } from '../../../../core/services/toast.service';
 import { environment } from '../../../../../environments/environment';
 import { ConfirmModalComponent } from '../../../../shared/components/confirm-modal/confirm-modal.component';
 
+import { LangSelectPipe } from '../../../../shared/pipes/lang-select.pipe';
+
 @Component({
     selector: 'app-host-bookings',
     standalone: true,
-    imports: [CommonModule, ConfirmModalComponent, TranslateModule],
+    imports: [CommonModule, ConfirmModalComponent, TranslateModule, LangSelectPipe],
     template: `
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden relative">
       <div class="p-6 border-b border-gray-100">
@@ -57,7 +59,7 @@ import { ConfirmModalComponent } from '../../../../shared/components/confirm-mod
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <span class="font-medium text-gray-900">{{ booking.service?.title }}</span>
+                                <span class="font-medium text-gray-900">{{ booking.service?.title | langSelect: translate.currentLang }}</span>
                             </td>
                             <td class="px-6 py-4">
                                 <div>{{ booking.bookingDate | date:'d MMM yyyy' }}</div>
