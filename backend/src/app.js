@@ -17,7 +17,7 @@ const app = express();
 
 // Set Security HTTP headers
 app.use(helmet({
-    crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" }
+    crossOriginOpenerPolicy: { policy: "unsafe-none" }
 }));
 
 // Enable CORS

@@ -99,8 +99,11 @@ const resizeAndOptimize = async (req, res, next) => {
 
         next();
     } catch (error) {
-        console.error('Sharp/S3 optimization error:', error);
-        next(new AppError('Image processing failed', 500));
+        console.error('Sharp/S3 optimization error (Falling back to local/base64):', error);
+        // Do NOT error out. Let the controller handle the buffer fallback.
+        // We set a flag just in case we want to know
+        req.file.optimizationFailed = true;
+        next();
     }
 };
 
