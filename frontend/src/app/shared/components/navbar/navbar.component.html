@@ -60,6 +60,17 @@
            {{ 'NAV.EXPLORE' | translate }}
         </a>
         
+
+        <!-- PWA Install Button -->
+        @if (pwaService.installable()) {
+          <button (click)="pwaService.promptInstallation()" class="flex items-center gap-2 px-3 py-2 rounded-full hover:bg-gray-50 transition-colors group text-gray-600 hover:text-[#BC5627]" title="Install App">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              <span class="hidden lg:inline text-sm font-medium">Install</span>
+          </button>
+        }
+
         <!-- Auth State -->
         @if (currentUser()) {
           @if (currentUser()?.role === 'host' || currentUser()?.role === 'admin' || currentUser()?.role === 'superadmin') {
@@ -178,6 +189,14 @@
 
       <!-- Navigation Links -->
       <nav class="flex flex-col space-y-2">
+         @if (pwaService.installable()) {
+            <button (click)="pwaService.promptInstallation(); closeMobileMenu()" class="text-left text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-[#BC5627] transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Install App
+            </button>
+         }
          <a routerLink="/" (click)="closeMobileMenu()" class="text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-[#BC5627] transition-colors">{{ 'NAV.HOME' | translate }}</a>
          <a routerLink="/marketplace" (click)="closeMobileMenu()" class="text-lg font-medium text-gray-800 py-3 border-b border-gray-50 hover:text-[#BC5627] transition-colors">{{ 'NAV.EXPLORE' | translate }}</a>
          

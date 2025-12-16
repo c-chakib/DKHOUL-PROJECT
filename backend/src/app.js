@@ -21,10 +21,11 @@ app.use(helmet({
 }));
 
 // Enable CORS
-const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : 'http://localhost:4200';
+const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ['http://localhost:4200', 'http://localhost:8080', 'http://127.0.0.1:8080'];
 app.use(cors({
     origin: corsOrigin,
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
 }));
 
 // Limit requests from same API

@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 // Initialize Socket.io
-const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : "http://localhost:4200";
+const corsOrigin = process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : ["http://localhost:4200", "http://localhost:8080", "http://127.0.0.1:8080"];
 const socketModule = require('./socket');
 const io = socketModule.init(server, corsOrigin);
 

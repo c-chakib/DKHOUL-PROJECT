@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { LanguageService } from '../../../core/services/language.service';
+import { PwaService } from '../../../core/services/pwa.service';
 import { environment } from '../../../../environments/environment';
 import { TranslateModule } from '@ngx-translate/core';
 import { ResolveUrlPipe } from '../../pipes/resolve-url.pipe';
@@ -18,6 +19,7 @@ import { ResolveUrlPipe } from '../../pipes/resolve-url.pipe';
 export class NavbarComponent {
     private readonly authService = inject(AuthService);
     public readonly languageService = inject(LanguageService);
+    public readonly pwaService = inject(PwaService);
     private readonly router = inject(Router);
 
     currentUser = this.authService.currentUser;
